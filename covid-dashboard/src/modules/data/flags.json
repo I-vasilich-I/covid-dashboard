@@ -1,0 +1,2499 @@
+[
+  {
+    "flag": "https://restcountries.eu/data/afg.svg",
+    "name": "Afghanistan",
+    "alpha2Code": "AF",
+    "population": 27657145,
+    "latlng": [
+      33,
+      65
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ala.svg",
+    "name": "Åland Islands",
+    "alpha2Code": "AX",
+    "population": 28875,
+    "latlng": [
+      60.116667,
+      19.9
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/alb.svg",
+    "name": "Albania",
+    "alpha2Code": "AL",
+    "population": 2886026,
+    "latlng": [
+      41,
+      20
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/dza.svg",
+    "name": "Algeria",
+    "alpha2Code": "DZ",
+    "population": 40400000,
+    "latlng": [
+      28,
+      3
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/asm.svg",
+    "name": "American Samoa",
+    "alpha2Code": "AS",
+    "population": 57100,
+    "latlng": [
+      -14.33333333,
+      -170
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/and.svg",
+    "name": "Andorra",
+    "alpha2Code": "AD",
+    "population": 78014,
+    "latlng": [
+      42.5,
+      1.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ago.svg",
+    "name": "Angola",
+    "alpha2Code": "AO",
+    "population": 25868000,
+    "latlng": [
+      -12.5,
+      18.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/aia.svg",
+    "name": "Anguilla",
+    "alpha2Code": "AI",
+    "population": 13452,
+    "latlng": [
+      18.25,
+      -63.16666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ata.svg",
+    "name": "Antarctica",
+    "alpha2Code": "AQ",
+    "population": 1000,
+    "latlng": [
+      -74.65,
+      4.48
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/atg.svg",
+    "name": "Antigua and Barbuda",
+    "alpha2Code": "AG",
+    "population": 86295,
+    "latlng": [
+      17.05,
+      -61.8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/arg.svg",
+    "name": "Argentina",
+    "alpha2Code": "AR",
+    "population": 43590400,
+    "latlng": [
+      -34,
+      -64
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/arm.svg",
+    "name": "Armenia",
+    "alpha2Code": "AM",
+    "population": 2994400,
+    "latlng": [
+      40,
+      45
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/abw.svg",
+    "name": "Aruba",
+    "alpha2Code": "AW",
+    "population": 107394,
+    "latlng": [
+      12.5,
+      -69.96666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/aus.svg",
+    "name": "Australia",
+    "alpha2Code": "AU",
+    "population": 24117360,
+    "latlng": [
+      -27,
+      133
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/aut.svg",
+    "name": "Austria",
+    "alpha2Code": "AT",
+    "population": 8725931,
+    "latlng": [
+      47.33333333,
+      13.33333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/aze.svg",
+    "name": "Azerbaijan",
+    "alpha2Code": "AZ",
+    "population": 9730500,
+    "latlng": [
+      40.5,
+      47.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bhs.svg",
+    "name": "Bahamas",
+    "alpha2Code": "BS",
+    "population": 378040,
+    "latlng": [
+      24.25,
+      -76
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bhr.svg",
+    "name": "Bahrain",
+    "alpha2Code": "BH",
+    "population": 1404900,
+    "latlng": [
+      26,
+      50.55
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bgd.svg",
+    "name": "Bangladesh",
+    "alpha2Code": "BD",
+    "population": 161006790,
+    "latlng": [
+      24,
+      90
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/brb.svg",
+    "name": "Barbados",
+    "alpha2Code": "BB",
+    "population": 285000,
+    "latlng": [
+      13.16666666,
+      -59.53333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/blr.svg",
+    "name": "Belarus",
+    "alpha2Code": "BY",
+    "population": 9498700,
+    "latlng": [
+      53,
+      28
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bel.svg",
+    "name": "Belgium",
+    "alpha2Code": "BE",
+    "population": 11319511,
+    "latlng": [
+      50.83333333,
+      4
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/blz.svg",
+    "name": "Belize",
+    "alpha2Code": "BZ",
+    "population": 370300,
+    "latlng": [
+      17.25,
+      -88.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ben.svg",
+    "name": "Benin",
+    "alpha2Code": "BJ",
+    "population": 10653654,
+    "latlng": [
+      9.5,
+      2.25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bmu.svg",
+    "name": "Bermuda",
+    "alpha2Code": "BM",
+    "population": 61954,
+    "latlng": [
+      32.33333333,
+      -64.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/btn.svg",
+    "name": "Bhutan",
+    "alpha2Code": "BT",
+    "population": 775620,
+    "latlng": [
+      27.5,
+      90.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bol.svg",
+    "name": "Bolivia (Plurinational State of)",
+    "alpha2Code": "BO",
+    "population": 10985059,
+    "latlng": [
+      -17,
+      -65
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bes.svg",
+    "name": "Bonaire, Sint Eustatius and Saba",
+    "alpha2Code": "BQ",
+    "population": 17408,
+    "latlng": [
+      12.15,
+      -68.266667
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bih.svg",
+    "name": "Bosnia and Herzegovina",
+    "alpha2Code": "BA",
+    "population": 3531159,
+    "latlng": [
+      44,
+      18
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bwa.svg",
+    "name": "Botswana",
+    "alpha2Code": "BW",
+    "population": 2141206,
+    "latlng": [
+      -22,
+      24
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bvt.svg",
+    "name": "Bouvet Island",
+    "alpha2Code": "BV",
+    "population": 0,
+    "latlng": [
+      -54.43333333,
+      3.4
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bra.svg",
+    "name": "Brazil",
+    "alpha2Code": "BR",
+    "population": 206135893,
+    "latlng": [
+      -10,
+      -55
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/iot.svg",
+    "name": "British Indian Ocean Territory",
+    "alpha2Code": "IO",
+    "population": 3000,
+    "latlng": [
+      -6,
+      71.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/umi.svg",
+    "name": "United States Minor Outlying Islands",
+    "alpha2Code": "UM",
+    "population": 300,
+    "latlng": []
+  },
+  {
+    "flag": "https://restcountries.eu/data/vgb.svg",
+    "name": "Virgin Islands (British)",
+    "alpha2Code": "VG",
+    "population": 28514,
+    "latlng": [
+      18.431383,
+      -64.62305
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/vir.svg",
+    "name": "Virgin Islands (U.S.)",
+    "alpha2Code": "VI",
+    "population": 114743,
+    "latlng": [
+      18.34,
+      -64.93
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/brn.svg",
+    "name": "Brunei Darussalam",
+    "alpha2Code": "BN",
+    "population": 411900,
+    "latlng": [
+      4.5,
+      114.66666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bgr.svg",
+    "name": "Bulgaria",
+    "alpha2Code": "BG",
+    "population": 7153784,
+    "latlng": [
+      43,
+      25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bfa.svg",
+    "name": "Burkina Faso",
+    "alpha2Code": "BF",
+    "population": 19034397,
+    "latlng": [
+      13,
+      -2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bdi.svg",
+    "name": "Burundi",
+    "alpha2Code": "BI",
+    "population": 10114505,
+    "latlng": [
+      -3.5,
+      30
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/khm.svg",
+    "name": "Cambodia",
+    "alpha2Code": "KH",
+    "population": 15626444,
+    "latlng": [
+      13,
+      105
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cmr.svg",
+    "name": "Cameroon",
+    "alpha2Code": "CM",
+    "population": 22709892,
+    "latlng": [
+      6,
+      12
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/can.svg",
+    "name": "Canada",
+    "alpha2Code": "CA",
+    "population": 36155487,
+    "latlng": [
+      60,
+      -95
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cpv.svg",
+    "name": "Cabo Verde",
+    "alpha2Code": "CV",
+    "population": 531239,
+    "latlng": [
+      16,
+      -24
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cym.svg",
+    "name": "Cayman Islands",
+    "alpha2Code": "KY",
+    "population": 58238,
+    "latlng": [
+      19.5,
+      -80.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/caf.svg",
+    "name": "Central African Republic",
+    "alpha2Code": "CF",
+    "population": 4998000,
+    "latlng": [
+      7,
+      21
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tcd.svg",
+    "name": "Chad",
+    "alpha2Code": "TD",
+    "population": 14497000,
+    "latlng": [
+      15,
+      19
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/chl.svg",
+    "name": "Chile",
+    "alpha2Code": "CL",
+    "population": 18191900,
+    "latlng": [
+      -30,
+      -71
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/chn.svg",
+    "name": "China",
+    "alpha2Code": "CN",
+    "population": 1377422166,
+    "latlng": [
+      35,
+      105
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cxr.svg",
+    "name": "Christmas Island",
+    "alpha2Code": "CX",
+    "population": 2072,
+    "latlng": [
+      -10.5,
+      105.66666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cck.svg",
+    "name": "Cocos (Keeling) Islands",
+    "alpha2Code": "CC",
+    "population": 550,
+    "latlng": [
+      -12.5,
+      96.83333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/col.svg",
+    "name": "Colombia",
+    "alpha2Code": "CO",
+    "population": 48759958,
+    "latlng": [
+      4,
+      -72
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/com.svg",
+    "name": "Comoros",
+    "alpha2Code": "KM",
+    "population": 806153,
+    "latlng": [
+      -12.16666666,
+      44.25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cog.svg",
+    "name": "Congo",
+    "alpha2Code": "CG",
+    "population": 4741000,
+    "latlng": [
+      -1,
+      15
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cod.svg",
+    "name": "Congo (Democratic Republic of the)",
+    "alpha2Code": "CD",
+    "population": 85026000,
+    "latlng": [
+      0,
+      25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cok.svg",
+    "name": "Cook Islands",
+    "alpha2Code": "CK",
+    "population": 18100,
+    "latlng": [
+      -21.23333333,
+      -159.76666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cri.svg",
+    "name": "Costa Rica",
+    "alpha2Code": "CR",
+    "population": 4890379,
+    "latlng": [
+      10,
+      -84
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/hrv.svg",
+    "name": "Croatia",
+    "alpha2Code": "HR",
+    "population": 4190669,
+    "latlng": [
+      45.16666666,
+      15.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cub.svg",
+    "name": "Cuba",
+    "alpha2Code": "CU",
+    "population": 11239004,
+    "latlng": [
+      21.5,
+      -80
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cuw.svg",
+    "name": "Curaçao",
+    "alpha2Code": "CW",
+    "population": 154843,
+    "latlng": [
+      12.116667,
+      -68.933333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cyp.svg",
+    "name": "Cyprus",
+    "alpha2Code": "CY",
+    "population": 847000,
+    "latlng": [
+      35,
+      33
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/cze.svg",
+    "name": "Czech Republic",
+    "alpha2Code": "CZ",
+    "population": 10558524,
+    "latlng": [
+      49.75,
+      15.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/dnk.svg",
+    "name": "Denmark",
+    "alpha2Code": "DK",
+    "population": 5717014,
+    "latlng": [
+      56,
+      10
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/dji.svg",
+    "name": "Djibouti",
+    "alpha2Code": "DJ",
+    "population": 900000,
+    "latlng": [
+      11.5,
+      43
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/dma.svg",
+    "name": "Dominica",
+    "alpha2Code": "DM",
+    "population": 71293,
+    "latlng": [
+      15.41666666,
+      -61.33333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/dom.svg",
+    "name": "Dominican Republic",
+    "alpha2Code": "DO",
+    "population": 10075045,
+    "latlng": [
+      19,
+      -70.66666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ecu.svg",
+    "name": "Ecuador",
+    "alpha2Code": "EC",
+    "population": 16545799,
+    "latlng": [
+      -2,
+      -77.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/egy.svg",
+    "name": "Egypt",
+    "alpha2Code": "EG",
+    "population": 91290000,
+    "latlng": [
+      27,
+      30
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/slv.svg",
+    "name": "El Salvador",
+    "alpha2Code": "SV",
+    "population": 6520675,
+    "latlng": [
+      13.83333333,
+      -88.91666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gnq.svg",
+    "name": "Equatorial Guinea",
+    "alpha2Code": "GQ",
+    "population": 1222442,
+    "latlng": [
+      2,
+      10
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/eri.svg",
+    "name": "Eritrea",
+    "alpha2Code": "ER",
+    "population": 5352000,
+    "latlng": [
+      15,
+      39
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/est.svg",
+    "name": "Estonia",
+    "alpha2Code": "EE",
+    "population": 1315944,
+    "latlng": [
+      59,
+      26
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/eth.svg",
+    "name": "Ethiopia",
+    "alpha2Code": "ET",
+    "population": 92206005,
+    "latlng": [
+      8,
+      38
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/flk.svg",
+    "name": "Falkland Islands (Malvinas)",
+    "alpha2Code": "FK",
+    "population": 2563,
+    "latlng": [
+      -51.75,
+      -59
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/fro.svg",
+    "name": "Faroe Islands",
+    "alpha2Code": "FO",
+    "population": 49376,
+    "latlng": [
+      62,
+      -7
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/fji.svg",
+    "name": "Fiji",
+    "alpha2Code": "FJ",
+    "population": 867000,
+    "latlng": [
+      -18,
+      175
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/fin.svg",
+    "name": "Finland",
+    "alpha2Code": "FI",
+    "population": 5491817,
+    "latlng": [
+      64,
+      26
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/fra.svg",
+    "name": "France",
+    "alpha2Code": "FR",
+    "population": 66710000,
+    "latlng": [
+      46,
+      2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/guf.svg",
+    "name": "French Guiana",
+    "alpha2Code": "GF",
+    "population": 254541,
+    "latlng": [
+      4,
+      -53
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pyf.svg",
+    "name": "French Polynesia",
+    "alpha2Code": "PF",
+    "population": 271800,
+    "latlng": [
+      -15,
+      -140
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/atf.svg",
+    "name": "French Southern Territories",
+    "alpha2Code": "TF",
+    "population": 140,
+    "latlng": [
+      -49.25,
+      69.167
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gab.svg",
+    "name": "Gabon",
+    "alpha2Code": "GA",
+    "population": 1802278,
+    "latlng": [
+      -1,
+      11.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gmb.svg",
+    "name": "Gambia",
+    "alpha2Code": "GM",
+    "population": 1882450,
+    "latlng": [
+      13.46666666,
+      -16.56666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/geo.svg",
+    "name": "Georgia",
+    "alpha2Code": "GE",
+    "population": 3720400,
+    "latlng": [
+      42,
+      43.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/deu.svg",
+    "name": "Germany",
+    "alpha2Code": "DE",
+    "population": 81770900,
+    "latlng": [
+      51,
+      9
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gha.svg",
+    "name": "Ghana",
+    "alpha2Code": "GH",
+    "population": 27670174,
+    "latlng": [
+      8,
+      -2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gib.svg",
+    "name": "Gibraltar",
+    "alpha2Code": "GI",
+    "population": 33140,
+    "latlng": [
+      36.13333333,
+      -5.35
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/grc.svg",
+    "name": "Greece",
+    "alpha2Code": "GR",
+    "population": 10858018,
+    "latlng": [
+      39,
+      22
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/grl.svg",
+    "name": "Greenland",
+    "alpha2Code": "GL",
+    "population": 55847,
+    "latlng": [
+      72,
+      -40
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/grd.svg",
+    "name": "Grenada",
+    "alpha2Code": "GD",
+    "population": 103328,
+    "latlng": [
+      12.11666666,
+      -61.66666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/glp.svg",
+    "name": "Guadeloupe",
+    "alpha2Code": "GP",
+    "population": 400132,
+    "latlng": [
+      16.25,
+      -61.583333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gum.svg",
+    "name": "Guam",
+    "alpha2Code": "GU",
+    "population": 184200,
+    "latlng": [
+      13.46666666,
+      144.78333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gtm.svg",
+    "name": "Guatemala",
+    "alpha2Code": "GT",
+    "population": 16176133,
+    "latlng": [
+      15.5,
+      -90.25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ggy.svg",
+    "name": "Guernsey",
+    "alpha2Code": "GG",
+    "population": 62999,
+    "latlng": [
+      49.46666666,
+      -2.58333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gin.svg",
+    "name": "Guinea",
+    "alpha2Code": "GN",
+    "population": 12947000,
+    "latlng": [
+      11,
+      -10
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gnb.svg",
+    "name": "Guinea-Bissau",
+    "alpha2Code": "GW",
+    "population": 1547777,
+    "latlng": [
+      12,
+      -15
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/guy.svg",
+    "name": "Guyana",
+    "alpha2Code": "GY",
+    "population": 746900,
+    "latlng": [
+      5,
+      -59
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/hti.svg",
+    "name": "Haiti",
+    "alpha2Code": "HT",
+    "population": 11078033,
+    "latlng": [
+      19,
+      -72.41666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/hmd.svg",
+    "name": "Heard Island and McDonald Islands",
+    "alpha2Code": "HM",
+    "population": 0,
+    "latlng": [
+      -53.1,
+      72.51666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/vat.svg",
+    "name": "Holy See",
+    "alpha2Code": "VA",
+    "population": 451,
+    "latlng": [
+      41.9,
+      12.45
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/hnd.svg",
+    "name": "Honduras",
+    "alpha2Code": "HN",
+    "population": 8576532,
+    "latlng": [
+      15,
+      -86.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/hkg.svg",
+    "name": "Hong Kong",
+    "alpha2Code": "HK",
+    "population": 7324300,
+    "latlng": [
+      22.25,
+      114.16666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/hun.svg",
+    "name": "Hungary",
+    "alpha2Code": "HU",
+    "population": 9823000,
+    "latlng": [
+      47,
+      20
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/isl.svg",
+    "name": "Iceland",
+    "alpha2Code": "IS",
+    "population": 334300,
+    "latlng": [
+      65,
+      -18
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ind.svg",
+    "name": "India",
+    "alpha2Code": "IN",
+    "population": 1295210000,
+    "latlng": [
+      20,
+      77
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/idn.svg",
+    "name": "Indonesia",
+    "alpha2Code": "ID",
+    "population": 258705000,
+    "latlng": [
+      -5,
+      120
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/civ.svg",
+    "name": "Côte d'Ivoire",
+    "alpha2Code": "CI",
+    "population": 22671331,
+    "latlng": [
+      8,
+      -5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/irn.svg",
+    "name": "Iran (Islamic Republic of)",
+    "alpha2Code": "IR",
+    "population": 79369900,
+    "latlng": [
+      32,
+      53
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/irq.svg",
+    "name": "Iraq",
+    "alpha2Code": "IQ",
+    "population": 37883543,
+    "latlng": [
+      33,
+      44
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/irl.svg",
+    "name": "Ireland",
+    "alpha2Code": "IE",
+    "population": 6378000,
+    "latlng": [
+      53,
+      -8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/imn.svg",
+    "name": "Isle of Man",
+    "alpha2Code": "IM",
+    "population": 84497,
+    "latlng": [
+      54.25,
+      -4.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/isr.svg",
+    "name": "Israel",
+    "alpha2Code": "IL",
+    "population": 8527400,
+    "latlng": [
+      31.5,
+      34.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ita.svg",
+    "name": "Italy",
+    "alpha2Code": "IT",
+    "population": 60665551,
+    "latlng": [
+      42.83333333,
+      12.83333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/jam.svg",
+    "name": "Jamaica",
+    "alpha2Code": "JM",
+    "population": 2723246,
+    "latlng": [
+      18.25,
+      -77.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/jpn.svg",
+    "name": "Japan",
+    "alpha2Code": "JP",
+    "population": 126960000,
+    "latlng": [
+      36,
+      138
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/jey.svg",
+    "name": "Jersey",
+    "alpha2Code": "JE",
+    "population": 100800,
+    "latlng": [
+      49.25,
+      -2.16666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/jor.svg",
+    "name": "Jordan",
+    "alpha2Code": "JO",
+    "population": 9531712,
+    "latlng": [
+      31,
+      36
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/kaz.svg",
+    "name": "Kazakhstan",
+    "alpha2Code": "KZ",
+    "population": 17753200,
+    "latlng": [
+      48,
+      68
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ken.svg",
+    "name": "Kenya",
+    "alpha2Code": "KE",
+    "population": 47251000,
+    "latlng": [
+      1,
+      38
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/kir.svg",
+    "name": "Kiribati",
+    "alpha2Code": "KI",
+    "population": 113400,
+    "latlng": [
+      1.41666666,
+      173
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/kwt.svg",
+    "name": "Kuwait",
+    "alpha2Code": "KW",
+    "population": 4183658,
+    "latlng": [
+      29.5,
+      45.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/kgz.svg",
+    "name": "Kyrgyzstan",
+    "alpha2Code": "KG",
+    "population": 6047800,
+    "latlng": [
+      41,
+      75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lao.svg",
+    "name": "Lao People's Democratic Republic",
+    "alpha2Code": "LA",
+    "population": 6492400,
+    "latlng": [
+      18,
+      105
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lva.svg",
+    "name": "Latvia",
+    "alpha2Code": "LV",
+    "population": 1961600,
+    "latlng": [
+      57,
+      25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lbn.svg",
+    "name": "Lebanon",
+    "alpha2Code": "LB",
+    "population": 5988000,
+    "latlng": [
+      33.83333333,
+      35.83333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lso.svg",
+    "name": "Lesotho",
+    "alpha2Code": "LS",
+    "population": 1894194,
+    "latlng": [
+      -29.5,
+      28.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lbr.svg",
+    "name": "Liberia",
+    "alpha2Code": "LR",
+    "population": 4615000,
+    "latlng": [
+      6.5,
+      -9.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lby.svg",
+    "name": "Libya",
+    "alpha2Code": "LY",
+    "population": 6385000,
+    "latlng": [
+      25,
+      17
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lie.svg",
+    "name": "Liechtenstein",
+    "alpha2Code": "LI",
+    "population": 37623,
+    "latlng": [
+      47.26666666,
+      9.53333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ltu.svg",
+    "name": "Lithuania",
+    "alpha2Code": "LT",
+    "population": 2872294,
+    "latlng": [
+      56,
+      24
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lux.svg",
+    "name": "Luxembourg",
+    "alpha2Code": "LU",
+    "population": 576200,
+    "latlng": [
+      49.75,
+      6.16666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mac.svg",
+    "name": "Macao",
+    "alpha2Code": "MO",
+    "population": 649100,
+    "latlng": [
+      22.16666666,
+      113.55
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mkd.svg",
+    "name": "Macedonia (the former Yugoslav Republic of)",
+    "alpha2Code": "MK",
+    "population": 2058539,
+    "latlng": [
+      41.83333333,
+      22
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mdg.svg",
+    "name": "Madagascar",
+    "alpha2Code": "MG",
+    "population": 22434363,
+    "latlng": [
+      -20,
+      47
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mwi.svg",
+    "name": "Malawi",
+    "alpha2Code": "MW",
+    "population": 16832910,
+    "latlng": [
+      -13.5,
+      34
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mys.svg",
+    "name": "Malaysia",
+    "alpha2Code": "MY",
+    "population": 31405416,
+    "latlng": [
+      2.5,
+      112.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mdv.svg",
+    "name": "Maldives",
+    "alpha2Code": "MV",
+    "population": 344023,
+    "latlng": [
+      3.25,
+      73
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mli.svg",
+    "name": "Mali",
+    "alpha2Code": "ML",
+    "population": 18135000,
+    "latlng": [
+      17,
+      -4
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mlt.svg",
+    "name": "Malta",
+    "alpha2Code": "MT",
+    "population": 425384,
+    "latlng": [
+      35.83333333,
+      14.58333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mhl.svg",
+    "name": "Marshall Islands",
+    "alpha2Code": "MH",
+    "population": 54880,
+    "latlng": [
+      9,
+      168
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mtq.svg",
+    "name": "Martinique",
+    "alpha2Code": "MQ",
+    "population": 378243,
+    "latlng": [
+      14.666667,
+      -61
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mrt.svg",
+    "name": "Mauritania",
+    "alpha2Code": "MR",
+    "population": 3718678,
+    "latlng": [
+      20,
+      -12
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mus.svg",
+    "name": "Mauritius",
+    "alpha2Code": "MU",
+    "population": 1262879,
+    "latlng": [
+      -20.28333333,
+      57.55
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/myt.svg",
+    "name": "Mayotte",
+    "alpha2Code": "YT",
+    "population": 226915,
+    "latlng": [
+      -12.83333333,
+      45.16666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mex.svg",
+    "name": "Mexico",
+    "alpha2Code": "MX",
+    "population": 122273473,
+    "latlng": [
+      23,
+      -102
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/fsm.svg",
+    "name": "Micronesia (Federated States of)",
+    "alpha2Code": "FM",
+    "population": 102800,
+    "latlng": [
+      6.91666666,
+      158.25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mda.svg",
+    "name": "Moldova (Republic of)",
+    "alpha2Code": "MD",
+    "population": 3553100,
+    "latlng": [
+      47,
+      29
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mco.svg",
+    "name": "Monaco",
+    "alpha2Code": "MC",
+    "population": 38400,
+    "latlng": [
+      43.73333333,
+      7.4
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mng.svg",
+    "name": "Mongolia",
+    "alpha2Code": "MN",
+    "population": 3093100,
+    "latlng": [
+      46,
+      105
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mne.svg",
+    "name": "Montenegro",
+    "alpha2Code": "ME",
+    "population": 621810,
+    "latlng": [
+      42.5,
+      19.3
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/msr.svg",
+    "name": "Montserrat",
+    "alpha2Code": "MS",
+    "population": 4922,
+    "latlng": [
+      16.75,
+      -62.2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mar.svg",
+    "name": "Morocco",
+    "alpha2Code": "MA",
+    "population": 33337529,
+    "latlng": [
+      32,
+      -5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/moz.svg",
+    "name": "Mozambique",
+    "alpha2Code": "MZ",
+    "population": 26423700,
+    "latlng": [
+      -18.25,
+      35
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mmr.svg",
+    "name": "Myanmar",
+    "alpha2Code": "MM",
+    "population": 51419420,
+    "latlng": [
+      22,
+      98
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nam.svg",
+    "name": "Namibia",
+    "alpha2Code": "NA",
+    "population": 2324388,
+    "latlng": [
+      -22,
+      17
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nru.svg",
+    "name": "Nauru",
+    "alpha2Code": "NR",
+    "population": 10084,
+    "latlng": [
+      -0.53333333,
+      166.91666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/npl.svg",
+    "name": "Nepal",
+    "alpha2Code": "NP",
+    "population": 28431500,
+    "latlng": [
+      28,
+      84
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nld.svg",
+    "name": "Netherlands",
+    "alpha2Code": "NL",
+    "population": 17019800,
+    "latlng": [
+      52.5,
+      5.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ncl.svg",
+    "name": "New Caledonia",
+    "alpha2Code": "NC",
+    "population": 268767,
+    "latlng": [
+      -21.5,
+      165.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nzl.svg",
+    "name": "New Zealand",
+    "alpha2Code": "NZ",
+    "population": 4697854,
+    "latlng": [
+      -41,
+      174
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nic.svg",
+    "name": "Nicaragua",
+    "alpha2Code": "NI",
+    "population": 6262703,
+    "latlng": [
+      13,
+      -85
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ner.svg",
+    "name": "Niger",
+    "alpha2Code": "NE",
+    "population": 20715000,
+    "latlng": [
+      16,
+      8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nga.svg",
+    "name": "Nigeria",
+    "alpha2Code": "NG",
+    "population": 186988000,
+    "latlng": [
+      10,
+      8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/niu.svg",
+    "name": "Niue",
+    "alpha2Code": "NU",
+    "population": 1470,
+    "latlng": [
+      -19.03333333,
+      -169.86666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nfk.svg",
+    "name": "Norfolk Island",
+    "alpha2Code": "NF",
+    "population": 2302,
+    "latlng": [
+      -29.03333333,
+      167.95
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/prk.svg",
+    "name": "Korea (Democratic People's Republic of)",
+    "alpha2Code": "KP",
+    "population": 25281000,
+    "latlng": [
+      40,
+      127
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/mnp.svg",
+    "name": "Northern Mariana Islands",
+    "alpha2Code": "MP",
+    "population": 56940,
+    "latlng": [
+      15.2,
+      145.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/nor.svg",
+    "name": "Norway",
+    "alpha2Code": "NO",
+    "population": 5223256,
+    "latlng": [
+      62,
+      10
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/omn.svg",
+    "name": "Oman",
+    "alpha2Code": "OM",
+    "population": 4420133,
+    "latlng": [
+      21,
+      57
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pak.svg",
+    "name": "Pakistan",
+    "alpha2Code": "PK",
+    "population": 194125062,
+    "latlng": [
+      30,
+      70
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/plw.svg",
+    "name": "Palau",
+    "alpha2Code": "PW",
+    "population": 17950,
+    "latlng": [
+      7.5,
+      134.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pse.svg",
+    "name": "Palestine, State of",
+    "alpha2Code": "PS",
+    "population": 4682467,
+    "latlng": [
+      31.9,
+      35.2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pan.svg",
+    "name": "Panama",
+    "alpha2Code": "PA",
+    "population": 3814672,
+    "latlng": [
+      9,
+      -80
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/png.svg",
+    "name": "Papua New Guinea",
+    "alpha2Code": "PG",
+    "population": 8083700,
+    "latlng": [
+      -6,
+      147
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pry.svg",
+    "name": "Paraguay",
+    "alpha2Code": "PY",
+    "population": 6854536,
+    "latlng": [
+      -23,
+      -58
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/per.svg",
+    "name": "Peru",
+    "alpha2Code": "PE",
+    "population": 31488700,
+    "latlng": [
+      -10,
+      -76
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/phl.svg",
+    "name": "Philippines",
+    "alpha2Code": "PH",
+    "population": 103279800,
+    "latlng": [
+      13,
+      122
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pcn.svg",
+    "name": "Pitcairn",
+    "alpha2Code": "PN",
+    "population": 56,
+    "latlng": [
+      -25.06666666,
+      -130.1
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pol.svg",
+    "name": "Poland",
+    "alpha2Code": "PL",
+    "population": 38437239,
+    "latlng": [
+      52,
+      20
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/prt.svg",
+    "name": "Portugal",
+    "alpha2Code": "PT",
+    "population": 10374822,
+    "latlng": [
+      39.5,
+      -8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/pri.svg",
+    "name": "Puerto Rico",
+    "alpha2Code": "PR",
+    "population": 3474182,
+    "latlng": [
+      18.25,
+      -66.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/qat.svg",
+    "name": "Qatar",
+    "alpha2Code": "QA",
+    "population": 2587564,
+    "latlng": [
+      25.5,
+      51.25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/kos.svg",
+    "name": "Republic of Kosovo",
+    "alpha2Code": "XK",
+    "population": 1733842,
+    "latlng": [
+      42.666667,
+      21.166667
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/reu.svg",
+    "name": "Réunion",
+    "alpha2Code": "RE",
+    "population": 840974,
+    "latlng": [
+      -21.15,
+      55.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/rou.svg",
+    "name": "Romania",
+    "alpha2Code": "RO",
+    "population": 19861408,
+    "latlng": [
+      46,
+      25
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/rus.svg",
+    "name": "Russian Federation",
+    "alpha2Code": "RU",
+    "population": 146599183,
+    "latlng": [
+      60,
+      100
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/rwa.svg",
+    "name": "Rwanda",
+    "alpha2Code": "RW",
+    "population": 11553188,
+    "latlng": [
+      -2,
+      30
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/blm.svg",
+    "name": "Saint Barthélemy",
+    "alpha2Code": "BL",
+    "population": 9417,
+    "latlng": [
+      18.5,
+      -63.41666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/shn.svg",
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "alpha2Code": "SH",
+    "population": 4255,
+    "latlng": [
+      -15.95,
+      -5.7
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/kna.svg",
+    "name": "Saint Kitts and Nevis",
+    "alpha2Code": "KN",
+    "population": 46204,
+    "latlng": [
+      17.33333333,
+      -62.75
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lca.svg",
+    "name": "Saint Lucia",
+    "alpha2Code": "LC",
+    "population": 186000,
+    "latlng": [
+      13.88333333,
+      -60.96666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/maf.svg",
+    "name": "Saint Martin (French part)",
+    "alpha2Code": "MF",
+    "population": 36979,
+    "latlng": [
+      18.08333333,
+      -63.95
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/spm.svg",
+    "name": "Saint Pierre and Miquelon",
+    "alpha2Code": "PM",
+    "population": 6069,
+    "latlng": [
+      46.83333333,
+      -56.33333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/vct.svg",
+    "name": "Saint Vincent and the Grenadines",
+    "alpha2Code": "VC",
+    "population": 109991,
+    "latlng": [
+      13.25,
+      -61.2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/wsm.svg",
+    "name": "Samoa",
+    "alpha2Code": "WS",
+    "population": 194899,
+    "latlng": [
+      -13.58333333,
+      -172.33333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/smr.svg",
+    "name": "San Marino",
+    "alpha2Code": "SM",
+    "population": 33005,
+    "latlng": [
+      43.76666666,
+      12.41666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/stp.svg",
+    "name": "Sao Tome and Principe",
+    "alpha2Code": "ST",
+    "population": 187356,
+    "latlng": [
+      1,
+      7
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sau.svg",
+    "name": "Saudi Arabia",
+    "alpha2Code": "SA",
+    "population": 32248200,
+    "latlng": [
+      25,
+      45
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sen.svg",
+    "name": "Senegal",
+    "alpha2Code": "SN",
+    "population": 14799859,
+    "latlng": [
+      14,
+      -14
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/srb.svg",
+    "name": "Serbia",
+    "alpha2Code": "RS",
+    "population": 7076372,
+    "latlng": [
+      44,
+      21
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/syc.svg",
+    "name": "Seychelles",
+    "alpha2Code": "SC",
+    "population": 91400,
+    "latlng": [
+      -4.58333333,
+      55.66666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sle.svg",
+    "name": "Sierra Leone",
+    "alpha2Code": "SL",
+    "population": 7075641,
+    "latlng": [
+      8.5,
+      -11.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sgp.svg",
+    "name": "Singapore",
+    "alpha2Code": "SG",
+    "population": 5535000,
+    "latlng": [
+      1.36666666,
+      103.8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sxm.svg",
+    "name": "Sint Maarten (Dutch part)",
+    "alpha2Code": "SX",
+    "population": 38247,
+    "latlng": [
+      18.033333,
+      -63.05
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/svk.svg",
+    "name": "Slovakia",
+    "alpha2Code": "SK",
+    "population": 5426252,
+    "latlng": [
+      48.66666666,
+      19.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/svn.svg",
+    "name": "Slovenia",
+    "alpha2Code": "SI",
+    "population": 2064188,
+    "latlng": [
+      46.11666666,
+      14.81666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/slb.svg",
+    "name": "Solomon Islands",
+    "alpha2Code": "SB",
+    "population": 642000,
+    "latlng": [
+      -8,
+      159
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/som.svg",
+    "name": "Somalia",
+    "alpha2Code": "SO",
+    "population": 11079000,
+    "latlng": [
+      10,
+      49
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/zaf.svg",
+    "name": "South Africa",
+    "alpha2Code": "ZA",
+    "population": 55653654,
+    "latlng": [
+      -29,
+      24
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sgs.svg",
+    "name": "South Georgia and the South Sandwich Islands",
+    "alpha2Code": "GS",
+    "population": 30,
+    "latlng": [
+      -54.5,
+      -37
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/kor.svg",
+    "name": "Korea (Republic of)",
+    "alpha2Code": "KR",
+    "population": 50801405,
+    "latlng": [
+      37,
+      127.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ssd.svg",
+    "name": "South Sudan",
+    "alpha2Code": "SS",
+    "population": 12131000,
+    "latlng": [
+      7,
+      30
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/esp.svg",
+    "name": "Spain",
+    "alpha2Code": "ES",
+    "population": 46438422,
+    "latlng": [
+      40,
+      -4
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/lka.svg",
+    "name": "Sri Lanka",
+    "alpha2Code": "LK",
+    "population": 20966000,
+    "latlng": [
+      7,
+      81
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sdn.svg",
+    "name": "Sudan",
+    "alpha2Code": "SD",
+    "population": 39598700,
+    "latlng": [
+      15,
+      30
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sur.svg",
+    "name": "Suriname",
+    "alpha2Code": "SR",
+    "population": 541638,
+    "latlng": [
+      4,
+      -56
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/sjm.svg",
+    "name": "Svalbard and Jan Mayen",
+    "alpha2Code": "SJ",
+    "population": 2562,
+    "latlng": [
+      78,
+      20
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/swz.svg",
+    "name": "Swaziland",
+    "alpha2Code": "SZ",
+    "population": 1132657,
+    "latlng": [
+      -26.5,
+      31.5
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/swe.svg",
+    "name": "Sweden",
+    "alpha2Code": "SE",
+    "population": 9894888,
+    "latlng": [
+      62,
+      15
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/che.svg",
+    "name": "Switzerland",
+    "alpha2Code": "CH",
+    "population": 8341600,
+    "latlng": [
+      47,
+      8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/syr.svg",
+    "name": "Syrian Arab Republic",
+    "alpha2Code": "SY",
+    "population": 18564000,
+    "latlng": [
+      35,
+      38
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/twn.svg",
+    "name": "Taiwan",
+    "alpha2Code": "TW",
+    "population": 23503349,
+    "latlng": [
+      23.5,
+      121
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tjk.svg",
+    "name": "Tajikistan",
+    "alpha2Code": "TJ",
+    "population": 8593600,
+    "latlng": [
+      39,
+      71
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tza.svg",
+    "name": "Tanzania, United Republic of",
+    "alpha2Code": "TZ",
+    "population": 55155000,
+    "latlng": [
+      -6,
+      35
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tha.svg",
+    "name": "Thailand",
+    "alpha2Code": "TH",
+    "population": 65327652,
+    "latlng": [
+      15,
+      100
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tls.svg",
+    "name": "Timor-Leste",
+    "alpha2Code": "TL",
+    "population": 1167242,
+    "latlng": [
+      -8.83333333,
+      125.91666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tgo.svg",
+    "name": "Togo",
+    "alpha2Code": "TG",
+    "population": 7143000,
+    "latlng": [
+      8,
+      1.16666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tkl.svg",
+    "name": "Tokelau",
+    "alpha2Code": "TK",
+    "population": 1411,
+    "latlng": [
+      -9,
+      -172
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ton.svg",
+    "name": "Tonga",
+    "alpha2Code": "TO",
+    "population": 103252,
+    "latlng": [
+      -20,
+      -175
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tto.svg",
+    "name": "Trinidad and Tobago",
+    "alpha2Code": "TT",
+    "population": 1349667,
+    "latlng": [
+      11,
+      -61
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tun.svg",
+    "name": "Tunisia",
+    "alpha2Code": "TN",
+    "population": 11154400,
+    "latlng": [
+      34,
+      9
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tur.svg",
+    "name": "Turkey",
+    "alpha2Code": "TR",
+    "population": 78741053,
+    "latlng": [
+      39,
+      35
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tkm.svg",
+    "name": "Turkmenistan",
+    "alpha2Code": "TM",
+    "population": 4751120,
+    "latlng": [
+      40,
+      60
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tca.svg",
+    "name": "Turks and Caicos Islands",
+    "alpha2Code": "TC",
+    "population": 31458,
+    "latlng": [
+      21.75,
+      -71.58333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/tuv.svg",
+    "name": "Tuvalu",
+    "alpha2Code": "TV",
+    "population": 10640,
+    "latlng": [
+      -8,
+      178
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/uga.svg",
+    "name": "Uganda",
+    "alpha2Code": "UG",
+    "population": 33860700,
+    "latlng": [
+      1,
+      32
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ukr.svg",
+    "name": "Ukraine",
+    "alpha2Code": "UA",
+    "population": 42692393,
+    "latlng": [
+      49,
+      32
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/are.svg",
+    "name": "United Arab Emirates",
+    "alpha2Code": "AE",
+    "population": 9856000,
+    "latlng": [
+      24,
+      54
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/gbr.svg",
+    "name": "United Kingdom of Great Britain and Northern Ireland",
+    "alpha2Code": "GB",
+    "population": 65110000,
+    "latlng": [
+      54,
+      -2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/usa.svg",
+    "name": "United States of America",
+    "alpha2Code": "US",
+    "population": 323947000,
+    "latlng": [
+      38,
+      -97
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ury.svg",
+    "name": "Uruguay",
+    "alpha2Code": "UY",
+    "population": 3480222,
+    "latlng": [
+      -33,
+      -56
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/uzb.svg",
+    "name": "Uzbekistan",
+    "alpha2Code": "UZ",
+    "population": 31576400,
+    "latlng": [
+      41,
+      64
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/vut.svg",
+    "name": "Vanuatu",
+    "alpha2Code": "VU",
+    "population": 277500,
+    "latlng": [
+      -16,
+      167
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/ven.svg",
+    "name": "Venezuela (Bolivarian Republic of)",
+    "alpha2Code": "VE",
+    "population": 31028700,
+    "latlng": [
+      8,
+      -66
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/vnm.svg",
+    "name": "Viet Nam",
+    "alpha2Code": "VN",
+    "population": 92700000,
+    "latlng": [
+      16.16666666,
+      107.83333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/wlf.svg",
+    "name": "Wallis and Futuna",
+    "alpha2Code": "WF",
+    "population": 11750,
+    "latlng": [
+      -13.3,
+      -176.2
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/esh.svg",
+    "name": "Western Sahara",
+    "alpha2Code": "EH",
+    "population": 510713,
+    "latlng": [
+      24.5,
+      -13
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/yem.svg",
+    "name": "Yemen",
+    "alpha2Code": "YE",
+    "population": 27478000,
+    "latlng": [
+      15,
+      48
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/zmb.svg",
+    "name": "Zambia",
+    "alpha2Code": "ZM",
+    "population": 15933883,
+    "latlng": [
+      -15,
+      30
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/zwe.svg",
+    "name": "Zimbabwe",
+    "alpha2Code": "ZW",
+    "population": 14240168,
+    "latlng": [
+      -20,
+      30
+    ]
+  }
+]
