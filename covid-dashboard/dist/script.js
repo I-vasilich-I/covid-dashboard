@@ -72,8 +72,11 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
+/* harmony import */ var _modules_utils_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/utils/storage */ "./src/modules/utils/storage.js");
+
 
 (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)();
+console.log(_modules_utils_storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData'));
 
 /***/ }),
 
@@ -175,26 +178,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _fetchData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchData */ "./src/modules/utils/fetchData.js");
 /* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage */ "./src/modules/utils/storage.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
-function isDataUpToDate(data) {
-  var dateDate = new Date(data.Date);
-  var today = new Date();
-
-  if (dateDate.getDate() === today.getDate() - 1 && dateDate.getMonth() === today.getMonth() && dateDate.getFullYear() === today.getFullYear()) {
-    console.log('everything is up to date', dateDate, today);
-    return true;
-  }
-
-  console.log('nope everything is not up to date', dateDate, today);
-  return false;
-}
-
-function getDataFromLocalStorage(name) {
-  var data = _storage__WEBPACK_IMPORTED_MODULE_1__.get(name);
-  return data;
-}
 
 function addCoordinates(objData) {
   (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(objData).then(function (result) {
@@ -214,42 +203,52 @@ function addCoordinates(objData) {
         noSuchCovidCountry.push(country);
       }
     });
-    _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result);
+    _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result.covidData);
   });
 }
 
 function prepareData() {
-  var isUptoDate = false;
-  var countriesData = getDataFromLocalStorage('CountriesData');
+  return _prepareData.apply(this, arguments);
+}
 
-  if (countriesData === null) {
-    var flags = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
-    (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(flags).then(function (result) {
-      _storage__WEBPACK_IMPORTED_MODULE_1__.set('CountriesData', result);
-      countriesData = result;
-    });
-  }
+function _prepareData() {
+  _prepareData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var countriesData, flags;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            countriesData = _storage__WEBPACK_IMPORTED_MODULE_1__.get('CountriesData');
 
-  var covidData = getDataFromLocalStorage('covidData');
+            if (countriesData === null) {
+              flags = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
+              (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(flags).then(function (result) {
+                _storage__WEBPACK_IMPORTED_MODULE_1__.set('CountriesData', result);
+                countriesData = result;
+              });
+            }
 
-  if (covidData !== null) {
-    isUptoDate = isDataUpToDate(covidData);
-  }
+            (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary').then(function (res) {
+              (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(res).then(function (result) {
+                _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result);
+                return result;
+              }).then(function (result) {
+                var objData = {
+                  covidData: result,
+                  countriesData: countriesData
+                };
+                addCoordinates(objData);
+              });
+            });
 
-  if (!isUptoDate) {
-    var covid = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary');
-    (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covid).then(function (result) {
-      _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result);
-      covidData = _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData');
-    });
-  }
-
-  var objData = {
-    covidData: covidData,
-    countriesData: countriesData
-  };
-  addCoordinates(objData);
-  return _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData');
+          case 3:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _prepareData.apply(this, arguments);
 }
 
 /***/ }),
