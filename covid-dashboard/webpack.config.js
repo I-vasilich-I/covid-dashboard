@@ -4,7 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const isDev = process.env.NODE_ENV === 'development';
 // const isProd = !isDev;
@@ -29,7 +29,7 @@ module.exports = (env, options) => {
     watchOptions: {
       aggregateTimeout: 6000,
     },
-    entry: ['./src/index.js', './src/assets/sass/style.scss'],
+    entry: ['@babel/polyfill', './src/index.js', './src/assets/sass/style.scss'],
     output: {
       path: path.join(__dirname, '/dist'),
       filename: 'script.js',
@@ -69,7 +69,7 @@ module.exports = (env, options) => {
     plugins: [
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HTMLWebpackPlugin({
-        template: './index.html',
+        template: './src/index.html',
         output: {
           path: path.resolve(__dirname, './dist'),
           filename: 'index.html',
@@ -85,17 +85,18 @@ module.exports = (env, options) => {
       new ESLintPlugin({
         fix: true,
       }),
-
+      /*
       new CopyWebpackPlugin({
         patterns: [
           // { from: 'src/assets/audio/shifting.wav'},
-          { from: 'src/assets/audio/', to: 'assets/audio/' },
-          { from: 'src/assets/images/svg/favicon.svg' },
-          { from: 'rs_school_js.svg' },
-          { from: 'src/assets/images/', to: 'assets/images/' },
+          // { from: 'src/assets/audio/', to: 'assets/audio/' },
+          // { from: 'src/assets/images/svg/favicon.svg' },
+          // { from: 'rs_school_js.svg' },
+          // { from: 'src/assets/images/', to: 'assets/images/' },
           // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
         ],
       }),
+      */
     ],
   };
 

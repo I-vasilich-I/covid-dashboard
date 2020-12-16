@@ -1,0 +1,3662 @@
+{
+  "Message": "",
+  "Global": {
+    "NewConfirmed": 523284,
+    "TotalConfirmed": 72837797,
+    "NewDeaths": 8792,
+    "TotalDeaths": 1621053,
+    "NewRecovered": 305839,
+    "TotalRecovered": 47546601
+  },
+  "Countries": [
+    {
+      "Country": "Afghanistan",
+      "CountryCode": "AF",
+      "Slug": "afghanistan",
+      "NewConfirmed": 191,
+      "TotalConfirmed": 48718,
+      "NewDeaths": 4,
+      "TotalDeaths": 1969,
+      "NewRecovered": 2,
+      "TotalRecovered": 38252,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        33,
+        65
+      ],
+      "population": 27657145,
+      "flag": "https://restcountries.eu/data/afg.svg"
+    },
+    {
+      "Country": "Albania",
+      "CountryCode": "AL",
+      "Slug": "albania",
+      "NewConfirmed": 661,
+      "TotalConfirmed": 49191,
+      "NewDeaths": 13,
+      "TotalDeaths": 1016,
+      "NewRecovered": 0,
+      "TotalRecovered": 24820,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        41,
+        20
+      ],
+      "population": 2886026,
+      "flag": "https://restcountries.eu/data/alb.svg"
+    },
+    {
+      "Country": "Algeria",
+      "CountryCode": "DZ",
+      "Slug": "algeria",
+      "NewConfirmed": 495,
+      "TotalConfirmed": 92597,
+      "NewDeaths": 13,
+      "TotalDeaths": 2609,
+      "NewRecovered": 431,
+      "TotalRecovered": 60888,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        28,
+        3
+      ],
+      "population": 40400000,
+      "flag": "https://restcountries.eu/data/dza.svg"
+    },
+    {
+      "Country": "Andorra",
+      "CountryCode": "AD",
+      "Slug": "andorra",
+      "NewConfirmed": 44,
+      "TotalConfirmed": 7382,
+      "NewDeaths": 0,
+      "TotalDeaths": 79,
+      "NewRecovered": 77,
+      "TotalRecovered": 6706,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        42.5,
+        1.5
+      ],
+      "population": 78014,
+      "flag": "https://restcountries.eu/data/and.svg"
+    },
+    {
+      "Country": "Angola",
+      "CountryCode": "AO",
+      "Slug": "angola",
+      "NewConfirmed": 89,
+      "TotalConfirmed": 16277,
+      "NewDeaths": 1,
+      "TotalDeaths": 372,
+      "NewRecovered": 26,
+      "TotalRecovered": 8924,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -12.5,
+        18.5
+      ],
+      "population": 25868000,
+      "flag": "https://restcountries.eu/data/ago.svg"
+    },
+    {
+      "Country": "Antigua and Barbuda",
+      "CountryCode": "AG",
+      "Slug": "antigua-and-barbuda",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 148,
+      "NewDeaths": 0,
+      "TotalDeaths": 5,
+      "NewRecovered": 0,
+      "TotalRecovered": 138,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        17.05,
+        -61.8
+      ],
+      "population": 86295,
+      "flag": "https://restcountries.eu/data/atg.svg"
+    },
+    {
+      "Country": "Argentina",
+      "CountryCode": "AR",
+      "Slug": "argentina",
+      "NewConfirmed": 5062,
+      "TotalConfirmed": 1503222,
+      "NewDeaths": 275,
+      "TotalDeaths": 41041,
+      "NewRecovered": 4803,
+      "TotalRecovered": 1340120,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -34,
+        -64
+      ],
+      "population": 43590400,
+      "flag": "https://restcountries.eu/data/arg.svg"
+    },
+    {
+      "Country": "Armenia",
+      "CountryCode": "AM",
+      "Slug": "armenia",
+      "NewConfirmed": 357,
+      "TotalConfirmed": 148682,
+      "NewDeaths": 17,
+      "TotalDeaths": 2503,
+      "NewRecovered": 797,
+      "TotalRecovered": 125966,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        40,
+        45
+      ],
+      "population": 2994400,
+      "flag": "https://restcountries.eu/data/arm.svg"
+    },
+    {
+      "Country": "Australia",
+      "CountryCode": "AU",
+      "Slug": "australia",
+      "NewConfirmed": 11,
+      "TotalConfirmed": 28048,
+      "NewDeaths": 0,
+      "TotalDeaths": 908,
+      "NewRecovered": 13,
+      "TotalRecovered": 25689,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -27,
+        133
+      ],
+      "population": 24117360,
+      "flag": "https://restcountries.eu/data/aus.svg"
+    },
+    {
+      "Country": "Austria",
+      "CountryCode": "AT",
+      "Slug": "austria",
+      "NewConfirmed": 2588,
+      "TotalConfirmed": 325051,
+      "NewDeaths": 57,
+      "TotalDeaths": 4530,
+      "NewRecovered": 3068,
+      "TotalRecovered": 284174,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        47.33333333,
+        13.33333333
+      ],
+      "population": 8725931,
+      "flag": "https://restcountries.eu/data/aut.svg"
+    },
+    {
+      "Country": "Azerbaijan",
+      "CountryCode": "AZ",
+      "Slug": "azerbaijan",
+      "NewConfirmed": 3112,
+      "TotalConfirmed": 178986,
+      "NewDeaths": 44,
+      "TotalDeaths": 1966,
+      "NewRecovered": 2923,
+      "TotalRecovered": 114841,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        40.5,
+        47.5
+      ],
+      "population": 9730500,
+      "flag": "https://restcountries.eu/data/aze.svg"
+    },
+    {
+      "Country": "Bahamas",
+      "CountryCode": "BS",
+      "Slug": "bahamas",
+      "NewConfirmed": 15,
+      "TotalConfirmed": 7674,
+      "NewDeaths": 0,
+      "TotalDeaths": 163,
+      "NewRecovered": 1,
+      "TotalRecovered": 6070,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        24.25,
+        -76
+      ],
+      "population": 378040,
+      "flag": "https://restcountries.eu/data/bhs.svg"
+    },
+    {
+      "Country": "Bahrain",
+      "CountryCode": "BH",
+      "Slug": "bahrain",
+      "NewConfirmed": 125,
+      "TotalConfirmed": 89268,
+      "NewDeaths": 0,
+      "TotalDeaths": 348,
+      "NewRecovered": 150,
+      "TotalRecovered": 87332,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        26,
+        50.55
+      ],
+      "population": 1404900,
+      "flag": "https://restcountries.eu/data/bhr.svg"
+    },
+    {
+      "Country": "Bangladesh",
+      "CountryCode": "BD",
+      "Slug": "bangladesh",
+      "NewConfirmed": 1799,
+      "TotalConfirmed": 492332,
+      "NewDeaths": 37,
+      "TotalDeaths": 7089,
+      "NewRecovered": 2949,
+      "TotalRecovered": 423845,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        24,
+        90
+      ],
+      "population": 161006790,
+      "flag": "https://restcountries.eu/data/bgd.svg"
+    },
+    {
+      "Country": "Barbados",
+      "CountryCode": "BB",
+      "Slug": "barbados",
+      "NewConfirmed": 4,
+      "TotalConfirmed": 296,
+      "NewDeaths": 0,
+      "TotalDeaths": 7,
+      "NewRecovered": 3,
+      "TotalRecovered": 272,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13.16666666,
+        -59.53333333
+      ],
+      "population": 285000,
+      "flag": "https://restcountries.eu/data/brb.svg"
+    },
+    {
+      "Country": "Belarus",
+      "CountryCode": "BY",
+      "Slug": "belarus",
+      "NewConfirmed": 1853,
+      "TotalConfirmed": 162148,
+      "NewDeaths": 10,
+      "TotalDeaths": 1273,
+      "NewRecovered": 1321,
+      "TotalRecovered": 139785,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        53,
+        28
+      ],
+      "population": 9498700,
+      "flag": "https://restcountries.eu/data/blr.svg"
+    },
+    {
+      "Country": "Belgium",
+      "CountryCode": "BE",
+      "Slug": "belgium",
+      "NewConfirmed": 1074,
+      "TotalConfirmed": 609211,
+      "NewDeaths": 103,
+      "TotalDeaths": 18054,
+      "NewRecovered": 0,
+      "TotalRecovered": 0,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        50.83333333,
+        4
+      ],
+      "population": 11319511,
+      "flag": "https://restcountries.eu/data/bel.svg"
+    },
+    {
+      "Country": "Belize",
+      "CountryCode": "BZ",
+      "Slug": "belize",
+      "NewConfirmed": 82,
+      "TotalConfirmed": 9377,
+      "NewDeaths": 2,
+      "TotalDeaths": 197,
+      "NewRecovered": 93,
+      "TotalRecovered": 4414,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        17.25,
+        -88.75
+      ],
+      "population": 370300,
+      "flag": "https://restcountries.eu/data/blz.svg"
+    },
+    {
+      "Country": "Benin",
+      "CountryCode": "BJ",
+      "Slug": "benin",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 3090,
+      "NewDeaths": 0,
+      "TotalDeaths": 44,
+      "NewRecovered": 0,
+      "TotalRecovered": 2972,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        9.5,
+        2.25
+      ],
+      "population": 10653654,
+      "flag": "https://restcountries.eu/data/ben.svg"
+    },
+    {
+      "Country": "Bhutan",
+      "CountryCode": "BT",
+      "Slug": "bhutan",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 438,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 1,
+      "TotalRecovered": 404,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        27.5,
+        90.5
+      ],
+      "population": 775620,
+      "flag": "https://restcountries.eu/data/btn.svg"
+    },
+    {
+      "Country": "Bolivia",
+      "CountryCode": "BO",
+      "Slug": "bolivia",
+      "NewConfirmed": 195,
+      "TotalConfirmed": 147345,
+      "NewDeaths": 6,
+      "TotalDeaths": 9024,
+      "NewRecovered": 218,
+      "TotalRecovered": 126439,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -17,
+        -65
+      ],
+      "population": 10985059,
+      "flag": "https://restcountries.eu/data/bol.svg"
+    },
+    {
+      "Country": "Bosnia and Herzegovina",
+      "CountryCode": "BA",
+      "Slug": "bosnia-and-herzegovina",
+      "NewConfirmed": 344,
+      "TotalConfirmed": 101461,
+      "NewDeaths": 55,
+      "TotalDeaths": 3391,
+      "NewRecovered": 728,
+      "TotalRecovered": 66486,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        44,
+        18
+      ],
+      "population": 3531159,
+      "flag": "https://restcountries.eu/data/bih.svg"
+    },
+    {
+      "Country": "Botswana",
+      "CountryCode": "BW",
+      "Slug": "botswana",
+      "NewConfirmed": 372,
+      "TotalConfirmed": 12873,
+      "NewDeaths": 1,
+      "TotalDeaths": 38,
+      "NewRecovered": 516,
+      "TotalRecovered": 10456,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -22,
+        24
+      ],
+      "population": 2141206,
+      "flag": "https://restcountries.eu/data/bwa.svg"
+    },
+    {
+      "Country": "Brazil",
+      "CountryCode": "BR",
+      "Slug": "brazil",
+      "NewConfirmed": 25193,
+      "TotalConfirmed": 6927145,
+      "NewDeaths": 433,
+      "TotalDeaths": 181835,
+      "NewRecovered": 19700,
+      "TotalRecovered": 6158049,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -10,
+        -55
+      ],
+      "population": 206135893,
+      "flag": "https://restcountries.eu/data/bra.svg"
+    },
+    {
+      "Country": "Brunei Darussalam",
+      "CountryCode": "BN",
+      "Slug": "brunei",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 152,
+      "NewDeaths": 0,
+      "TotalDeaths": 3,
+      "NewRecovered": 0,
+      "TotalRecovered": 147,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        4.5,
+        114.66666666
+      ],
+      "population": 411900,
+      "flag": "https://restcountries.eu/data/brn.svg"
+    },
+    {
+      "Country": "Bulgaria",
+      "CountryCode": "BG",
+      "Slug": "bulgaria",
+      "NewConfirmed": 2095,
+      "TotalConfirmed": 181544,
+      "NewDeaths": 150,
+      "TotalDeaths": 5838,
+      "NewRecovered": 1858,
+      "TotalRecovered": 85578,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        43,
+        25
+      ],
+      "population": 7153784,
+      "flag": "https://restcountries.eu/data/bgr.svg"
+    },
+    {
+      "Country": "Burkina Faso",
+      "CountryCode": "BF",
+      "Slug": "burkina-faso",
+      "NewConfirmed": 179,
+      "TotalConfirmed": 4209,
+      "NewDeaths": 0,
+      "TotalDeaths": 71,
+      "NewRecovered": 30,
+      "TotalRecovered": 2940,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13,
+        -2
+      ],
+      "population": 19034397,
+      "flag": "https://restcountries.eu/data/bfa.svg"
+    },
+    {
+      "Country": "Burundi",
+      "CountryCode": "BI",
+      "Slug": "burundi",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 729,
+      "NewDeaths": 0,
+      "TotalDeaths": 1,
+      "NewRecovered": 0,
+      "TotalRecovered": 640,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -3.5,
+        30
+      ],
+      "population": 10114505,
+      "flag": "https://restcountries.eu/data/bdi.svg"
+    },
+    {
+      "Country": "Cambodia",
+      "CountryCode": "KH",
+      "Slug": "cambodia",
+      "NewConfirmed": 3,
+      "TotalConfirmed": 362,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 3,
+      "TotalRecovered": 312,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13,
+        105
+      ],
+      "population": 15626444,
+      "flag": "https://restcountries.eu/data/khm.svg"
+    },
+    {
+      "Country": "Cameroon",
+      "CountryCode": "CM",
+      "Slug": "cameroon",
+      "NewConfirmed": 71,
+      "TotalConfirmed": 25214,
+      "NewDeaths": 0,
+      "TotalDeaths": 443,
+      "NewRecovered": 0,
+      "TotalRecovered": 23851,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        6,
+        12
+      ],
+      "population": 22709892,
+      "flag": "https://restcountries.eu/data/cmr.svg"
+    },
+    {
+      "Country": "Canada",
+      "CountryCode": "CA",
+      "Slug": "canada",
+      "NewConfirmed": 8377,
+      "TotalConfirmed": 472794,
+      "NewDeaths": 119,
+      "TotalDeaths": 13569,
+      "NewRecovered": 6368,
+      "TotalRecovered": 385021,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        60,
+        -95
+      ],
+      "population": 36155487,
+      "flag": "https://restcountries.eu/data/can.svg"
+    },
+    {
+      "Country": "Cape Verde",
+      "CountryCode": "CV",
+      "Slug": "cape-verde",
+      "NewConfirmed": 4,
+      "TotalConfirmed": 11361,
+      "NewDeaths": 0,
+      "TotalDeaths": 110,
+      "NewRecovered": 74,
+      "TotalRecovered": 11036,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        16,
+        -24
+      ],
+      "population": 531239,
+      "flag": "https://restcountries.eu/data/cpv.svg"
+    },
+    {
+      "Country": "Central African Republic",
+      "CountryCode": "CF",
+      "Slug": "central-african-republic",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 4936,
+      "NewDeaths": 0,
+      "TotalDeaths": 63,
+      "NewRecovered": 0,
+      "TotalRecovered": 1924,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        7,
+        21
+      ],
+      "population": 4998000,
+      "flag": "https://restcountries.eu/data/caf.svg"
+    },
+    {
+      "Country": "Chad",
+      "CountryCode": "TD",
+      "Slug": "chad",
+      "NewConfirmed": 1,
+      "TotalConfirmed": 1771,
+      "NewDeaths": 0,
+      "TotalDeaths": 102,
+      "NewRecovered": 1,
+      "TotalRecovered": 1608,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15,
+        19
+      ],
+      "population": 14497000,
+      "flag": "https://restcountries.eu/data/tcd.svg"
+    },
+    {
+      "Country": "Chile",
+      "CountryCode": "CL",
+      "Slug": "chile",
+      "NewConfirmed": 1911,
+      "TotalConfirmed": 573830,
+      "NewDeaths": 45,
+      "TotalDeaths": 15931,
+      "NewRecovered": 1706,
+      "TotalRecovered": 546538,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -30,
+        -71
+      ],
+      "population": 18191900,
+      "flag": "https://restcountries.eu/data/chl.svg"
+    },
+    {
+      "Country": "China",
+      "CountryCode": "CN",
+      "Slug": "china",
+      "NewConfirmed": 99,
+      "TotalConfirmed": 94427,
+      "NewDeaths": 3,
+      "TotalDeaths": 4754,
+      "NewRecovered": 81,
+      "TotalRecovered": 88122,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        35,
+        105
+      ],
+      "population": 1377422166,
+      "flag": "https://restcountries.eu/data/chn.svg"
+    },
+    {
+      "Country": "Colombia",
+      "CountryCode": "CO",
+      "Slug": "colombia",
+      "NewConfirmed": 8742,
+      "TotalConfirmed": 1434516,
+      "NewDeaths": 142,
+      "TotalDeaths": 39195,
+      "NewRecovered": 6633,
+      "TotalRecovered": 1321469,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        4,
+        -72
+      ],
+      "population": 48759958,
+      "flag": "https://restcountries.eu/data/col.svg"
+    },
+    {
+      "Country": "Comoros",
+      "CountryCode": "KM",
+      "Slug": "comoros",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 628,
+      "NewDeaths": 0,
+      "TotalDeaths": 7,
+      "NewRecovered": 0,
+      "TotalRecovered": 606,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -12.16666666,
+        44.25
+      ],
+      "population": 806153,
+      "flag": "https://restcountries.eu/data/com.svg"
+    },
+    {
+      "Country": "Congo (Brazzaville)",
+      "CountryCode": "CG",
+      "Slug": "congo-brazzaville",
+      "NewConfirmed": 151,
+      "TotalConfirmed": 6200,
+      "NewDeaths": 1,
+      "TotalDeaths": 100,
+      "NewRecovered": 0,
+      "TotalRecovered": 4988,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -1,
+        15
+      ],
+      "population": 4741000,
+      "flag": "https://restcountries.eu/data/cog.svg"
+    },
+    {
+      "Country": "Congo (Kinshasa)",
+      "CountryCode": "CD",
+      "Slug": "congo-kinshasa",
+      "NewConfirmed": 52,
+      "TotalConfirmed": 14513,
+      "NewDeaths": 4,
+      "TotalDeaths": 356,
+      "NewRecovered": 188,
+      "TotalRecovered": 12653,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        0,
+        25
+      ],
+      "population": 85026000,
+      "flag": "https://restcountries.eu/data/cod.svg"
+    },
+    {
+      "Country": "Costa Rica",
+      "CountryCode": "CR",
+      "Slug": "costa-rica",
+      "NewConfirmed": 2222,
+      "TotalConfirmed": 153169,
+      "NewDeaths": 41,
+      "TotalDeaths": 1936,
+      "NewRecovered": 5889,
+      "TotalRecovered": 118511,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        10,
+        -84
+      ],
+      "population": 4890379,
+      "flag": "https://restcountries.eu/data/cri.svg"
+    },
+    {
+      "Country": "Croatia",
+      "CountryCode": "HR",
+      "Slug": "croatia",
+      "NewConfirmed": 1472,
+      "TotalConfirmed": 177358,
+      "NewDeaths": 65,
+      "TotalDeaths": 2705,
+      "NewRecovered": 3673,
+      "TotalRecovered": 151884,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        45.16666666,
+        15.5
+      ],
+      "population": 4190669,
+      "flag": "https://restcountries.eu/data/hrv.svg"
+    },
+    {
+      "Country": "Cuba",
+      "CountryCode": "CU",
+      "Slug": "cuba",
+      "NewConfirmed": 69,
+      "TotalConfirmed": 9492,
+      "NewDeaths": 0,
+      "TotalDeaths": 137,
+      "NewRecovered": 50,
+      "TotalRecovered": 8484,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        21.5,
+        -80
+      ],
+      "population": 11239004,
+      "flag": "https://restcountries.eu/data/cub.svg"
+    },
+    {
+      "Country": "Cyprus",
+      "CountryCode": "CY",
+      "Slug": "cyprus",
+      "NewConfirmed": 349,
+      "TotalConfirmed": 15450,
+      "NewDeaths": 4,
+      "TotalDeaths": 82,
+      "NewRecovered": 0,
+      "TotalRecovered": 2057,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        35,
+        33
+      ],
+      "population": 847000,
+      "flag": "https://restcountries.eu/data/cyp.svg"
+    },
+    {
+      "Country": "Czech Republic",
+      "CountryCode": "CZ",
+      "Slug": "czech-republic",
+      "NewConfirmed": 2000,
+      "TotalConfirmed": 581079,
+      "NewDeaths": 74,
+      "TotalDeaths": 9609,
+      "NewRecovered": 1256,
+      "TotalRecovered": 505922,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        49.75,
+        15.5
+      ],
+      "population": 10558524,
+      "flag": "https://restcountries.eu/data/cze.svg"
+    },
+    {
+      "Country": "Côte d'Ivoire",
+      "CountryCode": "CI",
+      "Slug": "cote-divoire",
+      "NewConfirmed": 25,
+      "TotalConfirmed": 21705,
+      "NewDeaths": 0,
+      "TotalDeaths": 133,
+      "NewRecovered": 20,
+      "TotalRecovered": 21318,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        8,
+        -5
+      ],
+      "population": 22671331,
+      "flag": "https://restcountries.eu/data/civ.svg"
+    },
+    {
+      "Country": "Denmark",
+      "CountryCode": "DK",
+      "Slug": "denmark",
+      "NewConfirmed": 3337,
+      "TotalConfirmed": 113642,
+      "NewDeaths": 9,
+      "TotalDeaths": 950,
+      "NewRecovered": 1170,
+      "TotalRecovered": 81088,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        56,
+        10
+      ],
+      "population": 5717014,
+      "flag": "https://restcountries.eu/data/dnk.svg"
+    },
+    {
+      "Country": "Djibouti",
+      "CountryCode": "DJ",
+      "Slug": "djibouti",
+      "NewConfirmed": 5,
+      "TotalConfirmed": 5733,
+      "NewDeaths": 0,
+      "TotalDeaths": 61,
+      "NewRecovered": 4,
+      "TotalRecovered": 5622,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        11.5,
+        43
+      ],
+      "population": 900000,
+      "flag": "https://restcountries.eu/data/dji.svg"
+    },
+    {
+      "Country": "Dominica",
+      "CountryCode": "DM",
+      "Slug": "dominica",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 88,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 83,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15.41666666,
+        -61.33333333
+      ],
+      "population": 71293,
+      "flag": "https://restcountries.eu/data/dma.svg"
+    },
+    {
+      "Country": "Dominican Republic",
+      "CountryCode": "DO",
+      "Slug": "dominican-republic",
+      "NewConfirmed": 492,
+      "TotalConfirmed": 155184,
+      "NewDeaths": 3,
+      "TotalDeaths": 2364,
+      "NewRecovered": 526,
+      "TotalRecovered": 121007,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        19,
+        -70.66666666
+      ],
+      "population": 10075045,
+      "flag": "https://restcountries.eu/data/dom.svg"
+    },
+    {
+      "Country": "Ecuador",
+      "CountryCode": "EC",
+      "Slug": "ecuador",
+      "NewConfirmed": 70,
+      "TotalConfirmed": 202180,
+      "NewDeaths": 0,
+      "TotalDeaths": 13875,
+      "NewRecovered": 0,
+      "TotalRecovered": 177951,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -2,
+        -77.5
+      ],
+      "population": 16545799,
+      "flag": "https://restcountries.eu/data/ecu.svg"
+    },
+    {
+      "Country": "Egypt",
+      "CountryCode": "EG",
+      "Slug": "egypt",
+      "NewConfirmed": 511,
+      "TotalConfirmed": 122086,
+      "NewDeaths": 23,
+      "TotalDeaths": 6943,
+      "NewRecovered": 257,
+      "TotalRecovered": 105132,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        27,
+        30
+      ],
+      "population": 91290000,
+      "flag": "https://restcountries.eu/data/egy.svg"
+    },
+    {
+      "Country": "El Salvador",
+      "CountryCode": "SV",
+      "Slug": "el-salvador",
+      "NewConfirmed": 486,
+      "TotalConfirmed": 41880,
+      "NewDeaths": 5,
+      "TotalDeaths": 1205,
+      "NewRecovered": 420,
+      "TotalRecovered": 38087,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13.83333333,
+        -88.91666666
+      ],
+      "population": 6520675,
+      "flag": "https://restcountries.eu/data/slv.svg"
+    },
+    {
+      "Country": "Equatorial Guinea",
+      "CountryCode": "GQ",
+      "Slug": "equatorial-guinea",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 5185,
+      "NewDeaths": 0,
+      "TotalDeaths": 85,
+      "NewRecovered": 0,
+      "TotalRecovered": 5058,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        2,
+        10
+      ],
+      "population": 1222442,
+      "flag": "https://restcountries.eu/data/gnq.svg"
+    },
+    {
+      "Country": "Eritrea",
+      "CountryCode": "ER",
+      "Slug": "eritrea",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 711,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 564,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15,
+        39
+      ],
+      "population": 5352000,
+      "flag": "https://restcountries.eu/data/eri.svg"
+    },
+    {
+      "Country": "Estonia",
+      "CountryCode": "EE",
+      "Slug": "estonia",
+      "NewConfirmed": 330,
+      "TotalConfirmed": 18385,
+      "NewDeaths": 5,
+      "TotalDeaths": 154,
+      "NewRecovered": 84,
+      "TotalRecovered": 11121,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        59,
+        26
+      ],
+      "population": 1315944,
+      "flag": "https://restcountries.eu/data/est.svg"
+    },
+    {
+      "Country": "Ethiopia",
+      "CountryCode": "ET",
+      "Slug": "ethiopia",
+      "NewConfirmed": 473,
+      "TotalConfirmed": 117242,
+      "NewDeaths": 3,
+      "TotalDeaths": 1809,
+      "NewRecovered": 1335,
+      "TotalRecovered": 95225,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        8,
+        38
+      ],
+      "population": 92206005,
+      "flag": "https://restcountries.eu/data/eth.svg"
+    },
+    {
+      "Country": "Fiji",
+      "CountryCode": "FJ",
+      "Slug": "fiji",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 46,
+      "NewDeaths": 0,
+      "TotalDeaths": 2,
+      "NewRecovered": 0,
+      "TotalRecovered": 38,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -18,
+        175
+      ],
+      "population": 867000,
+      "flag": "https://restcountries.eu/data/fji.svg"
+    },
+    {
+      "Country": "Finland",
+      "CountryCode": "FI",
+      "Slug": "finland",
+      "NewConfirmed": 300,
+      "TotalConfirmed": 31110,
+      "NewDeaths": 8,
+      "TotalDeaths": 461,
+      "NewRecovered": 0,
+      "TotalRecovered": 20000,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        64,
+        26
+      ],
+      "population": 5491817,
+      "flag": "https://restcountries.eu/data/fin.svg"
+    },
+    {
+      "Country": "France",
+      "CountryCode": "FR",
+      "Slug": "france",
+      "NewConfirmed": 3247,
+      "TotalConfirmed": 2433859,
+      "NewDeaths": 376,
+      "TotalDeaths": 58391,
+      "NewRecovered": 655,
+      "TotalRecovered": 183340,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        46,
+        2
+      ],
+      "population": 66710000,
+      "flag": "https://restcountries.eu/data/fra.svg"
+    },
+    {
+      "Country": "Gabon",
+      "CountryCode": "GA",
+      "Slug": "gabon",
+      "NewConfirmed": 21,
+      "TotalConfirmed": 9351,
+      "NewDeaths": 0,
+      "TotalDeaths": 63,
+      "NewRecovered": 22,
+      "TotalRecovered": 9204,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -1,
+        11.75
+      ],
+      "population": 1802278,
+      "flag": "https://restcountries.eu/data/gab.svg"
+    },
+    {
+      "Country": "Gambia",
+      "CountryCode": "GM",
+      "Slug": "gambia",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 3782,
+      "NewDeaths": 0,
+      "TotalDeaths": 123,
+      "NewRecovered": 0,
+      "TotalRecovered": 3647,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13.46666666,
+        -16.56666666
+      ],
+      "population": 1882450,
+      "flag": "https://restcountries.eu/data/gmb.svg"
+    },
+    {
+      "Country": "Georgia",
+      "CountryCode": "GE",
+      "Slug": "georgia",
+      "NewConfirmed": 1337,
+      "TotalConfirmed": 191063,
+      "NewDeaths": 49,
+      "TotalDeaths": 1839,
+      "NewRecovered": 3498,
+      "TotalRecovered": 161681,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        42,
+        43.5
+      ],
+      "population": 3720400,
+      "flag": "https://restcountries.eu/data/geo.svg"
+    },
+    {
+      "Country": "Germany",
+      "CountryCode": "DE",
+      "Slug": "germany",
+      "NewConfirmed": 6451,
+      "TotalConfirmed": 1357261,
+      "NewDeaths": 528,
+      "TotalDeaths": 22634,
+      "NewRecovered": 21370,
+      "TotalRecovered": 1012077,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        51,
+        9
+      ],
+      "population": 81770900,
+      "flag": "https://restcountries.eu/data/deu.svg"
+    },
+    {
+      "Country": "Ghana",
+      "CountryCode": "GH",
+      "Slug": "ghana",
+      "NewConfirmed": 81,
+      "TotalConfirmed": 53014,
+      "NewDeaths": 0,
+      "TotalDeaths": 327,
+      "NewRecovered": 85,
+      "TotalRecovered": 51761,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        8,
+        -2
+      ],
+      "population": 27670174,
+      "flag": "https://restcountries.eu/data/gha.svg"
+    },
+    {
+      "Country": "Greece",
+      "CountryCode": "GR",
+      "Slug": "greece",
+      "NewConfirmed": 639,
+      "TotalConfirmed": 125173,
+      "NewDeaths": 62,
+      "TotalDeaths": 3687,
+      "NewRecovered": 0,
+      "TotalRecovered": 23074,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        39,
+        22
+      ],
+      "population": 10858018,
+      "flag": "https://restcountries.eu/data/grc.svg"
+    },
+    {
+      "Country": "Grenada",
+      "CountryCode": "GD",
+      "Slug": "grenada",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 69,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 41,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        12.11666666,
+        -61.66666666
+      ],
+      "population": 103328,
+      "flag": "https://restcountries.eu/data/grd.svg"
+    },
+    {
+      "Country": "Guatemala",
+      "CountryCode": "GT",
+      "Slug": "guatemala",
+      "NewConfirmed": 123,
+      "TotalConfirmed": 129405,
+      "NewDeaths": 22,
+      "TotalDeaths": 4445,
+      "NewRecovered": 294,
+      "TotalRecovered": 118217,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15.5,
+        -90.25
+      ],
+      "population": 16176133,
+      "flag": "https://restcountries.eu/data/gtm.svg"
+    },
+    {
+      "Country": "Guinea",
+      "CountryCode": "GN",
+      "Slug": "guinea",
+      "NewConfirmed": 37,
+      "TotalConfirmed": 13457,
+      "NewDeaths": 1,
+      "TotalDeaths": 80,
+      "NewRecovered": 56,
+      "TotalRecovered": 12713,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        11,
+        -10
+      ],
+      "population": 12947000,
+      "flag": "https://restcountries.eu/data/gin.svg"
+    },
+    {
+      "Country": "Guinea-Bissau",
+      "CountryCode": "GW",
+      "Slug": "guinea-bissau",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 2444,
+      "NewDeaths": 0,
+      "TotalDeaths": 44,
+      "NewRecovered": 0,
+      "TotalRecovered": 2337,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        12,
+        -15
+      ],
+      "population": 1547777,
+      "flag": "https://restcountries.eu/data/gnb.svg"
+    },
+    {
+      "Country": "Guyana",
+      "CountryCode": "GY",
+      "Slug": "guyana",
+      "NewConfirmed": 23,
+      "TotalConfirmed": 5943,
+      "NewDeaths": 1,
+      "TotalDeaths": 156,
+      "NewRecovered": 4,
+      "TotalRecovered": 5077,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        5,
+        -59
+      ],
+      "population": 746900,
+      "flag": "https://restcountries.eu/data/guy.svg"
+    },
+    {
+      "Country": "Haiti",
+      "CountryCode": "HT",
+      "Slug": "haiti",
+      "NewConfirmed": 97,
+      "TotalConfirmed": 9588,
+      "NewDeaths": 1,
+      "TotalDeaths": 234,
+      "NewRecovered": 39,
+      "TotalRecovered": 8280,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        19,
+        -72.41666666
+      ],
+      "population": 11078033,
+      "flag": "https://restcountries.eu/data/hti.svg"
+    },
+    {
+      "Country": "Holy See (Vatican City State)",
+      "CountryCode": "VA",
+      "Slug": "holy-see-vatican-city-state",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 27,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 15,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        41.9,
+        12.45
+      ],
+      "population": 451,
+      "flag": "https://restcountries.eu/data/vat.svg"
+    },
+    {
+      "Country": "Honduras",
+      "CountryCode": "HN",
+      "Slug": "honduras",
+      "NewConfirmed": 283,
+      "TotalConfirmed": 114642,
+      "NewDeaths": 14,
+      "TotalDeaths": 2989,
+      "NewRecovered": 210,
+      "TotalRecovered": 51688,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15,
+        -86.5
+      ],
+      "population": 8576532,
+      "flag": "https://restcountries.eu/data/hnd.svg"
+    },
+    {
+      "Country": "Hungary",
+      "CountryCode": "HU",
+      "Slug": "hungary",
+      "NewConfirmed": 3470,
+      "TotalConfirmed": 283870,
+      "NewDeaths": 165,
+      "TotalDeaths": 7130,
+      "NewRecovered": 1794,
+      "TotalRecovered": 82546,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        47,
+        20
+      ],
+      "population": 9823000,
+      "flag": "https://restcountries.eu/data/hun.svg"
+    },
+    {
+      "Country": "Iceland",
+      "CountryCode": "IS",
+      "Slug": "iceland",
+      "NewConfirmed": 7,
+      "TotalConfirmed": 5564,
+      "NewDeaths": 0,
+      "TotalDeaths": 28,
+      "NewRecovered": 26,
+      "TotalRecovered": 5392,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        65,
+        -18
+      ],
+      "population": 334300,
+      "flag": "https://restcountries.eu/data/isl.svg"
+    },
+    {
+      "Country": "India",
+      "CountryCode": "IN",
+      "Slug": "india",
+      "NewConfirmed": 22065,
+      "TotalConfirmed": 9906165,
+      "NewDeaths": 354,
+      "TotalDeaths": 143709,
+      "NewRecovered": 34477,
+      "TotalRecovered": 9422636,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        20,
+        77
+      ],
+      "population": 1295210000,
+      "flag": "https://restcountries.eu/data/ind.svg"
+    },
+    {
+      "Country": "Indonesia",
+      "CountryCode": "ID",
+      "Slug": "indonesia",
+      "NewConfirmed": 5489,
+      "TotalConfirmed": 623309,
+      "NewDeaths": 137,
+      "TotalDeaths": 18956,
+      "NewRecovered": 5121,
+      "TotalRecovered": 510957,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -5,
+        120
+      ],
+      "population": 258705000,
+      "flag": "https://restcountries.eu/data/idn.svg"
+    },
+    {
+      "Country": "Iran, Islamic Republic of",
+      "CountryCode": "IR",
+      "Slug": "iran",
+      "NewConfirmed": 7501,
+      "TotalConfirmed": 1115770,
+      "NewDeaths": 251,
+      "TotalDeaths": 52447,
+      "NewRecovered": 10961,
+      "TotalRecovered": 823231,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        32,
+        53
+      ],
+      "population": 79369900,
+      "flag": "https://restcountries.eu/data/irn.svg"
+    },
+    {
+      "Country": "Iraq",
+      "CountryCode": "IQ",
+      "Slug": "iraq",
+      "NewConfirmed": 1338,
+      "TotalConfirmed": 575972,
+      "NewDeaths": 24,
+      "TotalDeaths": 12603,
+      "NewRecovered": 2028,
+      "TotalRecovered": 509474,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        33,
+        44
+      ],
+      "population": 37883543,
+      "flag": "https://restcountries.eu/data/irq.svg"
+    },
+    {
+      "Country": "Ireland",
+      "CountryCode": "IE",
+      "Slug": "ireland",
+      "NewConfirmed": 264,
+      "TotalConfirmed": 76449,
+      "NewDeaths": 2,
+      "TotalDeaths": 2126,
+      "NewRecovered": 0,
+      "TotalRecovered": 23364,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        53,
+        -8
+      ],
+      "population": 6378000,
+      "flag": "https://restcountries.eu/data/irl.svg"
+    },
+    {
+      "Country": "Israel",
+      "CountryCode": "IL",
+      "Slug": "israel",
+      "NewConfirmed": 2330,
+      "TotalConfirmed": 359506,
+      "NewDeaths": 5,
+      "TotalDeaths": 3004,
+      "NewRecovered": 1232,
+      "TotalRecovered": 338418,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        31.5,
+        34.75
+      ],
+      "population": 8527400,
+      "flag": "https://restcountries.eu/data/isr.svg"
+    },
+    {
+      "Country": "Italy",
+      "CountryCode": "IT",
+      "Slug": "italy",
+      "NewConfirmed": 12025,
+      "TotalConfirmed": 1855737,
+      "NewDeaths": 491,
+      "TotalDeaths": 65011,
+      "NewRecovered": 22456,
+      "TotalRecovered": 1115617,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        42.83333333,
+        12.83333333
+      ],
+      "population": 60665551,
+      "flag": "https://restcountries.eu/data/ita.svg"
+    },
+    {
+      "Country": "Jamaica",
+      "CountryCode": "JM",
+      "Slug": "jamaica",
+      "NewConfirmed": 82,
+      "TotalConfirmed": 11792,
+      "NewDeaths": 0,
+      "TotalDeaths": 273,
+      "NewRecovered": 144,
+      "TotalRecovered": 8098,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        18.25,
+        -77.5
+      ],
+      "population": 2723246,
+      "flag": "https://restcountries.eu/data/jam.svg"
+    },
+    {
+      "Country": "Japan",
+      "CountryCode": "JP",
+      "Slug": "japan",
+      "NewConfirmed": 1672,
+      "TotalConfirmed": 182311,
+      "NewDeaths": 49,
+      "TotalDeaths": 2530,
+      "NewRecovered": 1661,
+      "TotalRecovered": 150791,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        36,
+        138
+      ],
+      "population": 126960000,
+      "flag": "https://restcountries.eu/data/jpn.svg"
+    },
+    {
+      "Country": "Jordan",
+      "CountryCode": "JO",
+      "Slug": "jordan",
+      "NewConfirmed": 2863,
+      "TotalConfirmed": 262477,
+      "NewDeaths": 42,
+      "TotalDeaths": 3407,
+      "NewRecovered": 4187,
+      "TotalRecovered": 222654,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        31,
+        36
+      ],
+      "population": 9531712,
+      "flag": "https://restcountries.eu/data/jor.svg"
+    },
+    {
+      "Country": "Kazakhstan",
+      "CountryCode": "KZ",
+      "Slug": "kazakhstan",
+      "NewConfirmed": 683,
+      "TotalConfirmed": 186960,
+      "NewDeaths": 2,
+      "TotalDeaths": 2554,
+      "NewRecovered": 1004,
+      "TotalRecovered": 158705,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        48,
+        68
+      ],
+      "population": 17753200,
+      "flag": "https://restcountries.eu/data/kaz.svg"
+    },
+    {
+      "Country": "Kenya",
+      "CountryCode": "KE",
+      "Slug": "kenya",
+      "NewConfirmed": 163,
+      "TotalConfirmed": 92055,
+      "NewDeaths": 6,
+      "TotalDeaths": 1593,
+      "NewRecovered": 424,
+      "TotalRecovered": 73452,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        1,
+        38
+      ],
+      "population": 47251000,
+      "flag": "https://restcountries.eu/data/ken.svg"
+    },
+    {
+      "Country": "Korea (South)",
+      "CountryCode": "KR",
+      "Slug": "korea-south",
+      "NewConfirmed": 880,
+      "TotalConfirmed": 44364,
+      "NewDeaths": 13,
+      "TotalDeaths": 600,
+      "NewRecovered": 457,
+      "TotalRecovered": 32559,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        37,
+        127.5
+      ],
+      "population": 50801405,
+      "flag": "https://restcountries.eu/data/kor.svg"
+    },
+    {
+      "Country": "Kuwait",
+      "CountryCode": "KW",
+      "Slug": "kuwait",
+      "NewConfirmed": 231,
+      "TotalConfirmed": 146449,
+      "NewDeaths": 1,
+      "TotalDeaths": 912,
+      "NewRecovered": 263,
+      "TotalRecovered": 142357,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        29.5,
+        45.75
+      ],
+      "population": 4183658,
+      "flag": "https://restcountries.eu/data/kwt.svg"
+    },
+    {
+      "Country": "Kyrgyzstan",
+      "CountryCode": "KG",
+      "Slug": "kyrgyzstan",
+      "NewConfirmed": 318,
+      "TotalConfirmed": 77674,
+      "NewDeaths": 0,
+      "TotalDeaths": 1312,
+      "NewRecovered": 0,
+      "TotalRecovered": 70450,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        41,
+        75
+      ],
+      "population": 6047800,
+      "flag": "https://restcountries.eu/data/kgz.svg"
+    },
+    {
+      "Country": "Lao PDR",
+      "CountryCode": "LA",
+      "Slug": "lao-pdr",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 41,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 1,
+      "TotalRecovered": 34,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        18,
+        105
+      ],
+      "population": 6492400,
+      "flag": "https://restcountries.eu/data/lao.svg"
+    },
+    {
+      "Country": "Latvia",
+      "CountryCode": "LV",
+      "Slug": "latvia",
+      "NewConfirmed": 210,
+      "TotalConfirmed": 25885,
+      "NewDeaths": 3,
+      "TotalDeaths": 352,
+      "NewRecovered": 91,
+      "TotalRecovered": 16869,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        57,
+        25
+      ],
+      "population": 1961600,
+      "flag": "https://restcountries.eu/data/lva.svg"
+    },
+    {
+      "Country": "Lebanon",
+      "CountryCode": "LB",
+      "Slug": "lebanon",
+      "NewConfirmed": 1093,
+      "TotalConfirmed": 147613,
+      "NewDeaths": 10,
+      "TotalDeaths": 1210,
+      "NewRecovered": 1723,
+      "TotalRecovered": 103057,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        33.83333333,
+        35.83333333
+      ],
+      "population": 5988000,
+      "flag": "https://restcountries.eu/data/lbn.svg"
+    },
+    {
+      "Country": "Lesotho",
+      "CountryCode": "LS",
+      "Slug": "lesotho",
+      "NewConfirmed": 27,
+      "TotalConfirmed": 2277,
+      "NewDeaths": 0,
+      "TotalDeaths": 44,
+      "NewRecovered": 21,
+      "TotalRecovered": 1340,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -29.5,
+        28.5
+      ],
+      "population": 1894194,
+      "flag": "https://restcountries.eu/data/lso.svg"
+    },
+    {
+      "Country": "Liberia",
+      "CountryCode": "LR",
+      "Slug": "liberia",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 1676,
+      "NewDeaths": 0,
+      "TotalDeaths": 83,
+      "NewRecovered": 0,
+      "TotalRecovered": 1358,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        6.5,
+        -9.5
+      ],
+      "population": 4615000,
+      "flag": "https://restcountries.eu/data/lbr.svg"
+    },
+    {
+      "Country": "Libya",
+      "CountryCode": "LY",
+      "Slug": "libya",
+      "NewConfirmed": 578,
+      "TotalConfirmed": 91357,
+      "NewDeaths": 15,
+      "TotalDeaths": 1314,
+      "NewRecovered": 558,
+      "TotalRecovered": 61453,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        25,
+        17
+      ],
+      "population": 6385000,
+      "flag": "https://restcountries.eu/data/lby.svg"
+    },
+    {
+      "Country": "Liechtenstein",
+      "CountryCode": "LI",
+      "Slug": "liechtenstein",
+      "NewConfirmed": 52,
+      "TotalConfirmed": 1566,
+      "NewDeaths": 0,
+      "TotalDeaths": 20,
+      "NewRecovered": 55,
+      "TotalRecovered": 1351,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        47.26666666,
+        9.53333333
+      ],
+      "population": 37623,
+      "flag": "https://restcountries.eu/data/lie.svg"
+    },
+    {
+      "Country": "Lithuania",
+      "CountryCode": "LT",
+      "Slug": "lithuania",
+      "NewConfirmed": 1920,
+      "TotalConfirmed": 95021,
+      "NewDeaths": 10,
+      "TotalDeaths": 825,
+      "NewRecovered": 64,
+      "TotalRecovered": 38957,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        56,
+        24
+      ],
+      "population": 2872294,
+      "flag": "https://restcountries.eu/data/ltu.svg"
+    },
+    {
+      "Country": "Luxembourg",
+      "CountryCode": "LU",
+      "Slug": "luxembourg",
+      "NewConfirmed": 1145,
+      "TotalConfirmed": 41900,
+      "NewDeaths": 18,
+      "TotalDeaths": 410,
+      "NewRecovered": 1689,
+      "TotalRecovered": 33367,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        49.75,
+        6.16666666
+      ],
+      "population": 576200,
+      "flag": "https://restcountries.eu/data/lux.svg"
+    },
+    {
+      "Country": "Macao, SAR China",
+      "CountryCode": "MO",
+      "Slug": "macao-sar-china",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 0,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 0,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        22.16666666,
+        113.55
+      ],
+      "population": 649100,
+      "flag": "https://restcountries.eu/data/mac.svg"
+    },
+    {
+      "Country": "Macedonia, Republic of",
+      "CountryCode": "MK",
+      "Slug": "macedonia",
+      "NewConfirmed": 213,
+      "TotalConfirmed": 73851,
+      "NewDeaths": 26,
+      "TotalDeaths": 2147,
+      "NewRecovered": 632,
+      "TotalRecovered": 50046,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        41.83333333,
+        22
+      ],
+      "population": 2058539,
+      "flag": "https://restcountries.eu/data/mkd.svg"
+    },
+    {
+      "Country": "Madagascar",
+      "CountryCode": "MG",
+      "Slug": "madagascar",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 17587,
+      "NewDeaths": 0,
+      "TotalDeaths": 259,
+      "NewRecovered": 0,
+      "TotalRecovered": 16992,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -20,
+        47
+      ],
+      "population": 22434363,
+      "flag": "https://restcountries.eu/data/mdg.svg"
+    },
+    {
+      "Country": "Malawi",
+      "CountryCode": "MW",
+      "Slug": "malawi",
+      "NewConfirmed": 4,
+      "TotalConfirmed": 6070,
+      "NewDeaths": 0,
+      "TotalDeaths": 187,
+      "NewRecovered": 0,
+      "TotalRecovered": 5491,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -13.5,
+        34
+      ],
+      "population": 16832910,
+      "flag": "https://restcountries.eu/data/mwi.svg"
+    },
+    {
+      "Country": "Malaysia",
+      "CountryCode": "MY",
+      "Slug": "malaysia",
+      "NewConfirmed": 1371,
+      "TotalConfirmed": 84846,
+      "NewDeaths": 4,
+      "TotalDeaths": 419,
+      "NewRecovered": 1204,
+      "TotalRecovered": 70597,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        2.5,
+        112.5
+      ],
+      "population": 31405416,
+      "flag": "https://restcountries.eu/data/mys.svg"
+    },
+    {
+      "Country": "Maldives",
+      "CountryCode": "MV",
+      "Slug": "maldives",
+      "NewConfirmed": 11,
+      "TotalConfirmed": 13379,
+      "NewDeaths": 0,
+      "TotalDeaths": 48,
+      "NewRecovered": 25,
+      "TotalRecovered": 12731,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        3.25,
+        73
+      ],
+      "population": 344023,
+      "flag": "https://restcountries.eu/data/mdv.svg"
+    },
+    {
+      "Country": "Mali",
+      "CountryCode": "ML",
+      "Slug": "mali",
+      "NewConfirmed": 22,
+      "TotalConfirmed": 5836,
+      "NewDeaths": 7,
+      "TotalDeaths": 201,
+      "NewRecovered": 39,
+      "TotalRecovered": 3630,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        17,
+        -4
+      ],
+      "population": 18135000,
+      "flag": "https://restcountries.eu/data/mli.svg"
+    },
+    {
+      "Country": "Malta",
+      "CountryCode": "MT",
+      "Slug": "malta",
+      "NewConfirmed": 101,
+      "TotalConfirmed": 11254,
+      "NewDeaths": 5,
+      "TotalDeaths": 174,
+      "NewRecovered": 150,
+      "TotalRecovered": 9319,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        35.83333333,
+        14.58333333
+      ],
+      "population": 425384,
+      "flag": "https://restcountries.eu/data/mlt.svg"
+    },
+    {
+      "Country": "Marshall Islands",
+      "CountryCode": "MH",
+      "Slug": "marshall-islands",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 4,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 4,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        9,
+        168
+      ],
+      "population": 54880,
+      "flag": "https://restcountries.eu/data/mhl.svg"
+    },
+    {
+      "Country": "Mauritania",
+      "CountryCode": "MR",
+      "Slug": "mauritania",
+      "NewConfirmed": 164,
+      "TotalConfirmed": 11135,
+      "NewDeaths": 3,
+      "TotalDeaths": 228,
+      "NewRecovered": 42,
+      "TotalRecovered": 8118,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        20,
+        -12
+      ],
+      "population": 3718678,
+      "flag": "https://restcountries.eu/data/mrt.svg"
+    },
+    {
+      "Country": "Mauritius",
+      "CountryCode": "MU",
+      "Slug": "mauritius",
+      "NewConfirmed": 8,
+      "TotalConfirmed": 523,
+      "NewDeaths": 0,
+      "TotalDeaths": 10,
+      "NewRecovered": 11,
+      "TotalRecovered": 489,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -20.28333333,
+        57.55
+      ],
+      "population": 1262879,
+      "flag": "https://restcountries.eu/data/mus.svg"
+    },
+    {
+      "Country": "Mexico",
+      "CountryCode": "MX",
+      "Slug": "mexico",
+      "NewConfirmed": 5930,
+      "TotalConfirmed": 1255974,
+      "NewDeaths": 345,
+      "TotalDeaths": 114298,
+      "NewRecovered": 9073,
+      "TotalRecovered": 927754,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        23,
+        -102
+      ],
+      "population": 122273473,
+      "flag": "https://restcountries.eu/data/mex.svg"
+    },
+    {
+      "Country": "Moldova",
+      "CountryCode": "MD",
+      "Slug": "moldova",
+      "NewConfirmed": 735,
+      "TotalConfirmed": 127253,
+      "NewDeaths": 26,
+      "TotalDeaths": 2598,
+      "NewRecovered": 1278,
+      "TotalRecovered": 110179,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        47,
+        29
+      ],
+      "population": 3553100,
+      "flag": "https://restcountries.eu/data/mda.svg"
+    },
+    {
+      "Country": "Monaco",
+      "CountryCode": "MC",
+      "Slug": "monaco",
+      "NewConfirmed": 3,
+      "TotalConfirmed": 671,
+      "NewDeaths": 0,
+      "TotalDeaths": 3,
+      "NewRecovered": 8,
+      "TotalRecovered": 605,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        43.73333333,
+        7.4
+      ],
+      "population": 38400,
+      "flag": "https://restcountries.eu/data/mco.svg"
+    },
+    {
+      "Country": "Mongolia",
+      "CountryCode": "MN",
+      "Slug": "mongolia",
+      "NewConfirmed": 5,
+      "TotalConfirmed": 917,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 384,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        46,
+        105
+      ],
+      "population": 3093100,
+      "flag": "https://restcountries.eu/data/mng.svg"
+    },
+    {
+      "Country": "Montenegro",
+      "CountryCode": "ME",
+      "Slug": "montenegro",
+      "NewConfirmed": 377,
+      "TotalConfirmed": 41803,
+      "NewDeaths": 3,
+      "TotalDeaths": 585,
+      "NewRecovered": 645,
+      "TotalRecovered": 31138,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        42.5,
+        19.3
+      ],
+      "population": 621810,
+      "flag": "https://restcountries.eu/data/mne.svg"
+    },
+    {
+      "Country": "Morocco",
+      "CountryCode": "MA",
+      "Slug": "morocco",
+      "NewConfirmed": 1217,
+      "TotalConfirmed": 400826,
+      "NewDeaths": 35,
+      "TotalDeaths": 6659,
+      "NewRecovered": 3042,
+      "TotalRecovered": 359065,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        32,
+        -5
+      ],
+      "population": 33337529,
+      "flag": "https://restcountries.eu/data/mar.svg"
+    },
+    {
+      "Country": "Mozambique",
+      "CountryCode": "MZ",
+      "Slug": "mozambique",
+      "NewConfirmed": 48,
+      "TotalConfirmed": 17002,
+      "NewDeaths": 1,
+      "TotalDeaths": 143,
+      "NewRecovered": 188,
+      "TotalRecovered": 15006,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -18.25,
+        35
+      ],
+      "population": 26423700,
+      "flag": "https://restcountries.eu/data/moz.svg"
+    },
+    {
+      "Country": "Myanmar",
+      "CountryCode": "MM",
+      "Slug": "myanmar",
+      "NewConfirmed": 1170,
+      "TotalConfirmed": 109512,
+      "NewDeaths": 24,
+      "TotalDeaths": 2292,
+      "NewRecovered": 1336,
+      "TotalRecovered": 88131,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        22,
+        98
+      ],
+      "population": 51419420,
+      "flag": "https://restcountries.eu/data/mmr.svg"
+    },
+    {
+      "Country": "Namibia",
+      "CountryCode": "NA",
+      "Slug": "namibia",
+      "NewConfirmed": 190,
+      "TotalConfirmed": 16726,
+      "NewDeaths": 3,
+      "TotalDeaths": 163,
+      "NewRecovered": 153,
+      "TotalRecovered": 14837,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -22,
+        17
+      ],
+      "population": 2324388,
+      "flag": "https://restcountries.eu/data/nam.svg"
+    },
+    {
+      "Country": "Nepal",
+      "CountryCode": "NP",
+      "Slug": "nepal",
+      "NewConfirmed": 821,
+      "TotalConfirmed": 249244,
+      "NewDeaths": 18,
+      "TotalDeaths": 1716,
+      "NewRecovered": 842,
+      "TotalRecovered": 236573,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        28,
+        84
+      ],
+      "population": 28431500,
+      "flag": "https://restcountries.eu/data/npl.svg"
+    },
+    {
+      "Country": "Netherlands",
+      "CountryCode": "NL",
+      "Slug": "netherlands",
+      "NewConfirmed": 8457,
+      "TotalConfirmed": 621944,
+      "NewDeaths": 34,
+      "TotalDeaths": 10082,
+      "NewRecovered": 0,
+      "TotalRecovered": 0,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        52.5,
+        5.75
+      ],
+      "population": 17019800,
+      "flag": "https://restcountries.eu/data/nld.svg"
+    },
+    {
+      "Country": "New Zealand",
+      "CountryCode": "NZ",
+      "Slug": "new-zealand",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 2096,
+      "NewDeaths": 0,
+      "TotalDeaths": 25,
+      "NewRecovered": 0,
+      "TotalRecovered": 2015,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -41,
+        174
+      ],
+      "population": 4697854,
+      "flag": "https://restcountries.eu/data/nzl.svg"
+    },
+    {
+      "Country": "Nicaragua",
+      "CountryCode": "NI",
+      "Slug": "nicaragua",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 5887,
+      "NewDeaths": 0,
+      "TotalDeaths": 162,
+      "NewRecovered": 0,
+      "TotalRecovered": 4225,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13,
+        -85
+      ],
+      "population": 6262703,
+      "flag": "https://restcountries.eu/data/nic.svg"
+    },
+    {
+      "Country": "Niger",
+      "CountryCode": "NE",
+      "Slug": "niger",
+      "NewConfirmed": 64,
+      "TotalConfirmed": 2322,
+      "NewDeaths": 2,
+      "TotalDeaths": 82,
+      "NewRecovered": 2,
+      "TotalRecovered": 1294,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        16,
+        8
+      ],
+      "population": 20715000,
+      "flag": "https://restcountries.eu/data/ner.svg"
+    },
+    {
+      "Country": "Nigeria",
+      "CountryCode": "NG",
+      "Slug": "nigeria",
+      "NewConfirmed": 199,
+      "TotalConfirmed": 73374,
+      "NewDeaths": 0,
+      "TotalDeaths": 1197,
+      "NewRecovered": 224,
+      "TotalRecovered": 66314,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        10,
+        8
+      ],
+      "population": 186988000,
+      "flag": "https://restcountries.eu/data/nga.svg"
+    },
+    {
+      "Country": "Norway",
+      "CountryCode": "NO",
+      "Slug": "norway",
+      "NewConfirmed": 331,
+      "TotalConfirmed": 41334,
+      "NewDeaths": 6,
+      "TotalDeaths": 393,
+      "NewRecovered": 0,
+      "TotalRecovered": 17998,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        62,
+        10
+      ],
+      "population": 5223256,
+      "flag": "https://restcountries.eu/data/nor.svg"
+    },
+    {
+      "Country": "Oman",
+      "CountryCode": "OM",
+      "Slug": "oman",
+      "NewConfirmed": 264,
+      "TotalConfirmed": 126504,
+      "NewDeaths": 1,
+      "TotalDeaths": 1472,
+      "NewRecovered": 239,
+      "TotalRecovered": 118287,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        21,
+        57
+      ],
+      "population": 4420133,
+      "flag": "https://restcountries.eu/data/omn.svg"
+    },
+    {
+      "Country": "Pakistan",
+      "CountryCode": "PK",
+      "Slug": "pakistan",
+      "NewConfirmed": 2459,
+      "TotalConfirmed": 443246,
+      "NewDeaths": 73,
+      "TotalDeaths": 8905,
+      "NewRecovered": 1614,
+      "TotalRecovered": 386333,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        30,
+        70
+      ],
+      "population": 194125062,
+      "flag": "https://restcountries.eu/data/pak.svg"
+    },
+    {
+      "Country": "Palestinian Territory",
+      "CountryCode": "PS",
+      "Slug": "palestine",
+      "NewConfirmed": 1364,
+      "TotalConfirmed": 111102,
+      "NewDeaths": 22,
+      "TotalDeaths": 1000,
+      "NewRecovered": 1947,
+      "TotalRecovered": 87057,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        31.9,
+        35.2
+      ],
+      "population": 4682467,
+      "flag": "https://restcountries.eu/data/pse.svg"
+    },
+    {
+      "Country": "Panama",
+      "CountryCode": "PA",
+      "Slug": "panama",
+      "NewConfirmed": 1612,
+      "TotalConfirmed": 194619,
+      "NewDeaths": 26,
+      "TotalDeaths": 3382,
+      "NewRecovered": 1229,
+      "TotalRecovered": 163334,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        9,
+        -80
+      ],
+      "population": 3814672,
+      "flag": "https://restcountries.eu/data/pan.svg"
+    },
+    {
+      "Country": "Papua New Guinea",
+      "CountryCode": "PG",
+      "Slug": "papua-new-guinea",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 725,
+      "NewDeaths": 0,
+      "TotalDeaths": 8,
+      "NewRecovered": 0,
+      "TotalRecovered": 601,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -6,
+        147
+      ],
+      "population": 8083700,
+      "flag": "https://restcountries.eu/data/png.svg"
+    },
+    {
+      "Country": "Paraguay",
+      "CountryCode": "PY",
+      "Slug": "paraguay",
+      "NewConfirmed": 641,
+      "TotalConfirmed": 94223,
+      "NewDeaths": 18,
+      "TotalDeaths": 1971,
+      "NewRecovered": 699,
+      "TotalRecovered": 67242,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -23,
+        -58
+      ],
+      "population": 6854536,
+      "flag": "https://restcountries.eu/data/pry.svg"
+    },
+    {
+      "Country": "Peru",
+      "CountryCode": "PE",
+      "Slug": "peru",
+      "NewConfirmed": 4030,
+      "TotalConfirmed": 984973,
+      "NewDeaths": 133,
+      "TotalDeaths": 36677,
+      "NewRecovered": 2017,
+      "TotalRecovered": 918352,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -10,
+        -76
+      ],
+      "population": 31488700,
+      "flag": "https://restcountries.eu/data/per.svg"
+    },
+    {
+      "Country": "Philippines",
+      "CountryCode": "PH",
+      "Slug": "philippines",
+      "NewConfirmed": 1333,
+      "TotalConfirmed": 450733,
+      "NewDeaths": 24,
+      "TotalDeaths": 8757,
+      "NewRecovered": 36,
+      "TotalRecovered": 418723,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13,
+        122
+      ],
+      "population": 103279800,
+      "flag": "https://restcountries.eu/data/phl.svg"
+    },
+    {
+      "Country": "Poland",
+      "CountryCode": "PL",
+      "Slug": "poland",
+      "NewConfirmed": 4896,
+      "TotalConfirmed": 1140572,
+      "NewDeaths": 96,
+      "TotalDeaths": 22960,
+      "NewRecovered": 10260,
+      "TotalRecovered": 869155,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        52,
+        20
+      ],
+      "population": 38437239,
+      "flag": "https://restcountries.eu/data/pol.svg"
+    },
+    {
+      "Country": "Portugal",
+      "CountryCode": "PT",
+      "Slug": "portugal",
+      "NewConfirmed": 2194,
+      "TotalConfirmed": 350938,
+      "NewDeaths": 90,
+      "TotalDeaths": 5649,
+      "NewRecovered": 2955,
+      "TotalRecovered": 274277,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        39.5,
+        -8
+      ],
+      "population": 10374822,
+      "flag": "https://restcountries.eu/data/prt.svg"
+    },
+    {
+      "Country": "Qatar",
+      "CountryCode": "QA",
+      "Slug": "qatar",
+      "NewConfirmed": 160,
+      "TotalConfirmed": 141121,
+      "NewDeaths": 1,
+      "TotalDeaths": 241,
+      "NewRecovered": 229,
+      "TotalRecovered": 138719,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        25.5,
+        51.25
+      ],
+      "population": 2587564,
+      "flag": "https://restcountries.eu/data/qat.svg"
+    },
+    {
+      "Country": "Republic of Kosovo",
+      "CountryCode": "XK",
+      "Slug": "kosovo",
+      "NewConfirmed": 329,
+      "TotalConfirmed": 46909,
+      "NewDeaths": 5,
+      "TotalDeaths": 1203,
+      "NewRecovered": 555,
+      "TotalRecovered": 34155,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        42.666667,
+        21.166667
+      ],
+      "population": 1733842,
+      "flag": "https://restcountries.eu/data/kos.svg"
+    },
+    {
+      "Country": "Romania",
+      "CountryCode": "RO",
+      "Slug": "romania",
+      "NewConfirmed": 3252,
+      "TotalConfirmed": 559587,
+      "NewDeaths": 109,
+      "TotalDeaths": 13494,
+      "NewRecovered": 3420,
+      "TotalRecovered": 460780,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        46,
+        25
+      ],
+      "population": 19861408,
+      "flag": "https://restcountries.eu/data/rou.svg"
+    },
+    {
+      "Country": "Russian Federation",
+      "CountryCode": "RU",
+      "Slug": "russia",
+      "NewConfirmed": 26902,
+      "TotalConfirmed": 2656601,
+      "NewDeaths": 442,
+      "TotalDeaths": 46846,
+      "NewRecovered": 18527,
+      "TotalRecovered": 2105414,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        60,
+        100
+      ],
+      "population": 146599183,
+      "flag": "https://restcountries.eu/data/rus.svg"
+    },
+    {
+      "Country": "Rwanda",
+      "CountryCode": "RW",
+      "Slug": "rwanda",
+      "NewConfirmed": 88,
+      "TotalConfirmed": 6747,
+      "NewDeaths": 0,
+      "TotalDeaths": 56,
+      "NewRecovered": 41,
+      "TotalRecovered": 5996,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -2,
+        30
+      ],
+      "population": 11553188,
+      "flag": "https://restcountries.eu/data/rwa.svg"
+    },
+    {
+      "Country": "Réunion",
+      "CountryCode": "RE",
+      "Slug": "réunion",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 0,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 0,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -21.15,
+        55.5
+      ],
+      "population": 840974,
+      "flag": "https://restcountries.eu/data/reu.svg"
+    },
+    {
+      "Country": "Saint Kitts and Nevis",
+      "CountryCode": "KN",
+      "Slug": "saint-kitts-and-nevis",
+      "NewConfirmed": 1,
+      "TotalConfirmed": 28,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 23,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        17.33333333,
+        -62.75
+      ],
+      "population": 46204,
+      "flag": "https://restcountries.eu/data/kna.svg"
+    },
+    {
+      "Country": "Saint Lucia",
+      "CountryCode": "LC",
+      "Slug": "saint-lucia",
+      "NewConfirmed": 3,
+      "TotalConfirmed": 278,
+      "NewDeaths": 0,
+      "TotalDeaths": 4,
+      "NewRecovered": 37,
+      "TotalRecovered": 240,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13.88333333,
+        -60.96666666
+      ],
+      "population": 186000,
+      "flag": "https://restcountries.eu/data/lca.svg"
+    },
+    {
+      "Country": "Saint Vincent and Grenadines",
+      "CountryCode": "VC",
+      "Slug": "saint-vincent-and-the-grenadines",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 98,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 81,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        13.25,
+        -61.2
+      ],
+      "population": 109991,
+      "flag": "https://restcountries.eu/data/vct.svg"
+    },
+    {
+      "Country": "Samoa",
+      "CountryCode": "WS",
+      "Slug": "samoa",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 2,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 2,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -13.58333333,
+        -172.33333333
+      ],
+      "population": 194899,
+      "flag": "https://restcountries.eu/data/wsm.svg"
+    },
+    {
+      "Country": "San Marino",
+      "CountryCode": "SM",
+      "Slug": "san-marino",
+      "NewConfirmed": 2,
+      "TotalConfirmed": 1934,
+      "NewDeaths": 0,
+      "TotalDeaths": 51,
+      "NewRecovered": 33,
+      "TotalRecovered": 1608,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        43.76666666,
+        12.41666666
+      ],
+      "population": 33005,
+      "flag": "https://restcountries.eu/data/smr.svg"
+    },
+    {
+      "Country": "Sao Tome and Principe",
+      "CountryCode": "ST",
+      "Slug": "sao-tome-and-principe",
+      "NewConfirmed": 1,
+      "TotalConfirmed": 1010,
+      "NewDeaths": 0,
+      "TotalDeaths": 17,
+      "NewRecovered": 2,
+      "TotalRecovered": 952,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        1,
+        7
+      ],
+      "population": 187356,
+      "flag": "https://restcountries.eu/data/stp.svg"
+    },
+    {
+      "Country": "Saudi Arabia",
+      "CountryCode": "SA",
+      "Slug": "saudi-arabia",
+      "NewConfirmed": 125,
+      "TotalConfirmed": 360013,
+      "NewDeaths": 11,
+      "TotalDeaths": 6059,
+      "NewRecovered": 243,
+      "TotalRecovered": 350792,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        25,
+        45
+      ],
+      "population": 32248200,
+      "flag": "https://restcountries.eu/data/sau.svg"
+    },
+    {
+      "Country": "Senegal",
+      "CountryCode": "SN",
+      "Slug": "senegal",
+      "NewConfirmed": 71,
+      "TotalConfirmed": 17146,
+      "NewDeaths": 1,
+      "TotalDeaths": 350,
+      "NewRecovered": 65,
+      "TotalRecovered": 16159,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        14,
+        -14
+      ],
+      "population": 14799859,
+      "flag": "https://restcountries.eu/data/sen.svg"
+    },
+    {
+      "Country": "Serbia",
+      "CountryCode": "RS",
+      "Slug": "serbia",
+      "NewConfirmed": 4932,
+      "TotalConfirmed": 271364,
+      "NewDeaths": 49,
+      "TotalDeaths": 2380,
+      "NewRecovered": 0,
+      "TotalRecovered": 0,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        44,
+        21
+      ],
+      "population": 7076372,
+      "flag": "https://restcountries.eu/data/srb.svg"
+    },
+    {
+      "Country": "Seychelles",
+      "CountryCode": "SC",
+      "Slug": "seychelles",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 187,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 182,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -4.58333333,
+        55.66666666
+      ],
+      "population": 91400,
+      "flag": "https://restcountries.eu/data/syc.svg"
+    },
+    {
+      "Country": "Sierra Leone",
+      "CountryCode": "SL",
+      "Slug": "sierra-leone",
+      "NewConfirmed": 5,
+      "TotalConfirmed": 2445,
+      "NewDeaths": 0,
+      "TotalDeaths": 75,
+      "NewRecovered": 1,
+      "TotalRecovered": 1851,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        8.5,
+        -11.5
+      ],
+      "population": 7075641,
+      "flag": "https://restcountries.eu/data/sle.svg"
+    },
+    {
+      "Country": "Singapore",
+      "CountryCode": "SG",
+      "Slug": "singapore",
+      "NewConfirmed": 5,
+      "TotalConfirmed": 58325,
+      "NewDeaths": 0,
+      "TotalDeaths": 29,
+      "NewRecovered": 2,
+      "TotalRecovered": 58210,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        1.36666666,
+        103.8
+      ],
+      "population": 5535000,
+      "flag": "https://restcountries.eu/data/sgp.svg"
+    },
+    {
+      "Country": "Slovakia",
+      "CountryCode": "SK",
+      "Slug": "slovakia",
+      "NewConfirmed": 505,
+      "TotalConfirmed": 133489,
+      "NewDeaths": 30,
+      "TotalDeaths": 1205,
+      "NewRecovered": 1517,
+      "TotalRecovered": 98585,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        48.66666666,
+        19.5
+      ],
+      "population": 5426252,
+      "flag": "https://restcountries.eu/data/svk.svg"
+    },
+    {
+      "Country": "Slovenia",
+      "CountryCode": "SI",
+      "Slug": "slovenia",
+      "NewConfirmed": 431,
+      "TotalConfirmed": 96745,
+      "NewDeaths": 44,
+      "TotalDeaths": 2107,
+      "NewRecovered": 383,
+      "TotalRecovered": 73760,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        46.11666666,
+        14.81666666
+      ],
+      "population": 2064188,
+      "flag": "https://restcountries.eu/data/svn.svg"
+    },
+    {
+      "Country": "Solomon Islands",
+      "CountryCode": "SB",
+      "Slug": "solomon-islands",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 17,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 5,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -8,
+        159
+      ],
+      "population": 642000,
+      "flag": "https://restcountries.eu/data/slb.svg"
+    },
+    {
+      "Country": "Somalia",
+      "CountryCode": "SO",
+      "Slug": "somalia",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 4579,
+      "NewDeaths": 0,
+      "TotalDeaths": 121,
+      "NewRecovered": 0,
+      "TotalRecovered": 3529,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        10,
+        49
+      ],
+      "population": 11079000,
+      "flag": "https://restcountries.eu/data/som.svg"
+    },
+    {
+      "Country": "South Africa",
+      "CountryCode": "ZA",
+      "Slug": "south-africa",
+      "NewConfirmed": 5163,
+      "TotalConfirmed": 866127,
+      "NewDeaths": 175,
+      "TotalDeaths": 23451,
+      "NewRecovered": 1735,
+      "TotalRecovered": 762746,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -29,
+        24
+      ],
+      "population": 55653654,
+      "flag": "https://restcountries.eu/data/zaf.svg"
+    },
+    {
+      "Country": "South Sudan",
+      "CountryCode": "SS",
+      "Slug": "south-sudan",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 3206,
+      "NewDeaths": 0,
+      "TotalDeaths": 62,
+      "NewRecovered": 0,
+      "TotalRecovered": 3043,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        7,
+        30
+      ],
+      "population": 12131000,
+      "flag": "https://restcountries.eu/data/ssd.svg"
+    },
+    {
+      "Country": "Spain",
+      "CountryCode": "ES",
+      "Slug": "spain",
+      "NewConfirmed": 21309,
+      "TotalConfirmed": 1751884,
+      "NewDeaths": 389,
+      "TotalDeaths": 48013,
+      "NewRecovered": 0,
+      "TotalRecovered": 150376,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        40,
+        -4
+      ],
+      "population": 46438422,
+      "flag": "https://restcountries.eu/data/esp.svg"
+    },
+    {
+      "Country": "Sri Lanka",
+      "CountryCode": "LK",
+      "Slug": "sri-lanka",
+      "NewConfirmed": 688,
+      "TotalConfirmed": 33478,
+      "NewDeaths": 2,
+      "TotalDeaths": 154,
+      "NewRecovered": 516,
+      "TotalRecovered": 24309,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        7,
+        81
+      ],
+      "population": 20966000,
+      "flag": "https://restcountries.eu/data/lka.svg"
+    },
+    {
+      "Country": "Sudan",
+      "CountryCode": "SD",
+      "Slug": "sudan",
+      "NewConfirmed": 205,
+      "TotalConfirmed": 21591,
+      "NewDeaths": 8,
+      "TotalDeaths": 1355,
+      "NewRecovered": 139,
+      "TotalRecovered": 12452,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15,
+        30
+      ],
+      "population": 39598700,
+      "flag": "https://restcountries.eu/data/sdn.svg"
+    },
+    {
+      "Country": "Suriname",
+      "CountryCode": "SR",
+      "Slug": "suriname",
+      "NewConfirmed": 6,
+      "TotalConfirmed": 5359,
+      "NewDeaths": 0,
+      "TotalDeaths": 117,
+      "NewRecovered": 3,
+      "TotalRecovered": 5227,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        4,
+        -56
+      ],
+      "population": 541638,
+      "flag": "https://restcountries.eu/data/sur.svg"
+    },
+    {
+      "Country": "Swaziland",
+      "CountryCode": "SZ",
+      "Slug": "swaziland",
+      "NewConfirmed": 57,
+      "TotalConfirmed": 6825,
+      "NewDeaths": 3,
+      "TotalDeaths": 130,
+      "NewRecovered": 37,
+      "TotalRecovered": 6416,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -26.5,
+        31.5
+      ],
+      "population": 1132657,
+      "flag": "https://restcountries.eu/data/swz.svg"
+    },
+    {
+      "Country": "Sweden",
+      "CountryCode": "SE",
+      "Slug": "sweden",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 320098,
+      "NewDeaths": 0,
+      "TotalDeaths": 7514,
+      "NewRecovered": 0,
+      "TotalRecovered": 0,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        62,
+        15
+      ],
+      "population": 9894888,
+      "flag": "https://restcountries.eu/data/swe.svg"
+    },
+    {
+      "Country": "Switzerland",
+      "CountryCode": "CH",
+      "Slug": "switzerland",
+      "NewConfirmed": 10726,
+      "TotalConfirmed": 384557,
+      "NewDeaths": 169,
+      "TotalDeaths": 6154,
+      "NewRecovered": 16800,
+      "TotalRecovered": 308300,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        47,
+        8
+      ],
+      "population": 8341600,
+      "flag": "https://restcountries.eu/data/che.svg"
+    },
+    {
+      "Country": "Syrian Arab Republic (Syria)",
+      "CountryCode": "SY",
+      "Slug": "syria",
+      "NewConfirmed": 136,
+      "TotalConfirmed": 9302,
+      "NewDeaths": 12,
+      "TotalDeaths": 530,
+      "NewRecovered": 56,
+      "TotalRecovered": 4432,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        35,
+        38
+      ],
+      "population": 18564000,
+      "flag": "https://restcountries.eu/data/syr.svg"
+    },
+    {
+      "Country": "Taiwan, Republic of China",
+      "CountryCode": "TW",
+      "Slug": "taiwan",
+      "NewConfirmed": 4,
+      "TotalConfirmed": 740,
+      "NewDeaths": 0,
+      "TotalDeaths": 7,
+      "NewRecovered": 0,
+      "TotalRecovered": 606,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        23.5,
+        121
+      ],
+      "population": 23503349,
+      "flag": "https://restcountries.eu/data/twn.svg"
+    },
+    {
+      "Country": "Tajikistan",
+      "CountryCode": "TJ",
+      "Slug": "tajikistan",
+      "NewConfirmed": 37,
+      "TotalConfirmed": 12741,
+      "NewDeaths": 0,
+      "TotalDeaths": 88,
+      "NewRecovered": 39,
+      "TotalRecovered": 12172,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        39,
+        71
+      ],
+      "population": 8593600,
+      "flag": "https://restcountries.eu/data/tjk.svg"
+    },
+    {
+      "Country": "Tanzania, United Republic of",
+      "CountryCode": "TZ",
+      "Slug": "tanzania",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 509,
+      "NewDeaths": 0,
+      "TotalDeaths": 21,
+      "NewRecovered": 0,
+      "TotalRecovered": 183,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -6,
+        35
+      ],
+      "population": 55155000,
+      "flag": "https://restcountries.eu/data/tza.svg"
+    },
+    {
+      "Country": "Thailand",
+      "CountryCode": "TH",
+      "Slug": "thailand",
+      "NewConfirmed": 9,
+      "TotalConfirmed": 4246,
+      "NewDeaths": 0,
+      "TotalDeaths": 60,
+      "NewRecovered": 9,
+      "TotalRecovered": 3949,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15,
+        100
+      ],
+      "population": 65327652,
+      "flag": "https://restcountries.eu/data/tha.svg"
+    },
+    {
+      "Country": "Timor-Leste",
+      "CountryCode": "TL",
+      "Slug": "timor-leste",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 31,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 30,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -8.83333333,
+        125.91666666
+      ],
+      "population": 1167242,
+      "flag": "https://restcountries.eu/data/tls.svg"
+    },
+    {
+      "Country": "Togo",
+      "CountryCode": "TG",
+      "Slug": "togo",
+      "NewConfirmed": 15,
+      "TotalConfirmed": 3266,
+      "NewDeaths": 0,
+      "TotalDeaths": 66,
+      "NewRecovered": 18,
+      "TotalRecovered": 2789,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        8,
+        1.16666666
+      ],
+      "population": 7143000,
+      "flag": "https://restcountries.eu/data/tgo.svg"
+    },
+    {
+      "Country": "Trinidad and Tobago",
+      "CountryCode": "TT",
+      "Slug": "trinidad-and-tobago",
+      "NewConfirmed": 6,
+      "TotalConfirmed": 6885,
+      "NewDeaths": 1,
+      "TotalDeaths": 123,
+      "NewRecovered": 35,
+      "TotalRecovered": 6180,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        11,
+        -61
+      ],
+      "population": 1349667,
+      "flag": "https://restcountries.eu/data/tto.svg"
+    },
+    {
+      "Country": "Tunisia",
+      "CountryCode": "TN",
+      "Slug": "tunisia",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 111361,
+      "NewDeaths": 0,
+      "TotalDeaths": 3894,
+      "NewRecovered": 0,
+      "TotalRecovered": 84741,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        34,
+        9
+      ],
+      "population": 11154400,
+      "flag": "https://restcountries.eu/data/tun.svg"
+    },
+    {
+      "Country": "Turkey",
+      "CountryCode": "TR",
+      "Slug": "turkey",
+      "NewConfirmed": 29617,
+      "TotalConfirmed": 1866345,
+      "NewDeaths": 229,
+      "TotalDeaths": 16646,
+      "NewRecovered": 28164,
+      "TotalRecovered": 1631944,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        39,
+        35
+      ],
+      "population": 78741053,
+      "flag": "https://restcountries.eu/data/tur.svg"
+    },
+    {
+      "Country": "Uganda",
+      "CountryCode": "UG",
+      "Slug": "uganda",
+      "NewConfirmed": 234,
+      "TotalConfirmed": 27766,
+      "NewDeaths": 3,
+      "TotalDeaths": 224,
+      "NewRecovered": 95,
+      "TotalRecovered": 9921,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        1,
+        32
+      ],
+      "population": 33860700,
+      "flag": "https://restcountries.eu/data/uga.svg"
+    },
+    {
+      "Country": "Ukraine",
+      "CountryCode": "UA",
+      "Slug": "ukraine",
+      "NewConfirmed": 6877,
+      "TotalConfirmed": 925321,
+      "NewDeaths": 101,
+      "TotalDeaths": 15792,
+      "NewRecovered": 5189,
+      "TotalRecovered": 526101,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        49,
+        32
+      ],
+      "population": 42692393,
+      "flag": "https://restcountries.eu/data/ukr.svg"
+    },
+    {
+      "Country": "United Arab Emirates",
+      "CountryCode": "AE",
+      "Slug": "united-arab-emirates",
+      "NewConfirmed": 1092,
+      "TotalConfirmed": 186041,
+      "NewDeaths": 1,
+      "TotalDeaths": 618,
+      "NewRecovered": 670,
+      "TotalRecovered": 164349,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        24,
+        54
+      ],
+      "population": 9856000,
+      "flag": "https://restcountries.eu/data/are.svg"
+    },
+    {
+      "Country": "United Kingdom",
+      "CountryCode": "GB",
+      "Slug": "united-kingdom",
+      "NewConfirmed": 20377,
+      "TotalConfirmed": 1874867,
+      "NewDeaths": 233,
+      "TotalDeaths": 64500,
+      "NewRecovered": 35,
+      "TotalRecovered": 4048,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        54,
+        -2
+      ],
+      "population": 65110000,
+      "flag": "https://restcountries.eu/data/gbr.svg"
+    },
+    {
+      "Country": "United States of America",
+      "CountryCode": "US",
+      "Slug": "united-states",
+      "NewConfirmed": 192479,
+      "TotalConfirmed": 16518487,
+      "NewDeaths": 1311,
+      "TotalDeaths": 300479,
+      "NewRecovered": 0,
+      "TotalRecovered": 6298082,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        38,
+        -97
+      ],
+      "population": 323947000,
+      "flag": "https://restcountries.eu/data/usa.svg"
+    },
+    {
+      "Country": "Uruguay",
+      "CountryCode": "UY",
+      "Slug": "uruguay",
+      "NewConfirmed": 321,
+      "TotalConfirmed": 10029,
+      "NewDeaths": 3,
+      "TotalDeaths": 95,
+      "NewRecovered": 235,
+      "TotalRecovered": 6593,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -33,
+        -56
+      ],
+      "population": 3480222,
+      "flag": "https://restcountries.eu/data/ury.svg"
+    },
+    {
+      "Country": "Uzbekistan",
+      "CountryCode": "UZ",
+      "Slug": "uzbekistan",
+      "NewConfirmed": 138,
+      "TotalConfirmed": 75094,
+      "NewDeaths": 0,
+      "TotalDeaths": 612,
+      "NewRecovered": 125,
+      "TotalRecovered": 72368,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        41,
+        64
+      ],
+      "population": 31576400,
+      "flag": "https://restcountries.eu/data/uzb.svg"
+    },
+    {
+      "Country": "Vanuatu",
+      "CountryCode": "VU",
+      "Slug": "vanuatu",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 1,
+      "NewDeaths": 0,
+      "TotalDeaths": 0,
+      "NewRecovered": 0,
+      "TotalRecovered": 1,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -16,
+        167
+      ],
+      "population": 277500,
+      "flag": "https://restcountries.eu/data/vut.svg"
+    },
+    {
+      "Country": "Venezuela (Bolivarian Republic)",
+      "CountryCode": "VE",
+      "Slug": "venezuela",
+      "NewConfirmed": 339,
+      "TotalConfirmed": 108125,
+      "NewDeaths": 6,
+      "TotalDeaths": 960,
+      "NewRecovered": 748,
+      "TotalRecovered": 103037,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        8,
+        -66
+      ],
+      "population": 31028700,
+      "flag": "https://restcountries.eu/data/ven.svg"
+    },
+    {
+      "Country": "Viet Nam",
+      "CountryCode": "VN",
+      "Slug": "vietnam",
+      "NewConfirmed": 5,
+      "TotalConfirmed": 1402,
+      "NewDeaths": 0,
+      "TotalDeaths": 35,
+      "NewRecovered": 5,
+      "TotalRecovered": 1246,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        16.16666666,
+        107.83333333
+      ],
+      "population": 92700000,
+      "flag": "https://restcountries.eu/data/vnm.svg"
+    },
+    {
+      "Country": "Western Sahara",
+      "CountryCode": "EH",
+      "Slug": "western-sahara",
+      "NewConfirmed": 0,
+      "TotalConfirmed": 10,
+      "NewDeaths": 0,
+      "TotalDeaths": 1,
+      "NewRecovered": 0,
+      "TotalRecovered": 8,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        24.5,
+        -13
+      ],
+      "population": 510713,
+      "flag": "https://restcountries.eu/data/esh.svg"
+    },
+    {
+      "Country": "Yemen",
+      "CountryCode": "YE",
+      "Slug": "yemen",
+      "NewConfirmed": 1,
+      "TotalConfirmed": 2084,
+      "NewDeaths": 0,
+      "TotalDeaths": 606,
+      "NewRecovered": 1,
+      "TotalRecovered": 1384,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        15,
+        48
+      ],
+      "population": 27478000,
+      "flag": "https://restcountries.eu/data/yem.svg"
+    },
+    {
+      "Country": "Zambia",
+      "CountryCode": "ZM",
+      "Slug": "zambia",
+      "NewConfirmed": 48,
+      "TotalConfirmed": 18322,
+      "NewDeaths": 0,
+      "TotalDeaths": 367,
+      "NewRecovered": 21,
+      "TotalRecovered": 17409,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -15,
+        30
+      ],
+      "population": 15933883,
+      "flag": "https://restcountries.eu/data/zmb.svg"
+    },
+    {
+      "Country": "Zimbabwe",
+      "CountryCode": "ZW",
+      "Slug": "zimbabwe",
+      "NewConfirmed": 112,
+      "TotalConfirmed": 11358,
+      "NewDeaths": 2,
+      "TotalDeaths": 309,
+      "NewRecovered": 103,
+      "TotalRecovered": 9554,
+      "Date": "2020-12-15T17:06:54Z",
+      "Premium": {},
+      "latlng": [
+        -20,
+        30
+      ],
+      "population": 14240168,
+      "flag": "https://restcountries.eu/data/zwe.svg"
+    }
+  ],
+  "Date": "2020-12-15T17:06:54Z"
+}
