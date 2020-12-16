@@ -72,11 +72,17 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
-/* harmony import */ var _modules_utils_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/utils/storage */ "./src/modules/utils/storage.js");
+ // import * as storage from './modules/utils/storage';
+// prepareData();
+// console.log(storage.get('covidData'));
+// const covidData = async () => {
+//   const result = await prepareData();
+//   return result;
+// };
 
-
-(0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)();
-console.log(_modules_utils_storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData'));
+(0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
+  return console.log(result);
+});
 
 /***/ }),
 
@@ -112,24 +118,33 @@ function _fecthData() {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            _context2.prev = 0;
+            _context2.next = 3;
             return fetch(url, requestOptions);
 
-          case 2:
+          case 3:
             response = _context2.sent;
-            _context2.next = 5;
+            _context2.next = 6;
             return response.json();
 
-          case 5:
+          case 6:
             data = _context2.sent;
             return _context2.abrupt("return", data);
 
-          case 7:
+          case 10:
+            _context2.prev = 10;
+            _context2.t0 = _context2["catch"](0);
+            console.error(_context2.t0);
+
+          case 13:
+            return _context2.abrupt("return", null);
+
+          case 14:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2);
+    }, _callee2, null, [[0, 10]]);
   }));
   return _fecthData.apply(this, arguments);
 }
@@ -185,26 +200,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-function addCoordinates(objData) {
-  (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(objData).then(function (result) {
-    var covidCountries = result.covidData.Countries;
-    var countries = result.countriesData;
-    var noSuchCovidCountry = [];
-    countries.forEach(function (country) {
-      var thisCountry = covidCountries.find(function (covidCountry) {
-        return covidCountry.CountryCode === country.alpha2Code;
-      }) || null;
+function addCoordinates(_x) {
+  return _addCoordinates.apply(this, arguments);
+} // return null if failed to get data from any API;
 
-      if (thisCountry) {
-        thisCountry.latlng = country.latlng;
-        thisCountry.population = country.population;
-        thisCountry.flag = country.flag;
-      } else {
-        noSuchCovidCountry.push(country);
+
+function _addCoordinates() {
+  _addCoordinates = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(objData) {
+    var asyncData, covidCountries, countries, noSuchCovidCountry;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(objData);
+
+          case 2:
+            asyncData = _context.sent;
+            covidCountries = asyncData.covidData.Countries;
+            countries = asyncData.countriesData;
+            noSuchCovidCountry = [];
+            countries.forEach(function (country) {
+              var thisCountry = covidCountries.find(function (covidCountry) {
+                return covidCountry.CountryCode === country.alpha2Code;
+              }) || null;
+
+              if (thisCountry) {
+                thisCountry.latlng = country.latlng;
+                thisCountry.population = country.population;
+                thisCountry.flag = country.flag;
+              } else {
+                noSuchCovidCountry.push(country);
+              }
+            });
+            _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', asyncData.covidData);
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
       }
-    });
-    _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result.covidData);
-  });
+    }, _callee);
+  }));
+  return _addCoordinates.apply(this, arguments);
 }
 
 function prepareData() {
@@ -212,41 +250,66 @@ function prepareData() {
 }
 
 function _prepareData() {
-  _prepareData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var countriesData, flags;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+  _prepareData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var countries, countriesData, covidCountries, covidData, objData;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            countriesData = _storage__WEBPACK_IMPORTED_MODULE_1__.get('CountriesData');
+            _context2.next = 2;
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
 
-            if (countriesData === null) {
-              flags = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
-              (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(flags).then(function (result) {
-                _storage__WEBPACK_IMPORTED_MODULE_1__.set('CountriesData', result);
-                countriesData = result;
-              });
+          case 2:
+            countries = _context2.sent;
+
+            if (countries) {
+              _context2.next = 5;
+              break;
             }
 
-            (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary').then(function (res) {
-              (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(res).then(function (result) {
-                _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result);
-                return result;
-              }).then(function (result) {
-                var objData = {
-                  covidData: result,
-                  countriesData: countriesData
-                };
-                addCoordinates(objData);
-              });
-            });
+            return _context2.abrupt("return", null);
 
-          case 3:
+          case 5:
+            _context2.next = 7;
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(countries);
+
+          case 7:
+            countriesData = _context2.sent;
+            _context2.next = 10;
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary');
+
+          case 10:
+            covidCountries = _context2.sent;
+
+            if (covidCountries) {
+              _context2.next = 13;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 13:
+            _context2.next = 15;
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covidCountries);
+
+          case 15:
+            covidData = _context2.sent;
+            objData = {
+              covidData: covidData,
+              countriesData: countriesData
+            };
+            _context2.next = 19;
+            return addCoordinates(objData);
+
+          case 19:
+            return _context2.abrupt("return", objData.covidData);
+
+          case 20:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
   return _prepareData.apply(this, arguments);
 }

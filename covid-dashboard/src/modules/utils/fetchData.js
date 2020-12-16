@@ -4,9 +4,14 @@ const requestOptions = {
 };
 
 async function fecthData(url) {
-  const response = await fetch(url, requestOptions);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(url, requestOptions);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+  return null;
 }
 
 const getAsyncData = async (data) => {
