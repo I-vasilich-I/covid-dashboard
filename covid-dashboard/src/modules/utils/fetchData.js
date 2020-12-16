@@ -1,5 +1,3 @@
-import * as storage from './storage';
-
 const requestOptions = {
   method: 'GET',
   redirect: 'follow',
@@ -11,9 +9,8 @@ async function fecthData(url) {
   return data;
 }
 
-const getAsyncData = async (data, name) => {
+const getAsyncData = async (data) => {
   const asyncData = await data;
-  storage.set(name, asyncData);
   return asyncData;
 };
 

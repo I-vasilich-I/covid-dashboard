@@ -89,11 +89,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fecthData": () => /* binding */ fecthData,
 /* harmony export */   "getAsyncData": () => /* binding */ getAsyncData
 /* harmony export */ });
-/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/modules/utils/storage.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 var requestOptions = {
   method: 'GET',
@@ -134,7 +132,7 @@ function _fecthData() {
 }
 
 var getAsyncData = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, name) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data) {
     var asyncData;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -145,10 +143,9 @@ var getAsyncData = /*#__PURE__*/function () {
 
           case 2:
             asyncData = _context.sent;
-            _storage__WEBPACK_IMPORTED_MODULE_0__.set(name, asyncData);
             return _context.abrupt("return", asyncData);
 
-          case 5:
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -156,7 +153,7 @@ var getAsyncData = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function getAsyncData(_x2, _x3) {
+  return function getAsyncData(_x2) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -195,29 +192,64 @@ function isDataUpToDate(data) {
 }
 
 function getDataFromLocalStorage(name) {
-  var data = _storage__WEBPACK_IMPORTED_MODULE_1__.get(name) || -1;
+  var data = _storage__WEBPACK_IMPORTED_MODULE_1__.get(name);
   return data;
 }
 
-function prepareData() {
-  var isUptoDate = true;
-  var flagsData = getDataFromLocalStorage('CountriesData');
+function addCoordinates(objData) {
+  (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(objData).then(function (result) {
+    var covidCountries = result.covidData.Countries;
+    var countries = result.countriesData;
+    var noSuchCovidCountry = [];
+    countries.forEach(function (country) {
+      var thisCountry = covidCountries.find(function (covidCountry) {
+        return covidCountry.CountryCode === country.alpha2Code;
+      }) || null;
 
-  if (flagsData === -1) {
+      if (thisCountry) {
+        thisCountry.latlng = country.latlng;
+        thisCountry.population = country.population;
+        thisCountry.flag = country.flag;
+      } else {
+        noSuchCovidCountry.push(country);
+      }
+    });
+    _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result);
+  });
+}
+
+function prepareData() {
+  var isUptoDate = false;
+  var countriesData = getDataFromLocalStorage('CountriesData');
+
+  if (countriesData === null) {
     var flags = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
-    flagsData = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(flags, 'CountriesData');
+    (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(flags).then(function (result) {
+      _storage__WEBPACK_IMPORTED_MODULE_1__.set('CountriesData', result);
+      countriesData = result;
+    });
   }
 
   var covidData = getDataFromLocalStorage('covidData');
 
-  if (covidData !== -1) {
+  if (covidData !== null) {
     isUptoDate = isDataUpToDate(covidData);
   }
 
   if (!isUptoDate) {
     var covid = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary');
-    covidData = (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covid, 'covidData');
+    (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covid).then(function (result) {
+      _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', result);
+      covidData = _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData');
+    });
   }
+
+  var objData = {
+    covidData: covidData,
+    countriesData: countriesData
+  };
+  addCoordinates(objData);
+  return _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData');
 }
 
 /***/ }),
