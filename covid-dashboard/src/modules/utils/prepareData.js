@@ -1,7 +1,11 @@
 import { fecthData, getAsyncData } from './fetchData';
 import * as storage from './storage';
 
-async function addCoordinates(objData) {
+function casesPer100K(cases, population) {
+  return ((cases * 100000) / population).toFixed(2);
+}
+
+async function addAdditionalData(objData) {
   const asyncData = await getAsyncData(objData);
   const covidCountries = asyncData.covidData.Countries;
   const countries = asyncData.countriesData;
@@ -14,6 +18,27 @@ async function addCoordinates(objData) {
       thisCountry.latlng = country.latlng;
       thisCountry.population = country.population;
       thisCountry.flag = country.flag;
+      thisCountry.TotalDeathsPer100K = casesPer100K(
+        thisCountry.TotalDeaths,
+        thisCountry.population
+      );
+      thisCountry.TotalRecoveredPer100K = casesPer100K(
+        thisCountry.TotalRecovered,
+        thisCountry.population
+      );
+      thisCountry.TotalConfirmedPer100K = casesPer100K(
+        thisCountry.TotalConfirmed,
+        thisCountry.population
+      );
+      thisCountry.NewDeathsPer100K = casesPer100K(thisCountry.NewDeaths, thisCountry.population);
+      thisCountry.NewRecoveredPer100K = casesPer100K(
+        thisCountry.NewRecovered,
+        thisCountry.population
+      );
+      thisCountry.NewConfirmedPer100K = casesPer100K(
+        thisCountry.NewConfirmed,
+        thisCountry.population
+      );
     } else {
       noSuchCovidCountry.push(country);
     }
@@ -35,6 +60,6 @@ export default async function prepareData() {
     covidData,
     countriesData,
   };
-  await addCoordinates(objData);
+  await addAdditionalData(objData);
   return objData.covidData;
 }

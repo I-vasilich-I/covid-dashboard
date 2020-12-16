@@ -72,13 +72,6 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
- // import * as storage from './modules/utils/storage';
-// prepareData();
-// console.log(storage.get('covidData'));
-// const covidData = async () => {
-//   const result = await prepareData();
-//   return result;
-// };
 
 (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
   return console.log(result);
@@ -200,13 +193,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-function addCoordinates(_x) {
-  return _addCoordinates.apply(this, arguments);
+function casesPer100K(cases, population) {
+  return (cases * 100000 / population).toFixed(2);
+}
+
+function addAdditionalData(_x) {
+  return _addAdditionalData.apply(this, arguments);
 } // return null if failed to get data from any API;
 
 
-function _addCoordinates() {
-  _addCoordinates = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(objData) {
+function _addAdditionalData() {
+  _addAdditionalData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(objData) {
     var asyncData, covidCountries, countries, noSuchCovidCountry;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -229,6 +226,12 @@ function _addCoordinates() {
                 thisCountry.latlng = country.latlng;
                 thisCountry.population = country.population;
                 thisCountry.flag = country.flag;
+                thisCountry.TotalDeathsPer100K = casesPer100K(thisCountry.TotalDeaths, thisCountry.population);
+                thisCountry.TotalRecoveredPer100K = casesPer100K(thisCountry.TotalRecovered, thisCountry.population);
+                thisCountry.TotalConfirmedPer100K = casesPer100K(thisCountry.TotalConfirmed, thisCountry.population);
+                thisCountry.NewDeathsPer100K = casesPer100K(thisCountry.NewDeaths, thisCountry.population);
+                thisCountry.NewRecoveredPer100K = casesPer100K(thisCountry.NewRecovered, thisCountry.population);
+                thisCountry.NewConfirmedPer100K = casesPer100K(thisCountry.NewConfirmed, thisCountry.population);
               } else {
                 noSuchCovidCountry.push(country);
               }
@@ -242,7 +245,7 @@ function _addCoordinates() {
       }
     }, _callee);
   }));
-  return _addCoordinates.apply(this, arguments);
+  return _addAdditionalData.apply(this, arguments);
 }
 
 function prepareData() {
@@ -299,7 +302,7 @@ function _prepareData() {
               countriesData: countriesData
             };
             _context2.next = 19;
-            return addCoordinates(objData);
+            return addAdditionalData(objData);
 
           case 19:
             return _context2.abrupt("return", objData.covidData);
