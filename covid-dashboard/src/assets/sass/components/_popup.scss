@@ -1,0 +1,15 @@
+.mapboxgl-popup {
+  color: $color-dark-s;
+  max-width: 300px;
+  .mapboxgl-popup-tip {
+    border-top-color: $color-popup-border;
+  }
+  .mapboxgl-popup-content {
+    border: 1px solid $color-popup-border;
+    background-color: $color-popup-bg;
+    .mapboxgl-popup-close-button {
+      outline: none;
+      color: $color-dark-s;
+    }
+  }
+}

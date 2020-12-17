@@ -81,8 +81,8 @@ __webpack_require__.r(__webpack_exports__);
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
     new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body);
-    var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default();
-    map.init(result);
+    var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
+    map.init();
   });
 };
 
@@ -97,12 +97,26 @@ window.onload = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN
+/* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN,
+/* harmony export */   "CASES_RANGE": () => /* binding */ CASES_RANGE,
+/* harmony export */   "DEATHS_RANGE": () => /* binding */ DEATHS_RANGE,
+/* harmony export */   "RECOVERED_RANGE": () => /* binding */ RECOVERED_RANGE,
+/* harmony export */   "MARKER_SIZE": () => /* binding */ MARKER_SIZE,
+/* harmony export */   "TYPE_CASE": () => /* binding */ TYPE_CASE,
+/* harmony export */   "TYPE_DEATH": () => /* binding */ TYPE_DEATH,
+/* harmony export */   "TYPE_RECOVERED": () => /* binding */ TYPE_RECOVERED
 /* harmony export */ });
 /* eslint-disable import/prefer-default-export */
 
 /* eslint-disable no-unused-vars */
 var MAPBOX_TOKEN = 'pk.eyJ1IjoibWljaGFlbHNoIiwiYSI6ImNraXFkdnZ0ajF0bm4ycmxiM3k0MXRvcjMifQ.Yf1Olmco7KyZFm-rRvcPaw';
+var CASES_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
+var DEATHS_RANGE = [100000, 50000, 25000, 10000, 5000, 2500, 1000];
+var RECOVERED_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
+var MARKER_SIZE = [25, 15, 13, 11, 9, 7, 5];
+var TYPE_CASE = 0;
+var TYPE_DEATH = 1;
+var TYPE_RECOVERED = 2;
 
 /***/ }),
 
@@ -127,72 +141,157 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 /* eslint-disable no-console */
-// npm install mapbox-gl --save
- // import 'mapbox-gl/dist/mapbox-gl.js';
-// import { mapboxgl } from '../node_modules/mapbox-gl/dist/mapbox-gl.js';
 
  // const mapboxgl = require('mapbox-gl/dist/mapbox-gl');
 
 var Map = /*#__PURE__*/function () {
-  function Map() {
+  function Map(covidData) {
     _classCallCheck(this, Map);
 
-    this.mapboxgl = mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__; // this.init();
+    this.covidData = covidData;
+    this.mapboxgl = mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__;
+    this.deathsMarkers = [];
+    this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
+    this.map = new this.mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/dark-v10',
+      zoom: 1,
+      center: [27, 53]
+    });
+    this.map.addControl(new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.FullscreenControl());
+    this.init();
   }
 
   _createClass(Map, [{
     key: "init",
-    value: function init(covidData) {
+    value: function init() {
+      this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
+      document.querySelector('.map-container').addEventListener('click', Map.eventHandler.bind(this));
+    }
+  }, {
+    key: "showMarkers",
+    value: function showMarkers(markerType) {
       var _this = this;
 
-      console.log(new Date().toUTCString());
-      console.log(this.mapboxgl);
-      console.log(covidData);
-      this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
-      var map = new this.mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v10',
-        zoom: 3.5,
-        center: [27, 53]
-      });
-      covidData.Countries.forEach(function (country) {
-        console.log(country); // create the popup
+      this.clearMarkers();
+      this.covidData.Countries.forEach(function (country) {
+        var popup = _this.createPopup(country);
 
-        var popup = new _this.mapboxgl.Popup({
-          offset: 25
-        }).setHTML("<p>Country: ".concat(country.Country, "</p>\n        <p>Confirmed: ").concat(country.TotalConfirmed, "</p>\n        <p>Deaths: ").concat(country.TotalDeaths, "</p>\n        <p>Recovered: ").concat(country.TotalRecovered, "</p>"));
-        var el = document.createElement('div');
-        el.id = 'marker';
-        var markerOptions = {
-          element: el,
-          color: 'red',
-          scale: 1
-        };
-        new _this.mapboxgl.Marker(markerOptions).setLngLat([+country.latlng[0], +country.latlng[1]]).setPopup(popup).addTo(map);
-      }); // fetch('./coordinates.json')
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     console.log(data);
-      //     data.forEach((point) => {
-      //       console.log(point);
-      //       const popup = new this.mapboxgl.Popup({ offset: 25 }).setHTML(
-      //         `<p>Confirmed: ${point.Confirmed}</p>
-      //          <p>Deaths: ${point.Deaths}</p>
-      //          <p>Recovered: ${point.Recovered}</p>`
-      //       );
-      //       const el = document.createElement('div');
-      //       el.id = 'marker';
-      //       const markerOptions = {
-      //         element: el,
-      //         color: 'red',
-      //         scale: 3,
-      //       };
-      //       new this.mapboxgl.Marker(markerOptions)
-      //         .setLngLat([+point.Lon, +point.Lat])
-      //         .setPopup(popup)
-      //         .addTo(map);
-      //     });
-      //   });
+        var markerOptions = Map.createMarker(country, markerType);
+        var marker = new _this.mapboxgl.Marker(markerOptions).setLngLat([country.latlng[1], country.latlng[0]]).setPopup(popup).addTo(_this.map);
+
+        _this.deathsMarkers.push(marker);
+      });
+    }
+  }, {
+    key: "clearMarkers",
+    value: function clearMarkers() {
+      if (this.deathsMarkers.length > 0) {
+        this.deathsMarkers.forEach(function (marker) {
+          return marker.remove();
+        });
+        this.deathsMarkers = [];
+      }
+    }
+  }, {
+    key: "createPopup",
+    value: function createPopup(country) {
+      return new this.mapboxgl.Popup().setHTML("<p>Country: ".concat(country.Country, "</p>\n      <p>Confirmed: ").concat(country.TotalConfirmed, "</p>\n      <p>Deaths: ").concat(country.TotalDeaths, "</p>\n      <p>Recovered: ").concat(country.TotalRecovered, "</p>"));
+    }
+  }], [{
+    key: "eventHandler",
+    value: function eventHandler(e) {
+      var element = e.target.closest('.map-button');
+      console.log(element);
+
+      switch (element.id) {
+        case 'map-button-cases':
+          console.log('cases'); // eslint-disable-next-line no-return-assign
+
+          this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
+          break;
+
+        case 'map-button-deaths':
+          console.log('deaths');
+          this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH);
+          break;
+
+        case 'map-button-recovered':
+          console.log('recovered');
+          this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED);
+          break;
+
+        default:
+          break;
+      }
+    }
+  }, {
+    key: "createMarker",
+    value: function createMarker(country, markerType) {
+      var el = document.createElement('div');
+      el.id = 'marker';
+      var markerSize = Map.getMarkerSize(country, markerType);
+      el.style.width = "".concat(markerSize, "px");
+      el.style.height = "".concat(markerSize, "px");
+      el.className = Map.getMarkerClassName(markerType);
+      return {
+        element: el,
+        // color: 'red',
+        scale: 1
+      };
+    }
+  }, {
+    key: "getMarkerSize",
+    value: function getMarkerSize(country, markerType) {
+      var range = [];
+      var count = 0;
+
+      switch (markerType) {
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.CASES_RANGE;
+          count = country.TotalConfirmed;
+          break;
+
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.DEATHS_RANGE;
+          count = country.TotalDeaths;
+          break;
+
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.RECOVERED_RANGE;
+          count = country.TotalRecovered;
+          break;
+
+        default:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.CASES_RANGE;
+          count = country.TotalConfirmed;
+          break;
+      }
+
+      for (var i = 0; i < range.length; i += 1) {
+        if (count >= range[i]) {
+          return _Constants__WEBPACK_IMPORTED_MODULE_1__.MARKER_SIZE[i];
+        }
+      }
+
+      return _Constants__WEBPACK_IMPORTED_MODULE_1__.MARKER_SIZE[range.length];
+    }
+  }, {
+    key: "getMarkerClassName",
+    value: function getMarkerClassName(markerType) {
+      switch (markerType) {
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE:
+          return 'marker_cases';
+
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH:
+          return 'marker_deaths';
+
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED:
+          return 'marker_recovered';
+
+        default:
+          return 'marker_cases';
+      }
     }
   }]);
 
