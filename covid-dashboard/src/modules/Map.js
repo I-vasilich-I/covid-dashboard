@@ -1,84 +1,154 @@
 /* eslint-disable no-console */
-// npm install mapbox-gl --save
 
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
-// import 'mapbox-gl/dist/mapbox-gl.js';
-// import { mapboxgl } from '../node_modules/mapbox-gl/dist/mapbox-gl.js';
 import * as Constants from './Constants';
 
 // const mapboxgl = require('mapbox-gl/dist/mapbox-gl');
 
 export default class Map {
-  constructor() {
+  constructor(covidData) {
+    this.covidData = covidData;
     this.mapboxgl = mapboxgl;
-    // this.init();
-  }
+    this.deathsMarkers = [];
 
-  init(covidData) {
-    console.log(new Date().toUTCString());
-    console.log(this.mapboxgl);
-    console.log(covidData);
     this.mapboxgl.accessToken = Constants.MAPBOX_TOKEN;
 
-    const map = new this.mapboxgl.Map({
+    this.map = new this.mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/dark-v10',
-      zoom: 3.5,
+      zoom: 1,
       center: [27, 53],
     });
 
-    covidData.Countries.forEach((country) => {
-      console.log(country);
-      // create the popup
-      const popup = new this.mapboxgl.Popup({ offset: 25 }).setHTML(
-        `<p>Country: ${country.Country}</p>
-        <p>Confirmed: ${country.TotalConfirmed}</p>
-        <p>Deaths: ${country.TotalDeaths}</p>
-        <p>Recovered: ${country.TotalRecovered}</p>`
-      );
+    this.map.addControl(new mapboxgl.FullscreenControl());
 
-      const el = document.createElement('div');
-      el.id = 'marker';
+    this.init();
+  }
 
-      const markerOptions = {
-        element: el,
-        color: 'red',
-        scale: 1,
-      };
+  init() {
+    this.showMarkers(Constants.TYPE_CASE);
+    document.querySelector('.map-container').addEventListener('click', Map.eventHandler.bind(this));
+  }
 
-      new this.mapboxgl.Marker(markerOptions)
-        .setLngLat([+country.latlng[0], +country.latlng[1]])
+  showMarkers(markerType) {
+    this.clearMarkers();
+
+    this.covidData.Countries.forEach((country) => {
+      const popup = this.createPopup(country);
+      const markerOptions = Map.createMarker(country, markerType);
+
+      const marker = new this.mapboxgl.Marker(markerOptions)
+        .setLngLat([country.latlng[1], country.latlng[0]])
         .setPopup(popup)
-        .addTo(map);
+        .addTo(this.map);
+
+      this.deathsMarkers.push(marker);
     });
+  }
 
-    // fetch('./coordinates.json')
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     data.forEach((point) => {
-    //       console.log(point);
+  clearMarkers() {
+    if (this.deathsMarkers.length > 0) {
+      this.deathsMarkers.forEach((marker) => marker.remove());
+      this.deathsMarkers = [];
+    }
+  }
 
-    //       const popup = new this.mapboxgl.Popup({ offset: 25 }).setHTML(
-    //         `<p>Confirmed: ${point.Confirmed}</p>
-    //          <p>Deaths: ${point.Deaths}</p>
-    //          <p>Recovered: ${point.Recovered}</p>`
-    //       );
+  static eventHandler(e) {
+    const element = e.target.closest('.map-button');
+    console.log(element);
+    switch (element.id) {
+      case 'map-button-cases':
+        console.log('cases');
+        // eslint-disable-next-line no-return-assign
+        this.showMarkers(Constants.TYPE_CASE);
 
-    //       const el = document.createElement('div');
-    //       el.id = 'marker';
+        break;
+      case 'map-button-deaths':
+        console.log('deaths');
+        this.showMarkers(Constants.TYPE_DEATH);
 
-    //       const markerOptions = {
-    //         element: el,
-    //         color: 'red',
-    //         scale: 3,
-    //       };
+        break;
+      case 'map-button-recovered':
+        console.log('recovered');
+        this.showMarkers(Constants.TYPE_RECOVERED);
 
-    //       new this.mapboxgl.Marker(markerOptions)
-    //         .setLngLat([+point.Lon, +point.Lat])
-    //         .setPopup(popup)
-    //         .addTo(map);
-    //     });
-    //   });
+        break;
+      default:
+        break;
+    }
+  }
+
+  static createMarker(country, markerType) {
+    const el = document.createElement('div');
+    el.id = 'marker';
+
+    const markerSize = Map.getMarkerSize(country, markerType);
+    el.style.width = `${markerSize}px`;
+    el.style.height = `${markerSize}px`;
+    el.className = Map.getMarkerClassName(markerType);
+
+    return {
+      element: el,
+      // color: 'red',
+      scale: 1,
+    };
+  }
+
+  createPopup(country) {
+    return new this.mapboxgl.Popup().setHTML(
+      `<p>Country: ${country.Country}</p>
+      <p>Confirmed: ${country.TotalConfirmed}</p>
+      <p>Deaths: ${country.TotalDeaths}</p>
+      <p>Recovered: ${country.TotalRecovered}</p>`
+    );
+  }
+
+  static getMarkerSize(country, markerType) {
+    let range = [];
+    let count = 0;
+
+    switch (markerType) {
+      case Constants.TYPE_CASE:
+        range = Constants.CASES_RANGE;
+        count = country.TotalConfirmed;
+        break;
+      case Constants.TYPE_DEATH:
+        range = Constants.DEATHS_RANGE;
+        count = country.TotalDeaths;
+
+        break;
+      case Constants.TYPE_RECOVERED:
+        range = Constants.RECOVERED_RANGE;
+        count = country.TotalRecovered;
+
+        break;
+      default:
+        range = Constants.CASES_RANGE;
+        count = country.TotalConfirmed;
+
+        break;
+    }
+
+    for (let i = 0; i < range.length; i += 1) {
+      if (count >= range[i]) {
+        return Constants.MARKER_SIZE[i];
+      }
+    }
+    return Constants.MARKER_SIZE[range.length];
+  }
+
+  static getMarkerClassName(markerType) {
+    switch (markerType) {
+      case Constants.TYPE_CASE:
+        return 'marker_cases';
+      case Constants.TYPE_DEATH:
+        return 'marker_deaths';
+
+      case Constants.TYPE_RECOVERED:
+        return 'marker_recovered';
+
+      default:
+        return 'marker_cases';
+    }
   }
 }

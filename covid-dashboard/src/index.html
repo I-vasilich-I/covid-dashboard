@@ -7,10 +7,18 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
     <title>covid-dashboard</title>
   </head>
   <body>
-    <div id="map" class="map"></div>
+    <div class="map-container">
+      <div id="map" class="map"></div>
+      <div class="map-button-container">
+        <button id="map-button-cases" class="map-button map-button-cases">Cases</button>
+        <button id="map-button-deaths" class="map-button map-button-deaths">Deaths</button>
+        <button id="map-button-recovered" class="map-button map-button-recovered">Recovered</button>
+      </div>
+    </div>
     <footer class="footer">
       <a href="https://github.com/Shemchuk" class="footer__link github-logo"></a>
       <a href="https://github.com/I-vasilich-I" class="footer__link github-logo"></a>

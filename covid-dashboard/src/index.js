@@ -5,7 +5,7 @@ import Map from './modules/Map';
 window.onload = () => {
   prepareData().then((result) => {
     new Table(result).init(document.body);
-    const map = new Map();
-    map.init(result);
+    const map = new Map(result);
+    map.init();
   });
 };
