@@ -16,8 +16,8 @@ function sortByProperty(array, property, order = 1) {
 /**
  *
  * @param {Object} obj
+ * {elementName: string, className: string, parent: DOMElement, attributes: [attributes]}
  * @returns {Element}
- * obj = {string, string, DOMElement, [attributes]}
  */
 function createDomElement(obj) {
   let element = null;
