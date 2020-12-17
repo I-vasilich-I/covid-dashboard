@@ -31,10 +31,10 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(95, 95, 95);
+  background: $color-scrollbar-light;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(37, 37, 37);
+  background: $color-scrollbar;
 }

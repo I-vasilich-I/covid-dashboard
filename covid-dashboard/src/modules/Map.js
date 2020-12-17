@@ -47,7 +47,7 @@ export default class Map {
       };
 
       new this.mapboxgl.Marker(markerOptions)
-        .setLngLat([+country.latlng[0], +country.latlng[1]])
+        .setLngLat([+country.latlng[1], +country.latlng[0]])
         .setPopup(popup)
         .addTo(map);
     });

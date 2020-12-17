@@ -97,12 +97,16 @@ window.onload = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN
+/* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN,
+/* harmony export */   "COUNTRIES_COORDINATS_URL": () => /* binding */ COUNTRIES_COORDINATS_URL,
+/* harmony export */   "COVID_DATA_URL": () => /* binding */ COVID_DATA_URL
 /* harmony export */ });
 /* eslint-disable import/prefer-default-export */
 
 /* eslint-disable no-unused-vars */
 var MAPBOX_TOKEN = 'pk.eyJ1IjoibWljaGFlbHNoIiwiYSI6ImNraXFkdnZ0ajF0bm4ycmxiM3k0MXRvcjMifQ.Yf1Olmco7KyZFm-rRvcPaw';
+var COUNTRIES_COORDINATS_URL = 'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag';
+var COVID_DATA_URL = 'https://api.covid19api.com/summary';
 
 /***/ }),
 
@@ -168,7 +172,7 @@ var Map = /*#__PURE__*/function () {
           color: 'red',
           scale: 1
         };
-        new _this.mapboxgl.Marker(markerOptions).setLngLat([+country.latlng[0], +country.latlng[1]]).setPopup(popup).addTo(map);
+        new _this.mapboxgl.Marker(markerOptions).setLngLat([+country.latlng[1], +country.latlng[0]]).setPopup(popup).addTo(map);
       }); // fetch('./coordinates.json')
       //   .then((response) => response.json())
       //   .then((data) => {
@@ -215,11 +219,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => /* binding */ Table
 /* harmony export */ });
 /* harmony import */ var _createTableContainers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTableContainers */ "./src/modules/createTableContainers.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -238,6 +244,7 @@ var Table = /*#__PURE__*/function () {
     value: function init(parent) {
       var _this = this;
 
+      _utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty(this.countries, 'TotalConfirmed', -1);
       this.countries.forEach(function (country) {
         _this.tablCountriesArray.push((0,_createTableContainers__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
       });
@@ -283,6 +290,7 @@ var tableDetails = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement(
   className: 'table__details',
   parent: tableContainer
 });
+tableDetails.innerText = 'Global cases:';
 
 function createCountryContainer(country) {
   var countryContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
@@ -328,7 +336,9 @@ function createGlobalDetailContainer(obj) {
     elementName: 'div',
     className: 'day__container',
     parent: tableDetails
-  }); // total container
+  });
+  totalContainer.innerText = 'Total cases:';
+  dayContainer.innerText = 'Last day cases:'; // total container
 
   totalContainer.totalConfirmed = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
     elementName: 'div',
@@ -361,12 +371,12 @@ function createGlobalDetailContainer(obj) {
     className: 'day__recovered',
     parent: dayContainer
   });
-  totalContainer.totalConfirmed.innerText = obj.TotalConfirmed;
-  totalContainer.totalDeaths.innerText = obj.TotalDeaths;
-  totalContainer.totalRecoverd.innerText = obj.TotalRecovered;
-  dayContainer.dayConfirmed.innerText = obj.NewConfirmed;
-  dayContainer.dayDeaths.innerText = obj.NewDeaths;
-  dayContainer.dayRecoverd.innerText = obj.NewRecovered;
+  totalContainer.totalConfirmed.innerText = "Confirmed:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.TotalConfirmed));
+  totalContainer.totalDeaths.innerText = "Deaths:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.TotalDeaths));
+  totalContainer.totalRecoverd.innerText = "Recovered:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.TotalRecovered));
+  dayContainer.dayConfirmed.innerText = "Confirmed:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.NewConfirmed));
+  dayContainer.dayDeaths.innerText = "Deaths:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.NewDeaths));
+  dayContainer.dayRecoverd.innerText = "Recovered:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.NewRecovered));
 }
 
 
@@ -598,9 +608,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _fetchData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchData */ "./src/modules/utils/fetchData.js");
 /* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage */ "./src/modules/utils/storage.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Constants */ "./src/modules/Constants.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -690,7 +702,7 @@ function _prepareData() {
           case 0:
             localData = checkLocalStorage();
             _context2.next = 3;
-            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)(_Constants__WEBPACK_IMPORTED_MODULE_2__.COUNTRIES_COORDINATS_URL);
 
           case 3:
             countries = _context2.sent;
@@ -717,7 +729,7 @@ function _prepareData() {
           case 10:
             countriesData = _context2.sent;
             _context2.next = 13;
-            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary');
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)(_Constants__WEBPACK_IMPORTED_MODULE_2__.COVID_DATA_URL);
 
           case 13:
             covidCountries = _context2.sent;

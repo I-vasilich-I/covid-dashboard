@@ -14,6 +14,7 @@ const tableDetails = helpers.createDomElement({
   className: 'table__details',
   parent: tableContainer,
 });
+tableDetails.innerText = 'Global cases:';
 
 function createCountryContainer(country) {
   const countryContainer = helpers.createDomElement({
@@ -57,6 +58,8 @@ function createGlobalDetailContainer(obj) {
     className: 'day__container',
     parent: tableDetails,
   });
+  totalContainer.innerText = 'Total cases:';
+  dayContainer.innerText = 'Last day cases:';
 
   // total container
   totalContainer.totalConfirmed = helpers.createDomElement({
@@ -92,13 +95,17 @@ function createGlobalDetailContainer(obj) {
     parent: dayContainer,
   });
 
-  totalContainer.totalConfirmed.innerText = obj.TotalConfirmed;
-  totalContainer.totalDeaths.innerText = obj.TotalDeaths;
-  totalContainer.totalRecoverd.innerText = obj.TotalRecovered;
+  totalContainer.totalConfirmed.innerText = `Confirmed:\n${helpers.numberWithSpaces(
+    obj.TotalConfirmed
+  )}`;
+  totalContainer.totalDeaths.innerText = `Deaths:\n${helpers.numberWithSpaces(obj.TotalDeaths)}`;
+  totalContainer.totalRecoverd.innerText = `Recovered:\n${helpers.numberWithSpaces(
+    obj.TotalRecovered
+  )}`;
 
-  dayContainer.dayConfirmed.innerText = obj.NewConfirmed;
-  dayContainer.dayDeaths.innerText = obj.NewDeaths;
-  dayContainer.dayRecoverd.innerText = obj.NewRecovered;
+  dayContainer.dayConfirmed.innerText = `Confirmed:\n${helpers.numberWithSpaces(obj.NewConfirmed)}`;
+  dayContainer.dayDeaths.innerText = `Deaths:\n${helpers.numberWithSpaces(obj.NewDeaths)}`;
+  dayContainer.dayRecoverd.innerText = `Recovered:\n${helpers.numberWithSpaces(obj.NewRecovered)}`;
 }
 
 export { createCountryContainer, createGlobalDetailContainer, tableContainer };

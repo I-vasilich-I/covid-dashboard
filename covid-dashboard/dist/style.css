@@ -61,7 +61,7 @@ body {
   position: relative;
   margin: auto;
   width: 400px;
-  height: 400px;
+  height: 340px;
   padding: 5px 0;
   display: flex;
   justify-content: space-between;
@@ -74,7 +74,7 @@ body {
 .table__countries {
   padding: 5px;
   height: 100%;
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -82,11 +82,14 @@ body {
 }
 
 .table__details {
-  padding: 5px;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 15px;
   height: 100%;
-  width: 50%;
+  width: 40%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -105,6 +108,36 @@ body {
 .country__cases p {
   font-size: 1.6rem;
   margin: 0;
+}
+
+.total__container {
+  font-size: 1.6rem;
+  font-weight: bold;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.total__container div {
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.day__container {
+  font-size: 1.6rem;
+  font-weight: bold;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.day__container div {
+  font-size: 1.6rem;
+  font-weight: normal;
 }
 
 .footer {

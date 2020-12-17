@@ -3,6 +3,7 @@ import {
   createGlobalDetailContainer,
   tableContainer,
 } from './createTableContainers';
+import * as helpers from './utils/helpers';
 
 export default class Table {
   constructor(covidData) {
@@ -13,6 +14,7 @@ export default class Table {
   }
 
   init(parent) {
+    helpers.sortByProperty(this.countries, 'TotalConfirmed', -1);
     this.countries.forEach((country) => {
       this.tablCountriesArray.push(createCountryContainer(country));
     });
