@@ -6,7 +6,7 @@ window.onload = () => {
   prepareData().then((result) => {
     const table = new Table(result).init(document.body);
     const map = new Map();
-    map.init(result);
+    map.init();
 
     table.tableCountriesArray[0].innerDiv.title.innerText = 'Total deaths:';
   });

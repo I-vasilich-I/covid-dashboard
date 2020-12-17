@@ -7,3 +7,11 @@ export const COUNTRIES_COORDINATS_URL =
   'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag';
 
 export const COVID_DATA_URL = 'https://api.covid19api.com/summary';
+export const CASES_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
+export const DEATHS_RANGE = [100000, 50000, 25000, 10000, 5000, 2500, 1000];
+export const RECOVERED_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
+export const MARKER_SIZE = [25, 15, 13, 11, 9, 7, 5];
+
+export const TYPE_CASE = 0;
+export const TYPE_DEATH = 1;
+export const TYPE_RECOVERED = 2;
