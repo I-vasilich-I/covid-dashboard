@@ -3,7 +3,7 @@
   margin: auto;
   width: 400px;
   height: 400px;
-  padding: 5px;
+  padding: 5px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,21 +13,41 @@
 }
 
 .table__countries {
-  padding: 10px;
+  padding: 5px;
   height: 100%;
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: scroll;
-  border-bottom: solid $color-primary-light;
 }
 
 .table__details {
-  padding: 10px;
+  padding: 5px;
   height: 100%;
   width: 50%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.country__container {
+  padding: 5px;
+  border-bottom: 0.5px solid $color-primary-light;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.country__cases {
+  font-size: 2rem;
+  font-weight: bold;
+  p {
+    font-size: 1.6rem;
+    margin: 0;
+  }
+}
+
+.country__name {
+  
 }

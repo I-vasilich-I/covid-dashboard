@@ -92,13 +92,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => /* binding */ Table
 /* harmony export */ });
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createTableContainers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTableContainers */ "./src/modules/createTableContainers.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+
+
+var Table = /*#__PURE__*/function () {
+  function Table(covidData) {
+    _classCallCheck(this, Table);
+
+    this.countries = covidData.Countries;
+    this.global = covidData.Global;
+    this.date = covidData.Date;
+    this.tablCountriesArray = [];
+  }
+
+  _createClass(Table, [{
+    key: "init",
+    value: function init(parent) {
+      var _this = this;
+
+      this.countries.forEach(function (country) {
+        _this.tablCountriesArray.push((0,_createTableContainers__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
+      });
+      (0,_createTableContainers__WEBPACK_IMPORTED_MODULE_0__.createGlobalDetailContainer)(this.global);
+      parent.appendChild(_createTableContainers__WEBPACK_IMPORTED_MODULE_0__.tableContainer);
+      return this;
+    }
+  }]);
+
+  return Table;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/createTableContainers.js":
+/*!**********************************************!*\
+  !*** ./src/modules/createTableContainers.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createCountryContainer": () => /* binding */ createCountryContainer,
+/* harmony export */   "createGlobalDetailContainer": () => /* binding */ createGlobalDetailContainer,
+/* harmony export */   "tableContainer": () => /* binding */ tableContainer
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 
 var tableContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
   elementName: 'div',
@@ -131,8 +178,21 @@ function createCountryContainer(country) {
     className: 'country__name',
     parent: countryContainer
   });
-  countryContainer.cases.innerText = "Total confirmed: ".concat(country.TotalConfirmed);
+  var title = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'p',
+    parent: countryContainer.cases
+  });
+  var amount = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    parent: countryContainer.cases
+  });
+  title.innerText = 'Total confirmed:';
+  amount.innerText = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(country.TotalConfirmed);
   countryContainer.countryName.innerText = country.Country;
+  countryContainer.innerDiv = {
+    title: title,
+    amount: amount
+  };
   return countryContainer;
 }
 
@@ -186,33 +246,6 @@ function createGlobalDetailContainer(obj) {
   dayContainer.dayDeaths.innerText = obj.NewDeaths;
   dayContainer.dayRecoverd.innerText = obj.NewRecovered;
 }
-
-var Table = /*#__PURE__*/function () {
-  function Table(covidData) {
-    _classCallCheck(this, Table);
-
-    this.countries = covidData.Countries;
-    this.global = covidData.Global;
-    this.date = covidData.Date;
-    this.tablCountriesArray = [];
-  }
-
-  _createClass(Table, [{
-    key: "init",
-    value: function init(parent) {
-      var _this = this;
-
-      this.countries.forEach(function (country) {
-        _this.tablCountriesArray.push(createCountryContainer(country));
-      });
-      createGlobalDetailContainer(this.global);
-      parent.appendChild(tableContainer);
-      return this;
-    }
-  }]);
-
-  return Table;
-}();
 
 
 
@@ -322,7 +355,8 @@ var getAsyncData = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createDomElement": () => /* binding */ createDomElement,
-/* harmony export */   "sortByProperty": () => /* binding */ sortByProperty
+/* harmony export */   "sortByProperty": () => /* binding */ sortByProperty,
+/* harmony export */   "numberWithSpaces": () => /* binding */ numberWithSpaces
 /* harmony export */ });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -417,6 +451,12 @@ function createDomElement(obj) {
   }
 
   return element;
+}
+
+function numberWithSpaces(x) {
+  var parts = x.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return parts.join('.');
 }
 
 
