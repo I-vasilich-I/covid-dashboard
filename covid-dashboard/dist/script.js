@@ -449,12 +449,11 @@ function casesPer100K(cases, population) {
 
 function addAdditionalData(_x) {
   return _addAdditionalData.apply(this, arguments);
-} // return null if failed to get data from any API;
-
+}
 
 function _addAdditionalData() {
   _addAdditionalData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(objData) {
-    var asyncData, covidCountries, countries, noSuchCovidCountry;
+    var asyncData, covidCountries, countries, noSuchCovidCountry, dataToSave, date;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -486,9 +485,14 @@ function _addAdditionalData() {
                 noSuchCovidCountry.push(country);
               }
             });
-            _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', asyncData.covidData);
+            dataToSave = asyncData.covidData;
+            date = new Date();
+            _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', {
+              date: date,
+              covidData: dataToSave
+            });
 
-          case 8:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -498,66 +502,88 @@ function _addAdditionalData() {
   return _addAdditionalData.apply(this, arguments);
 }
 
+function isSameDay(date) {
+  var today = new Date();
+  return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+}
+
+function checkLocalStorage() {
+  var dataToCheck = _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData');
+  if (dataToCheck === null) return null;
+  if (isSameDay(new Date(dataToCheck.date))) return dataToCheck.covidData;
+  return null;
+} // return null if failed to get data from any API;
+
+
 function prepareData() {
   return _prepareData.apply(this, arguments);
 }
 
 function _prepareData() {
   _prepareData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    var countries, countriesData, covidCountries, covidData, objData;
+    var localData, countries, countriesData, covidCountries, covidData, objData;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            localData = checkLocalStorage();
+            _context2.next = 3;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
 
-          case 2:
+          case 3:
             countries = _context2.sent;
 
+            if (!(localData !== null)) {
+              _context2.next = 6;
+              break;
+            }
+
+            return _context2.abrupt("return", localData);
+
+          case 6:
             if (countries) {
-              _context2.next = 5;
+              _context2.next = 8;
               break;
             }
 
             return _context2.abrupt("return", null);
 
-          case 5:
-            _context2.next = 7;
+          case 8:
+            _context2.next = 10;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(countries);
 
-          case 7:
+          case 10:
             countriesData = _context2.sent;
-            _context2.next = 10;
+            _context2.next = 13;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary');
 
-          case 10:
+          case 13:
             covidCountries = _context2.sent;
 
             if (covidCountries) {
-              _context2.next = 13;
+              _context2.next = 16;
               break;
             }
 
             return _context2.abrupt("return", null);
 
-          case 13:
-            _context2.next = 15;
+          case 16:
+            _context2.next = 18;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covidCountries);
 
-          case 15:
+          case 18:
             covidData = _context2.sent;
             objData = {
               covidData: covidData,
               countriesData: countriesData
             };
-            _context2.next = 19;
+            _context2.next = 22;
             return addAdditionalData(objData);
 
-          case 19:
+          case 22:
             return _context2.abrupt("return", objData.covidData);
 
-          case 20:
+          case 23:
           case "end":
             return _context2.stop();
         }

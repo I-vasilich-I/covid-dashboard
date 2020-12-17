@@ -43,14 +43,35 @@ async function addAdditionalData(objData) {
       noSuchCovidCountry.push(country);
     }
   });
-  storage.set('covidData', asyncData.covidData);
+  const dataToSave = asyncData.covidData;
+  const date = new Date();
+  storage.set('covidData', { date, covidData: dataToSave });
 }
 
+function isSameDay(date) {
+  const today = new Date();
+  return (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  );
+}
+
+function checkLocalStorage() {
+  const dataToCheck = storage.get('covidData');
+  if (dataToCheck === null) return null;
+  if (isSameDay(new Date(dataToCheck.date))) return dataToCheck.covidData;
+  return null;
+}
 // return null if failed to get data from any API;
 export default async function prepareData() {
+  const localData = checkLocalStorage();
   const countries = await fecthData(
     'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag'
   );
+  if (localData !== null) {
+    return localData;
+  }
   if (!countries) return null;
   const countriesData = await getAsyncData(countries);
   const covidCountries = await fecthData('https://api.covid19api.com/summary');
