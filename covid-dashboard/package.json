@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "prod": "webpack --mode production",
-    "watch": "webpack --mode watch",
+    "watch": "webpack --mode development --watch",
     "style": "sass --watch src/assets/sass/style.scss src/style.css"
   },
   "author": "",
@@ -41,6 +41,7 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1"
+    "@babel/polyfill": "^7.12.1",
+    "mapbox-gl": "^2.0.0"
   }
 }

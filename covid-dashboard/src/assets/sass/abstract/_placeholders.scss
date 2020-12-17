@@ -1,0 +1,31 @@
+%transition {
+  transition: all 0.2s ease-out;
+}
+
+%paragraph-l {
+  font: {
+    family: Arial, sans-serif;
+    style: normal;
+    weight: normal;
+    size: 1.5rem;
+  }
+  line-height: 2.4rem;
+}
+
+%paragraph-s {
+  font: {
+    family: Arial, sans-serif;
+    style: italic;
+    weight: normal;
+    size: 1.2rem;
+  }
+  line-height: 150%;
+}
+
+%text-shadow {
+  text-shadow: 0px 0px 4px #fff;
+}
+
+%card-shadow {
+  box-shadow: 0px 2px 35px 4px rgba(142, 215, 144, 0.8);
+}
