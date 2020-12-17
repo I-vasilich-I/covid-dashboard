@@ -1,1 +1,45 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
 
+body {
+  width: 100%;
+  margin: auto;
+}
+
+.table__container {
+  position: relative;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  background-color: #303030;
+  color: #b1b1b1;
+}
+
+.table__countries {
+  padding: 10px;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  border-bottom: solid #b1b1b1;
+}
+
+.table__details {
+  padding: 10px;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*# sourceMappingURL=style.css.map*/

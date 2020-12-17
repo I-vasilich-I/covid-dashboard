@@ -72,10 +72,149 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
+/* harmony import */ var _modules_Table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Table */ "./src/modules/Table.js");
+
 
 (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-  return console.log(result);
+  new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body);
 });
+
+/***/ }),
+
+/***/ "./src/modules/Table.js":
+/*!******************************!*\
+  !*** ./src/modules/Table.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ Table
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var tableContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  elementName: 'div',
+  className: 'table__container'
+});
+var tableCountries = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  elementName: 'div',
+  className: 'table__countries',
+  parent: tableContainer
+});
+var tableDetails = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  elementName: 'div',
+  className: 'table__details',
+  parent: tableContainer
+});
+
+function createCountryContainer(country) {
+  var countryContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'country__container',
+    parent: tableCountries
+  });
+  countryContainer.cases = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'country__cases',
+    parent: countryContainer
+  });
+  countryContainer.countryName = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'country__name',
+    parent: countryContainer
+  });
+  countryContainer.cases.innerText = "Total confirmed: ".concat(country.TotalConfirmed);
+  countryContainer.countryName.innerText = country.Country;
+  return countryContainer;
+}
+
+function createGlobalDetailContainer(obj) {
+  var totalContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'total__container',
+    parent: tableDetails
+  });
+  var dayContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'day__container',
+    parent: tableDetails
+  }); // total container
+
+  totalContainer.totalConfirmed = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'total__confirmed',
+    parent: totalContainer
+  });
+  totalContainer.totalDeaths = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'total__deaths',
+    parent: totalContainer
+  });
+  totalContainer.totalRecoverd = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'total__recovered',
+    parent: totalContainer
+  }); // day container
+
+  dayContainer.dayConfirmed = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'day__confirmed',
+    parent: dayContainer
+  });
+  dayContainer.dayDeaths = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'day__deaths',
+    parent: dayContainer
+  });
+  dayContainer.dayRecoverd = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+    elementName: 'div',
+    className: 'day__recovered',
+    parent: dayContainer
+  });
+  totalContainer.totalConfirmed.innerText = obj.TotalConfirmed;
+  totalContainer.totalDeaths.innerText = obj.TotalDeaths;
+  totalContainer.totalRecoverd.innerText = obj.TotalRecovered;
+  dayContainer.dayConfirmed.innerText = obj.NewConfirmed;
+  dayContainer.dayDeaths.innerText = obj.NewDeaths;
+  dayContainer.dayRecoverd.innerText = obj.NewRecovered;
+}
+
+var Table = /*#__PURE__*/function () {
+  function Table(covidData) {
+    _classCallCheck(this, Table);
+
+    this.countries = covidData.Countries;
+    this.global = covidData.Global;
+    this.date = covidData.Date;
+    this.tablCountriesArray = [];
+  }
+
+  _createClass(Table, [{
+    key: "init",
+    value: function init(parent) {
+      var _this = this;
+
+      this.countries.forEach(function (country) {
+        _this.tablCountriesArray.push(createCountryContainer(country));
+      });
+      createGlobalDetailContainer(this.global);
+      parent.appendChild(tableContainer);
+      return this;
+    }
+  }]);
+
+  return Table;
+}();
+
+
 
 /***/ }),
 
@@ -173,6 +312,117 @@ var getAsyncData = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/modules/utils/helpers.js":
+/*!**************************************!*\
+  !*** ./src/modules/utils/helpers.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createDomElement": () => /* binding */ createDomElement,
+/* harmony export */   "sortByProperty": () => /* binding */ sortByProperty
+/* harmony export */ });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+/**
+ *  Returns array sorted by property in given order (1/-1).
+ *  @param {Array} array
+ *  @param {String} property
+ *  @param {Number} order
+ *  @return {Array}
+ */
+function sortByProperty(array, property) {
+  var order = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+  array.sort(function (element1, element2) {
+    if (element1[property] < element2[property]) return -1 * order;
+    if (element1[property] > element2[property]) return 1 * order;
+    return 0;
+  });
+  return array;
+}
+/**
+ *
+ * @param {Object} obj
+ * {elementName: string, className: string, parent: DOMElement, attributes: [attributes]}
+ * @returns {Element}
+ */
+
+
+function createDomElement(obj) {
+  var element = null;
+  var elementName = obj.elementName,
+      _obj$className = obj.className,
+      className = _obj$className === void 0 ? null : _obj$className,
+      _obj$parent = obj.parent,
+      parent = _obj$parent === void 0 ? null : _obj$parent,
+      _obj$attributes = obj.attributes,
+      attributes = _obj$attributes === void 0 ? [] : _obj$attributes;
+  if (!elementName) return null;
+
+  try {
+    element = document.createElement(elementName);
+  } catch (e) {
+    throw new Error('Unable to create element. Wrong element name');
+  }
+
+  if (className) {
+    var _element$classList;
+
+    (_element$classList = element.classList).add.apply(_element$classList, _toConsumableArray(className.split(' ')));
+  }
+
+  if (parent) {
+    parent.appendChild(element);
+  }
+
+  if (attributes.length) {
+    var regEx = /value|id|placeholder|rows|autocorrect|spellcheck|src|alt/;
+    attributes.forEach(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          attrName = _ref2[0],
+          attrValue = _ref2[1];
+
+      if (!attrValue) {
+        element.setAttribute(attrName, '');
+      }
+
+      var isMatch = attrName.match(regEx);
+
+      if (isMatch) {
+        element.setAttribute(attrName, attrValue);
+      } else {
+        element.dataset[attrName] = attrValue;
+      }
+    });
+  }
+
+  return element;
+}
+
+
+
+/***/ }),
+
 /***/ "./src/modules/utils/prepareData.js":
 /*!******************************************!*\
   !*** ./src/modules/utils/prepareData.js ***!
@@ -199,12 +449,11 @@ function casesPer100K(cases, population) {
 
 function addAdditionalData(_x) {
   return _addAdditionalData.apply(this, arguments);
-} // return null if failed to get data from any API;
-
+}
 
 function _addAdditionalData() {
   _addAdditionalData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(objData) {
-    var asyncData, covidCountries, countries, noSuchCovidCountry;
+    var asyncData, covidCountries, countries, noSuchCovidCountry, dataToSave, date;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -236,9 +485,14 @@ function _addAdditionalData() {
                 noSuchCovidCountry.push(country);
               }
             });
-            _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', asyncData.covidData);
+            dataToSave = asyncData.covidData;
+            date = new Date();
+            _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', {
+              date: date,
+              covidData: dataToSave
+            });
 
-          case 8:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -248,66 +502,88 @@ function _addAdditionalData() {
   return _addAdditionalData.apply(this, arguments);
 }
 
+function isSameDay(date) {
+  var today = new Date();
+  return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+}
+
+function checkLocalStorage() {
+  var dataToCheck = _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData');
+  if (dataToCheck === null) return null;
+  if (isSameDay(new Date(dataToCheck.date))) return dataToCheck.covidData;
+  return null;
+} // return null if failed to get data from any API;
+
+
 function prepareData() {
   return _prepareData.apply(this, arguments);
 }
 
 function _prepareData() {
   _prepareData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    var countries, countriesData, covidCountries, covidData, objData;
+    var localData, countries, countriesData, covidCountries, covidData, objData;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            localData = checkLocalStorage();
+            _context2.next = 3;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
 
-          case 2:
+          case 3:
             countries = _context2.sent;
 
+            if (!(localData !== null)) {
+              _context2.next = 6;
+              break;
+            }
+
+            return _context2.abrupt("return", localData);
+
+          case 6:
             if (countries) {
-              _context2.next = 5;
+              _context2.next = 8;
               break;
             }
 
             return _context2.abrupt("return", null);
 
-          case 5:
-            _context2.next = 7;
+          case 8:
+            _context2.next = 10;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(countries);
 
-          case 7:
+          case 10:
             countriesData = _context2.sent;
-            _context2.next = 10;
+            _context2.next = 13;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary');
 
-          case 10:
+          case 13:
             covidCountries = _context2.sent;
 
             if (covidCountries) {
-              _context2.next = 13;
+              _context2.next = 16;
               break;
             }
 
             return _context2.abrupt("return", null);
 
-          case 13:
-            _context2.next = 15;
+          case 16:
+            _context2.next = 18;
             return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covidCountries);
 
-          case 15:
+          case 18:
             covidData = _context2.sent;
             objData = {
               covidData: covidData,
               countriesData: countriesData
             };
-            _context2.next = 19;
+            _context2.next = 22;
             return addAdditionalData(objData);
 
-          case 19:
+          case 22:
             return _context2.abrupt("return", objData.covidData);
 
-          case 20:
+          case 23:
           case "end":
             return _context2.stop();
         }
