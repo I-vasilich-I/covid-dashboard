@@ -1,11 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   box-sizing: border-box;
   font-size: 10px;
 }
 
 body {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   margin: auto;
+  user-select: none;
+  font-family: "Space Grotesk", Arial, sans-serif;
+}
+
+#map {
+  width: 80rem;
+  height: 50rem;
+  margin: 0 auto;
+}
+
+#marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  color: "red";
+  border: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  color: #cdcdcd;
+  max-width: 200px;
 }
 
 .table__container {
@@ -40,6 +69,44 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.8rem;
+  height: 5rem;
+  clear: both;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: 1rem;
+  padding-bottom: 2rem;
+}
+.footer .footer__link {
+  text-decoration: none;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 2rem;
+  transition: all 0.2s ease-in-out;
+}
+.footer .footer__link:hover {
+  opacity: 0.5;
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+.footer .github-logo {
+  background-image: url(assets/icons/github-logo.svg);
+  margin: 0 2rem;
+}
+.footer .school-logo {
+  background-image: url(assets/icons/rs_school_js.svg);
+  width: 10rem;
 }
 
 /*# sourceMappingURL=style.css.map*/
