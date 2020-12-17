@@ -80,9 +80,10 @@ __webpack_require__.r(__webpack_exports__);
 
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body);
+    var table = new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body);
     var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default();
     map.init(result);
+    table.tableCountriesArray[0].innerDiv.title.innerText = 'Total deaths:';
   });
 };
 
@@ -218,13 +219,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => /* binding */ Table
 /* harmony export */ });
-/* harmony import */ var _createTableContainers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTableContainers */ "./src/modules/createTableContainers.js");
+/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createTableTabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createTableTabs */ "./src/modules/createTableTabs.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -236,20 +239,29 @@ var Table = /*#__PURE__*/function () {
     this.countries = covidData.Countries;
     this.global = covidData.Global;
     this.date = covidData.Date;
-    this.tablCountriesArray = [];
+    this.tableCountriesArray = [];
   }
 
   _createClass(Table, [{
     key: "init",
-    value: function init(parent) {
+    value: function init() {
       var _this = this;
 
-      _utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty(this.countries, 'TotalConfirmed', -1);
-      this.countries.forEach(function (country) {
-        _this.tablCountriesArray.push((0,_createTableContainers__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
+      var _document = document,
+          body = _document.body;
+      var parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'div',
+        className: 'table__container',
+        parent: body
       });
-      (0,_createTableContainers__WEBPACK_IMPORTED_MODULE_0__.createGlobalDetailContainer)(this.global);
-      parent.appendChild(_createTableContainers__WEBPACK_IMPORTED_MODULE_0__.tableContainer);
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
+      this.countries.forEach(function (country) {
+        _this.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
+      });
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
+      parent.appendChild(_createTable__WEBPACK_IMPORTED_MODULE_0__.table);
+      var tabs = (0,_createTableTabs__WEBPACK_IMPORTED_MODULE_2__.default)();
+      parent.appendChild(tabs);
       return this;
     }
   }]);
@@ -261,63 +273,62 @@ var Table = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/modules/createTableContainers.js":
-/*!**********************************************!*\
-  !*** ./src/modules/createTableContainers.js ***!
-  \**********************************************/
+/***/ "./src/modules/createTable.js":
+/*!************************************!*\
+  !*** ./src/modules/createTable.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createCountryContainer": () => /* binding */ createCountryContainer,
-/* harmony export */   "createGlobalDetailContainer": () => /* binding */ createGlobalDetailContainer,
-/* harmony export */   "tableContainer": () => /* binding */ tableContainer
+/* harmony export */   "createDetailContainer": () => /* binding */ createDetailContainer,
+/* harmony export */   "table": () => /* binding */ table
 /* harmony export */ });
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 
-var tableContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+var table = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
   elementName: 'div',
-  className: 'table__container'
+  className: 'table'
 });
-var tableCountries = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+var tableCountries = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
   elementName: 'div',
   className: 'table__countries',
-  parent: tableContainer
+  parent: table
 });
-var tableDetails = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+var tableDetails = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
   elementName: 'div',
   className: 'table__details',
-  parent: tableContainer
+  parent: table
 });
-tableDetails.innerText = 'Global cases:';
 
 function createCountryContainer(country) {
-  var countryContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
     className: 'country__container',
     parent: tableCountries
   });
-  countryContainer.cases = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  countryContainer.cases = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
     className: 'country__cases',
     parent: countryContainer
   });
-  countryContainer.countryName = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  countryContainer.countryName = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
     className: 'country__name',
     parent: countryContainer
   });
-  var title = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  var title = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'p',
     parent: countryContainer.cases
   });
-  var amount = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
     parent: countryContainer.cases
   });
   title.innerText = 'Total confirmed:';
-  amount.innerText = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(country.TotalConfirmed);
+  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country.TotalConfirmed);
   countryContainer.countryName.innerText = country.Country;
   countryContainer.innerDiv = {
     title: title,
@@ -326,60 +337,166 @@ function createCountryContainer(country) {
   return countryContainer;
 }
 
-function createGlobalDetailContainer(obj) {
-  var totalContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+function createDetailContainer(obj) {
+  var global = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  tableDetails.innerText = '';
+  if (global) tableDetails.innerText = 'Global cases:';
+  var detailContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
-    className: 'total__container',
+    className: 'detail__container',
     parent: tableDetails
-  });
-  var dayContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__container',
-    parent: tableDetails
-  });
-  totalContainer.innerText = 'Total cases:';
-  dayContainer.innerText = 'Last day cases:'; // total container
+  }); // const dayContainer = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__container',
+  //   parent: tableDetails,
+  // });
 
-  totalContainer.totalConfirmed = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  detailContainer.innerText = 'Total cases:'; // dayContainer.innerText = 'Last day cases:';
+  // detail container
+
+  detailContainer.detailConfirmed = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
-    className: 'total__confirmed',
-    parent: totalContainer
+    className: 'detail__confirmed',
+    parent: detailContainer
   });
-  totalContainer.totalDeaths = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  detailContainer.detailDeaths = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
-    className: 'total__deaths',
-    parent: totalContainer
+    className: 'detail__deaths',
+    parent: detailContainer
   });
-  totalContainer.totalRecoverd = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
+  detailContainer.detailRecoverd = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
-    className: 'total__recovered',
-    parent: totalContainer
+    className: 'detail__recovered',
+    parent: detailContainer
   }); // day container
+  // dayContainer.dayConfirmed = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__confirmed',
+  //   parent: dayContainer,
+  // });
+  // dayContainer.dayDeaths = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__deaths',
+  //   parent: dayContainer,
+  // });
+  // dayContainer.dayRecoverd = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__recovered',
+  //   parent: dayContainer,
+  // });
 
-  dayContainer.dayConfirmed = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__confirmed',
-    parent: dayContainer
-  });
-  dayContainer.dayDeaths = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__deaths',
-    parent: dayContainer
-  });
-  dayContainer.dayRecoverd = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__recovered',
-    parent: dayContainer
-  });
-  totalContainer.totalConfirmed.innerText = "Confirmed:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.TotalConfirmed));
-  totalContainer.totalDeaths.innerText = "Deaths:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.TotalDeaths));
-  totalContainer.totalRecoverd.innerText = "Recovered:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.TotalRecovered));
-  dayContainer.dayConfirmed.innerText = "Confirmed:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.NewConfirmed));
-  dayContainer.dayDeaths.innerText = "Deaths:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.NewDeaths));
-  dayContainer.dayRecoverd.innerText = "Recovered:\n".concat(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces(obj.NewRecovered));
+  detailContainer.detailConfirmed.innerText = "Confirmed:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalConfirmed));
+  detailContainer.detailDeaths.innerText = "Deaths:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalDeaths));
+  detailContainer.detailRecoverd.innerText = "Recovered:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalRecovered)); // dayContainer.dayConfirmed.innerText = `Confirmed:\n${numberWithSpaces(obj.NewConfirmed)}`;
+  // dayContainer.dayDeaths.innerText = `Deaths:\n${numberWithSpaces(obj.NewDeaths)}`;
+  // dayContainer.dayRecoverd.innerText = `Recovered:\n${numberWithSpaces(obj.NewRecovered)}`;
 }
 
 
+
+/***/ }),
+
+/***/ "./src/modules/createTableTabs.js":
+/*!****************************************!*\
+  !*** ./src/modules/createTableTabs.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ createTableTabs
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+
+function createTableTabs() {
+  var tabs = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'tabs__container'
+  });
+  tabs.buttonConfirmed = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-active',
+    parent: tabs,
+    attributes: [['id', 'tab-confirmed']]
+  });
+  tabs.buttonDeaths = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button',
+    parent: tabs,
+    attributes: [['id', 'tab-deaths']]
+  });
+  tabs.buttonRecovered = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button',
+    parent: tabs,
+    attributes: [['id', 'tab-recovered']]
+  });
+  tabs.buttonTotal = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-active tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-total']]
+  });
+  tabs.buttonTotal100K = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-total100K']]
+  });
+  tabs.buttonNew = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-new']]
+  });
+  tabs.buttonNew100K = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-new100K']]
+  });
+  tabs.buttonConfirmed.innerText = 'Confirmed';
+  tabs.buttonDeaths.innerText = 'Deaths';
+  tabs.buttonRecovered.innerText = 'Recovered';
+  tabs.buttonTotal.innerText = 'Total';
+  tabs.buttonTotal100K.innerText = 'T100K';
+  tabs.buttonNew.innerText = 'New';
+  tabs.buttonNew100K.innerText = 'N100K';
+  return tabs;
+} // <div class="w3-bar w3-black">
+// <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">London</button>
+// <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">Paris</button>
+// <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">Tokyo</button>
+// </div>
+// <div id="London" class="w3-container w3-border city">
+// <h2>London</h2>
+// <p>London is the capital city of England.</p>
+// </div>
+// <div id="Paris" class="w3-container w3-border city" style="display:none">
+// <h2>Paris</h2>
+// <p>Paris is the capital of France.</p>
+// </div>
+// <div id="Tokyo" class="w3-container w3-border city" style="display:none">
+// <h2>Tokyo</h2>
+// <p>Tokyo is the capital of Japan.</p>
+// </div>
+// </div>
+// <script>
+// function openCity(evt, cityName) {
+// var i, x, tablinks;
+// x = document.getElementsByClassName("city");
+// for (i = 0; i < x.length; i++) {
+// x[i].style.display = "none";
+// }
+// tablinks = document.getElementsByClassName("tablink");
+// for (i = 0; i < x.length; i++) {
+// tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+// }
+// document.getElementById(cityName).style.display = "block";
+// evt.currentTarget.className += " w3-red";
+// }
+// </script>
 
 /***/ }),
 
@@ -529,7 +646,7 @@ function sortByProperty(array, property) {
 /**
  *
  * @param {Object} obj
- * {elementName: string, className: string, parent: DOMElement, attributes: [attributes]}
+ * {elementName: string, className: string, parent: DOMElement, attributes: [name, value]}
  * @returns {Element}
  */
 

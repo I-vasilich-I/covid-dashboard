@@ -1,8 +1,22 @@
 .table__container {
   position: relative;
   margin: auto;
+  margin-bottom: 100px;
   width: 400px;
-  height: 340px;
+  height: 250px;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.table {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 200px;
   padding: 5px 0;
   display: flex;
   justify-content: space-between;
@@ -14,8 +28,8 @@
 
 .table__countries {
   padding: 5px;
-  height: 100%;
-  width: 60%;
+  height: 95%;
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -25,9 +39,9 @@
 .table__details {
   font-size: 2rem;
   font-weight: bold;
-  padding: 15px;
+  padding-left: 15px;
   height: 100%;
-  width: 40%;
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -40,6 +54,12 @@
   &:hover {
     cursor: pointer;
   }
+  &-deaths {
+    color: $color-deaths;
+  }
+  &-recovered {
+    color: $color-recovered;
+  }
 }
 
 .country__cases {
@@ -51,7 +71,7 @@
   }
 }
 
-.total__container {
+.detail__container {
   font-size: 1.6rem;
   font-weight: bold;
   width: 100%;
@@ -66,17 +86,65 @@
   }
 }
 
+.detail__confirmed {
+  color: $color-primary-light;
+}
+
+.detail__deaths {
+  color: $color-deaths;
+}
+
+.detail__recovered {
+  color: $color-recovered;
+}
+
 .day__container {
-  font-size: 1.6rem;
-  font-weight: bold;
   width: 100%;
   padding: 5px;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  font-size: 1.6rem;
+  font-weight: bold;
   div {
     font-size: 1.6rem;
     font-weight: normal;
   }
+}
+
+.tabs__container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  font-size: 1.4rem;
+}
+
+.tabs__button {
+  width: auto;
+  border: none;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  padding: 5px;
+  white-space: normal;
+  background-color: $color-black;
+  color: $color-primary-light;
+  &-active {
+    background-color: $color-primary;
+    border-bottom: 3px solid $color-button-border;
+  }
+  &-hidden {
+    display: none;
+  }
+}
+
+#tab-recovered {
+  margin-right: 27px;
 }
