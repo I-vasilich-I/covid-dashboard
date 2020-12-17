@@ -39,11 +39,41 @@ module.exports = (env, options) => {
       rules: [
         {
           test: /\.scss$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '',
+              },
+            },
+            'css-loader',
+            'sass-loader',
+          ],
         },
         {
-          test: /\.(png|jpe?g|svg|gif)$/,
-          use: ['file-loader'],
+          test: /\.(png|jpe?g|gif)$/,
+          // use: ['file-loader'],
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: 'assets/images',
+                name: '[name].[ext]',
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(svg)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: 'assets/icons',
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: /\.(ttf|woff|woff2|eot)$/,
@@ -85,18 +115,18 @@ module.exports = (env, options) => {
       new ESLintPlugin({
         fix: true,
       }),
-      /*
-      new CopyWebpackPlugin({
-        patterns: [
-          // { from: 'src/assets/audio/shifting.wav'},
-          // { from: 'src/assets/audio/', to: 'assets/audio/' },
-          // { from: 'src/assets/images/svg/favicon.svg' },
-          // { from: 'rs_school_js.svg' },
-          // { from: 'src/assets/images/', to: 'assets/images/' },
-          // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
-        ],
-      }),
-      */
+
+      // new CopyWebpackPlugin({
+      //   patterns: [
+      //     // { from: 'src/assets/audio/shifting.wav'},
+      //     // { from: 'src/assets/audio/', to: 'assets/audio/' },
+      //     // { from: 'src/assets/images/svg/favicon.svg' },
+      //     // { from: 'rs_school_js.svg' },
+      //     // { from: 'src/assets/images/', to: 'assets/images/' },
+      //     // { from: 'src/assets/icons/', to: 'assets/icons/' },
+      //     // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
+      //   ],
+      // }),
     ],
   };
 
@@ -113,7 +143,7 @@ module.exports = (env, options) => {
   output: {
     filename: '[name].[id].js',
     path: path.resolve(__dirname, 'dist'),
-  }, 
+  },
   resolve: {
     extensions: ['.js', '.json'],
     alias: {

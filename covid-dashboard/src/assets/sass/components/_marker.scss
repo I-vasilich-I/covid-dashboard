@@ -1,0 +1,14 @@
+#marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  color: 'red';
+  border: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  color: $color-dark-s;
+  max-width: 200px;
+}

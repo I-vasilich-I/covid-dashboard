@@ -1,6 +1,12 @@
-// abstract 
+// abstract
 @import './abstract/constants';
+@import './abstract/mixins';
+@import './abstract/placeholders';
 // base
 @import './/base/base';
+//components
+@import './components/map';
+@import './components/marker';
 // layouts
 @import './layouts/table';
+@import './layouts/footer';

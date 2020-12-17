@@ -73,11 +73,132 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
 /* harmony import */ var _modules_Table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Table */ "./src/modules/Table.js");
+/* harmony import */ var _modules_Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Map */ "./src/modules/Map.js");
 
 
-(0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-  new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body);
-});
+
+
+window.onload = function () {
+  (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
+    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body);
+    var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default();
+    map.init(result);
+  });
+};
+
+/***/ }),
+
+/***/ "./src/modules/Constants.js":
+/*!**********************************!*\
+  !*** ./src/modules/Constants.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN
+/* harmony export */ });
+/* eslint-disable import/prefer-default-export */
+
+/* eslint-disable no-unused-vars */
+var MAPBOX_TOKEN = 'pk.eyJ1IjoibWljaGFlbHNoIiwiYSI6ImNraXFkdnZ0ajF0bm4ycmxiM3k0MXRvcjMifQ.Yf1Olmco7KyZFm-rRvcPaw';
+
+/***/ }),
+
+/***/ "./src/modules/Map.js":
+/*!****************************!*\
+  !*** ./src/modules/Map.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ Map
+/* harmony export */ });
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'mapbox-gl/dist/mapbox-gl'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/* eslint-disable no-console */
+// npm install mapbox-gl --save
+ // import 'mapbox-gl/dist/mapbox-gl.js';
+// import { mapboxgl } from '../node_modules/mapbox-gl/dist/mapbox-gl.js';
+
+ // const mapboxgl = require('mapbox-gl/dist/mapbox-gl');
+
+var Map = /*#__PURE__*/function () {
+  function Map() {
+    _classCallCheck(this, Map);
+
+    this.mapboxgl = Object(function webpackMissingModule() { var e = new Error("Cannot find module 'mapbox-gl/dist/mapbox-gl'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()); // this.init();
+  }
+
+  _createClass(Map, [{
+    key: "init",
+    value: function init(covidData) {
+      var _this = this;
+
+      console.log(new Date().toUTCString());
+      console.log(this.mapboxgl);
+      console.log(covidData);
+      this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
+      var map = new this.mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        zoom: 3.5,
+        center: [27, 53]
+      });
+      covidData.Countries.forEach(function (country) {
+        console.log(country); // create the popup
+
+        var popup = new _this.mapboxgl.Popup({
+          offset: 25
+        }).setHTML("<p>Country: ".concat(country.Country, "</p>\n        <p>Confirmed: ").concat(country.TotalConfirmed, "</p>\n        <p>Deaths: ").concat(country.TotalDeaths, "</p>\n        <p>Recovered: ").concat(country.TotalRecovered, "</p>"));
+        var el = document.createElement('div');
+        el.id = 'marker';
+        var markerOptions = {
+          element: el,
+          color: 'red',
+          scale: 1
+        };
+        new _this.mapboxgl.Marker(markerOptions).setLngLat([+country.latlng[0], +country.latlng[1]]).setPopup(popup).addTo(map);
+      }); // fetch('./coordinates.json')
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     console.log(data);
+      //     data.forEach((point) => {
+      //       console.log(point);
+      //       const popup = new this.mapboxgl.Popup({ offset: 25 }).setHTML(
+      //         `<p>Confirmed: ${point.Confirmed}</p>
+      //          <p>Deaths: ${point.Deaths}</p>
+      //          <p>Recovered: ${point.Recovered}</p>`
+      //       );
+      //       const el = document.createElement('div');
+      //       el.id = 'marker';
+      //       const markerOptions = {
+      //         element: el,
+      //         color: 'red',
+      //         scale: 3,
+      //       };
+      //       new this.mapboxgl.Marker(markerOptions)
+      //         .setLngLat([+point.Lon, +point.Lat])
+      //         .setPopup(popup)
+      //         .addTo(map);
+      //     });
+      //   });
+    }
+  }]);
+
+  return Map;
+}();
+
+
 
 /***/ }),
 

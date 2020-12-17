@@ -1,0 +1,11 @@
+@mixin media-tablet {
+  @media (max-width: $tablet-max-width) and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (max-width: $mobile-max-width) {
+    @content;
+  }
+}
