@@ -80,10 +80,10 @@ __webpack_require__.r(__webpack_exports__);
 
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-    var table = new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body).eventHandler();
+    // const table =
+    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body).eventHandler();
     var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
     map.init();
-    table.tableCountriesArray[0].innerDiv.title.innerText = 'Total deaths:';
   });
 };
 
@@ -337,49 +337,96 @@ function deactivateButtons(buttons) {
   });
 }
 
+function hideDetailButtons(buttons) {
+  buttons.map(function (element) {
+    return element.classList.add('tabs__button-hidden');
+  });
+}
+
 function getPropertiesByType(type) {
+  var obj = {};
+  if (this) obj.Country = this.targetCountry.Country;
   var title = '';
   var property = '';
+  var className = '';
 
   if (type === 'tab-confirmed') {
     property = 'TotalConfirmed';
     title = 'Total confirmed:';
+    className = 'confirmed';
   }
 
   if (type === 'tab-deaths') {
     property = 'TotalDeaths';
     title = 'Total deaths:';
+    className = 'deaths';
   }
 
   if (type === 'tab-recovered') {
     property = 'TotalRecovered';
     title = 'Total recovered:';
+    className = 'recovered';
+  }
+
+  if (type === 'tab-total') {
+    obj.TotalConfirmed = this.targetCountry.TotalConfirmed;
+    obj.TotalDeaths = this.targetCountry.TotalDeaths;
+    obj.TotalRecovered = this.targetCountry.TotalRecovered;
+    property = 'Total';
+    title = 'Total cases:';
+    className = 'confirmed';
+  }
+
+  if (type === 'tab-total100K') {
+    obj.TotalConfirmed = this.targetCountry.TotalConfirmedPer100K;
+    obj.TotalDeaths = this.targetCountry.TotalDeathsPer100K;
+    obj.TotalRecovered = this.targetCountry.TotalRecoveredPer100K;
+    property = 'TotalPer100K';
+    title = 'Total cases per 100K:';
+    className = 'confirmed';
+  }
+
+  if (type === 'tab-new') {
+    obj.TotalConfirmed = this.targetCountry.NewConfirmed;
+    obj.TotalDeaths = this.targetCountry.NewDeaths;
+    obj.TotalRecovered = this.targetCountry.NewRecovered;
+    property = 'LastDay';
+    title = 'New cases:';
+    className = 'confirmed';
+  }
+
+  if (type === 'tab-new100K') {
+    obj.TotalConfirmed = this.targetCountry.NewConfirmedPer100K;
+    obj.TotalDeaths = this.targetCountry.NewDeathsPer100K;
+    obj.TotalRecovered = this.targetCountry.NewRecoveredPer100K;
+    property = 'LastDayPer100K';
+    title = 'New cases per 100K:';
+    className = 'confirmed';
   }
 
   return {
     property: property,
-    title: title
+    countryTitle: title,
+    className: className,
+    obj: obj
   };
-}
+} // function updateOneCountryInfo(propertys, element) {
+//   const elem = element;
+//   const amount = numberWithSpaces(elem.innerDiv.country[propertys.property]);
+//   elem.innerDiv.title.innerText = propertys.countryTitle;
+//   elem.innerDiv.amount.innerText = amount;
+// }
+// function updateCountriesInfo(propertys) {
+//   this.tableCountriesArray.map((element) => updateOneCountryInfo(propertys, element));
+// }
 
-function updateOneCountryInfo(propertys, element) {
-  var elem = element;
-  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.numberWithSpaces)(elem.innerDiv.country[propertys.property]);
-  elem.innerDiv.title.innerText = propertys.title;
-  elem.innerDiv.amount.innerText = amount;
-}
-
-function updateCountriesInfo(propertys) {
-  this.tableCountriesArray.map(function (element) {
-    return updateOneCountryInfo(propertys, element);
-  });
-}
 
 var Table = /*#__PURE__*/function () {
   function Table(covidData) {
     _classCallCheck(this, Table);
 
     this.countries = covidData.Countries;
+    this.targetCountry = null;
     this.global = covidData.Global;
     this.date = covidData.Date;
     this.tableCountriesArray = [];
@@ -402,36 +449,95 @@ var Table = /*#__PURE__*/function () {
         _this.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
       });
       (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
-      parent.appendChild(_createTable__WEBPACK_IMPORTED_MODULE_0__.table);
       this.tabs = (0,_createTableTabs__WEBPACK_IMPORTED_MODULE_2__.default)();
+      parent.appendChild(_createTable__WEBPACK_IMPORTED_MODULE_0__.table);
       parent.appendChild(this.tabs);
+      return this;
+    }
+  }, {
+    key: "countriesButtonsHandler",
+    value: function countriesButtonsHandler(button) {
+      var _this2 = this;
+
+      var _this$tabs = this.tabs,
+          countryBtns = _this$tabs.countryBtns,
+          detailBtns = _this$tabs.detailBtns;
+      deactivateButtons(countryBtns);
+      hideDetailButtons(detailBtns);
+      button.classList.add('tabs__button-active');
+      var propertys = getPropertiesByType(button.id);
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, propertys.property, -1);
+      _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.innerHTML = '';
+      _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.className = "table__countries ".concat(propertys.className);
+      this.countries.forEach(function (country) {
+        _this2.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country, propertys));
+      });
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
+      this.targetCountry = null;
+    }
+  }, {
+    key: "detailButtonsHandler",
+    value: function detailButtonsHandler(button) {
+      var detailBtns = this.tabs.detailBtns;
+      deactivateButtons(detailBtns);
+      button.classList.add('tabs__button-active');
+      var propertys = getPropertiesByType.call(this, button.id);
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(propertys.obj, false, propertys.countryTitle);
+      return this;
+    }
+  }, {
+    key: "tabsEventHandler",
+    value: function tabsEventHandler() {
+      var _this3 = this;
+
+      this.tabs.addEventListener('click', function (event) {
+        var button = event.target.closest('.tabs__button');
+        var isActive = button.classList.contains('tabs__button-active');
+        if (!button || isActive) return;
+
+        if (button.isDetailBtn) {
+          _this3.detailButtonsHandler(button);
+        } else {
+          _this3.countriesButtonsHandler(button);
+        }
+      });
+    }
+  }, {
+    key: "tableCountriesEventHandler",
+    value: function tableCountriesEventHandler() {
+      var _this4 = this;
+
+      _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.addEventListener('click', function (event) {
+        var target = event.target.closest('.country__container');
+        if (!target) return;
+        var country = target.country;
+
+        _this4.tableCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+
+        target.classList.add('country__container-active');
+        _this4.targetCountry = country;
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(country, false);
+
+        _this4.tabs.tabsArray.map(function (button, idx) {
+          if (button.isDetailBtn) {
+            button.classList.remove('tabs__button-hidden');
+            button.classList.remove('tabs__button-active');
+          }
+
+          if (idx === 3) button.classList.add('tabs__button-active');
+          return button;
+        });
+      });
       return this;
     }
   }, {
     key: "eventHandler",
     value: function eventHandler() {
       this.tabsEventHandler();
+      this.tableCountriesEventHandler();
       return this;
-    }
-  }, {
-    key: "tabsEventHandler",
-    value: function tabsEventHandler() {
-      var _this2 = this;
-
-      var buttons = this.tabs.tabsArray;
-      this.tabs.addEventListener('click', function (event) {
-        var button = event.target.closest('.tabs__button');
-        var isActive = button.classList.contains('tabs__button-active');
-        if (!button || isActive) return;
-        deactivateButtons(buttons);
-        button.classList.add('tabs__button-active');
-        var propertys = getPropertiesByType(button.id); // sortByProperty(this.countries, propertys.property, -1);
-
-        updateCountriesInfo.call(_this2, propertys); // tableCountries.innerHTML = '';
-        // this.countries.forEach((country) => {
-        //   this.tableCountriesArray.push(createCountryContainer(country));
-        // });
-      });
     }
   }]);
 
@@ -474,9 +580,16 @@ var tableDetails = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomEleme
 });
 
 function createCountryContainer(country) {
+  var propertys = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _propertys$countryTit = propertys.countryTitle,
+      countryTitle = _propertys$countryTit === void 0 ? 'Total confirmed:' : _propertys$countryTit,
+      _propertys$property = propertys.property,
+      property = _propertys$property === void 0 ? 'TotalConfirmed' : _propertys$property;
+  var isSelected = country.selected || false;
+  var selectedClassName = isSelected ? ' country__container-active' : '';
   var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
-    className: 'country__container',
+    className: "country__container".concat(selectedClassName),
     parent: tableCountries
   });
   countryContainer.cases = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
@@ -497,33 +610,26 @@ function createCountryContainer(country) {
     elementName: 'div',
     parent: countryContainer.cases
   });
-  title.innerText = 'Total confirmed:';
-  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country.TotalConfirmed);
+  title.innerText = countryTitle;
+  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country[property]);
   countryContainer.countryName.innerText = country.Country;
-  countryContainer.innerDiv = {
-    title: title,
-    amount: amount,
-    country: country
-  };
+  countryContainer.country = country; // countryContainer.innerDiv = { title, amount, country };
+
   return countryContainer;
 }
 
 function createDetailContainer(obj) {
   var global = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  tableDetails.innerText = '';
+  var detailTitle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'Total cases:';
+  tableDetails.innerHTML = '';
+  tableDetails.innerText = obj.Country;
   if (global) tableDetails.innerText = 'Global cases:';
   var detailContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
     className: 'detail__container',
     parent: tableDetails
-  }); // const dayContainer = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__container',
-  //   parent: tableDetails,
-  // });
-
-  detailContainer.innerText = 'Total cases:'; // dayContainer.innerText = 'Last day cases:';
-  // detail container
+  });
+  detailContainer.innerText = detailTitle; // detail container
 
   detailContainer.detailConfirmed = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
@@ -539,28 +645,10 @@ function createDetailContainer(obj) {
     elementName: 'div',
     className: 'detail__recovered',
     parent: detailContainer
-  }); // day container
-  // dayContainer.dayConfirmed = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__confirmed',
-  //   parent: dayContainer,
-  // });
-  // dayContainer.dayDeaths = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__deaths',
-  //   parent: dayContainer,
-  // });
-  // dayContainer.dayRecoverd = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__recovered',
-  //   parent: dayContainer,
-  // });
-
+  });
   detailContainer.detailConfirmed.innerText = "Confirmed:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalConfirmed));
   detailContainer.detailDeaths.innerText = "Deaths:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalDeaths));
-  detailContainer.detailRecoverd.innerText = "Recovered:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalRecovered)); // dayContainer.dayConfirmed.innerText = `Confirmed:\n${numberWithSpaces(obj.NewConfirmed)}`;
-  // dayContainer.dayDeaths.innerText = `Deaths:\n${numberWithSpaces(obj.NewDeaths)}`;
-  // dayContainer.dayRecoverd.innerText = `Recovered:\n${numberWithSpaces(obj.NewRecovered)}`;
+  detailContainer.detailRecoverd.innerText = "Recovered:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalRecovered));
 }
 
 
@@ -605,7 +693,7 @@ function createTableTabs() {
   });
   tabs.buttonTotal = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
-    className: 'tabs__button tabs__button-active tabs__button-hidden',
+    className: 'tabs__button tabs__button-hidden',
     parent: tabs,
     attributes: [['id', 'tab-total']]
   });
@@ -635,40 +723,15 @@ function createTableTabs() {
   tabs.buttonNew.innerText = 'New';
   tabs.buttonNew100K.innerText = 'N100K';
   tabs.tabsArray = [tabs.buttonConfirmed, tabs.buttonDeaths, tabs.buttonRecovered, tabs.buttonTotal, tabs.buttonTotal100K, tabs.buttonNew, tabs.buttonNew100K];
+  tabs.countryBtns = [tabs.buttonConfirmed, tabs.buttonDeaths, tabs.buttonRecovered];
+  tabs.detailBtns = [tabs.buttonTotal, tabs.buttonTotal100K, tabs.buttonNew, tabs.buttonNew100K];
+  tabs.tabsArray.map(function (elem) {
+    var btn = elem;
+    btn.isDetailBtn = !(elem.id === 'tab-confirmed' || elem.id === 'tab-deaths' || elem.id === 'tab-recovered');
+    return btn;
+  });
   return tabs;
-} // <div class="w3-bar w3-black">
-// <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">London</button>
-// <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">Paris</button>
-// <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">Tokyo</button>
-// </div>
-// <div id="London" class="w3-container w3-border city">
-// <h2>London</h2>
-// <p>London is the capital city of England.</p>
-// </div>
-// <div id="Paris" class="w3-container w3-border city" style="display:none">
-// <h2>Paris</h2>
-// <p>Paris is the capital of France.</p>
-// </div>
-// <div id="Tokyo" class="w3-container w3-border city" style="display:none">
-// <h2>Tokyo</h2>
-// <p>Tokyo is the capital of Japan.</p>
-// </div>
-// </div>
-// <script>
-// function openCity(evt, cityName) {
-// var i, x, tablinks;
-// x = document.getElementsByClassName("city");
-// for (i = 0; i < x.length; i++) {
-// x[i].style.display = "none";
-// }
-// tablinks = document.getElementsByClassName("tablink");
-// for (i = 0; i < x.length; i++) {
-// tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-// }
-// document.getElementById(cityName).style.display = "block";
-// evt.currentTarget.className += " w3-red";
-// }
-// </script>
+}
 
 /***/ }),
 

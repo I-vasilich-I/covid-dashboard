@@ -146,8 +146,20 @@ body {
   overflow-y: scroll;
 }
 
+.confirmed {
+  color: #b1b1b1;
+}
+
+.deaths {
+  color: #ff095b;
+}
+
+.recovered {
+  color: #70a800;
+}
+
 .table__details {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   padding-left: 15px;
   height: 100%;
@@ -169,7 +181,11 @@ body {
   color: #ff095b;
 }
 .country__container-recovered {
-  color: #1dfc00;
+  color: #70a800;
+}
+.country__container-active {
+  background-color: #b1b1b1;
+  color: black;
 }
 
 .country__cases {
@@ -205,7 +221,7 @@ body {
 }
 
 .detail__recovered {
-  color: #1dfc00;
+  color: #70a800;
 }
 
 .day__container {
