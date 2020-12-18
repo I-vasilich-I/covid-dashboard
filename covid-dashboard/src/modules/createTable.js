@@ -17,9 +17,11 @@ const tableDetails = createDomElement({
 
 function createCountryContainer(country, propertys = {}) {
   const { countryTitle = 'Total confirmed:', property = 'TotalConfirmed' } = propertys;
+  const isSelected = country.selected || false;
+  const selectedClassName = isSelected ? ' country__container-active' : '';
   const countryContainer = createDomElement({
     elementName: 'div',
-    className: 'country__container',
+    className: `country__container${selectedClassName}`,
     parent: tableCountries,
   });
   countryContainer.cases = createDomElement({
@@ -43,25 +45,21 @@ function createCountryContainer(country, propertys = {}) {
   title.innerText = countryTitle;
   amount.innerText = numberWithSpaces(country[property]);
   countryContainer.countryName.innerText = country.Country;
+  countryContainer.country = country;
   // countryContainer.innerDiv = { title, amount, country };
   return countryContainer;
 }
 
-function createDetailContainer(obj, global = true) {
-  tableDetails.innerText = '';
+function createDetailContainer(obj, global = true, detailTitle = 'Total cases:') {
+  tableDetails.innerHTML = '';
+  tableDetails.innerText = obj.Country;
   if (global) tableDetails.innerText = 'Global cases:';
   const detailContainer = createDomElement({
     elementName: 'div',
     className: 'detail__container',
     parent: tableDetails,
   });
-  // const dayContainer = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__container',
-  //   parent: tableDetails,
-  // });
-  detailContainer.innerText = 'Total cases:';
-  // dayContainer.innerText = 'Last day cases:';
+  detailContainer.innerText = detailTitle;
 
   // detail container
   detailContainer.detailConfirmed = createDomElement({
@@ -80,30 +78,9 @@ function createDetailContainer(obj, global = true) {
     parent: detailContainer,
   });
 
-  // day container
-  // dayContainer.dayConfirmed = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__confirmed',
-  //   parent: dayContainer,
-  // });
-  // dayContainer.dayDeaths = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__deaths',
-  //   parent: dayContainer,
-  // });
-  // dayContainer.dayRecoverd = createDomElement({
-  //   elementName: 'div',
-  //   className: 'day__recovered',
-  //   parent: dayContainer,
-  // });
-
   detailContainer.detailConfirmed.innerText = `Confirmed:\n${numberWithSpaces(obj.TotalConfirmed)}`;
   detailContainer.detailDeaths.innerText = `Deaths:\n${numberWithSpaces(obj.TotalDeaths)}`;
   detailContainer.detailRecoverd.innerText = `Recovered:\n${numberWithSpaces(obj.TotalRecovered)}`;
-
-  // dayContainer.dayConfirmed.innerText = `Confirmed:\n${numberWithSpaces(obj.NewConfirmed)}`;
-  // dayContainer.dayDeaths.innerText = `Deaths:\n${numberWithSpaces(obj.NewDeaths)}`;
-  // dayContainer.dayRecoverd.innerText = `Recovered:\n${numberWithSpaces(obj.NewRecovered)}`;
 }
 
 export { createCountryContainer, createDetailContainer, table, tableCountries };
