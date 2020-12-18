@@ -1,5 +1,6 @@
 import { fecthData, getAsyncData } from './fetchData';
 import * as storage from './storage';
+import { COUNTRIES_COORDINATS_URL, COVID_DATA_URL } from '../Constants';
 
 function casesPer100K(cases, population) {
   return ((cases * 100000) / population).toFixed(2);
@@ -66,15 +67,13 @@ function checkLocalStorage() {
 // return null if failed to get data from any API;
 export default async function prepareData() {
   const localData = checkLocalStorage();
-  const countries = await fecthData(
-    'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag'
-  );
+  const countries = await fecthData(COUNTRIES_COORDINATS_URL);
   if (localData !== null) {
     return localData;
   }
   if (!countries) return null;
   const countriesData = await getAsyncData(countries);
-  const covidCountries = await fecthData('https://api.covid19api.com/summary');
+  const covidCountries = await fecthData(COVID_DATA_URL);
   if (!covidCountries) return null;
   const covidData = await getAsyncData(covidCountries);
   const objData = {

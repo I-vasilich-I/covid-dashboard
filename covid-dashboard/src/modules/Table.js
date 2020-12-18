@@ -1,94 +1,43 @@
-import * as helpers from './utils/helpers';
+import {
+  createCountryContainer,
+  createDetailContainer,
+  table,
+  // tableCountries,
+} from './createTable';
+import { createDomElement, sortByProperty, numberWithSpaces } from './utils/helpers';
+import createTableTabs from './createTableTabs';
 
-const tableContainer = helpers.createDomElement({
-  elementName: 'div',
-  className: 'table__container',
-});
-const tableCountries = helpers.createDomElement({
-  elementName: 'div',
-  className: 'table__countries',
-  parent: tableContainer,
-});
-const tableDetails = helpers.createDomElement({
-  elementName: 'div',
-  className: 'table__details',
-  parent: tableContainer,
-});
-
-function createCountryContainer(country) {
-  const countryContainer = helpers.createDomElement({
-    elementName: 'div',
-    className: 'country__container',
-    parent: tableCountries,
-  });
-  countryContainer.cases = helpers.createDomElement({
-    elementName: 'div',
-    className: 'country__cases',
-    parent: countryContainer,
-  });
-  countryContainer.countryName = helpers.createDomElement({
-    elementName: 'div',
-    className: 'country__name',
-    parent: countryContainer,
-  });
-  countryContainer.cases.innerText = `Total confirmed: ${country.TotalConfirmed}`;
-  countryContainer.countryName.innerText = country.Country;
-  return countryContainer;
+function deactivateButtons(buttons) {
+  buttons.map((element) => element.classList.remove('tabs__button-active'));
 }
 
-function createGlobalDetailContainer(obj) {
-  const totalContainer = helpers.createDomElement({
-    elementName: 'div',
-    className: 'total__container',
-    parent: tableDetails,
-  });
-  const dayContainer = helpers.createDomElement({
-    elementName: 'div',
-    className: 'day__container',
-    parent: tableDetails,
-  });
+function getPropertiesByType(type) {
+  let title = '';
+  let property = '';
+  if (type === 'tab-confirmed') {
+    property = 'TotalConfirmed';
+    title = 'Total confirmed:';
+  }
+  if (type === 'tab-deaths') {
+    property = 'TotalDeaths';
+    title = 'Total deaths:';
+  }
+  if (type === 'tab-recovered') {
+    property = 'TotalRecovered';
+    title = 'Total recovered:';
+  }
+  return { property, title };
+}
 
-  // total container
-  totalContainer.totalConfirmed = helpers.createDomElement({
-    elementName: 'div',
-    className: 'total__confirmed',
-    parent: totalContainer,
-  });
-  totalContainer.totalDeaths = helpers.createDomElement({
-    elementName: 'div',
-    className: 'total__deaths',
-    parent: totalContainer,
-  });
-  totalContainer.totalRecoverd = helpers.createDomElement({
-    elementName: 'div',
-    className: 'total__recovered',
-    parent: totalContainer,
-  });
+function updateOneCountryInfo(propertys, element) {
+  const elem = element;
+  const amount = numberWithSpaces(elem.innerDiv.country[propertys.property]);
+  elem.innerDiv.title.innerText = propertys.title;
+  elem.innerDiv.amount.innerText = amount;
+}
 
-  // day container
-  dayContainer.dayConfirmed = helpers.createDomElement({
-    elementName: 'div',
-    className: 'day__confirmed',
-    parent: dayContainer,
-  });
-  dayContainer.dayDeaths = helpers.createDomElement({
-    elementName: 'div',
-    className: 'day__deaths',
-    parent: dayContainer,
-  });
-  dayContainer.dayRecoverd = helpers.createDomElement({
-    elementName: 'div',
-    className: 'day__recovered',
-    parent: dayContainer,
-  });
-
-  totalContainer.totalConfirmed.innerText = obj.TotalConfirmed;
-  totalContainer.totalDeaths.innerText = obj.TotalDeaths;
-  totalContainer.totalRecoverd.innerText = obj.TotalRecovered;
-
-  dayContainer.dayConfirmed.innerText = obj.NewConfirmed;
-  dayContainer.dayDeaths.innerText = obj.NewDeaths;
-  dayContainer.dayRecoverd.innerText = obj.NewRecovered;
+function updateCountriesInfo(propertys) {
+  this.tableCountriesArray.map((element) => updateOneCountryInfo(propertys, element));
 }
 
 export default class Table {
@@ -96,15 +45,47 @@ export default class Table {
     this.countries = covidData.Countries;
     this.global = covidData.Global;
     this.date = covidData.Date;
-    this.tablCountriesArray = [];
+    this.tableCountriesArray = [];
   }
 
-  init(parent) {
-    this.countries.forEach((country) => {
-      this.tablCountriesArray.push(createCountryContainer(country));
+  init() {
+    const { body } = document;
+    const parent = createDomElement({
+      elementName: 'div',
+      className: 'table__container',
+      parent: body,
     });
-    createGlobalDetailContainer(this.global);
-    parent.appendChild(tableContainer);
+    sortByProperty(this.countries, 'TotalConfirmed', -1);
+    this.countries.forEach((country) => {
+      this.tableCountriesArray.push(createCountryContainer(country));
+    });
+    createDetailContainer(this.global);
+    parent.appendChild(table);
+    this.tabs = createTableTabs();
+    parent.appendChild(this.tabs);
     return this;
+  }
+
+  eventHandler() {
+    this.tabsEventHandler();
+    return this;
+  }
+
+  tabsEventHandler() {
+    const buttons = this.tabs.tabsArray;
+    this.tabs.addEventListener('click', (event) => {
+      const button = event.target.closest('.tabs__button');
+      const isActive = button.classList.contains('tabs__button-active');
+      if (!button || isActive) return;
+      deactivateButtons(buttons);
+      button.classList.add('tabs__button-active');
+      const propertys = getPropertiesByType(button.id);
+      // sortByProperty(this.countries, propertys.property, -1);
+      updateCountriesInfo.call(this, propertys);
+      // tableCountries.innerHTML = '';
+      // this.countries.forEach((country) => {
+      //   this.tableCountriesArray.push(createCountryContainer(country));
+      // });
+    });
   }
 }

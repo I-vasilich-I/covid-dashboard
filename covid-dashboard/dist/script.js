@@ -80,9 +80,10 @@ __webpack_require__.r(__webpack_exports__);
 
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body);
+    var table = new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body).eventHandler();
     var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
     map.init();
+    table.tableCountriesArray[0].innerDiv.title.innerText = 'Total deaths:';
   });
 };
 
@@ -98,6 +99,8 @@ window.onload = function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN,
+/* harmony export */   "COUNTRIES_COORDINATS_URL": () => /* binding */ COUNTRIES_COORDINATS_URL,
+/* harmony export */   "COVID_DATA_URL": () => /* binding */ COVID_DATA_URL,
 /* harmony export */   "CASES_RANGE": () => /* binding */ CASES_RANGE,
 /* harmony export */   "DEATHS_RANGE": () => /* binding */ DEATHS_RANGE,
 /* harmony export */   "RECOVERED_RANGE": () => /* binding */ RECOVERED_RANGE,
@@ -110,6 +113,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* eslint-disable no-unused-vars */
 var MAPBOX_TOKEN = 'pk.eyJ1IjoibWljaGFlbHNoIiwiYSI6ImNraXFkdnZ0ajF0bm4ycmxiM3k0MXRvcjMifQ.Yf1Olmco7KyZFm-rRvcPaw';
+var COUNTRIES_COORDINATS_URL = 'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag';
+var COVID_DATA_URL = 'https://api.covid19api.com/summary';
 var CASES_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
 var DEATHS_RANGE = [100000, 50000, 25000, 10000, 5000, 2500, 1000];
 var RECOVERED_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
@@ -313,7 +318,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => /* binding */ Table
 /* harmony export */ });
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createTableTabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createTableTabs */ "./src/modules/createTableTabs.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -321,91 +328,51 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-var tableContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-  elementName: 'div',
-  className: 'table__container'
-});
-var tableCountries = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-  elementName: 'div',
-  className: 'table__countries',
-  parent: tableContainer
-});
-var tableDetails = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-  elementName: 'div',
-  className: 'table__details',
-  parent: tableContainer
-});
 
-function createCountryContainer(country) {
-  var countryContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'country__container',
-    parent: tableCountries
+
+
+function deactivateButtons(buttons) {
+  buttons.map(function (element) {
+    return element.classList.remove('tabs__button-active');
   });
-  countryContainer.cases = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'country__cases',
-    parent: countryContainer
-  });
-  countryContainer.countryName = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'country__name',
-    parent: countryContainer
-  });
-  countryContainer.cases.innerText = "Total confirmed: ".concat(country.TotalConfirmed);
-  countryContainer.countryName.innerText = country.Country;
-  return countryContainer;
 }
 
-function createGlobalDetailContainer(obj) {
-  var totalContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'total__container',
-    parent: tableDetails
-  });
-  var dayContainer = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__container',
-    parent: tableDetails
-  }); // total container
+function getPropertiesByType(type) {
+  var title = '';
+  var property = '';
 
-  totalContainer.totalConfirmed = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'total__confirmed',
-    parent: totalContainer
-  });
-  totalContainer.totalDeaths = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'total__deaths',
-    parent: totalContainer
-  });
-  totalContainer.totalRecoverd = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'total__recovered',
-    parent: totalContainer
-  }); // day container
+  if (type === 'tab-confirmed') {
+    property = 'TotalConfirmed';
+    title = 'Total confirmed:';
+  }
 
-  dayContainer.dayConfirmed = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__confirmed',
-    parent: dayContainer
+  if (type === 'tab-deaths') {
+    property = 'TotalDeaths';
+    title = 'Total deaths:';
+  }
+
+  if (type === 'tab-recovered') {
+    property = 'TotalRecovered';
+    title = 'Total recovered:';
+  }
+
+  return {
+    property: property,
+    title: title
+  };
+}
+
+function updateOneCountryInfo(propertys, element) {
+  var elem = element;
+  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.numberWithSpaces)(elem.innerDiv.country[propertys.property]);
+  elem.innerDiv.title.innerText = propertys.title;
+  elem.innerDiv.amount.innerText = amount;
+}
+
+function updateCountriesInfo(propertys) {
+  this.tableCountriesArray.map(function (element) {
+    return updateOneCountryInfo(propertys, element);
   });
-  dayContainer.dayDeaths = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__deaths',
-    parent: dayContainer
-  });
-  dayContainer.dayRecoverd = _utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement({
-    elementName: 'div',
-    className: 'day__recovered',
-    parent: dayContainer
-  });
-  totalContainer.totalConfirmed.innerText = obj.TotalConfirmed;
-  totalContainer.totalDeaths.innerText = obj.TotalDeaths;
-  totalContainer.totalRecoverd.innerText = obj.TotalRecovered;
-  dayContainer.dayConfirmed.innerText = obj.NewConfirmed;
-  dayContainer.dayDeaths.innerText = obj.NewDeaths;
-  dayContainer.dayRecoverd.innerText = obj.NewRecovered;
 }
 
 var Table = /*#__PURE__*/function () {
@@ -415,20 +382,56 @@ var Table = /*#__PURE__*/function () {
     this.countries = covidData.Countries;
     this.global = covidData.Global;
     this.date = covidData.Date;
-    this.tablCountriesArray = [];
+    this.tableCountriesArray = [];
   }
 
   _createClass(Table, [{
     key: "init",
-    value: function init(parent) {
+    value: function init() {
       var _this = this;
 
-      this.countries.forEach(function (country) {
-        _this.tablCountriesArray.push(createCountryContainer(country));
+      var _document = document,
+          body = _document.body;
+      var parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'div',
+        className: 'table__container',
+        parent: body
       });
-      createGlobalDetailContainer(this.global);
-      parent.appendChild(tableContainer);
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
+      this.countries.forEach(function (country) {
+        _this.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
+      });
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
+      parent.appendChild(_createTable__WEBPACK_IMPORTED_MODULE_0__.table);
+      this.tabs = (0,_createTableTabs__WEBPACK_IMPORTED_MODULE_2__.default)();
+      parent.appendChild(this.tabs);
       return this;
+    }
+  }, {
+    key: "eventHandler",
+    value: function eventHandler() {
+      this.tabsEventHandler();
+      return this;
+    }
+  }, {
+    key: "tabsEventHandler",
+    value: function tabsEventHandler() {
+      var _this2 = this;
+
+      var buttons = this.tabs.tabsArray;
+      this.tabs.addEventListener('click', function (event) {
+        var button = event.target.closest('.tabs__button');
+        var isActive = button.classList.contains('tabs__button-active');
+        if (!button || isActive) return;
+        deactivateButtons(buttons);
+        button.classList.add('tabs__button-active');
+        var propertys = getPropertiesByType(button.id); // sortByProperty(this.countries, propertys.property, -1);
+
+        updateCountriesInfo.call(_this2, propertys); // tableCountries.innerHTML = '';
+        // this.countries.forEach((country) => {
+        //   this.tableCountriesArray.push(createCountryContainer(country));
+        // });
+      });
     }
   }]);
 
@@ -436,6 +439,236 @@ var Table = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./src/modules/createTable.js":
+/*!************************************!*\
+  !*** ./src/modules/createTable.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createCountryContainer": () => /* binding */ createCountryContainer,
+/* harmony export */   "createDetailContainer": () => /* binding */ createDetailContainer,
+/* harmony export */   "table": () => /* binding */ table,
+/* harmony export */   "tableCountries": () => /* binding */ tableCountries
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+
+var table = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'table'
+});
+var tableCountries = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'table__countries',
+  parent: table
+});
+var tableDetails = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'table__details',
+  parent: table
+});
+
+function createCountryContainer(country) {
+  var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__container',
+    parent: tableCountries
+  });
+  countryContainer.cases = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__cases',
+    parent: countryContainer
+  });
+  countryContainer.countryName = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__name',
+    parent: countryContainer
+  });
+  var title = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'p',
+    parent: countryContainer.cases
+  });
+  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    parent: countryContainer.cases
+  });
+  title.innerText = 'Total confirmed:';
+  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country.TotalConfirmed);
+  countryContainer.countryName.innerText = country.Country;
+  countryContainer.innerDiv = {
+    title: title,
+    amount: amount,
+    country: country
+  };
+  return countryContainer;
+}
+
+function createDetailContainer(obj) {
+  var global = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  tableDetails.innerText = '';
+  if (global) tableDetails.innerText = 'Global cases:';
+  var detailContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'detail__container',
+    parent: tableDetails
+  }); // const dayContainer = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__container',
+  //   parent: tableDetails,
+  // });
+
+  detailContainer.innerText = 'Total cases:'; // dayContainer.innerText = 'Last day cases:';
+  // detail container
+
+  detailContainer.detailConfirmed = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'detail__confirmed',
+    parent: detailContainer
+  });
+  detailContainer.detailDeaths = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'detail__deaths',
+    parent: detailContainer
+  });
+  detailContainer.detailRecoverd = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'detail__recovered',
+    parent: detailContainer
+  }); // day container
+  // dayContainer.dayConfirmed = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__confirmed',
+  //   parent: dayContainer,
+  // });
+  // dayContainer.dayDeaths = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__deaths',
+  //   parent: dayContainer,
+  // });
+  // dayContainer.dayRecoverd = createDomElement({
+  //   elementName: 'div',
+  //   className: 'day__recovered',
+  //   parent: dayContainer,
+  // });
+
+  detailContainer.detailConfirmed.innerText = "Confirmed:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalConfirmed));
+  detailContainer.detailDeaths.innerText = "Deaths:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalDeaths));
+  detailContainer.detailRecoverd.innerText = "Recovered:\n".concat((0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(obj.TotalRecovered)); // dayContainer.dayConfirmed.innerText = `Confirmed:\n${numberWithSpaces(obj.NewConfirmed)}`;
+  // dayContainer.dayDeaths.innerText = `Deaths:\n${numberWithSpaces(obj.NewDeaths)}`;
+  // dayContainer.dayRecoverd.innerText = `Recovered:\n${numberWithSpaces(obj.NewRecovered)}`;
+}
+
+
+
+/***/ }),
+
+/***/ "./src/modules/createTableTabs.js":
+/*!****************************************!*\
+  !*** ./src/modules/createTableTabs.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ createTableTabs
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+
+function createTableTabs() {
+  var tabs = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'tabs__container'
+  });
+  tabs.buttonConfirmed = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-active',
+    parent: tabs,
+    attributes: [['id', 'tab-confirmed']]
+  });
+  tabs.buttonDeaths = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button',
+    parent: tabs,
+    attributes: [['id', 'tab-deaths']]
+  });
+  tabs.buttonRecovered = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button',
+    parent: tabs,
+    attributes: [['id', 'tab-recovered']]
+  });
+  tabs.buttonTotal = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-active tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-total']]
+  });
+  tabs.buttonTotal100K = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-total100K']]
+  });
+  tabs.buttonNew = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-new']]
+  });
+  tabs.buttonNew100K = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'button',
+    className: 'tabs__button tabs__button-hidden',
+    parent: tabs,
+    attributes: [['id', 'tab-new100K']]
+  });
+  tabs.buttonConfirmed.innerText = 'Confirmed';
+  tabs.buttonDeaths.innerText = 'Deaths';
+  tabs.buttonRecovered.innerText = 'Recovered';
+  tabs.buttonTotal.innerText = 'Total';
+  tabs.buttonTotal100K.innerText = 'T100K';
+  tabs.buttonNew.innerText = 'New';
+  tabs.buttonNew100K.innerText = 'N100K';
+  tabs.tabsArray = [tabs.buttonConfirmed, tabs.buttonDeaths, tabs.buttonRecovered, tabs.buttonTotal, tabs.buttonTotal100K, tabs.buttonNew, tabs.buttonNew100K];
+  return tabs;
+} // <div class="w3-bar w3-black">
+// <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">London</button>
+// <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">Paris</button>
+// <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">Tokyo</button>
+// </div>
+// <div id="London" class="w3-container w3-border city">
+// <h2>London</h2>
+// <p>London is the capital city of England.</p>
+// </div>
+// <div id="Paris" class="w3-container w3-border city" style="display:none">
+// <h2>Paris</h2>
+// <p>Paris is the capital of France.</p>
+// </div>
+// <div id="Tokyo" class="w3-container w3-border city" style="display:none">
+// <h2>Tokyo</h2>
+// <p>Tokyo is the capital of Japan.</p>
+// </div>
+// </div>
+// <script>
+// function openCity(evt, cityName) {
+// var i, x, tablinks;
+// x = document.getElementsByClassName("city");
+// for (i = 0; i < x.length; i++) {
+// x[i].style.display = "none";
+// }
+// tablinks = document.getElementsByClassName("tablink");
+// for (i = 0; i < x.length; i++) {
+// tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+// }
+// document.getElementById(cityName).style.display = "block";
+// evt.currentTarget.className += " w3-red";
+// }
+// </script>
 
 /***/ }),
 
@@ -543,7 +776,8 @@ var getAsyncData = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createDomElement": () => /* binding */ createDomElement,
-/* harmony export */   "sortByProperty": () => /* binding */ sortByProperty
+/* harmony export */   "sortByProperty": () => /* binding */ sortByProperty,
+/* harmony export */   "numberWithSpaces": () => /* binding */ numberWithSpaces
 /* harmony export */ });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -584,7 +818,7 @@ function sortByProperty(array, property) {
 /**
  *
  * @param {Object} obj
- * {elementName: string, className: string, parent: DOMElement, attributes: [attributes]}
+ * {elementName: string, className: string, parent: DOMElement, attributes: [name, value]}
  * @returns {Element}
  */
 
@@ -640,6 +874,12 @@ function createDomElement(obj) {
   return element;
 }
 
+function numberWithSpaces(x) {
+  var parts = x.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return parts.join('.');
+}
+
 
 
 /***/ }),
@@ -657,9 +897,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _fetchData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchData */ "./src/modules/utils/fetchData.js");
 /* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage */ "./src/modules/utils/storage.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Constants */ "./src/modules/Constants.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -749,7 +991,7 @@ function _prepareData() {
           case 0:
             localData = checkLocalStorage();
             _context2.next = 3;
-            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag');
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)(_Constants__WEBPACK_IMPORTED_MODULE_2__.COUNTRIES_COORDINATS_URL);
 
           case 3:
             countries = _context2.sent;
@@ -776,7 +1018,7 @@ function _prepareData() {
           case 10:
             countriesData = _context2.sent;
             _context2.next = 13;
-            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)('https://api.covid19api.com/summary');
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)(_Constants__WEBPACK_IMPORTED_MODULE_2__.COVID_DATA_URL);
 
           case 13:
             covidCountries = _context2.sent;

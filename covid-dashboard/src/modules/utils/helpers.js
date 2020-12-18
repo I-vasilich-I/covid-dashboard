@@ -16,7 +16,7 @@ function sortByProperty(array, property, order = 1) {
 /**
  *
  * @param {Object} obj
- * {elementName: string, className: string, parent: DOMElement, attributes: [attributes]}
+ * {elementName: string, className: string, parent: DOMElement, attributes: [name, value]}
  * @returns {Element}
  */
 function createDomElement(obj) {
@@ -55,4 +55,10 @@ function createDomElement(obj) {
   return element;
 }
 
-export { createDomElement, sortByProperty };
+function numberWithSpaces(x) {
+  const parts = x.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return parts.join('.');
+}
+
+export { createDomElement, sortByProperty, numberWithSpaces };

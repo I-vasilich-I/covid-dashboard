@@ -2,6 +2,11 @@
 /* eslint-disable no-unused-vars */
 export const MAPBOX_TOKEN =
   'pk.eyJ1IjoibWljaGFlbHNoIiwiYSI6ImNraXFkdnZ0ajF0bm4ycmxiM3k0MXRvcjMifQ.Yf1Olmco7KyZFm-rRvcPaw';
+
+export const COUNTRIES_COORDINATS_URL =
+  'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag';
+
+export const COVID_DATA_URL = 'https://api.covid19api.com/summary';
 export const CASES_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
 export const DEATHS_RANGE = [100000, 50000, 25000, 10000, 5000, 2500, 1000];
 export const RECOVERED_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
