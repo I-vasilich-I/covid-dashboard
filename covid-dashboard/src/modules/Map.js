@@ -53,6 +53,18 @@ export default class Map {
     }
   }
 
+  setPoint() {
+    this.map.flyTo({
+      center: [28, 53],
+      zoom: 3,
+      speed: 1.5,
+      curve: 1,
+      easing(t) {
+        return t;
+      },
+    });
+  }
+
   static eventHandler(e) {
     const element = e.target.closest('.map-button');
     console.log(element);
@@ -66,7 +78,15 @@ export default class Map {
       case 'map-button-deaths':
         console.log('deaths');
         this.showMarkers(Constants.TYPE_DEATH);
-
+        this.map.flyTo({
+          center: [-97, 38],
+          zoom: 3,
+          speed: 1,
+          curve: 1,
+          easing(t) {
+            return t;
+          },
+        });
         break;
       case 'map-button-recovered':
         console.log('recovered');

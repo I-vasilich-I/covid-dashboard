@@ -75,7 +75,7 @@ body {
 }
 
 .marker_cases {
-  color: "red";
+  color: red;
   border: 1px solid red;
   background-color: rgba(255, 0, 0, 0.4);
 }
@@ -87,9 +87,9 @@ body {
 }
 
 .marker_recovered {
-  color: blue;
-  border: 1px solid blue;
-  background-color: rgba(0, 0, 255, 0.4);
+  color: #5ed9ff;
+  border: 1px solid #5ed9ff;
+  background-color: rgba(94, 217, 255, 0.4);
 }
 
 .mapboxgl-popup {
@@ -166,10 +166,10 @@ body {
   cursor: pointer;
 }
 .country__container-deaths {
-  color: #ff095b;
+  color: #e60000;
 }
 .country__container-recovered {
-  color: #1dfc00;
+  color: #70a800;
 }
 
 .country__cases {
@@ -201,11 +201,11 @@ body {
 }
 
 .detail__deaths {
-  color: #ff095b;
+  color: #e60000;
 }
 
 .detail__recovered {
-  color: #1dfc00;
+  color: #70a800;
 }
 
 .day__container {

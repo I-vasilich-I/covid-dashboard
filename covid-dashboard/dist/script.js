@@ -199,6 +199,19 @@ var Map = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "setPoint",
+    value: function setPoint() {
+      this.map.flyTo({
+        center: [28, 53],
+        zoom: 3,
+        speed: 1.5,
+        curve: 1,
+        easing: function easing(t) {
+          return t;
+        }
+      });
+    }
+  }, {
     key: "createPopup",
     value: function createPopup(country) {
       return new this.mapboxgl.Popup().setHTML("<p>Country: ".concat(country.Country, "</p>\n      <p>Confirmed: ").concat(country.TotalConfirmed, "</p>\n      <p>Deaths: ").concat(country.TotalDeaths, "</p>\n      <p>Recovered: ").concat(country.TotalRecovered, "</p>"));
@@ -219,6 +232,15 @@ var Map = /*#__PURE__*/function () {
         case 'map-button-deaths':
           console.log('deaths');
           this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH);
+          this.map.flyTo({
+            center: [-97, 38],
+            zoom: 3,
+            speed: 1,
+            curve: 1,
+            easing: function easing(t) {
+              return t;
+            }
+          });
           break;
 
         case 'map-button-recovered':
