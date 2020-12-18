@@ -15,7 +15,8 @@ const tableDetails = createDomElement({
   parent: table,
 });
 
-function createCountryContainer(country) {
+function createCountryContainer(country, propertys = {}) {
+  const { countryTitle = 'Total confirmed:', property = 'TotalConfirmed' } = propertys;
   const countryContainer = createDomElement({
     elementName: 'div',
     className: 'country__container',
@@ -39,10 +40,10 @@ function createCountryContainer(country) {
     elementName: 'div',
     parent: countryContainer.cases,
   });
-  title.innerText = 'Total confirmed:';
-  amount.innerText = numberWithSpaces(country.TotalConfirmed);
+  title.innerText = countryTitle;
+  amount.innerText = numberWithSpaces(country[property]);
   countryContainer.countryName.innerText = country.Country;
-  countryContainer.innerDiv = { title, amount, country };
+  // countryContainer.innerDiv = { title, amount, country };
   return countryContainer;
 }
 

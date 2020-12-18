@@ -4,10 +4,9 @@ import Map from './modules/Map';
 
 window.onload = () => {
   prepareData().then((result) => {
-    const table = new Table(result).init(document.body).eventHandler();
+    // const table =
+    new Table(result).init(document.body).eventHandler();
     const map = new Map(result);
     map.init();
-
-    table.tableCountriesArray[0].innerDiv.title.innerText = 'Total deaths:';
   });
 };

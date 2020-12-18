@@ -80,10 +80,10 @@ __webpack_require__.r(__webpack_exports__);
 
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-    var table = new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body).eventHandler();
+    // const table =
+    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body).eventHandler();
     var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
     map.init();
-    table.tableCountriesArray[0].innerDiv.title.innerText = 'Total deaths:';
   });
 };
 
@@ -340,40 +340,41 @@ function deactivateButtons(buttons) {
 function getPropertiesByType(type) {
   var title = '';
   var property = '';
+  var className = '';
 
   if (type === 'tab-confirmed') {
     property = 'TotalConfirmed';
     title = 'Total confirmed:';
+    className = 'confirmed';
   }
 
   if (type === 'tab-deaths') {
     property = 'TotalDeaths';
     title = 'Total deaths:';
+    className = 'deaths';
   }
 
   if (type === 'tab-recovered') {
     property = 'TotalRecovered';
     title = 'Total recovered:';
+    className = 'recovered';
   }
 
   return {
     property: property,
-    title: title
+    countryTitle: title,
+    className: className
   };
-}
+} // function updateOneCountryInfo(propertys, element) {
+//   const elem = element;
+//   const amount = numberWithSpaces(elem.innerDiv.country[propertys.property]);
+//   elem.innerDiv.title.innerText = propertys.countryTitle;
+//   elem.innerDiv.amount.innerText = amount;
+// }
+// function updateCountriesInfo(propertys) {
+//   this.tableCountriesArray.map((element) => updateOneCountryInfo(propertys, element));
+// }
 
-function updateOneCountryInfo(propertys, element) {
-  var elem = element;
-  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.numberWithSpaces)(elem.innerDiv.country[propertys.property]);
-  elem.innerDiv.title.innerText = propertys.title;
-  elem.innerDiv.amount.innerText = amount;
-}
-
-function updateCountriesInfo(propertys) {
-  this.tableCountriesArray.map(function (element) {
-    return updateOneCountryInfo(propertys, element);
-  });
-}
 
 var Table = /*#__PURE__*/function () {
   function Table(covidData) {
@@ -402,36 +403,44 @@ var Table = /*#__PURE__*/function () {
         _this.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
       });
       (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
-      parent.appendChild(_createTable__WEBPACK_IMPORTED_MODULE_0__.table);
       this.tabs = (0,_createTableTabs__WEBPACK_IMPORTED_MODULE_2__.default)();
+      parent.appendChild(_createTable__WEBPACK_IMPORTED_MODULE_0__.table);
       parent.appendChild(this.tabs);
       return this;
+    }
+  }, {
+    key: "countriesButtonsHandler",
+    value: function countriesButtonsHandler(event) {
+      var _this2 = this;
+
+      var buttons = this.tabs.tabsArray;
+      var button = event.target.closest('.tabs__button');
+      var isActive = button.classList.contains('tabs__button-active');
+      if (!button || isActive) return;
+      deactivateButtons(buttons);
+      button.classList.add('tabs__button-active');
+      var propertys = getPropertiesByType(button.id);
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, propertys.property, -1);
+      _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.innerHTML = '';
+      _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.className = "table__countries ".concat(propertys.className);
+      this.countries.forEach(function (country) {
+        _this2.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country, propertys));
+      });
+    }
+  }, {
+    key: "tabsEventHandler",
+    value: function tabsEventHandler() {
+      var _this3 = this;
+
+      this.tabs.addEventListener('click', function (event) {
+        return _this3.countriesButtonsHandler(event);
+      });
     }
   }, {
     key: "eventHandler",
     value: function eventHandler() {
       this.tabsEventHandler();
       return this;
-    }
-  }, {
-    key: "tabsEventHandler",
-    value: function tabsEventHandler() {
-      var _this2 = this;
-
-      var buttons = this.tabs.tabsArray;
-      this.tabs.addEventListener('click', function (event) {
-        var button = event.target.closest('.tabs__button');
-        var isActive = button.classList.contains('tabs__button-active');
-        if (!button || isActive) return;
-        deactivateButtons(buttons);
-        button.classList.add('tabs__button-active');
-        var propertys = getPropertiesByType(button.id); // sortByProperty(this.countries, propertys.property, -1);
-
-        updateCountriesInfo.call(_this2, propertys); // tableCountries.innerHTML = '';
-        // this.countries.forEach((country) => {
-        //   this.tableCountriesArray.push(createCountryContainer(country));
-        // });
-      });
     }
   }]);
 
@@ -474,6 +483,11 @@ var tableDetails = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomEleme
 });
 
 function createCountryContainer(country) {
+  var propertys = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _propertys$countryTit = propertys.countryTitle,
+      countryTitle = _propertys$countryTit === void 0 ? 'Total confirmed:' : _propertys$countryTit,
+      _propertys$property = propertys.property,
+      property = _propertys$property === void 0 ? 'TotalConfirmed' : _propertys$property;
   var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
     className: 'country__container',
@@ -497,14 +511,10 @@ function createCountryContainer(country) {
     elementName: 'div',
     parent: countryContainer.cases
   });
-  title.innerText = 'Total confirmed:';
-  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country.TotalConfirmed);
-  countryContainer.countryName.innerText = country.Country;
-  countryContainer.innerDiv = {
-    title: title,
-    amount: amount,
-    country: country
-  };
+  title.innerText = countryTitle;
+  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country[property]);
+  countryContainer.countryName.innerText = country.Country; // countryContainer.innerDiv = { title, amount, country };
+
   return countryContainer;
 }
 

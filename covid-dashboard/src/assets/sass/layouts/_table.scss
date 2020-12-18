@@ -36,6 +36,18 @@
   overflow-y: scroll;
 }
 
+.confirmed {
+  color: $color-primary-light;
+}
+
+.deaths {
+  color: $color-deaths;
+}
+
+.recovered {
+  color: $color-recovered;
+}
+
 .table__details {
   font-size: 2rem;
   font-weight: bold;
