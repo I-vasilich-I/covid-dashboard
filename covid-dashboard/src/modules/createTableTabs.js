@@ -8,6 +8,7 @@ export default function createTableTabs() {
     parent: tabs,
     attributes: [['id', 'tab-confirmed']],
   });
+
   tabs.buttonDeaths = createDomElement({
     elementName: 'button',
     className: 'tabs__button',
@@ -53,6 +54,15 @@ export default function createTableTabs() {
   tabs.buttonNew.innerText = 'New';
   tabs.buttonNew100K.innerText = 'N100K';
 
+  tabs.tabsArray = [
+    tabs.buttonConfirmed,
+    tabs.buttonDeaths,
+    tabs.buttonRecovered,
+    tabs.buttonTotal,
+    tabs.buttonTotal100K,
+    tabs.buttonNew,
+    tabs.buttonNew100K,
+  ];
   return tabs;
 }
 

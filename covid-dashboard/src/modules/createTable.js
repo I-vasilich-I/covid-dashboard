@@ -42,7 +42,7 @@ function createCountryContainer(country) {
   title.innerText = 'Total confirmed:';
   amount.innerText = numberWithSpaces(country.TotalConfirmed);
   countryContainer.countryName.innerText = country.Country;
-  countryContainer.innerDiv = { title, amount };
+  countryContainer.innerDiv = { title, amount, country };
   return countryContainer;
 }
 
@@ -105,4 +105,4 @@ function createDetailContainer(obj, global = true) {
   // dayContainer.dayRecoverd.innerText = `Recovered:\n${numberWithSpaces(obj.NewRecovered)}`;
 }
 
-export { createCountryContainer, createDetailContainer, table };
+export { createCountryContainer, createDetailContainer, table, tableCountries };
