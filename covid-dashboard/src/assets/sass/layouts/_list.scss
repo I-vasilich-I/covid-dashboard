@@ -1,0 +1,41 @@
+.list__container {
+  position: relative;
+  margin: auto;
+  margin-bottom: 100px;
+  width: 250px;
+  height: 45rem;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.list {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  background-color: $color-primary;
+  color: $color-primary-light;
+}
+
+.list__countries {
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
+
+.country__flag {
+  width: 30px;
+}

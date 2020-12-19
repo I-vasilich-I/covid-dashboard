@@ -74,6 +74,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
 /* harmony import */ var _modules_Table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Table */ "./src/modules/Table.js");
 /* harmony import */ var _modules_Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Map */ "./src/modules/Map.js");
+/* harmony import */ var _modules_List__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/List */ "./src/modules/List.js");
+
 
 
 
@@ -81,7 +83,8 @@ __webpack_require__.r(__webpack_exports__);
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
     // const table =
-    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body).eventHandler();
+    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init().eventHandler();
+    new _modules_List__WEBPACK_IMPORTED_MODULE_3__.default(result).init();
     var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
     map.init();
   });
@@ -122,6 +125,85 @@ var MARKER_SIZE = [25, 15, 13, 11, 9, 7, 5];
 var TYPE_CASE = 0;
 var TYPE_DEATH = 1;
 var TYPE_RECOVERED = 2;
+
+/***/ }),
+
+/***/ "./src/modules/List.js":
+/*!*****************************!*\
+  !*** ./src/modules/List.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ List
+/* harmony export */ });
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var List = /*#__PURE__*/function (_Table) {
+  _inherits(List, _Table);
+
+  var _super = _createSuper(List);
+
+  function List() {
+    _classCallCheck(this, List);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(List, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      var _document = document,
+          body = _document.body;
+      var parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'div',
+        className: 'list__container',
+        parent: body
+      });
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
+      this.countries.forEach(function (country) {
+        _this.tableCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country));
+      });
+      parent.appendChild(_createList__WEBPACK_IMPORTED_MODULE_2__.list);
+      return this;
+    }
+  }]);
+
+  return List;
+}(_Table__WEBPACK_IMPORTED_MODULE_0__.default);
+
+
 
 /***/ }),
 
@@ -543,6 +625,69 @@ var Table = /*#__PURE__*/function () {
 
   return Table;
 }();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/createList.js":
+/*!***********************************!*\
+  !*** ./src/modules/createList.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createListCountryContainer": () => /* binding */ createListCountryContainer,
+/* harmony export */   "list": () => /* binding */ list
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+
+var list = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'list'
+});
+var listCountries = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'list__countries',
+  parent: list
+});
+
+function createListCountryContainer(country) {
+  var propertys = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _propertys$property = propertys.property,
+      property = _propertys$property === void 0 ? 'TotalConfirmed' : _propertys$property;
+  var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__container',
+    parent: listCountries
+  });
+  countryContainer.flag = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'img',
+    className: 'country__flag',
+    parent: countryContainer,
+    attributes: [['src', country.flag], ['alt', country.Country]]
+  });
+  countryContainer.cases = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__cases',
+    parent: countryContainer
+  });
+  countryContainer.countryName = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__name',
+    parent: countryContainer
+  });
+  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    parent: countryContainer.cases
+  });
+  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country[property]);
+  countryContainer.countryName.innerText = country.Country;
+  countryContainer.country = country;
+  return countryContainer;
+}
 
 
 
