@@ -7,7 +7,17 @@ import {
   //  table,
   // tableCountries,
 } from './createTable';
+import { BUTTONS_ID } from './Constants';
 
+const {
+  // BUTTON_CONFIRMED_ID,
+  // BUTTON_DEATHS_ID,
+  // BUTTON_RECOVERED_ID,
+  BUTTON_TOTAL_ID,
+  BUTTON_TOTAL100K_ID,
+  BUTTON_NEW_ID,
+  BUTTON_NEW100K_ID,
+} = BUTTONS_ID;
 export default class List extends Table {
   constructor(covidData) {
     super(covidData);
@@ -15,7 +25,6 @@ export default class List extends Table {
   }
 
   init() {
-    // const { body } = document;
     const containerDiv = document.querySelector('.table2-container');
     this.parent = createDomElement({
       elementName: 'div',
@@ -108,6 +117,23 @@ export default class List extends Table {
     }).innerText = 'New recovered per 100K';
   }
 
+  getButtonIdBySelectedOption() {
+    const option = this.select.value;
+    if (option === 'TotalConfirmed') return BUTTON_TOTAL_ID;
+    if (option === 'TotalDeaths') return BUTTON_TOTAL_ID;
+    if (option === 'TotalRecovered') return BUTTON_TOTAL_ID;
+    if (option === 'TotalConfirmedPer100K') return BUTTON_TOTAL100K_ID;
+    if (option === 'TotalDeathsPer100K') return BUTTON_TOTAL100K_ID;
+    if (option === 'TotalRecoveredPer100K') return BUTTON_TOTAL100K_ID;
+    if (option === 'NewConfirmed') return BUTTON_NEW_ID;
+    if (option === 'NewDeaths') return BUTTON_NEW_ID;
+    if (option === 'NewRecovered') return BUTTON_NEW_ID;
+    if (option === 'NewConfirmedPer100K') return BUTTON_NEW100K_ID;
+    if (option === 'NewDeathsPer100K') return BUTTON_NEW100K_ID;
+    if (option === 'NewRecoveredPer100K') return BUTTON_NEW100K_ID;
+    return this;
+  }
+
   handleTable(country) {
     if (country === null) {
       this.table.tableCountriesArray.forEach((element) =>
@@ -123,21 +149,17 @@ export default class List extends Table {
       element.classList.remove('country__container-active')
     );
     tableTarget.classList.add('country__container-active');
-    tableTarget.scroll(100, 100);
+    tableTarget.scroll(100, 100); // DOESN'T WORK!
     this.table.targetCountry = country;
-    this.table.tabs.tabsArray.map((button, idx) => {
+    this.table.tabs.tabsArray.map((button) => {
       if (button.isDetailBtn) {
         button.classList.remove('tabs__button-hidden');
         button.classList.remove('tabs__button-active');
       }
-      if (idx === 3) button.classList.add('tabs__button-active');
+      const isTheButton = button.id === this.getButtonIdBySelectedOption();
+      if (isTheButton) button.classList.add('tabs__button-active');
       return button;
     });
-    return this;
-  }
-
-  handleMap(country) {
-    this.map.setPointByCountry(country.Country);
     return this;
   }
 
@@ -161,6 +183,7 @@ export default class List extends Table {
     this.selectValue = this.select.value;
     this.select.onclick = () => {
       const isSameAsSelected = this.selectValue === this.select.value;
+      console.log(this.select.value);
       if (isSameAsSelected) return;
       listCountries.innerHTML = '';
       this.selectValue = this.select.value;

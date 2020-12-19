@@ -103,7 +103,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TYPE_CASE": () => /* binding */ TYPE_CASE,
 /* harmony export */   "TYPE_DEATH": () => /* binding */ TYPE_DEATH,
 /* harmony export */   "TYPE_RECOVERED": () => /* binding */ TYPE_RECOVERED,
-/* harmony export */   "TYPE_NAMES": () => /* binding */ TYPE_NAMES
+/* harmony export */   "TYPE_NAMES": () => /* binding */ TYPE_NAMES,
+/* harmony export */   "BUTTONS_ID": () => /* binding */ BUTTONS_ID
 /* harmony export */ });
 /* eslint-disable import/prefer-default-export */
 
@@ -119,6 +120,15 @@ var TYPE_CASE = 0;
 var TYPE_DEATH = 1;
 var TYPE_RECOVERED = 2;
 var TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
+var BUTTONS_ID = {
+  BUTTON_CONFIRMED_ID: 'tab-confirmed',
+  BUTTON_DEATHS_ID: 'tab-deaths',
+  BUTTON_RECOVERED_ID: 'tab-recovered',
+  BUTTON_TOTAL_ID: 'tab-total',
+  BUTTON_TOTAL100K_ID: 'tab-total100K',
+  BUTTON_NEW_ID: 'tab-new',
+  BUTTON_NEW100K_ID: 'tab-new100K'
+};
 
 /***/ }),
 
@@ -187,6 +197,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 /* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
 /* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -214,6 +225,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL_ID,
+    BUTTON_TOTAL100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL100K_ID,
+    BUTTON_NEW_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW_ID,
+    BUTTON_NEW100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW100K_ID;
+
 var List = /*#__PURE__*/function (_Table) {
   _inherits(List, _Table);
 
@@ -234,7 +250,6 @@ var List = /*#__PURE__*/function (_Table) {
     value: function init() {
       var _this2 = this;
 
-      // const { body } = document;
       var containerDiv = document.querySelector('.table2-container');
       this.parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
         elementName: 'div',
@@ -331,8 +346,28 @@ var List = /*#__PURE__*/function (_Table) {
       }).innerText = 'New recovered per 100K';
     }
   }, {
+    key: "getButtonIdBySelectedOption",
+    value: function getButtonIdBySelectedOption() {
+      var option = this.select.value;
+      if (option === 'TotalConfirmed') return BUTTON_TOTAL_ID;
+      if (option === 'TotalDeaths') return BUTTON_TOTAL_ID;
+      if (option === 'TotalRecovered') return BUTTON_TOTAL_ID;
+      if (option === 'TotalConfirmedPer100K') return BUTTON_TOTAL100K_ID;
+      if (option === 'TotalDeathsPer100K') return BUTTON_TOTAL100K_ID;
+      if (option === 'TotalRecoveredPer100K') return BUTTON_TOTAL100K_ID;
+      if (option === 'NewConfirmed') return BUTTON_NEW_ID;
+      if (option === 'NewDeaths') return BUTTON_NEW_ID;
+      if (option === 'NewRecovered') return BUTTON_NEW_ID;
+      if (option === 'NewConfirmedPer100K') return BUTTON_NEW100K_ID;
+      if (option === 'NewDeathsPer100K') return BUTTON_NEW100K_ID;
+      if (option === 'NewRecoveredPer100K') return BUTTON_NEW100K_ID;
+      return this;
+    }
+  }, {
     key: "handleTable",
     value: function handleTable(country) {
+      var _this3 = this;
+
       if (country === null) {
         this.table.tableCountriesArray.forEach(function (element) {
           return element.classList.remove('country__container-active');
@@ -352,69 +387,67 @@ var List = /*#__PURE__*/function (_Table) {
         return element.classList.remove('country__container-active');
       });
       tableTarget.classList.add('country__container-active');
-      tableTarget.scroll(100, 100);
+      tableTarget.scroll(100, 100); // DOESN'T WORK!
+
       this.table.targetCountry = country;
-      this.table.tabs.tabsArray.map(function (button, idx) {
+      this.table.tabs.tabsArray.map(function (button) {
         if (button.isDetailBtn) {
           button.classList.remove('tabs__button-hidden');
           button.classList.remove('tabs__button-active');
         }
 
-        if (idx === 3) button.classList.add('tabs__button-active');
+        var isTheButton = button.id === _this3.getButtonIdBySelectedOption();
+
+        if (isTheButton) button.classList.add('tabs__button-active');
         return button;
       });
       return this;
     }
   }, {
-    key: "handleMap",
-    value: function handleMap(country) {
-      this.map.setPointByCountry(country.Country);
-      return this;
-    }
-  }, {
     key: "listCountriesEventHandler",
     value: function listCountriesEventHandler() {
-      var _this3 = this;
+      var _this4 = this;
 
       _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.addEventListener('click', function (event) {
         var target = event.target.closest('.country__container');
         if (!target) return;
         var country = target.country;
 
-        _this3.listCountriesArray.forEach(function (element) {
+        _this4.listCountriesArray.forEach(function (element) {
           return element.classList.remove('country__container-active');
         });
 
         target.classList.add('country__container-active');
-        _this3.targetCountry = country;
+        _this4.targetCountry = country;
 
-        _this3.handleTable(country);
+        _this4.handleTable(country);
 
-        _this3.handleMap(country);
+        _this4.handleMap(country);
       });
       return this;
     }
   }, {
     key: "listSelectEventHandler",
     value: function listSelectEventHandler() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.selectValue = this.select.value;
 
       this.select.onclick = function () {
-        var isSameAsSelected = _this4.selectValue === _this4.select.value;
+        var isSameAsSelected = _this5.selectValue === _this5.select.value;
+        console.log(_this5.select.value);
         if (isSameAsSelected) return;
         _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.innerHTML = '';
-        _this4.selectValue = _this4.select.value;
-        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this4.countries, _this4.selectValue, -1);
+        _this5.selectValue = _this5.select.value;
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this5.countries, _this5.selectValue, -1);
 
-        _this4.countries.forEach(function (country) {
-          _this4.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this4.selectValue));
+        _this5.countries.forEach(function (country) {
+          _this5.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this5.selectValue));
         });
 
         _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.scrollTop = 0;
 
-        _this4.handleTable(null);
+        _this5.handleTable(null);
       };
 
       return this;
@@ -990,8 +1023,14 @@ var Table = /*#__PURE__*/function () {
           return button;
         });
 
-        _this4.list.handleMap(country);
+        _this4.handleMap(country);
       });
+      return this;
+    }
+  }, {
+    key: "handleMap",
+    value: function handleMap(country) {
+      this.map.setPointByCountry(country.Country);
       return this;
     }
   }, {
@@ -1194,7 +1233,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => /* binding */ createTableTabs
 /* harmony export */ });
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
 
+
+var BUTTON_CONFIRMED_ID = _Constants__WEBPACK_IMPORTED_MODULE_1__.BUTTONS_ID.BUTTON_CONFIRMED_ID,
+    BUTTON_DEATHS_ID = _Constants__WEBPACK_IMPORTED_MODULE_1__.BUTTONS_ID.BUTTON_DEATHS_ID,
+    BUTTON_RECOVERED_ID = _Constants__WEBPACK_IMPORTED_MODULE_1__.BUTTONS_ID.BUTTON_RECOVERED_ID,
+    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_1__.BUTTONS_ID.BUTTON_TOTAL_ID,
+    BUTTON_TOTAL100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_1__.BUTTONS_ID.BUTTON_TOTAL100K_ID,
+    BUTTON_NEW_ID = _Constants__WEBPACK_IMPORTED_MODULE_1__.BUTTONS_ID.BUTTON_NEW_ID,
+    BUTTON_NEW100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_1__.BUTTONS_ID.BUTTON_NEW100K_ID;
 function createTableTabs() {
   var tabs = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
@@ -1204,43 +1252,43 @@ function createTableTabs() {
     elementName: 'button',
     className: 'tabs__button tabs__button-active',
     parent: tabs,
-    attributes: [['id', 'tab-confirmed']]
+    attributes: [['id', BUTTON_CONFIRMED_ID]]
   });
   tabs.buttonDeaths = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
     className: 'tabs__button',
     parent: tabs,
-    attributes: [['id', 'tab-deaths']]
+    attributes: [['id', BUTTON_DEATHS_ID]]
   });
   tabs.buttonRecovered = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
     className: 'tabs__button',
     parent: tabs,
-    attributes: [['id', 'tab-recovered']]
+    attributes: [['id', BUTTON_RECOVERED_ID]]
   });
   tabs.buttonTotal = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-total']]
+    attributes: [['id', BUTTON_TOTAL_ID]]
   });
   tabs.buttonTotal100K = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-total100K']]
+    attributes: [['id', BUTTON_TOTAL100K_ID]]
   });
   tabs.buttonNew = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-new']]
+    attributes: [['id', BUTTON_NEW_ID]]
   });
   tabs.buttonNew100K = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-new100K']]
+    attributes: [['id', BUTTON_NEW100K_ID]]
   });
   tabs.buttonConfirmed.innerText = 'Confirmed';
   tabs.buttonDeaths.innerText = 'Deaths';
@@ -1254,7 +1302,7 @@ function createTableTabs() {
   tabs.detailBtns = [tabs.buttonTotal, tabs.buttonTotal100K, tabs.buttonNew, tabs.buttonNew100K];
   tabs.tabsArray.map(function (elem) {
     var btn = elem;
-    btn.isDetailBtn = !(elem.id === 'tab-confirmed' || elem.id === 'tab-deaths' || elem.id === 'tab-recovered');
+    btn.isDetailBtn = !(elem.id === BUTTON_CONFIRMED_ID || elem.id === BUTTON_DEATHS_ID || elem.id === BUTTON_RECOVERED_ID);
     return btn;
   });
   return tabs;

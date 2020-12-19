@@ -116,8 +116,10 @@ body {
   flex-direction: row;
   margin: 0 auto;
   width: 100%;
+  background-color: black;
 }
 .container .table2-container {
+  padding: 10px;
   width: 15vw;
   height: 70vh;
 }
@@ -212,7 +214,6 @@ body {
 .table__container {
   position: relative;
   margin: auto;
-  margin-bottom: 100px;
   width: 100%;
   height: 100%;
   padding-top: 5px;
@@ -379,7 +380,6 @@ body {
 .list__container {
   position: relative;
   margin: auto;
-  margin-bottom: 100px;
   width: 100%;
   height: 100%;
   padding-top: 5px;
@@ -426,6 +426,8 @@ body {
   color: #b1b1b1;
   outline: none;
   border: none;
+  border-bottom: white;
+  outline-style: 1px white solid;
 }
 .select:hover {
   cursor: pointer;

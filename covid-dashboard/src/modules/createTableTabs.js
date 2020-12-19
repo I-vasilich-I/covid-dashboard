@@ -1,4 +1,15 @@
 import { createDomElement } from './utils/helpers';
+import { BUTTONS_ID } from './Constants';
+
+const {
+  BUTTON_CONFIRMED_ID,
+  BUTTON_DEATHS_ID,
+  BUTTON_RECOVERED_ID,
+  BUTTON_TOTAL_ID,
+  BUTTON_TOTAL100K_ID,
+  BUTTON_NEW_ID,
+  BUTTON_NEW100K_ID,
+} = BUTTONS_ID;
 
 export default function createTableTabs() {
   const tabs = createDomElement({ elementName: 'div', className: 'tabs__container' });
@@ -6,44 +17,44 @@ export default function createTableTabs() {
     elementName: 'button',
     className: 'tabs__button tabs__button-active',
     parent: tabs,
-    attributes: [['id', 'tab-confirmed']],
+    attributes: [['id', BUTTON_CONFIRMED_ID]],
   });
 
   tabs.buttonDeaths = createDomElement({
     elementName: 'button',
     className: 'tabs__button',
     parent: tabs,
-    attributes: [['id', 'tab-deaths']],
+    attributes: [['id', BUTTON_DEATHS_ID]],
   });
   tabs.buttonRecovered = createDomElement({
     elementName: 'button',
     className: 'tabs__button',
     parent: tabs,
-    attributes: [['id', 'tab-recovered']],
+    attributes: [['id', BUTTON_RECOVERED_ID]],
   });
   tabs.buttonTotal = createDomElement({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-total']],
+    attributes: [['id', BUTTON_TOTAL_ID]],
   });
   tabs.buttonTotal100K = createDomElement({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-total100K']],
+    attributes: [['id', BUTTON_TOTAL100K_ID]],
   });
   tabs.buttonNew = createDomElement({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-new']],
+    attributes: [['id', BUTTON_NEW_ID]],
   });
   tabs.buttonNew100K = createDomElement({
     elementName: 'button',
     className: 'tabs__button tabs__button-hidden',
     parent: tabs,
-    attributes: [['id', 'tab-new100K']],
+    attributes: [['id', BUTTON_NEW100K_ID]],
   });
 
   tabs.buttonConfirmed.innerText = 'Confirmed';
@@ -68,9 +79,9 @@ export default function createTableTabs() {
   tabs.tabsArray.map((elem) => {
     const btn = elem;
     btn.isDetailBtn = !(
-      elem.id === 'tab-confirmed' ||
-      elem.id === 'tab-deaths' ||
-      elem.id === 'tab-recovered'
+      elem.id === BUTTON_CONFIRMED_ID ||
+      elem.id === BUTTON_DEATHS_ID ||
+      elem.id === BUTTON_RECOVERED_ID
     );
     return btn;
   });

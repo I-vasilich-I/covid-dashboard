@@ -169,8 +169,13 @@ export default class Table {
         if (idx === 3) button.classList.add('tabs__button-active');
         return button;
       });
-      this.list.handleMap(country);
+      this.handleMap(country);
     });
+    return this;
+  }
+
+  handleMap(country) {
+    this.map.setPointByCountry(country.Country);
     return this;
   }
 

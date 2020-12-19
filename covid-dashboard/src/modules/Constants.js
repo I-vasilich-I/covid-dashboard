@@ -16,3 +16,13 @@ export const TYPE_CASE = 0;
 export const TYPE_DEATH = 1;
 export const TYPE_RECOVERED = 2;
 export const TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
+
+export const BUTTONS_ID = {
+  BUTTON_CONFIRMED_ID: 'tab-confirmed',
+  BUTTON_DEATHS_ID: 'tab-deaths',
+  BUTTON_RECOVERED_ID: 'tab-recovered',
+  BUTTON_TOTAL_ID: 'tab-total',
+  BUTTON_TOTAL100K_ID: 'tab-total100K',
+  BUTTON_NEW_ID: 'tab-new',
+  BUTTON_NEW100K_ID: 'tab-new100K',
+};
