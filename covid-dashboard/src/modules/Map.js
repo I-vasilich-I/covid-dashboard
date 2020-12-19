@@ -21,6 +21,7 @@ export default class Map {
     this.covidData = covidData;
     this.mapboxgl = mapboxgl;
     this.markers = [];
+    this.popups = [];
 
     this.mapboxgl.accessToken = Constants.MAPBOX_TOKEN;
 
@@ -38,8 +39,12 @@ export default class Map {
 
   init() {
     this.showMarkers(Constants.TYPE_CASE);
-    document.querySelector('.map-container').addEventListener('click', Map.eventHandler.bind(this));
+    document
+      .querySelector('.map-container')
+      .addEventListener('click', this.mapEventHandler.bind(this));
     Map.createLegend(Constants.TYPE_CASE);
+
+    return this;
   }
 
   showMarkers(markerType) {
@@ -96,13 +101,14 @@ export default class Map {
       return item.countryName.toLowerCase() === countryName.toLowerCase();
     });
     if (marker) {
+      this.hideAllPopups();
       marker.togglePopup();
     } else {
       throw new Error('Error! Can not show popup on map by country name');
     }
   }
 
-  static eventHandler(e) {
+  mapEventHandler(e) {
     const element = e.target.closest('.map-button') || e.target.closest('.mapboxgl-marker');
     if (!element) {
       return;
@@ -132,10 +138,15 @@ export default class Map {
 
         break;
       case 'marker':
-        console.log(Map.getCountryNameByMarkerElement(element));
+        {
+          const countryName = Map.getCountryNameByMarkerElement(element);
+          const country = this.findCountryByName(countryName);
+          // this.hideAllPopups();
 
-        e.stopImmediatePropagation();
-
+          console.log(Map.getCountryNameByMarkerElement(element));
+          this.handleTable(country);
+          e.stopImmediatePropagation();
+        }
         break;
       default:
         break;
@@ -180,6 +191,11 @@ export default class Map {
     );
   }
 
+  hideAllPopups() {
+    // eslint-disable-next-line no-underscore-dangle
+    this.markers.map((marker) => (marker._popup.isOpen() ? marker.togglePopup() : null));
+  }
+
   static createLegend(markerType) {
     const legend = document.querySelector('.legend');
     const legendList = legend.querySelector('.legend-list');
@@ -217,10 +233,6 @@ export default class Map {
     legendItem.append(legendCircle, legendText);
 
     return legendItem;
-    //   `<li class="legend-item">
-    //   <div class="legend-circle"></div>
-    //   <p class="legend-text">&gt; 1000 000</p>
-    // </li>`;
   }
 
   static getRangeByMarkerType(markerType) {
@@ -294,5 +306,19 @@ export default class Map {
       default:
         return 'marker_cases';
     }
+  }
+
+  findCountryByName(countryName) {
+    return this.covidData.Countries.find((country) => countryName === country.Country);
+  }
+
+  handleTable(country) {
+    this.list.handleTable(country);
+  }
+
+  eventHandler(blocks) {
+    this.table = blocks.table;
+    this.list = blocks.list;
+    return this;
   }
 }
