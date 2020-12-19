@@ -169,7 +169,7 @@ var Container = /*#__PURE__*/function () {
   _createClass(Container, [{
     key: "init",
     value: function init() {
-      this.map.init();
+      this.map.init().eventHandler(this);
       this.table.init().eventHandler(this);
       this.list.init().eventHandler(this);
     }
@@ -513,6 +513,7 @@ var Map = /*#__PURE__*/function () {
     this.covidData = covidData;
     this.mapboxgl = mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__;
     this.markers = [];
+    this.popups = [];
     this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
     this.map = new this.mapboxgl.Map({
       container: 'map',
@@ -528,8 +529,9 @@ var Map = /*#__PURE__*/function () {
     key: "init",
     value: function init() {
       this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
-      document.querySelector('.map-container').addEventListener('click', Map.eventHandler.bind(this));
+      document.querySelector('.map-container').addEventListener('click', this.mapEventHandler.bind(this));
       Map.createLegend(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
+      return this;
     }
   }, {
     key: "showMarkers",
@@ -592,25 +594,15 @@ var Map = /*#__PURE__*/function () {
       });
 
       if (marker) {
+        this.hideAllPopups();
         marker.togglePopup();
       } else {
         throw new Error('Error! Can not show popup on map by country name');
       }
     }
   }, {
-    key: "changeMarkersColor",
-    value: function changeMarkersColor(markerType) {
-      this.showMarkers(markerType);
-      Map.createLegend(markerType);
-    }
-  }, {
-    key: "createPopup",
-    value: function createPopup(country) {
-      return new this.mapboxgl.Popup().setHTML("<p>Country: ".concat(country.Country, "</p>\n      <p>Confirmed: ").concat(country.TotalConfirmed, "</p>\n      <p>Deaths: ").concat(country.TotalDeaths, "</p>\n      <p>Recovered: ").concat(country.TotalRecovered, "</p>"));
-    }
-  }], [{
-    key: "eventHandler",
-    value: function eventHandler(e) {
+    key: "mapEventHandler",
+    value: function mapEventHandler(e) {
       var element = e.target.closest('.map-button') || e.target.closest('.mapboxgl-marker');
 
       if (!element) {
@@ -642,8 +634,14 @@ var Map = /*#__PURE__*/function () {
           break;
 
         case 'marker':
-          console.log(Map.getCountryNameByMarkerElement(element));
-          e.stopImmediatePropagation();
+          {
+            var countryName = Map.getCountryNameByMarkerElement(element);
+            var country = this.findCountryByName(countryName); // this.hideAllPopups();
+
+            console.log(Map.getCountryNameByMarkerElement(element));
+            this.handleTable(country);
+            e.stopImmediatePropagation();
+          }
           break;
 
         default:
@@ -651,6 +649,44 @@ var Map = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "changeMarkersColor",
+    value: function changeMarkersColor(markerType) {
+      this.showMarkers(markerType);
+      Map.createLegend(markerType);
+    }
+  }, {
+    key: "createPopup",
+    value: function createPopup(country) {
+      return new this.mapboxgl.Popup().setHTML("<p>Country: ".concat(country.Country, "</p>\n      <p>Confirmed: ").concat(country.TotalConfirmed, "</p>\n      <p>Deaths: ").concat(country.TotalDeaths, "</p>\n      <p>Recovered: ").concat(country.TotalRecovered, "</p>"));
+    }
+  }, {
+    key: "hideAllPopups",
+    value: function hideAllPopups() {
+      // eslint-disable-next-line no-underscore-dangle
+      this.markers.map(function (marker) {
+        return marker._popup.isOpen() ? marker.togglePopup() : null;
+      });
+    }
+  }, {
+    key: "findCountryByName",
+    value: function findCountryByName(countryName) {
+      return this.covidData.Countries.find(function (country) {
+        return countryName === country.Country;
+      });
+    }
+  }, {
+    key: "handleTable",
+    value: function handleTable(country) {
+      this.list.handleTable(country);
+    }
+  }, {
+    key: "eventHandler",
+    value: function eventHandler(blocks) {
+      this.table = blocks.table;
+      this.list = blocks.list;
+      return this;
+    }
+  }], [{
     key: "getCountryNameByMarkerElement",
     value: function getCountryNameByMarkerElement(markerElement) {
       return markerElement.dataset.country;
@@ -706,10 +742,7 @@ var Map = /*#__PURE__*/function () {
       legendCircle.style.height = "".concat(circleSize, "px");
       legendText.innerHTML = "&gt; ".concat(countOfCases);
       legendItem.append(legendCircle, legendText);
-      return legendItem; //   `<li class="legend-item">
-      //   <div class="legend-circle"></div>
-      //   <p class="legend-text">&gt; 1000 000</p>
-      // </li>`;
+      return legendItem;
     }
   }, {
     key: "getRangeByMarkerType",

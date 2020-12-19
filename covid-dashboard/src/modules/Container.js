@@ -11,7 +11,7 @@ export default class Container {
   }
 
   init() {
-    this.map.init();
+    this.map.init().eventHandler(this);
     this.table.init().eventHandler(this);
     this.list.init().eventHandler(this);
   }
