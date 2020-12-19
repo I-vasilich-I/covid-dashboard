@@ -3,31 +3,48 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet">
     <title>covid-dashboard</title>
   <link href="style.css" rel="stylesheet"></head>
   <body>
-    <div class="map-container">
-      <div id="map" class="map"></div>
-      <div class="map-button-container">
-        <button id="map-button-cases" class="map-button map-button-cases">Cases</button>
-        <button id="map-button-deaths" class="map-button map-button-deaths">Deaths</button>
-        <button id="map-button-recovered" class="map-button map-button-recovered">Recovered</button>
+    <div class="container">
+      <div class="table2-container"></div>
+      <div class="map-container">
+        <div class="map-relative-container">
+          <div id="map" class="map"></div>
+          <div id="legend-button" class="legend-button map-button">
+            <span class="material-icons"> bookmark_border </span>
+          </div>
+          <div id="legend" class="legend" data-legend-type="0">
+            <ul class="legend-list">
+              <li class="legend-item">
+                <div class="legend-circle"></div>
+                <p class="legend-text">&gt; 1000 000</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="map-button-container">
+          <button id="map-button-cases" class="map-button map-button-cases">Cases</button>
+          <button id="map-button-deaths" class="map-button map-button-deaths">Deaths</button>
+          <button id="map-button-recovered" class="map-button map-button-recovered">
+            Recovered
+          </button>
+        </div>
+      </div>
+      <div class="second-container">
+        <div class="table1-container"></div>
+        <div class="graph-container"></div>
       </div>
     </div>
 
-    <div class="main-container">
-      <div class="table2-container"></div>
-      <div class="map-container">
-      <div class="table1-container"></div>
-      <div class="graph-container"></div>
-    </div>
     <footer class="footer">
       <a href="https://github.com/Shemchuk" class="footer__link github-logo"></a>
       <a href="https://github.com/I-vasilich-I" class="footer__link github-logo"></a>
       <div class="footer__text">Made in 2020</div>
       <a href="https://rs.school/" class="footer__link school-logo"></a>
     </footer>
-  <script src="script.js"></script></div></body>
+  <script src="script.js"></script></body>
 </html>
