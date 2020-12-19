@@ -84,7 +84,7 @@ window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
     // const table =
     new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init().eventHandler();
-    new _modules_List__WEBPACK_IMPORTED_MODULE_3__.default(result).init();
+    new _modules_List__WEBPACK_IMPORTED_MODULE_3__.default(result).init().eventHandler();
     var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
     map.init();
   });
@@ -173,29 +173,162 @@ var List = /*#__PURE__*/function (_Table) {
 
   var _super = _createSuper(List);
 
-  function List() {
+  function List(covidData) {
+    var _this;
+
     _classCallCheck(this, List);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, covidData);
+    _this.listCountriesArray = [];
+    return _this;
   }
 
   _createClass(List, [{
     key: "init",
     value: function init() {
-      var _this = this;
+      var _this2 = this;
 
       var _document = document,
           body = _document.body;
-      var parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      this.parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
         elementName: 'div',
         className: 'list__container',
         parent: body
       });
       (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
       this.countries.forEach(function (country) {
-        _this.tableCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country));
+        _this2.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country));
       });
-      parent.appendChild(_createList__WEBPACK_IMPORTED_MODULE_2__.list);
+      this.generateSelectPanel();
+      this.parent.appendChild(_createList__WEBPACK_IMPORTED_MODULE_2__.list);
+      this.parent.appendChild(this.select);
+      return this;
+    }
+  }, {
+    key: "generateSelectPanel",
+    value: function generateSelectPanel() {
+      this.select = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'select',
+        className: 'select'
+      });
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalConfirmed']]
+      }).innerText = 'Total confirmed';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalDeaths']]
+      }).innerText = 'Total deaths';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalRecovered']]
+      }).innerText = 'Total recovered';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalConfirmedPer100K']]
+      }).innerText = 'Total confirmed per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalDeathsPer100K']]
+      }).innerText = 'Total deaths per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalRecoveredPer100K']]
+      }).innerText = 'Total recovered per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewConfirmed']]
+      }).innerText = 'New confirmed';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewDeaths']]
+      }).innerText = 'New deaths';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewRecovered']]
+      }).innerText = 'New recovered';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewConfirmedPer100K']]
+      }).innerText = 'New confirmed per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewDeathsPer100K']]
+      }).innerText = 'New deaths per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewRecoveredPer100K']]
+      }).innerText = 'New recovered per 100K';
+    }
+  }, {
+    key: "listCountriesEventHandler",
+    value: function listCountriesEventHandler() {
+      var _this3 = this;
+
+      _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.addEventListener('click', function (event) {
+        var target = event.target.closest('.country__container');
+        if (!target) return;
+        var country = target.country;
+
+        _this3.listCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+
+        target.classList.add('country__container-active');
+        _this3.targetCountry = country;
+      });
+      return this;
+    }
+  }, {
+    key: "listSelectEventHandler",
+    value: function listSelectEventHandler() {
+      var _this4 = this;
+
+      this.selectValue = this.select.value;
+
+      this.select.onclick = function () {
+        var isSameAsSelected = _this4.selectValue === _this4.select.value;
+        if (isSameAsSelected) return;
+        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.innerHTML = '';
+        _this4.selectValue = _this4.select.value;
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this4.countries, _this4.selectValue, -1);
+
+        _this4.countries.forEach(function (country) {
+          _this4.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this4.selectValue));
+        });
+      };
+
+      return this;
+    }
+  }, {
+    key: "eventHandler",
+    value: function eventHandler() {
+      this.listCountriesEventHandler();
+      this.listSelectEventHandler();
       return this;
     }
   }]);
@@ -640,7 +773,8 @@ var Table = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createListCountryContainer": () => /* binding */ createListCountryContainer,
-/* harmony export */   "list": () => /* binding */ list
+/* harmony export */   "list": () => /* binding */ list,
+/* harmony export */   "listCountries": () => /* binding */ listCountries
 /* harmony export */ });
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 
@@ -655,9 +789,7 @@ var listCountries = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElem
 });
 
 function createListCountryContainer(country) {
-  var propertys = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var _propertys$property = propertys.property,
-      property = _propertys$property === void 0 ? 'TotalConfirmed' : _propertys$property;
+  var property = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'TotalConfirmed';
   var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'div',
     className: 'country__container',
@@ -1017,8 +1149,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function sortByProperty(array, property) {
   var order = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
   array.sort(function (element1, element2) {
-    if (element1[property] < element2[property]) return -1 * order;
-    if (element1[property] > element2[property]) return 1 * order;
+    if (+element1[property] < +element2[property]) return -1 * order;
+    if (+element1[property] > +element2[property]) return 1 * order;
     return 0;
   });
   return array;

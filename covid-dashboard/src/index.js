@@ -7,7 +7,7 @@ window.onload = () => {
   prepareData().then((result) => {
     // const table =
     new Table(result).init().eventHandler();
-    new List(result).init();
+    new List(result).init().eventHandler();
     const map = new Map(result);
     map.init();
   });

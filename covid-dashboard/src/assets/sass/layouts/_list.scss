@@ -17,7 +17,7 @@
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  padding: 5px 0;
+  padding: 15px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,4 +38,21 @@
 
 .country__flag {
   width: 30px;
+}
+
+.select {
+  padding: 5px;
+  font-size: 1.8rem;
+  width: 100%;
+  background-color: $color-black;
+  color: $color-primary-light;
+  outline: none;
+  border: none;
+  option {
+    outline: none;
+    border: none;
+    &:hover, :focus {
+      background-color: $color-primary;
+    }
+  }
 }

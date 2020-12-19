@@ -11,8 +11,7 @@ const listCountries = createDomElement({
   parent: list,
 });
 
-function createListCountryContainer(country, propertys = {}) {
-  const { property = 'TotalConfirmed' } = propertys;
+function createListCountryContainer(country, property = 'TotalConfirmed') {
   const countryContainer = createDomElement({
     elementName: 'div',
     className: 'country__container',
@@ -47,4 +46,4 @@ function createListCountryContainer(country, propertys = {}) {
   return countryContainer;
 }
 
-export { createListCountryContainer, list };
+export { createListCountryContainer, list, listCountries };

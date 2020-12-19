@@ -7,8 +7,8 @@
  */
 function sortByProperty(array, property, order = 1) {
   array.sort((element1, element2) => {
-    if (element1[property] < element2[property]) return -1 * order;
-    if (element1[property] > element2[property]) return 1 * order;
+    if (+element1[property] < +element2[property]) return -1 * order;
+    if (+element1[property] > +element2[property]) return 1 * order;
     return 0;
   });
   return array;
