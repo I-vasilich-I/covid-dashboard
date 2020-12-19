@@ -1,4 +1,4 @@
-import Table from './Table';
+import { Table, getPropertiesByType } from './Table';
 import { createDomElement, sortByProperty } from './utils/helpers';
 import { createListCountryContainer, list, listCountries } from './createList';
 import {
@@ -143,7 +143,10 @@ export default class List extends Table {
       createDetailContainer(this.global);
       return this;
     }
-    createDetailContainer(country, false);
+    const selectedBtnId = this.getButtonIdBySelectedOption();
+    const propertys = getPropertiesByType.call(this, selectedBtnId);
+    createDetailContainer(propertys.obj, false, propertys.countryTitle);
+    // createDetailContainer(country, false);
     const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
     this.table.tableCountriesArray.forEach((element) =>
       element.classList.remove('country__container-active')
@@ -156,7 +159,7 @@ export default class List extends Table {
         button.classList.remove('tabs__button-hidden');
         button.classList.remove('tabs__button-active');
       }
-      const isTheButton = button.id === this.getButtonIdBySelectedOption();
+      const isTheButton = button.id === selectedBtnId;
       if (isTheButton) button.classList.add('tabs__button-active');
       return button;
     });
@@ -183,7 +186,6 @@ export default class List extends Table {
     this.selectValue = this.select.value;
     this.select.onclick = () => {
       const isSameAsSelected = this.selectValue === this.select.value;
-      console.log(this.select.value);
       if (isSameAsSelected) return;
       listCountries.innerHTML = '';
       this.selectValue = this.select.value;

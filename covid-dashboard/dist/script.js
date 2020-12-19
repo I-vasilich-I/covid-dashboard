@@ -162,7 +162,7 @@ var Container = /*#__PURE__*/function () {
 
     this.covidData = covidData;
     this.map = new _Map__WEBPACK_IMPORTED_MODULE_2__.default(covidData);
-    this.table = new _Table__WEBPACK_IMPORTED_MODULE_0__.default(covidData);
+    this.table = new _Table__WEBPACK_IMPORTED_MODULE_0__.Table(covidData);
     this.list = new _List__WEBPACK_IMPORTED_MODULE_1__.default(covidData);
   }
 
@@ -366,8 +366,6 @@ var List = /*#__PURE__*/function (_Table) {
   }, {
     key: "handleTable",
     value: function handleTable(country) {
-      var _this3 = this;
-
       if (country === null) {
         this.table.tableCountriesArray.forEach(function (element) {
           return element.classList.remove('country__container-active');
@@ -379,7 +377,10 @@ var List = /*#__PURE__*/function (_Table) {
         return this;
       }
 
-      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(country, false);
+      var selectedBtnId = this.getButtonIdBySelectedOption();
+      var propertys = _Table__WEBPACK_IMPORTED_MODULE_0__.getPropertiesByType.call(this, selectedBtnId);
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(propertys.obj, false, propertys.countryTitle); // createDetailContainer(country, false);
+
       var tableTarget = this.table.tableCountriesArray.find(function (elem) {
         return elem.country === country;
       });
@@ -396,8 +397,7 @@ var List = /*#__PURE__*/function (_Table) {
           button.classList.remove('tabs__button-active');
         }
 
-        var isTheButton = button.id === _this3.getButtonIdBySelectedOption();
-
+        var isTheButton = button.id === selectedBtnId;
         if (isTheButton) button.classList.add('tabs__button-active');
         return button;
       });
@@ -406,48 +406,48 @@ var List = /*#__PURE__*/function (_Table) {
   }, {
     key: "listCountriesEventHandler",
     value: function listCountriesEventHandler() {
-      var _this4 = this;
+      var _this3 = this;
 
       _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.addEventListener('click', function (event) {
         var target = event.target.closest('.country__container');
         if (!target) return;
         var country = target.country;
 
-        _this4.listCountriesArray.forEach(function (element) {
+        _this3.listCountriesArray.forEach(function (element) {
           return element.classList.remove('country__container-active');
         });
 
         target.classList.add('country__container-active');
-        _this4.targetCountry = country;
+        _this3.targetCountry = country;
 
-        _this4.handleTable(country);
+        _this3.handleTable(country);
 
-        _this4.handleMap(country);
+        _this3.handleMap(country);
       });
       return this;
     }
   }, {
     key: "listSelectEventHandler",
     value: function listSelectEventHandler() {
-      var _this5 = this;
+      var _this4 = this;
 
       this.selectValue = this.select.value;
 
       this.select.onclick = function () {
-        var isSameAsSelected = _this5.selectValue === _this5.select.value;
-        console.log(_this5.select.value);
+        var isSameAsSelected = _this4.selectValue === _this4.select.value;
+        console.log(_this4.select.value);
         if (isSameAsSelected) return;
         _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.innerHTML = '';
-        _this5.selectValue = _this5.select.value;
-        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this5.countries, _this5.selectValue, -1);
+        _this4.selectValue = _this4.select.value;
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this4.countries, _this4.selectValue, -1);
 
-        _this5.countries.forEach(function (country) {
-          _this5.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this5.selectValue));
+        _this4.countries.forEach(function (country) {
+          _this4.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this4.selectValue));
         });
 
         _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.scrollTop = 0;
 
-        _this5.handleTable(null);
+        _this4.handleTable(null);
       };
 
       return this;
@@ -464,7 +464,7 @@ var List = /*#__PURE__*/function (_Table) {
   }]);
 
   return List;
-}(_Table__WEBPACK_IMPORTED_MODULE_0__.default);
+}(_Table__WEBPACK_IMPORTED_MODULE_0__.Table);
 
 
 
@@ -807,7 +807,8 @@ var Map = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ Table
+/* harmony export */   "getPropertiesByType": () => /* binding */ getPropertiesByType,
+/* harmony export */   "Table": () => /* binding */ Table
 /* harmony export */ });
 /* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
@@ -910,7 +911,6 @@ function getPropertiesByType(type) {
 // function updateCountriesInfo(propertys) {
 //   this.tableCountriesArray.map((element) => updateOneCountryInfo(propertys, element));
 // }
-
 
 var Table = /*#__PURE__*/function () {
   function Table(covidData) {
@@ -1047,8 +1047,6 @@ var Table = /*#__PURE__*/function () {
 
   return Table;
 }();
-
-
 
 /***/ }),
 

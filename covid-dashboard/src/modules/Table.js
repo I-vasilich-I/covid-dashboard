@@ -15,7 +15,7 @@ function hideDetailButtons(buttons) {
   buttons.map((element) => element.classList.add('tabs__button-hidden'));
 }
 
-function getPropertiesByType(type) {
+export function getPropertiesByType(type) {
   const obj = {};
   if (this) obj.Country = this.targetCountry.Country;
   let title = '';
@@ -82,7 +82,7 @@ function getPropertiesByType(type) {
 //   this.tableCountriesArray.map((element) => updateOneCountryInfo(propertys, element));
 // }
 
-export default class Table {
+export class Table {
   constructor(covidData) {
     this.countries = covidData.Countries;
     this.targetCountry = null;
