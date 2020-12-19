@@ -72,18 +72,13 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
-/* harmony import */ var _modules_Table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Table */ "./src/modules/Table.js");
-/* harmony import */ var _modules_Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Map */ "./src/modules/Map.js");
-
+/* harmony import */ var _modules_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Container */ "./src/modules/Container.js");
 
 
 
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-    // const table =
-    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init(document.body).eventHandler();
-    var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
-    map.init();
+    new _modules_Container__WEBPACK_IMPORTED_MODULE_1__.default(result).init();
   });
 };
 
@@ -124,6 +119,321 @@ var TYPE_CASE = 0;
 var TYPE_DEATH = 1;
 var TYPE_RECOVERED = 2;
 var TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
+
+/***/ }),
+
+/***/ "./src/modules/Container.js":
+/*!**********************************!*\
+  !*** ./src/modules/Container.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ Container
+/* harmony export */ });
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
+/* harmony import */ var _List__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List */ "./src/modules/List.js");
+/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Map */ "./src/modules/Map.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var Container = /*#__PURE__*/function () {
+  function Container(covidData) {
+    _classCallCheck(this, Container);
+
+    this.covidData = covidData;
+    this.map = new _Map__WEBPACK_IMPORTED_MODULE_2__.default(covidData);
+    this.table = new _Table__WEBPACK_IMPORTED_MODULE_0__.default(covidData);
+    this.list = new _List__WEBPACK_IMPORTED_MODULE_1__.default(covidData);
+  }
+
+  _createClass(Container, [{
+    key: "init",
+    value: function init() {
+      this.map.init();
+      this.table.init().eventHandler(this);
+      this.list.init().eventHandler(this);
+    }
+  }]);
+
+  return Container;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/List.js":
+/*!*****************************!*\
+  !*** ./src/modules/List.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ List
+/* harmony export */ });
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
+/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var List = /*#__PURE__*/function (_Table) {
+  _inherits(List, _Table);
+
+  var _super = _createSuper(List);
+
+  function List(covidData) {
+    var _this;
+
+    _classCallCheck(this, List);
+
+    _this = _super.call(this, covidData);
+    _this.listCountriesArray = [];
+    return _this;
+  }
+
+  _createClass(List, [{
+    key: "init",
+    value: function init() {
+      var _this2 = this;
+
+      // const { body } = document;
+      var containerDiv = document.querySelector('.table2-container');
+      this.parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'div',
+        className: 'list__container',
+        parent: containerDiv
+      });
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
+      this.countries.forEach(function (country) {
+        _this2.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country));
+      });
+      this.generateSelectPanel();
+      this.parent.appendChild(_createList__WEBPACK_IMPORTED_MODULE_2__.list);
+      this.parent.appendChild(this.select);
+      return this;
+    }
+  }, {
+    key: "generateSelectPanel",
+    value: function generateSelectPanel() {
+      this.select = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'select',
+        className: 'select'
+      });
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalConfirmed']]
+      }).innerText = 'Total confirmed';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalDeaths']]
+      }).innerText = 'Total deaths';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalRecovered']]
+      }).innerText = 'Total recovered';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalConfirmedPer100K']]
+      }).innerText = 'Total confirmed per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalDeathsPer100K']]
+      }).innerText = 'Total deaths per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalRecoveredPer100K']]
+      }).innerText = 'Total recovered per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewConfirmed']]
+      }).innerText = 'New confirmed';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewDeaths']]
+      }).innerText = 'New deaths';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewRecovered']]
+      }).innerText = 'New recovered';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewConfirmedPer100K']]
+      }).innerText = 'New confirmed per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewDeathsPer100K']]
+      }).innerText = 'New deaths per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewRecoveredPer100K']]
+      }).innerText = 'New recovered per 100K';
+    }
+  }, {
+    key: "handleTable",
+    value: function handleTable(country) {
+      if (country === null) {
+        this.table.tableCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+        this.table.tabs.detailBtns.map(function (element) {
+          return element.classList.add('tabs__button-hidden');
+        });
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(this.global);
+        return this;
+      }
+
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(country, false);
+      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
+        return elem.country === country;
+      });
+      this.table.tableCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+      tableTarget.classList.add('country__container-active');
+      tableTarget.scroll(100, 100);
+      this.table.targetCountry = country;
+      this.table.tabs.tabsArray.map(function (button, idx) {
+        if (button.isDetailBtn) {
+          button.classList.remove('tabs__button-hidden');
+          button.classList.remove('tabs__button-active');
+        }
+
+        if (idx === 3) button.classList.add('tabs__button-active');
+        return button;
+      });
+      return this;
+    }
+  }, {
+    key: "handleMap",
+    value: function handleMap(country) {
+      this.map.setPointByCountry(country.Country);
+      return this;
+    }
+  }, {
+    key: "listCountriesEventHandler",
+    value: function listCountriesEventHandler() {
+      var _this3 = this;
+
+      _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.addEventListener('click', function (event) {
+        var target = event.target.closest('.country__container');
+        if (!target) return;
+        var country = target.country;
+
+        _this3.listCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+
+        target.classList.add('country__container-active');
+        _this3.targetCountry = country;
+
+        _this3.handleTable(country);
+
+        _this3.handleMap(country);
+      });
+      return this;
+    }
+  }, {
+    key: "listSelectEventHandler",
+    value: function listSelectEventHandler() {
+      var _this4 = this;
+
+      this.selectValue = this.select.value;
+
+      this.select.onclick = function () {
+        var isSameAsSelected = _this4.selectValue === _this4.select.value;
+        if (isSameAsSelected) return;
+        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.innerHTML = '';
+        _this4.selectValue = _this4.select.value;
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this4.countries, _this4.selectValue, -1);
+
+        _this4.countries.forEach(function (country) {
+          _this4.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this4.selectValue));
+        });
+
+        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.scrollTop = 0;
+
+        _this4.handleTable(null);
+      };
+
+      return this;
+    }
+  }, {
+    key: "eventHandler",
+    value: function eventHandler(blocks) {
+      this.table = blocks.table;
+      this.map = blocks.map;
+      this.listCountriesEventHandler();
+      this.listSelectEventHandler();
+      return this;
+    }
+  }]);
+
+  return List;
+}(_Table__WEBPACK_IMPORTED_MODULE_0__.default);
+
+
 
 /***/ }),
 
@@ -585,12 +895,12 @@ var Table = /*#__PURE__*/function () {
     value: function init() {
       var _this = this;
 
-      var _document = document,
-          body = _document.body;
+      // const { body } = document;
+      var containerDiv = document.querySelector('.table1-container');
       var parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
         elementName: 'div',
         className: 'table__container',
-        parent: body
+        parent: containerDiv
       });
       (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
       this.countries.forEach(function (country) {
@@ -622,6 +932,7 @@ var Table = /*#__PURE__*/function () {
       });
       (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
       this.targetCountry = null;
+      _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.scrollTop = 0;
     }
   }, {
     key: "detailButtonsHandler",
@@ -640,8 +951,9 @@ var Table = /*#__PURE__*/function () {
 
       this.tabs.addEventListener('click', function (event) {
         var button = event.target.closest('.tabs__button');
+        if (!button) return;
         var isActive = button.classList.contains('tabs__button-active');
-        if (!button || isActive) return;
+        if (isActive) return;
 
         if (button.isDetailBtn) {
           _this3.detailButtonsHandler(button);
@@ -677,12 +989,17 @@ var Table = /*#__PURE__*/function () {
           if (idx === 3) button.classList.add('tabs__button-active');
           return button;
         });
+
+        _this4.list.handleMap(country);
       });
       return this;
     }
   }, {
     key: "eventHandler",
-    value: function eventHandler() {
+    value: function eventHandler(blocks) {
+      this.table = blocks.table;
+      this.map = blocks.map;
+      this.list = blocks.list;
       this.tabsEventHandler();
       this.tableCountriesEventHandler();
       return this;
@@ -691,6 +1008,68 @@ var Table = /*#__PURE__*/function () {
 
   return Table;
 }();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/createList.js":
+/*!***********************************!*\
+  !*** ./src/modules/createList.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createListCountryContainer": () => /* binding */ createListCountryContainer,
+/* harmony export */   "list": () => /* binding */ list,
+/* harmony export */   "listCountries": () => /* binding */ listCountries
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+
+var list = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'list'
+});
+var listCountries = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'list__countries',
+  parent: list
+});
+
+function createListCountryContainer(country) {
+  var property = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'TotalConfirmed';
+  var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__container',
+    parent: listCountries
+  });
+  countryContainer.flag = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'img',
+    className: 'country__flag',
+    parent: countryContainer,
+    attributes: [['src', country.flag], ['alt', country.Country]]
+  });
+  countryContainer.cases = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__cases',
+    parent: countryContainer
+  });
+  countryContainer.countryName = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__name',
+    parent: countryContainer
+  });
+  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    parent: countryContainer.cases
+  });
+  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country[property]);
+  countryContainer.countryName.innerText = country.Country;
+  countryContainer.country = country;
+  return countryContainer;
+}
 
 
 
@@ -1020,8 +1399,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function sortByProperty(array, property) {
   var order = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
   array.sort(function (element1, element2) {
-    if (element1[property] < element2[property]) return -1 * order;
-    if (element1[property] > element2[property]) return 1 * order;
+    if (+element1[property] < +element2[property]) return -1 * order;
+    if (+element1[property] > +element2[property]) return 1 * order;
     return 0;
   });
   return array;

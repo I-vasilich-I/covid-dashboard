@@ -92,11 +92,12 @@ export default class Table {
   }
 
   init() {
-    const { body } = document;
+    // const { body } = document;
+    const containerDiv = document.querySelector('.table1-container');
     const parent = createDomElement({
       elementName: 'div',
       className: 'table__container',
-      parent: body,
+      parent: containerDiv,
     });
     sortByProperty(this.countries, 'TotalConfirmed', -1);
     this.countries.forEach((country) => {
@@ -123,6 +124,7 @@ export default class Table {
     });
     createDetailContainer(this.global);
     this.targetCountry = null;
+    tableCountries.scrollTop = 0;
   }
 
   detailButtonsHandler(button) {
@@ -137,8 +139,9 @@ export default class Table {
   tabsEventHandler() {
     this.tabs.addEventListener('click', (event) => {
       const button = event.target.closest('.tabs__button');
+      if (!button) return;
       const isActive = button.classList.contains('tabs__button-active');
-      if (!button || isActive) return;
+      if (isActive) return;
       if (button.isDetailBtn) {
         this.detailButtonsHandler(button);
       } else {
@@ -166,11 +169,15 @@ export default class Table {
         if (idx === 3) button.classList.add('tabs__button-active');
         return button;
       });
+      this.list.handleMap(country);
     });
     return this;
   }
 
-  eventHandler() {
+  eventHandler(blocks) {
+    this.table = blocks.table;
+    this.map = blocks.map;
+    this.list = blocks.list;
     this.tabsEventHandler();
     this.tableCountriesEventHandler();
     return this;

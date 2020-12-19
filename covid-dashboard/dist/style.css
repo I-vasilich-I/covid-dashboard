@@ -119,6 +119,7 @@ body {
 }
 .container .table2-container {
   width: 15vw;
+  height: 70vh;
 }
 .container .map-container {
   width: 60vw;
@@ -127,6 +128,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 25vw;
+  height: 100vh;
 }
 .container .second-container .table1-container {
   height: 60%;
@@ -211,8 +213,8 @@ body {
   position: relative;
   margin: auto;
   margin-bottom: 100px;
-  width: 400px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
   padding-top: 5px;
   display: flex;
   flex-direction: column;
@@ -225,7 +227,7 @@ body {
   position: relative;
   margin: 0 auto;
   width: 100%;
-  height: 200px;
+  height: 100%;
   padding: 5px 0;
   display: flex;
   justify-content: space-between;
@@ -372,6 +374,61 @@ body {
 
 #tab-recovered {
   margin-right: 27px;
+}
+
+.list__container {
+  position: relative;
+  margin: auto;
+  margin-bottom: 100px;
+  width: 100%;
+  height: 100%;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.list {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  background-color: #303030;
+  color: #b1b1b1;
+}
+
+.list__countries {
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
+
+.country__flag {
+  width: 30px;
+}
+
+.select {
+  padding: 5px;
+  font-size: 1.8rem;
+  width: 100%;
+  background-color: black;
+  color: #b1b1b1;
+  outline: none;
+  border: none;
+}
+.select:hover {
+  cursor: pointer;
 }
 
 .footer {
