@@ -15,11 +15,12 @@ export default class List extends Table {
   }
 
   init() {
-    const { body } = document;
+    // const { body } = document;
+    const containerDiv = document.querySelector('.table2-container');
     this.parent = createDomElement({
       elementName: 'div',
       className: 'list__container',
-      parent: body,
+      parent: containerDiv,
     });
     sortByProperty(this.countries, 'TotalConfirmed', -1);
     this.countries.forEach((country) => {
@@ -151,7 +152,7 @@ export default class List extends Table {
       target.classList.add('country__container-active');
       this.targetCountry = country;
       this.handleTable(country);
-      // this.handleMap(country);
+      this.handleMap(country);
     });
     return this;
   }

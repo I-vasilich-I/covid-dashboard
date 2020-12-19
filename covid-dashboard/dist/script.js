@@ -234,12 +234,12 @@ var List = /*#__PURE__*/function (_Table) {
     value: function init() {
       var _this2 = this;
 
-      var _document = document,
-          body = _document.body;
+      // const { body } = document;
+      var containerDiv = document.querySelector('.table2-container');
       this.parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
         elementName: 'div',
         className: 'list__container',
-        parent: body
+        parent: containerDiv
       });
       (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
       this.countries.forEach(function (country) {
@@ -388,8 +388,9 @@ var List = /*#__PURE__*/function (_Table) {
         target.classList.add('country__container-active');
         _this3.targetCountry = country;
 
-        _this3.handleTable(country); // this.handleMap(country);
+        _this3.handleTable(country);
 
+        _this3.handleMap(country);
       });
       return this;
     }
@@ -894,12 +895,12 @@ var Table = /*#__PURE__*/function () {
     value: function init() {
       var _this = this;
 
-      var _document = document,
-          body = _document.body;
+      // const { body } = document;
+      var containerDiv = document.querySelector('.table1-container');
       var parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
         elementName: 'div',
         className: 'table__container',
-        parent: body
+        parent: containerDiv
       });
       (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
       this.countries.forEach(function (country) {

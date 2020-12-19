@@ -92,11 +92,12 @@ export default class Table {
   }
 
   init() {
-    const { body } = document;
+    // const { body } = document;
+    const containerDiv = document.querySelector('.table1-container');
     const parent = createDomElement({
       elementName: 'div',
       className: 'table__container',
-      parent: body,
+      parent: containerDiv,
     });
     sortByProperty(this.countries, 'TotalConfirmed', -1);
     this.countries.forEach((country) => {
