@@ -169,11 +169,15 @@ export default class Table {
         if (idx === 3) button.classList.add('tabs__button-active');
         return button;
       });
+      this.list.handleMap(country);
     });
     return this;
   }
 
-  eventHandler() {
+  eventHandler(blocks) {
+    this.table = blocks.table;
+    this.map = blocks.map;
+    this.list = blocks.list;
     this.tabsEventHandler();
     this.tableCountriesEventHandler();
     return this;

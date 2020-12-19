@@ -989,12 +989,17 @@ var Table = /*#__PURE__*/function () {
           if (idx === 3) button.classList.add('tabs__button-active');
           return button;
         });
+
+        _this4.list.handleMap(country);
       });
       return this;
     }
   }, {
     key: "eventHandler",
-    value: function eventHandler() {
+    value: function eventHandler(blocks) {
+      this.table = blocks.table;
+      this.map = blocks.map;
+      this.list = blocks.list;
       this.tabsEventHandler();
       this.tableCountriesEventHandler();
       return this;
