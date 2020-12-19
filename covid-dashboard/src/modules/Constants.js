@@ -15,3 +15,4 @@ export const MARKER_SIZE = [25, 15, 13, 11, 9, 7, 5];
 export const TYPE_CASE = 0;
 export const TYPE_DEATH = 1;
 export const TYPE_RECOVERED = 2;
+export const TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
