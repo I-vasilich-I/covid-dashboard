@@ -326,12 +326,8 @@ body {
   outline: none;
   border: none;
 }
-.select option {
-  outline: none;
-  border: none;
-}
-.select option:hover, .select option :focus {
-  background-color: #303030;
+.select:hover {
+  cursor: pointer;
 }
 
 .footer {

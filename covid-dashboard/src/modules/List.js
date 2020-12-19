@@ -1,6 +1,12 @@
 import Table from './Table';
 import { createDomElement, sortByProperty } from './utils/helpers';
 import { createListCountryContainer, list, listCountries } from './createList';
+import {
+  // createCountryContainer,
+  createDetailContainer,
+  //  table,
+  // tableCountries,
+} from './createTable';
 
 export default class List extends Table {
   constructor(covidData) {
@@ -101,6 +107,39 @@ export default class List extends Table {
     }).innerText = 'New recovered per 100K';
   }
 
+  handleTable(country) {
+    if (country === null) {
+      this.table.tableCountriesArray.forEach((element) =>
+        element.classList.remove('country__container-active')
+      );
+      this.table.tabs.detailBtns.map((element) => element.classList.add('tabs__button-hidden'));
+      createDetailContainer(this.global);
+      return this;
+    }
+    createDetailContainer(country, false);
+    const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
+    this.table.tableCountriesArray.forEach((element) =>
+      element.classList.remove('country__container-active')
+    );
+    tableTarget.classList.add('country__container-active');
+    tableTarget.scroll(100, 100);
+    this.table.targetCountry = country;
+    this.table.tabs.tabsArray.map((button, idx) => {
+      if (button.isDetailBtn) {
+        button.classList.remove('tabs__button-hidden');
+        button.classList.remove('tabs__button-active');
+      }
+      if (idx === 3) button.classList.add('tabs__button-active');
+      return button;
+    });
+    return this;
+  }
+
+  handleMap(country) {
+    this.map.setPointByCountry(country.Country);
+    return this;
+  }
+
   listCountriesEventHandler() {
     listCountries.addEventListener('click', (event) => {
       const target = event.target.closest('.country__container');
@@ -111,6 +150,8 @@ export default class List extends Table {
       );
       target.classList.add('country__container-active');
       this.targetCountry = country;
+      this.handleTable(country);
+      // this.handleMap(country);
     });
     return this;
   }
@@ -126,11 +167,15 @@ export default class List extends Table {
       this.countries.forEach((country) => {
         this.listCountriesArray.push(createListCountryContainer(country, this.selectValue));
       });
+      listCountries.scrollTop = 0;
+      this.handleTable(null);
     };
     return this;
   }
 
-  eventHandler() {
+  eventHandler(blocks) {
+    this.table = blocks.table;
+    this.map = blocks.map;
     this.listCountriesEventHandler();
     this.listSelectEventHandler();
     return this;

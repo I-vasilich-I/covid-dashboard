@@ -48,11 +48,7 @@
   color: $color-primary-light;
   outline: none;
   border: none;
-  option {
-    outline: none;
-    border: none;
-    &:hover, :focus {
-      background-color: $color-primary;
-    }
+  &:hover {
+    cursor: pointer;
   }
 }

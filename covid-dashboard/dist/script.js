@@ -72,21 +72,13 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
-/* harmony import */ var _modules_Table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Table */ "./src/modules/Table.js");
-/* harmony import */ var _modules_Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Map */ "./src/modules/Map.js");
-/* harmony import */ var _modules_List__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/List */ "./src/modules/List.js");
-
-
+/* harmony import */ var _modules_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Container */ "./src/modules/Container.js");
 
 
 
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
-    // const table =
-    new _modules_Table__WEBPACK_IMPORTED_MODULE_1__.default(result).init().eventHandler();
-    new _modules_List__WEBPACK_IMPORTED_MODULE_3__.default(result).init().eventHandler();
-    var map = new _modules_Map__WEBPACK_IMPORTED_MODULE_2__.default(result);
-    map.init();
+    new _modules_Container__WEBPACK_IMPORTED_MODULE_1__.default(result).init();
   });
 };
 
@@ -128,6 +120,56 @@ var TYPE_RECOVERED = 2;
 
 /***/ }),
 
+/***/ "./src/modules/Container.js":
+/*!**********************************!*\
+  !*** ./src/modules/Container.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ Container
+/* harmony export */ });
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
+/* harmony import */ var _List__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List */ "./src/modules/List.js");
+/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Map */ "./src/modules/Map.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var Container = /*#__PURE__*/function () {
+  function Container(covidData) {
+    _classCallCheck(this, Container);
+
+    this.covidData = covidData;
+    this.map = new _Map__WEBPACK_IMPORTED_MODULE_2__.default(covidData);
+    this.table = new _Table__WEBPACK_IMPORTED_MODULE_0__.default(covidData);
+    this.list = new _List__WEBPACK_IMPORTED_MODULE_1__.default(covidData);
+  }
+
+  _createClass(Container, [{
+    key: "init",
+    value: function init() {
+      this.map.init();
+      this.table.init().eventHandler(this);
+      this.list.init().eventHandler(this);
+    }
+  }]);
+
+  return Container;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/modules/List.js":
 /*!*****************************!*\
   !*** ./src/modules/List.js ***!
@@ -142,6 +184,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 /* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
+/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -163,6 +206,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -285,6 +329,47 @@ var List = /*#__PURE__*/function (_Table) {
       }).innerText = 'New recovered per 100K';
     }
   }, {
+    key: "handleTable",
+    value: function handleTable(country) {
+      if (country === null) {
+        this.table.tableCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+        this.table.tabs.detailBtns.map(function (element) {
+          return element.classList.add('tabs__button-hidden');
+        });
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(this.global);
+        return this;
+      }
+
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(country, false);
+      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
+        return elem.country === country;
+      });
+      this.table.tableCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+      tableTarget.classList.add('country__container-active');
+      tableTarget.scroll(100, 100);
+      this.table.targetCountry = country;
+      this.table.tabs.tabsArray.map(function (button, idx) {
+        if (button.isDetailBtn) {
+          button.classList.remove('tabs__button-hidden');
+          button.classList.remove('tabs__button-active');
+        }
+
+        if (idx === 3) button.classList.add('tabs__button-active');
+        return button;
+      });
+      return this;
+    }
+  }, {
+    key: "handleMap",
+    value: function handleMap(country) {
+      this.map.setPointByCountry(country.Country);
+      return this;
+    }
+  }, {
     key: "listCountriesEventHandler",
     value: function listCountriesEventHandler() {
       var _this3 = this;
@@ -300,6 +385,9 @@ var List = /*#__PURE__*/function (_Table) {
 
         target.classList.add('country__container-active');
         _this3.targetCountry = country;
+
+        _this3.handleTable(country); // this.handleMap(country);
+
       });
       return this;
     }
@@ -320,13 +408,19 @@ var List = /*#__PURE__*/function (_Table) {
         _this4.countries.forEach(function (country) {
           _this4.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this4.selectValue));
         });
+
+        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.scrollTop = 0;
+
+        _this4.handleTable(null);
       };
 
       return this;
     }
   }, {
     key: "eventHandler",
-    value: function eventHandler() {
+    value: function eventHandler(blocks) {
+      this.table = blocks.table;
+      this.map = blocks.map;
       this.listCountriesEventHandler();
       this.listSelectEventHandler();
       return this;
@@ -689,6 +783,7 @@ var Table = /*#__PURE__*/function () {
       });
       (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
       this.targetCountry = null;
+      _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.scrollTop = 0;
     }
   }, {
     key: "detailButtonsHandler",
@@ -707,8 +802,9 @@ var Table = /*#__PURE__*/function () {
 
       this.tabs.addEventListener('click', function (event) {
         var button = event.target.closest('.tabs__button');
+        if (!button) return;
         var isActive = button.classList.contains('tabs__button-active');
-        if (!button || isActive) return;
+        if (isActive) return;
 
         if (button.isDetailBtn) {
           _this3.detailButtonsHandler(button);

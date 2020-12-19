@@ -123,6 +123,7 @@ export default class Table {
     });
     createDetailContainer(this.global);
     this.targetCountry = null;
+    tableCountries.scrollTop = 0;
   }
 
   detailButtonsHandler(button) {
@@ -137,8 +138,9 @@ export default class Table {
   tabsEventHandler() {
     this.tabs.addEventListener('click', (event) => {
       const button = event.target.closest('.tabs__button');
+      if (!button) return;
       const isActive = button.classList.contains('tabs__button-active');
-      if (!button || isActive) return;
+      if (isActive) return;
       if (button.isDetailBtn) {
         this.detailButtonsHandler(button);
       } else {
