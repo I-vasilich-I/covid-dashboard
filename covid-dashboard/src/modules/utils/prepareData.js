@@ -19,6 +19,11 @@ async function addAdditionalData(objData) {
       thisCountry.latlng = country.latlng;
       thisCountry.population = country.population;
       thisCountry.flag = country.flag;
+      // ZHIVE_BELARUS!
+      if (thisCountry.Country === 'Belarus') {
+        thisCountry.flag = 'assets/icons/belarus-flag.svg';
+      }
+      // ZHIVE!:)
       thisCountry.TotalDeathsPer100K = casesPer100K(
         thisCountry.TotalDeaths,
         thisCountry.population

@@ -2,22 +2,26 @@ import { Table, getPropertiesByType } from './Table';
 import { createDomElement, sortByProperty } from './utils/helpers';
 import { createListCountryContainer, list, listCountries } from './createList';
 import {
-  // createCountryContainer,
+  createCountryContainer,
   createDetailContainer,
   //  table,
-  // tableCountries,
+  tableCountries,
 } from './createTable';
 import { BUTTONS_ID } from './Constants';
 
 const {
-  // BUTTON_CONFIRMED_ID,
-  // BUTTON_DEATHS_ID,
-  // BUTTON_RECOVERED_ID,
+  BUTTON_CONFIRMED_ID,
+  BUTTON_DEATHS_ID,
+  BUTTON_RECOVERED_ID,
   BUTTON_TOTAL_ID,
   BUTTON_TOTAL100K_ID,
   BUTTON_NEW_ID,
   BUTTON_NEW100K_ID,
 } = BUTTONS_ID;
+
+function deactivateButtons(buttons) {
+  buttons.map((element) => element.classList.remove('tabs__button-active'));
+}
 export default class List extends Table {
   constructor(covidData) {
     super(covidData);
@@ -119,9 +123,9 @@ export default class List extends Table {
 
   getButtonIdBySelectedOption() {
     const option = this.select.value;
-    if (option === 'TotalConfirmed') return BUTTON_TOTAL_ID;
-    if (option === 'TotalDeaths') return BUTTON_TOTAL_ID;
-    if (option === 'TotalRecovered') return BUTTON_TOTAL_ID;
+    if (option === 'TotalConfirmed') return BUTTON_CONFIRMED_ID;
+    if (option === 'TotalDeaths') return BUTTON_DEATHS_ID;
+    if (option === 'TotalRecovered') return BUTTON_RECOVERED_ID;
     if (option === 'TotalConfirmedPer100K') return BUTTON_TOTAL100K_ID;
     if (option === 'TotalDeathsPer100K') return BUTTON_TOTAL100K_ID;
     if (option === 'TotalRecoveredPer100K') return BUTTON_TOTAL100K_ID;
@@ -143,7 +147,16 @@ export default class List extends Table {
       createDetailContainer(this.global);
       return this;
     }
-    const selectedBtnId = this.getButtonIdBySelectedOption();
+    let selectedBtnId = this.getButtonIdBySelectedOption();
+    let selectedCountyBtnId;
+    if (
+      selectedBtnId === BUTTON_CONFIRMED_ID ||
+      selectedBtnId === BUTTON_DEATHS_ID ||
+      selectedBtnId === BUTTON_RECOVERED_ID
+    ) {
+      selectedCountyBtnId = selectedBtnId;
+      selectedBtnId = BUTTON_TOTAL_ID;
+    }
     const propertys = getPropertiesByType.call(this, selectedBtnId);
     createDetailContainer(propertys.obj, false, propertys.countryTitle);
     // createDetailContainer(country, false);
@@ -163,6 +176,21 @@ export default class List extends Table {
       if (isTheButton) button.classList.add('tabs__button-active');
       return button;
     });
+    if (selectedCountyBtnId) {
+      const { countryBtns } = this.table.tabs;
+      const button = countryBtns.find((elem) => elem.id === selectedCountyBtnId);
+      const propertys1 = getPropertiesByType(button.id);
+      tableCountries.innerHTML = '';
+      tableCountries.className = `table__countries ${propertys1.className}`;
+      this.table.tableCountriesArray.length = 0;
+      this.countries.forEach((countryEl) => {
+        this.table.tableCountriesArray.push(createCountryContainer(countryEl, propertys1));
+      });
+      deactivateButtons(countryBtns);
+      const tableTarget1 = this.table.tableCountriesArray.find((elem) => elem.country === country);
+      tableTarget1.classList.add('country__container-active');
+      button.classList.add('tabs__button-active');
+    }
     return this;
   }
 
@@ -187,11 +215,18 @@ export default class List extends Table {
     this.select.onclick = () => {
       const isSameAsSelected = this.selectValue === this.select.value;
       if (isSameAsSelected) return;
+
+      // const propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
+      // tableCountries.innerHTML = '';
+      // tableCountries.className = `table__countries ${propertys.className}`;
+      // this.tableCountriesArray.length = 0;
+
       listCountries.innerHTML = '';
       this.selectValue = this.select.value;
       sortByProperty(this.countries, this.selectValue, -1);
       this.countries.forEach((country) => {
         this.listCountriesArray.push(createListCountryContainer(country, this.selectValue));
+        // this.tableCountriesArray.push(createCountryContainer(country, propertys));
       });
       listCountries.scrollTop = 0;
       this.handleTable(null);
