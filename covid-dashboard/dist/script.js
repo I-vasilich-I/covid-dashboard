@@ -107,7 +107,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MARKER_SIZE": () => /* binding */ MARKER_SIZE,
 /* harmony export */   "TYPE_CASE": () => /* binding */ TYPE_CASE,
 /* harmony export */   "TYPE_DEATH": () => /* binding */ TYPE_DEATH,
-/* harmony export */   "TYPE_RECOVERED": () => /* binding */ TYPE_RECOVERED
+/* harmony export */   "TYPE_RECOVERED": () => /* binding */ TYPE_RECOVERED,
+/* harmony export */   "TYPE_NAMES": () => /* binding */ TYPE_NAMES
 /* harmony export */ });
 /* eslint-disable import/prefer-default-export */
 
@@ -122,6 +123,7 @@ var MARKER_SIZE = [25, 15, 13, 11, 9, 7, 5];
 var TYPE_CASE = 0;
 var TYPE_DEATH = 1;
 var TYPE_RECOVERED = 2;
+var TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
 
 /***/ }),
 
@@ -147,7 +149,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /* eslint-disable no-console */
 
- // const mapboxgl = require('mapbox-gl/dist/mapbox-gl');
+
+/*
+ * Map.clickLegendButton() - show/hide legend
+ *
+ * this.setPointByCountry(countryName) - change point on map by countryName (case insensitive)
+ *
+ * changeMarkersColor(markerType) - need to call when click by buttons (or tabs) Confirmed/Deaths/Recovered
+ *                                  markerType = TYPE_CASE | TYPE_DEATH | TYPE_RECOVERED
+ *
+ * Map.getCountryNameByMarkerElement(element) - get country name when click by marker.
+ *    There is element = event.target.closest('.mapboxgl-marker');
+ *
+ */
 
 var Map = /*#__PURE__*/function () {
   function Map(covidData) {
@@ -155,13 +169,13 @@ var Map = /*#__PURE__*/function () {
 
     this.covidData = covidData;
     this.mapboxgl = mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__;
-    this.deathsMarkers = [];
+    this.markers = [];
     this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
     this.map = new this.mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/dark-v10',
       zoom: 1,
-      center: [27, 53]
+      center: [0, 0]
     });
     this.map.addControl(new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.FullscreenControl());
     this.init();
@@ -172,6 +186,7 @@ var Map = /*#__PURE__*/function () {
     value: function init() {
       this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
       document.querySelector('.map-container').addEventListener('click', Map.eventHandler.bind(this));
+      Map.createLegend(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
     }
   }, {
     key: "showMarkers",
@@ -184,19 +199,66 @@ var Map = /*#__PURE__*/function () {
 
         var markerOptions = Map.createMarker(country, markerType);
         var marker = new _this.mapboxgl.Marker(markerOptions).setLngLat([country.latlng[1], country.latlng[0]]).setPopup(popup).addTo(_this.map);
+        marker.countryName = country.Country;
 
-        _this.deathsMarkers.push(marker);
+        _this.markers.push(marker);
       });
     }
   }, {
     key: "clearMarkers",
     value: function clearMarkers() {
-      if (this.deathsMarkers.length > 0) {
-        this.deathsMarkers.forEach(function (marker) {
+      if (this.markers.length > 0) {
+        this.markers.forEach(function (marker) {
           return marker.remove();
         });
-        this.deathsMarkers = [];
+        this.markers = [];
       }
+    }
+  }, {
+    key: "setPoint",
+    value: function setPoint(lng, lat) {
+      this.map.flyTo({
+        center: [lng, lat],
+        zoom: 3,
+        speed: 1.5,
+        curve: 1,
+        easing: function easing(t) {
+          return t;
+        }
+      });
+    }
+  }, {
+    key: "setPointByCountry",
+    value: function setPointByCountry(countryName) {
+      var country = this.covidData.Countries.find(function (item) {
+        return item.Country.toLowerCase() === countryName.toLowerCase();
+      });
+
+      if (country) {
+        this.setPoint(country.latlng[1], country.latlng[0]);
+        this.showPopupByCountry(countryName);
+      } else {
+        throw new Error('Error! Can not set point on map by country name');
+      }
+    }
+  }, {
+    key: "showPopupByCountry",
+    value: function showPopupByCountry(countryName) {
+      var marker = this.markers.find(function (item) {
+        return item.countryName.toLowerCase() === countryName.toLowerCase();
+      });
+
+      if (marker) {
+        marker.togglePopup();
+      } else {
+        throw new Error('Error! Can not show popup on map by country name');
+      }
+    }
+  }, {
+    key: "changeMarkersColor",
+    value: function changeMarkersColor(markerType) {
+      this.showMarkers(markerType);
+      Map.createLegend(markerType);
     }
   }, {
     key: "createPopup",
@@ -206,24 +268,39 @@ var Map = /*#__PURE__*/function () {
   }], [{
     key: "eventHandler",
     value: function eventHandler(e) {
-      var element = e.target.closest('.map-button');
-      console.log(element);
+      var element = e.target.closest('.map-button') || e.target.closest('.mapboxgl-marker');
+
+      if (!element) {
+        return;
+      } // console.log(element);
+
 
       switch (element.id) {
         case 'map-button-cases':
           console.log('cases'); // eslint-disable-next-line no-return-assign
 
-          this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
+          this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
           break;
 
         case 'map-button-deaths':
           console.log('deaths');
-          this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH);
+          this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH);
           break;
 
         case 'map-button-recovered':
           console.log('recovered');
-          this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED);
+          this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED);
+          break;
+
+        case 'legend-button':
+          console.log('legend');
+          Map.clickLegendButton();
+          e.stopImmediatePropagation();
+          break;
+
+        case 'marker':
+          console.log(Map.getCountryNameByMarkerElement(element));
+          e.stopImmediatePropagation();
           break;
 
         default:
@@ -231,19 +308,90 @@ var Map = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "getCountryNameByMarkerElement",
+    value: function getCountryNameByMarkerElement(markerElement) {
+      return markerElement.dataset.country;
+    }
+  }, {
+    key: "clickLegendButton",
+    value: function clickLegendButton() {
+      document.querySelector('#legend').classList.toggle('show-legend');
+    }
+  }, {
     key: "createMarker",
     value: function createMarker(country, markerType) {
       var el = document.createElement('div');
       el.id = 'marker';
+      el.dataset.country = country.Country;
       var markerSize = Map.getMarkerSize(country, markerType);
       el.style.width = "".concat(markerSize, "px");
       el.style.height = "".concat(markerSize, "px");
       el.className = Map.getMarkerClassName(markerType);
       return {
         element: el,
-        // color: 'red',
         scale: 1
       };
+    }
+  }, {
+    key: "createLegend",
+    value: function createLegend(markerType) {
+      var legend = document.querySelector('.legend');
+      var legendList = legend.querySelector('.legend-list');
+      var range = Map.getRangeByMarkerType(markerType);
+
+      if (!legend || !legendList) {
+        return;
+      }
+
+      legend.dataset.legendType = markerType;
+      legendList.innerHTML = "<li class=\"legend-item\">\n      <p class=\"legend-title\">".concat(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_NAMES[markerType], "</p>\n    </li>");
+      range.forEach(function (countOfCases, index) {
+        var circleSize = _Constants__WEBPACK_IMPORTED_MODULE_1__.MARKER_SIZE[index];
+        legendList.append(Map.createLegendItem(circleSize, countOfCases));
+      });
+    }
+  }, {
+    key: "createLegendItem",
+    value: function createLegendItem(circleSize, countOfCases) {
+      var legendItem = document.createElement('li');
+      var legendCircle = document.createElement('div');
+      var legendText = document.createElement('p');
+      legendItem.classList.add('legend-item');
+      legendCircle.classList.add('legend-circle');
+      legendText.classList.add('legend-text');
+      legendCircle.style.width = "".concat(circleSize, "px");
+      legendCircle.style.height = "".concat(circleSize, "px");
+      legendText.innerHTML = "&gt; ".concat(countOfCases);
+      legendItem.append(legendCircle, legendText);
+      return legendItem; //   `<li class="legend-item">
+      //   <div class="legend-circle"></div>
+      //   <p class="legend-text">&gt; 1000 000</p>
+      // </li>`;
+    }
+  }, {
+    key: "getRangeByMarkerType",
+    value: function getRangeByMarkerType(markerType) {
+      var range = [];
+
+      switch (markerType) {
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.CASES_RANGE;
+          break;
+
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.DEATHS_RANGE;
+          break;
+
+        case _Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.RECOVERED_RANGE;
+          break;
+
+        default:
+          range = _Constants__WEBPACK_IMPORTED_MODULE_1__.CASES_RANGE;
+          break;
+      }
+
+      return range;
     }
   }, {
     key: "getMarkerSize",

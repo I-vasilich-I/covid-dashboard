@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 100%;
+  .table2-container {
+    width: 15vw;
+  }
+  .map-container {
+    width: 60vw;
+  }
+  .second-container {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+
+    .table1-container {
+      height: 60%;
+    }
+    .graph-container {
+      height: 40%;
+    }
+  }
+}

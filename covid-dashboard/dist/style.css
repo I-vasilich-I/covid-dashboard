@@ -43,6 +43,14 @@ body {
   width: 100%;
   height: 100%;
 }
+.map-container .map-relative-container {
+  position: relative;
+}
+.map-container .map-relative-container #map {
+  width: 100%;
+  height: 80vh;
+  margin: 0 auto;
+}
 .map-container .map-button-container {
   display: flex;
   flex-direction: row;
@@ -61,11 +69,6 @@ body {
   color: #cdcdcd;
   transition: all 0.3s ease-in-out;
 }
-.map-container #map {
-  width: 80rem;
-  height: 50rem;
-  margin: 0 auto;
-}
 
 #marker {
   width: 10px;
@@ -75,7 +78,7 @@ body {
 }
 
 .marker_cases {
-  color: "red";
+  color: red;
   border: 1px solid red;
   background-color: rgba(255, 0, 0, 0.4);
 }
@@ -87,9 +90,9 @@ body {
 }
 
 .marker_recovered {
-  color: blue;
-  border: 1px solid blue;
-  background-color: rgba(0, 0, 255, 0.4);
+  color: #5ed9ff;
+  border: 1px solid #5ed9ff;
+  background-color: rgba(94, 217, 255, 0.4);
 }
 
 .mapboxgl-popup {
@@ -106,6 +109,102 @@ body {
 .mapboxgl-popup .mapboxgl-popup-content .mapboxgl-popup-close-button {
   outline: none;
   color: #cdcdcd;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 100%;
+}
+.container .table2-container {
+  width: 15vw;
+}
+.container .map-container {
+  width: 60vw;
+}
+.container .second-container {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+}
+.container .second-container .table1-container {
+  height: 60%;
+}
+.container .second-container .graph-container {
+  height: 40%;
+}
+
+.legend-button {
+  position: absolute;
+  right: 5rem;
+  top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  width: 29px;
+  height: 29px;
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+}
+
+.legend {
+  position: absolute;
+  right: 1rem;
+  top: 5rem;
+  display: none;
+  flex-direction: column;
+  color: #cdcdcd;
+  max-width: 300px;
+  background-color: #2b2b2b;
+  border: 1px solid #404040;
+}
+.legend[data-legend-type="0"] .legend-circle {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.4);
+}
+.legend[data-legend-type="1"] .legend-circle {
+  color: yellow;
+  background-color: rgba(255, 255, 0, 0.4);
+}
+.legend[data-legend-type="2"] .legend-circle {
+  color: #5ed9ff;
+  background-color: rgba(94, 217, 255, 0.4);
+}
+.legend .legend-list {
+  list-style-type: none;
+}
+.legend .legend-list .legend-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 30px;
+}
+.legend .legend-list .legend-item .legend-title {
+  font-size: 1.6rem;
+  margin: 1rem auto;
+}
+.legend .legend-list .legend-item .legend-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 0.5rem 0.5rem 0.5rem 1rem;
+}
+.legend .legend-list .legend-item .legend-text {
+  padding: 0 1rem;
+  font-size: 1.4rem;
+  min-width: 10rem;
+  width: 10rem;
+}
+
+.show-legend {
+  display: flex;
 }
 
 .table__container {
@@ -151,7 +250,7 @@ body {
 }
 
 .deaths {
-  color: #ff095b;
+  color: #e60000;
 }
 
 .recovered {
@@ -178,7 +277,7 @@ body {
   cursor: pointer;
 }
 .country__container-deaths {
-  color: #ff095b;
+  color: #e60000;
 }
 .country__container-recovered {
   color: #70a800;
@@ -217,7 +316,7 @@ body {
 }
 
 .detail__deaths {
-  color: #ff095b;
+  color: #e60000;
 }
 
 .detail__recovered {
@@ -283,7 +382,6 @@ body {
   font-size: 1.8rem;
   height: 5rem;
   clear: both;
-  position: relative;
   margin-top: auto;
   margin-bottom: 1rem;
   padding-bottom: 2rem;
