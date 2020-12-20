@@ -7,6 +7,7 @@ import {
 import { createDomElement, sortByProperty } from './utils/helpers';
 import createTableTabs from './createTableTabs';
 import * as Constants from './Constants';
+import { createListCountryContainer, listCountries } from './createList';
 
 export function getPropertiesByType(type) {
   const obj = {};
@@ -83,7 +84,7 @@ export class Table {
       className: 'table__container',
       parent: containerDiv,
     });
-    sortByProperty(this.countries, Constants.TABLE_COUNTRY_STATES.TotalConfirmed, -1);
+    sortByProperty(this.countries, 'TotalConfirmed', -1);
 
     createDetailContainer(this.global);
     this.countries.forEach((country) => {
@@ -147,9 +148,14 @@ export class Table {
       sortByProperty(this.countries, propertys.property, -1);
       tableCountries.innerHTML = '';
       tableCountries.className = `table__countries ${propertys.className}`;
+      listCountries.innerHTML = '';
+      listCountries.className = `list__countries`;
+      this.list.listCountriesArray.length = 0;
       this.countries.forEach((country) => {
         this.tableCountriesArray.push(createCountryContainer(country, propertys));
+        this.list.listCountriesArray.push(createListCountryContainer(country, propertys.property));
       });
+      this.list.select.value = propertys.property;
       createDetailContainer(this.global);
       this.targetCountry = null;
       tableCountries.scrollTop = 0;
@@ -173,6 +179,7 @@ export class Table {
       target.classList.add('country__container-active');
       this.targetCountry = country;
       createDetailContainer(country, false);
+      this.list.activateListCoutnry(country);
       const { detailBtns } = this.tabs;
       this.deactivateButtons(detailBtns, 'detail__button-active');
       this.showDetailButtons();
