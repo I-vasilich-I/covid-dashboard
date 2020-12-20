@@ -6,35 +6,32 @@ import {
 } from './createTable';
 import { createDomElement, sortByProperty } from './utils/helpers';
 import createTableTabs from './createTableTabs';
+import * as Constants from './Constants';
 
-function deactivateButtons(buttons) {
-  buttons.map((element) => element.classList.remove('tabs__button-active'));
-}
-
-function hideDetailButtons(buttons) {
-  buttons.map((element) => element.classList.add('tabs__button-hidden'));
-}
-
-function getPropertiesByType(type) {
+export function getPropertiesByType(type) {
   const obj = {};
   if (this) obj.Country = this.targetCountry.Country;
   let title = '';
   let property = '';
   let className = '';
+  let typeForMap = Constants.TYPE_CASE;
   if (type === 'tab-confirmed') {
     property = 'TotalConfirmed';
     title = 'Total confirmed:';
     className = 'confirmed';
+    typeForMap = Constants.TYPE_CASE;
   }
   if (type === 'tab-deaths') {
     property = 'TotalDeaths';
     title = 'Total deaths:';
     className = 'deaths';
+    typeForMap = Constants.TYPE_DEATH;
   }
   if (type === 'tab-recovered') {
     property = 'TotalRecovered';
     title = 'Total recovered:';
     className = 'recovered';
+    typeForMap = Constants.TYPE_RECOVERED;
   }
   if (type === 'tab-total') {
     obj.TotalConfirmed = this.targetCountry.TotalConfirmed;
@@ -56,7 +53,7 @@ function getPropertiesByType(type) {
     obj.TotalConfirmed = this.targetCountry.NewConfirmed;
     obj.TotalDeaths = this.targetCountry.NewDeaths;
     obj.TotalRecovered = this.targetCountry.NewRecovered;
-    property = 'LastDay';
+    property = 'New';
     title = 'New cases:';
     className = 'confirmed';
   }
@@ -64,25 +61,13 @@ function getPropertiesByType(type) {
     obj.TotalConfirmed = this.targetCountry.NewConfirmedPer100K;
     obj.TotalDeaths = this.targetCountry.NewDeathsPer100K;
     obj.TotalRecovered = this.targetCountry.NewRecoveredPer100K;
-    property = 'LastDayPer100K';
+    property = 'NewPer100K';
     title = 'New cases per 100K:';
     className = 'confirmed';
   }
-  return { property, countryTitle: title, className, obj };
+  return { property, countryTitle: title, className, obj, typeForMap };
 }
-
-// function updateOneCountryInfo(propertys, element) {
-//   const elem = element;
-//   const amount = numberWithSpaces(elem.innerDiv.country[propertys.property]);
-//   elem.innerDiv.title.innerText = propertys.countryTitle;
-//   elem.innerDiv.amount.innerText = amount;
-// }
-
-// function updateCountriesInfo(propertys) {
-//   this.tableCountriesArray.map((element) => updateOneCountryInfo(propertys, element));
-// }
-
-export default class Table {
+export class Table {
   constructor(covidData) {
     this.countries = covidData.Countries;
     this.targetCountry = null;
@@ -92,62 +77,89 @@ export default class Table {
   }
 
   init() {
-    // const { body } = document;
     const containerDiv = document.querySelector('.table1-container');
     const parent = createDomElement({
       elementName: 'div',
       className: 'table__container',
       parent: containerDiv,
     });
-    sortByProperty(this.countries, 'TotalConfirmed', -1);
+    sortByProperty(this.countries, Constants.TABLE_COUNTRY_STATES.TotalConfirmed, -1);
+
+    createDetailContainer(this.global);
     this.countries.forEach((country) => {
       this.tableCountriesArray.push(createCountryContainer(country));
     });
-    createDetailContainer(this.global);
+
     this.tabs = createTableTabs();
+    parent.appendChild(this.tabs.tabsDetail);
     parent.appendChild(table);
-    parent.appendChild(this.tabs);
+    parent.appendChild(this.tabs.tabsCountry);
     return this;
   }
 
-  countriesButtonsHandler(button) {
-    const { countryBtns, detailBtns } = this.tabs;
-    deactivateButtons(countryBtns);
-    hideDetailButtons(detailBtns);
-    button.classList.add('tabs__button-active');
-    const propertys = getPropertiesByType(button.id);
-    sortByProperty(this.countries, propertys.property, -1);
-    tableCountries.innerHTML = '';
-    tableCountries.className = `table__countries ${propertys.className}`;
-    this.countries.forEach((country) => {
-      this.tableCountriesArray.push(createCountryContainer(country, propertys));
-    });
-    createDetailContainer(this.global);
-    this.targetCountry = null;
-    tableCountries.scrollTop = 0;
+  deactivateButtons(buttons, className) {
+    buttons.map((element) => element.classList.remove(className));
+    return this;
   }
 
-  detailButtonsHandler(button) {
+  hideDetailButtons() {
     const { detailBtns } = this.tabs;
-    deactivateButtons(detailBtns);
-    button.classList.add('tabs__button-active');
-    const propertys = getPropertiesByType.call(this, button.id);
-    createDetailContainer(propertys.obj, false, propertys.countryTitle);
-    return this;
+    this.deactivateButtons(detailBtns, 'detail__button-active');
+    detailBtns.map((element) => element.classList.add('detail__button-hidden'));
   }
 
-  tabsEventHandler() {
-    this.tabs.addEventListener('click', (event) => {
+  showDetailButtons() {
+    const { detailBtns } = this.tabs;
+    detailBtns.map((element, i) => {
+      element.classList.remove('detail__button-hidden');
+      if (!i) element.classList.add('detail__button-active');
+      return element;
+    });
+  }
+
+  tabsDetailEventHandler() {
+    this.tabs.tabsDetail.addEventListener('click', (event) => {
+      const button = event.target.closest('.detail__button');
+      if (!button) return;
+      const isActive = button.classList.contains('detail__button-active');
+      if (isActive) return;
+      const isHidden = button.classList.contains('detail__button-hidden');
+      if (isHidden) return;
+      const { detailBtns } = this.tabs;
+      this.deactivateButtons(detailBtns, 'detail__button-active');
+      button.classList.add('detail__button-active');
+      const propertys = getPropertiesByType.call(this, button.id);
+      createDetailContainer(propertys.obj, false, propertys.countryTitle);
+    });
+  }
+
+  tabsCountryEventHandler() {
+    this.tabs.tabsCountry.addEventListener('click', (event) => {
       const button = event.target.closest('.tabs__button');
       if (!button) return;
       const isActive = button.classList.contains('tabs__button-active');
       if (isActive) return;
-      if (button.isDetailBtn) {
-        this.detailButtonsHandler(button);
-      } else {
-        this.countriesButtonsHandler(button);
-      }
+      const { countryBtns } = this.tabs;
+      this.deactivateButtons(countryBtns, 'tabs__button-active');
+      this.hideDetailButtons();
+      button.classList.add('tabs__button-active');
+      const propertys = getPropertiesByType(button.id);
+      sortByProperty(this.countries, propertys.property, -1);
+      tableCountries.innerHTML = '';
+      tableCountries.className = `table__countries ${propertys.className}`;
+      this.countries.forEach((country) => {
+        this.tableCountriesArray.push(createCountryContainer(country, propertys));
+      });
+      createDetailContainer(this.global);
+      this.targetCountry = null;
+      tableCountries.scrollTop = 0;
+      this.map.changeMarkersColor(propertys.typeForMap);
     });
+  }
+
+  tabsEventHandler() {
+    this.tabsCountryEventHandler();
+    this.tabsDetailEventHandler();
   }
 
   tableCountriesEventHandler() {
@@ -161,21 +173,19 @@ export default class Table {
       target.classList.add('country__container-active');
       this.targetCountry = country;
       createDetailContainer(country, false);
-      this.tabs.tabsArray.map((button, idx) => {
-        if (button.isDetailBtn) {
-          button.classList.remove('tabs__button-hidden');
-          button.classList.remove('tabs__button-active');
-        }
-        if (idx === 3) button.classList.add('tabs__button-active');
-        return button;
-      });
-      this.list.handleMap(country);
+      const { detailBtns } = this.tabs;
+      this.deactivateButtons(detailBtns, 'detail__button-active');
+      this.showDetailButtons();
+      this.map.setPointByCountry(country.Country);
     });
     return this;
   }
 
+  static handleListFromMap() {
+    this.select.value = '';
+  }
+
   eventHandler(blocks) {
-    this.table = blocks.table;
     this.map = blocks.map;
     this.list = blocks.list;
     this.tabsEventHandler();

@@ -3,7 +3,10 @@
   flex-direction: row;
   margin: 0 auto;
   width: 100%;
+  background-color: $color-black;
+
   .table2-container {
+    padding: 10px;
     width: 15vw;
     height: 70vh;
   }

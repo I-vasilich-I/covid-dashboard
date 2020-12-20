@@ -1,76 +1,98 @@
 import { createDomElement } from './utils/helpers';
+import { BUTTONS_ID } from './Constants';
+
+const {
+  BUTTON_CONFIRMED_ID,
+  BUTTON_DEATHS_ID,
+  BUTTON_RECOVERED_ID,
+  BUTTON_TOTAL_ID,
+  BUTTON_TOTAL100K_ID,
+  BUTTON_NEW_ID,
+  BUTTON_NEW100K_ID,
+} = BUTTONS_ID;
 
 export default function createTableTabs() {
-  const tabs = createDomElement({ elementName: 'div', className: 'tabs__container' });
-  tabs.buttonConfirmed = createDomElement({
+  const tabsDetail = createDomElement({
+    elementName: 'div',
+    className: 'tabs__container',
+  });
+  const tabsCountry = createDomElement({
+    elementName: 'div',
+    className: 'tabs__container',
+  });
+  const tabs = {
+    tabsDetail,
+    tabsCountry,
+  };
+  const buttonConfirmed = createDomElement({
     elementName: 'button',
     className: 'tabs__button tabs__button-active',
-    parent: tabs,
-    attributes: [['id', 'tab-confirmed']],
+    parent: tabsCountry,
+    attributes: [['id', BUTTON_CONFIRMED_ID]],
   });
 
-  tabs.buttonDeaths = createDomElement({
+  const buttonDeaths = createDomElement({
     elementName: 'button',
     className: 'tabs__button',
-    parent: tabs,
-    attributes: [['id', 'tab-deaths']],
+    parent: tabsCountry,
+    attributes: [['id', BUTTON_DEATHS_ID]],
   });
-  tabs.buttonRecovered = createDomElement({
+  const buttonRecovered = createDomElement({
     elementName: 'button',
     className: 'tabs__button',
-    parent: tabs,
-    attributes: [['id', 'tab-recovered']],
+    parent: tabsCountry,
+    attributes: [['id', BUTTON_RECOVERED_ID]],
   });
-  tabs.buttonTotal = createDomElement({
+  const buttonTotal = createDomElement({
     elementName: 'button',
-    className: 'tabs__button tabs__button-hidden',
-    parent: tabs,
-    attributes: [['id', 'tab-total']],
+    className: 'detail__button detail__button-hidden detail__button-active',
+    parent: tabsDetail,
+    attributes: [['id', BUTTON_TOTAL_ID]],
   });
-  tabs.buttonTotal100K = createDomElement({
+  const buttonTotal100K = createDomElement({
     elementName: 'button',
-    className: 'tabs__button tabs__button-hidden',
-    parent: tabs,
-    attributes: [['id', 'tab-total100K']],
+    className: 'detail__button detail__button-hidden',
+    parent: tabsDetail,
+    attributes: [['id', BUTTON_TOTAL100K_ID]],
   });
-  tabs.buttonNew = createDomElement({
+  const buttonNew = createDomElement({
     elementName: 'button',
-    className: 'tabs__button tabs__button-hidden',
-    parent: tabs,
-    attributes: [['id', 'tab-new']],
+    className: 'detail__button detail__button-hidden',
+    parent: tabsDetail,
+    attributes: [['id', BUTTON_NEW_ID]],
   });
-  tabs.buttonNew100K = createDomElement({
+  const buttonNew100K = createDomElement({
     elementName: 'button',
-    className: 'tabs__button tabs__button-hidden',
-    parent: tabs,
-    attributes: [['id', 'tab-new100K']],
+    className: 'detail__button detail__button-hidden',
+    parent: tabsDetail,
+    attributes: [['id', BUTTON_NEW100K_ID]],
   });
 
-  tabs.buttonConfirmed.innerText = 'Confirmed';
-  tabs.buttonDeaths.innerText = 'Deaths';
-  tabs.buttonRecovered.innerText = 'Recovered';
-  tabs.buttonTotal.innerText = 'Total';
-  tabs.buttonTotal100K.innerText = 'T100K';
-  tabs.buttonNew.innerText = 'New';
-  tabs.buttonNew100K.innerText = 'N100K';
+  buttonConfirmed.innerText = 'Confirmed';
+  buttonDeaths.innerText = 'Deaths';
+  buttonRecovered.innerText = 'Recovered';
+  buttonTotal.innerText = 'Total';
+  buttonTotal100K.innerText = 'T100K';
+  buttonNew.innerText = 'New';
+  buttonNew100K.innerText = 'N100K';
 
   tabs.tabsArray = [
-    tabs.buttonConfirmed,
-    tabs.buttonDeaths,
-    tabs.buttonRecovered,
-    tabs.buttonTotal,
-    tabs.buttonTotal100K,
-    tabs.buttonNew,
-    tabs.buttonNew100K,
+    buttonConfirmed,
+    buttonDeaths,
+    buttonRecovered,
+    buttonTotal,
+    buttonTotal100K,
+    buttonNew,
+    buttonNew100K,
   ];
-  tabs.countryBtns = [tabs.buttonConfirmed, tabs.buttonDeaths, tabs.buttonRecovered];
-  tabs.detailBtns = [tabs.buttonTotal, tabs.buttonTotal100K, tabs.buttonNew, tabs.buttonNew100K];
+  tabs.countryBtns = [buttonConfirmed, buttonDeaths, buttonRecovered];
+  tabs.detailBtns = [buttonTotal, buttonTotal100K, buttonNew, buttonNew100K];
   tabs.tabsArray.map((elem) => {
     const btn = elem;
     btn.isDetailBtn = !(
-      elem.id === 'tab-confirmed' ||
-      elem.id === 'tab-deaths' ||
-      elem.id === 'tab-recovered'
+      elem.id === BUTTON_CONFIRMED_ID ||
+      elem.id === BUTTON_DEATHS_ID ||
+      elem.id === BUTTON_RECOVERED_ID
     );
     return btn;
   });
