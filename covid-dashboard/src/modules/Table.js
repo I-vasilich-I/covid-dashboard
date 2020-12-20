@@ -8,12 +8,8 @@ import { createDomElement, sortByProperty } from './utils/helpers';
 import createTableTabs from './createTableTabs';
 import * as Constants from './Constants';
 
-function deactivateButtons(buttons) {
-  buttons.map((element) => element.classList.remove('tabs__button-active'));
-}
-
 function hideDetailButtons(buttons) {
-  buttons.map((element) => element.classList.add('tabs__button-hidden'));
+  buttons.map((element) => element.classList.add('detail__button-hidden'));
 }
 
 export function getPropertiesByType(type) {
@@ -71,18 +67,6 @@ export function getPropertiesByType(type) {
   }
   return { property, countryTitle: title, className, obj };
 }
-
-// function updateOneCountryInfo(propertys, element) {
-//   const elem = element;
-//   const amount = numberWithSpaces(elem.innerDiv.country[propertys.property]);
-//   elem.innerDiv.title.innerText = propertys.countryTitle;
-//   elem.innerDiv.amount.innerText = amount;
-// }
-
-// function updateCountriesInfo(propertys) {
-//   this.tableCountriesArray.map((element) => updateOneCountryInfo(propertys, element));
-// }
-
 export class Table {
   constructor(covidData) {
     this.countries = covidData.Countries;
@@ -99,55 +83,95 @@ export class Table {
       className: 'table__container',
       parent: containerDiv,
     });
-    sortByProperty(this.countries, 'TotalConfirmed', -1);
+    sortByProperty(this.countries, Constants.TABLE_COUNTRY_STATES.TotalConfirmed, -1);
+
+    createDetailContainer(this.global);
     this.countries.forEach((country) => {
       this.tableCountriesArray.push(createCountryContainer(country));
     });
-    createDetailContainer(this.global);
+
     this.tabs = createTableTabs();
+    parent.appendChild(this.tabs.tabsDetail);
     parent.appendChild(table);
-    parent.appendChild(this.tabs);
+    parent.appendChild(this.tabs.tabsCountry);
     return this;
   }
 
-  countriesButtonsHandler(button) {
-    const { countryBtns, detailBtns } = this.tabs;
-    deactivateButtons(countryBtns);
-    hideDetailButtons(detailBtns);
-    button.classList.add('tabs__button-active');
-    const propertys = getPropertiesByType(button.id);
-    sortByProperty(this.countries, propertys.property, -1);
-    tableCountries.innerHTML = '';
-    tableCountries.className = `table__countries ${propertys.className}`;
-    this.countries.forEach((country) => {
-      this.tableCountriesArray.push(createCountryContainer(country, propertys));
+  deactivateButtons(buttons, className) {
+    buttons.map((element) => element.classList.remove(className));
+    return this;
+  }
+
+  // countriesButtonsHandler(button) {
+  //   const { countryBtns, detailBtns } = this.tabs;
+  //   this.deactivateButtons(countryBtns);
+  //   hideDetailButtons(detailBtns);
+  //   button.classList.add('tabs__button-active');
+  //   const propertys = getPropertiesByType(button.id);
+  //   sortByProperty(this.countries, propertys.property, -1);
+  //   tableCountries.innerHTML = '';
+  //   tableCountries.className = `table__countries ${propertys.className}`;
+  //   this.countries.forEach((country) => {
+  //     this.tableCountriesArray.push(createCountryContainer(country, propertys));
+  //   });
+  //   createDetailContainer(this.global);
+  //   this.targetCountry = null;
+  //   tableCountries.scrollTop = 0;
+  // }
+
+  // detailButtonsHandler(button) {
+  //   const { detailBtns } = this.tabs;
+  //   this.deactivateButtons(detailBtns);
+  //   button.classList.add('tabs__button-active');
+  //   const propertys = getPropertiesByType.call(this, button.id);
+  //   createDetailContainer(propertys.obj, false, propertys.countryTitle);
+  //   return this;
+  // }
+
+  tabsDetailEventHandler() {
+    this.tabs.tabsDetail.addEventListener('click', (event) => {
+      const button = event.target.closest('.detail__button');
+      if (!button) return;
+      const isActive = button.classList.contains('detail__button-active');
+      if (isActive) return;
+      const isHidden = button.classList.contains('detail__button-hidden');
+      if (isHidden) return;
+      // this.detailButtonsHandler(button);
+      const { detailBtns } = this.tabs;
+      this.deactivateButtons(detailBtns, 'detail__button-active');
+      button.classList.add('detail__button-active');
+      const propertys = getPropertiesByType.call(this, button.id);
+      createDetailContainer(propertys.obj, false, propertys.countryTitle);
     });
-    createDetailContainer(this.global);
-    this.targetCountry = null;
-    tableCountries.scrollTop = 0;
   }
 
-  detailButtonsHandler(button) {
-    const { detailBtns } = this.tabs;
-    deactivateButtons(detailBtns);
-    button.classList.add('tabs__button-active');
-    const propertys = getPropertiesByType.call(this, button.id);
-    createDetailContainer(propertys.obj, false, propertys.countryTitle);
-    return this;
-  }
-
-  tabsEventHandler() {
-    this.tabs.addEventListener('click', (event) => {
+  tabsCountryEventHandler() {
+    this.tabs.tabsCountry.addEventListener('click', (event) => {
       const button = event.target.closest('.tabs__button');
       if (!button) return;
       const isActive = button.classList.contains('tabs__button-active');
       if (isActive) return;
-      if (button.isDetailBtn) {
-        this.detailButtonsHandler(button);
-      } else {
-        this.countriesButtonsHandler(button);
-      }
+      // this.countriesButtonsHandler(button);
+      const { countryBtns, detailBtns } = this.tabs;
+      this.deactivateButtons(countryBtns, 'tabs__button-active');
+      hideDetailButtons(detailBtns);
+      button.classList.add('tabs__button-active');
+      const propertys = getPropertiesByType(button.id);
+      sortByProperty(this.countries, propertys.property, -1);
+      tableCountries.innerHTML = '';
+      tableCountries.className = `table__countries ${propertys.className}`;
+      this.countries.forEach((country) => {
+        this.tableCountriesArray.push(createCountryContainer(country, propertys));
+      });
+      createDetailContainer(this.global);
+      this.targetCountry = null;
+      tableCountries.scrollTop = 0;
     });
+  }
+
+  tabsEventHandler() {
+    this.tabsCountryEventHandler();
+    this.tabsDetailEventHandler();
   }
 
   tableCountriesEventHandler() {
@@ -163,10 +187,10 @@ export class Table {
       createDetailContainer(country, false);
       this.tabs.tabsArray.map((button, idx) => {
         if (button.isDetailBtn) {
-          button.classList.remove('tabs__button-hidden');
-          button.classList.remove('tabs__button-active');
+          button.classList.remove('detail__button-hidden');
+          button.classList.remove('detail__button-active');
         }
-        if (idx === 3) button.classList.add('tabs__button-active');
+        if (idx === 3) button.classList.add('detail__button-active');
         return button;
       });
       this.handleMap(country);
@@ -185,7 +209,7 @@ export class Table {
   }
 
   eventHandler(blocks) {
-    this.table = blocks.table;
+    // this.table = blocks.table;
     this.map = blocks.map;
     this.list = blocks.list;
     this.tabsEventHandler();

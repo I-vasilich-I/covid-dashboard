@@ -17,12 +17,122 @@ export const TYPE_DEATH = 1;
 export const TYPE_RECOVERED = 2;
 export const TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
 
+const BUTTON_CONFIRMED_ID = 'tab-confirmed';
+const BUTTON_DEATHS_ID = 'tab-deaths';
+const BUTTON_RECOVERED_ID = 'tab-recovered';
+const BUTTON_TOTAL_ID = 'tab-total';
+const BUTTON_TOTAL100K_ID = 'tab-total100K';
+const BUTTON_NEW_ID = 'tab-new';
+const BUTTON_NEW100K_ID = 'tab-new100K';
+
 export const BUTTONS_ID = {
-  BUTTON_CONFIRMED_ID: 'tab-confirmed',
-  BUTTON_DEATHS_ID: 'tab-deaths',
-  BUTTON_RECOVERED_ID: 'tab-recovered',
-  BUTTON_TOTAL_ID: 'tab-total',
-  BUTTON_TOTAL100K_ID: 'tab-total100K',
-  BUTTON_NEW_ID: 'tab-new',
-  BUTTON_NEW100K_ID: 'tab-new100K',
+  BUTTON_CONFIRMED_ID,
+  BUTTON_DEATHS_ID,
+  BUTTON_RECOVERED_ID,
+  BUTTON_TOTAL_ID,
+  BUTTON_TOTAL100K_ID,
+  BUTTON_NEW_ID,
+  BUTTON_NEW100K_ID,
+};
+
+export const TABLE_COUNTRY_STATES = {
+  TotalConfirmed: {
+    title: 'TotalConfirmed',
+    buttonId: BUTTON_CONFIRMED_ID,
+  },
+  TotalDeaths: {
+    title: 'TotalDeaths',
+    buttonId: BUTTON_DEATHS_ID,
+  },
+  TotalRecovered: {
+    title: 'TotalRecovered',
+    buttonId: BUTTON_RECOVERED_ID,
+  },
+};
+
+export const TABLE_DETAIL_STATES = {
+  Total: {
+    title: 'Total',
+    buttonId: BUTTON_TOTAL_ID,
+  },
+  TotalPer100K: {
+    title: 'TotalPer100K',
+    buttonId: BUTTON_TOTAL100K_ID,
+  },
+  New: {
+    title: 'New',
+    buttonId: BUTTON_NEW_ID,
+  },
+  NewPer100K: {
+    title: 'NewPer100K',
+    buttonId: BUTTON_NEW100K_ID,
+  },
+};
+
+export const TABLE_STATES = {
+  TABLE_COUNTRY_STATES,
+  TABLE_DETAIL_STATES,
+};
+
+export const LIST_STATES = {
+  TotalConfirmed: {
+    inList: 'TotalConfirmed',
+    inDetailTable: TABLE_DETAIL_STATES.Total,
+    inCountryTable: TABLE_COUNTRY_STATES.TotalConfirmed,
+  },
+  TotalDeaths: {
+    inList: 'TotalDeaths',
+    inTable: TABLE_DETAIL_STATES.Total,
+    inCountryTable: TABLE_COUNTRY_STATES.TotalDeaths,
+  },
+  TotalRecovered: {
+    inList: 'TotalRecovered',
+    inTable: TABLE_DETAIL_STATES.Total,
+    inCountryTable: TABLE_COUNTRY_STATES.TotalRecovered,
+  },
+  TotalConfirmedPer100K: {
+    inList: 'TotalConfirmedPer100K',
+    inTable: TABLE_DETAIL_STATES.TotalPer100K,
+    inCountryTable: false,
+  },
+  TotalDeathsPer100K: {
+    inList: 'TotalDeathsPer100K',
+    inTable: TABLE_DETAIL_STATES.TotalPer100K,
+    inCountryTable: false,
+  },
+  TotalRecoveredPer100K: {
+    inList: 'TotalRecoveredPer100K',
+    inTable: TABLE_DETAIL_STATES.TotalPer100K,
+    inCountryTable: false,
+  },
+  NewConfirmed: {
+    inList: 'NewConfirmed',
+    inTable: TABLE_DETAIL_STATES.New,
+    inCountryTable: false,
+  },
+  NewDeaths: {
+    inList: 'NewDeaths',
+    inTable: TABLE_DETAIL_STATES.New,
+    inCountryTable: false,
+  },
+  NewRecovered: {
+    inList: 'NewRecovered',
+    inTable: TABLE_DETAIL_STATES.New,
+    inCountryTable: false,
+  },
+  NewConfirmedPer100K: {
+    inList: 'NewConfirmedPer100K',
+    inTable: TABLE_DETAIL_STATES.NewPer100K,
+    inCountryTable: false,
+  },
+  NewDeathsPer100K: {
+    inList: 'NewDeathsPer100K',
+    inTable: TABLE_DETAIL_STATES.NewPer100K,
+    inCountryTable: false,
+  },
+  NewRecoveredPer100K: {
+    inList: 'NewRecoveredPer100K',
+    inTable: TABLE_DETAIL_STATES.NewPer100K,
+    inCountryTable: false,
+  },
 };

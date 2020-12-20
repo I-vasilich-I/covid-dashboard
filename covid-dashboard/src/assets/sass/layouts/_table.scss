@@ -16,10 +16,11 @@
 .table {
   position: relative;
   margin: 0 auto;
-  width: 100%;
+  width: 95%;
   height: 100%;
   padding: 5px 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   font-size: 1.6rem;
@@ -29,11 +30,11 @@
 
 .table__countries {
   padding: 5px;
-  height: 95%;
-  width: 55%;
+  // height: 80%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   overflow-y: scroll;
 }
 
@@ -53,11 +54,11 @@
   font-size: 1.6rem;
   font-weight: bold;
   padding-left: 15px;
-  height: 100%;
-  width: 45%;
+  // height: 15%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
@@ -91,11 +92,12 @@
 .detail__container {
   font-size: 1.6rem;
   font-weight: bold;
-  width: 100%;
+  width: 95%;
   padding: 5px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  // flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
   div {
     font-size: 1.6rem;
@@ -104,14 +106,17 @@
 }
 
 .detail__confirmed {
+  padding: 5px;
   color: $color-primary-light;
 }
 
 .detail__deaths {
+  padding: 5px;
   color: $color-deaths;
 }
 
 .detail__recovered {
+  padding: 5px;
   color: $color-recovered;
 }
 
@@ -135,7 +140,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  width: 95%;
   height: 25px;
   font-size: 1.4rem;
 }
@@ -157,11 +162,32 @@
     background-color: $color-primary;
     border-bottom: 3px solid $color-button-border;
   }
+}
+
+.detail__button {
+  width: auto;
+  border: none;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  padding: 5px;
+  white-space: normal;
+  background-color: $color-black;
+  color: $color-primary-light;
+  &-active {
+    background-color: $color-primary;
+    border-top: 3px solid $color-button-border;
+  }
   &-hidden {
-    display: none;
+    // display: none;
+    opacity: 0;
+    cursor: unset;
   }
 }
 
 #tab-recovered {
-  margin-right: 27px;
+  // margin-right: 27px;
 }

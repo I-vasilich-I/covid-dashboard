@@ -4,14 +4,14 @@ const table = createDomElement({
   elementName: 'div',
   className: 'table',
 });
-const tableCountries = createDomElement({
-  elementName: 'div',
-  className: 'table__countries',
-  parent: table,
-});
 const tableDetails = createDomElement({
   elementName: 'div',
   className: 'table__details',
+  parent: table,
+});
+const tableCountries = createDomElement({
+  elementName: 'div',
+  className: 'table__countries',
   parent: table,
 });
 
@@ -50,7 +50,7 @@ function createCountryContainer(country, propertys = {}) {
   return countryContainer;
 }
 
-function createDetailContainer(obj, global = true, detailTitle = 'Total cases:') {
+function createDetailContainer(obj, global = true) {
   tableDetails.innerHTML = '';
   tableDetails.innerText = obj.Country;
   if (global) tableDetails.innerText = 'Global cases:';
@@ -59,7 +59,6 @@ function createDetailContainer(obj, global = true, detailTitle = 'Total cases:')
     className: 'detail__container',
     parent: tableDetails,
   });
-  detailContainer.innerText = detailTitle;
 
   // detail container
   detailContainer.detailConfirmed = createDomElement({

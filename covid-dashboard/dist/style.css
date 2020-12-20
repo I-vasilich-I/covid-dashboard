@@ -227,10 +227,11 @@ body {
 .table {
   position: relative;
   margin: 0 auto;
-  width: 100%;
+  width: 95%;
   height: 100%;
   padding: 5px 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   font-size: 1.6rem;
@@ -240,11 +241,10 @@ body {
 
 .table__countries {
   padding: 5px;
-  height: 95%;
-  width: 55%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   overflow-y: scroll;
 }
 
@@ -264,11 +264,10 @@ body {
   font-size: 1.6rem;
   font-weight: bold;
   padding-left: 15px;
-  height: 100%;
-  width: 45%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
@@ -302,11 +301,11 @@ body {
 .detail__container {
   font-size: 1.6rem;
   font-weight: bold;
-  width: 100%;
+  width: 95%;
   padding: 5px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: flex-start;
 }
 .detail__container div {
@@ -315,14 +314,17 @@ body {
 }
 
 .detail__confirmed {
+  padding: 5px;
   color: #b1b1b1;
 }
 
 .detail__deaths {
+  padding: 5px;
   color: #e60000;
 }
 
 .detail__recovered {
+  padding: 5px;
   color: #70a800;
 }
 
@@ -346,7 +348,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  width: 95%;
   height: 25px;
   font-size: 1.4rem;
 }
@@ -369,12 +371,28 @@ body {
   background-color: #303030;
   border-bottom: 3px solid #02ffff;
 }
-.tabs__button-hidden {
-  display: none;
-}
 
-#tab-recovered {
-  margin-right: 27px;
+.detail__button {
+  width: auto;
+  border: none;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  padding: 5px;
+  white-space: normal;
+  background-color: black;
+  color: #b1b1b1;
+}
+.detail__button-active {
+  background-color: #303030;
+  border-top: 3px solid #02ffff;
+}
+.detail__button-hidden {
+  opacity: 0;
+  cursor: unset;
 }
 
 .list__container {
