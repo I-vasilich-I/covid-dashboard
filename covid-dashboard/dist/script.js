@@ -180,62 +180,86 @@ var LIST_STATES = {
   TotalConfirmed: {
     inList: 'TotalConfirmed',
     inDetailTable: TABLE_DETAIL_STATES.Total,
-    inCountryTable: TABLE_COUNTRY_STATES.TotalConfirmed
+    inCountryTable: TABLE_COUNTRY_STATES.TotalConfirmed,
+    buttonId: BUTTON_CONFIRMED_ID,
+    mapType: TYPE_CASE
   },
   TotalDeaths: {
     inList: 'TotalDeaths',
     inTable: TABLE_DETAIL_STATES.Total,
-    inCountryTable: TABLE_COUNTRY_STATES.TotalDeaths
+    inCountryTable: TABLE_COUNTRY_STATES.TotalDeaths,
+    buttonId: BUTTON_DEATHS_ID,
+    mapType: TYPE_DEATH
   },
   TotalRecovered: {
     inList: 'TotalRecovered',
     inTable: TABLE_DETAIL_STATES.Total,
-    inCountryTable: TABLE_COUNTRY_STATES.TotalRecovered
+    inCountryTable: TABLE_COUNTRY_STATES.TotalRecovered,
+    buttonId: BUTTON_RECOVERED_ID,
+    mapType: TYPE_RECOVERED
   },
   TotalConfirmedPer100K: {
     inList: 'TotalConfirmedPer100K',
     inTable: TABLE_DETAIL_STATES.TotalPer100K,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_TOTAL100K_ID,
+    mapType: TYPE_CASE
   },
   TotalDeathsPer100K: {
     inList: 'TotalDeathsPer100K',
     inTable: TABLE_DETAIL_STATES.TotalPer100K,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_TOTAL100K_ID,
+    mapType: TYPE_DEATH
   },
   TotalRecoveredPer100K: {
     inList: 'TotalRecoveredPer100K',
     inTable: TABLE_DETAIL_STATES.TotalPer100K,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_TOTAL100K_ID,
+    mapType: TYPE_RECOVERED
   },
   NewConfirmed: {
     inList: 'NewConfirmed',
     inTable: TABLE_DETAIL_STATES.New,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_NEW_ID,
+    mapType: TYPE_CASE
   },
   NewDeaths: {
     inList: 'NewDeaths',
     inTable: TABLE_DETAIL_STATES.New,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_NEW_ID,
+    mapType: TYPE_DEATH
   },
   NewRecovered: {
     inList: 'NewRecovered',
     inTable: TABLE_DETAIL_STATES.New,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_NEW_ID,
+    mapType: TYPE_RECOVERED
   },
   NewConfirmedPer100K: {
     inList: 'NewConfirmedPer100K',
     inTable: TABLE_DETAIL_STATES.NewPer100K,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_NEW100K_ID,
+    mapType: TYPE_CASE
   },
   NewDeathsPer100K: {
     inList: 'NewDeathsPer100K',
     inTable: TABLE_DETAIL_STATES.NewPer100K,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_NEW100K_ID,
+    mapType: TYPE_DEATH
   },
   NewRecoveredPer100K: {
     inList: 'NewRecoveredPer100K',
     inTable: TABLE_DETAIL_STATES.NewPer100K,
-    inCountryTable: false
+    inCountryTable: false,
+    buttonId: BUTTON_NEW100K_ID,
+    mapType: TYPE_RECOVERED
   }
 };
 
@@ -321,10 +345,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var BUTTON_CONFIRMED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_CONFIRMED_ID,
     BUTTON_DEATHS_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_DEATHS_ID,
     BUTTON_RECOVERED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_RECOVERED_ID,
-    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL_ID,
-    BUTTON_TOTAL100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL100K_ID,
-    BUTTON_NEW_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW_ID,
-    BUTTON_NEW100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW100K_ID;
+    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL_ID;
 
 var List = /*#__PURE__*/function () {
   function List(covidData) {
@@ -441,19 +462,9 @@ var List = /*#__PURE__*/function () {
     key: "getButtonIdBySelectedOption",
     value: function getButtonIdBySelectedOption() {
       var option = this.select.value;
-      if (option === 'TotalConfirmed') return BUTTON_CONFIRMED_ID;
-      if (option === 'TotalDeaths') return BUTTON_DEATHS_ID;
-      if (option === 'TotalRecovered') return BUTTON_RECOVERED_ID;
-      if (option === 'TotalConfirmedPer100K') return BUTTON_TOTAL100K_ID;
-      if (option === 'TotalDeathsPer100K') return BUTTON_TOTAL100K_ID;
-      if (option === 'TotalRecoveredPer100K') return BUTTON_TOTAL100K_ID;
-      if (option === 'NewConfirmed') return BUTTON_NEW_ID;
-      if (option === 'NewDeaths') return BUTTON_NEW_ID;
-      if (option === 'NewRecovered') return BUTTON_NEW_ID;
-      if (option === 'NewConfirmedPer100K') return BUTTON_NEW100K_ID;
-      if (option === 'NewDeathsPer100K') return BUTTON_NEW100K_ID;
-      if (option === 'NewRecoveredPer100K') return BUTTON_NEW100K_ID;
-      return this;
+      return Object.values(_Constants__WEBPACK_IMPORTED_MODULE_4__.LIST_STATES).find(function (elem) {
+        return elem.inList === option;
+      }).buttonId;
     }
   }, {
     key: "handleTableFromMap",
@@ -504,17 +515,8 @@ var List = /*#__PURE__*/function () {
       }
 
       var propertys = _Table__WEBPACK_IMPORTED_MODULE_0__.getPropertiesByType.call(this, selectedBtnId);
-      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(propertys.obj, false, propertys.countryTitle); // createDetailContainer(country, false);
-
-      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
-        return elem.country === country;
-      });
-      this.table.tableCountriesArray.forEach(function (element) {
-        return element.classList.remove('country__container-active');
-      });
-      tableTarget.classList.add('country__container-active');
-      tableTarget.scroll(100, 100); // DOESN'T WORK!
-
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(propertys.obj, false, propertys.countryTitle);
+      this.activateTableCoutnry(country);
       this.table.targetCountry = country;
       this.table.tabs.tabsArray.map(function (button) {
         if (button.isDetailBtn) {
@@ -550,6 +552,36 @@ var List = /*#__PURE__*/function () {
       return this;
     }
   }, {
+    key: "activateListCoutnry",
+    value: function activateListCoutnry(country) {
+      var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var listTarget = target;
+      this.listCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+
+      if (target === null) {
+        listTarget = this.listCountriesArray.find(function (elem) {
+          return elem.country === country;
+        });
+      }
+
+      listTarget.classList.add('country__container-active');
+      this.targetCountry = country;
+    }
+  }, {
+    key: "activateTableCoutnry",
+    value: function activateTableCoutnry(country) {
+      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
+        return elem.country === country;
+      });
+      this.table.tableCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+      tableTarget.classList.add('country__container-active');
+      tableTarget.scroll(100, 100); // DOESN'T WORK!
+    }
+  }, {
     key: "listCountriesEventHandler",
     value: function listCountriesEventHandler() {
       var _this3 = this;
@@ -559,14 +591,11 @@ var List = /*#__PURE__*/function () {
         if (!target) return;
         var country = target.country;
 
-        _this3.listCountriesArray.forEach(function (element) {
-          return element.classList.remove('country__container-active');
-        });
-
-        target.classList.add('country__container-active');
-        _this3.targetCountry = country;
+        _this3.activateListCoutnry(country, target);
 
         _this3.handleTable(country);
+
+        _this3.map.setPointByCountry(country.Country);
       });
       return this;
     }
@@ -586,6 +615,14 @@ var List = /*#__PURE__*/function () {
 
         _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.innerHTML = '';
         _this4.selectValue = _this4.select.value;
+
+        var _Object$values$find = Object.values(_Constants__WEBPACK_IMPORTED_MODULE_4__.LIST_STATES).find(function (elem) {
+          return elem.inList === _this4.selectValue;
+        }),
+            mapType = _Object$values$find.mapType;
+
+        _this4.map.changeMarkersColor(mapType);
+
         (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this4.countries, _this4.selectValue, -1);
 
         _this4.countries.forEach(function (country) {
@@ -662,20 +699,29 @@ var Map = /*#__PURE__*/function () {
     this.mapboxgl = mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__;
     this.markers = [];
     this.popups = [];
-    this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
-    this.map = new this.mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v10',
-      zoom: 1,
-      center: [0, 0]
-    });
-    this.map.addControl(new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.FullscreenControl());
-    this.init();
   }
 
   _createClass(Map, [{
     key: "init",
     value: function init() {
+      this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
+      this.map = new this.mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        zoom: 1,
+        minZoom: 1,
+        center: [0, 0]
+      });
+      var nav = new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.NavigationControl({
+        visualizePitch: true
+      });
+      var scale = new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.ScaleControl({
+        maxWidth: 80,
+        unit: 'metric'
+      });
+      this.map.addControl(new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.FullscreenControl());
+      this.map.addControl(nav, 'top-left');
+      this.map.addControl(scale);
       this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
       document.querySelector('.map-container').addEventListener('click', this.mapEventHandler.bind(this));
       Map.createLegend(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
@@ -825,7 +871,8 @@ var Map = /*#__PURE__*/function () {
   }, {
     key: "handleTable",
     value: function handleTable(country) {
-      this.list.handleTableFromMap(country);
+      this.list.activateListCoutnry(country);
+      this.list.activateTableCoutnry(country);
     }
   }, {
     key: "eventHandler",
@@ -995,11 +1042,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
 /* harmony import */ var _createTableTabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createTableTabs */ "./src/modules/createTableTabs.js");
 /* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
+/* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -1100,7 +1149,7 @@ var Table = /*#__PURE__*/function () {
         className: 'table__container',
         parent: containerDiv
       });
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, _Constants__WEBPACK_IMPORTED_MODULE_3__.TABLE_COUNTRY_STATES.TotalConfirmed, -1);
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
       (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
       this.countries.forEach(function (country) {
         _this.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
@@ -1180,11 +1229,17 @@ var Table = /*#__PURE__*/function () {
         (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this3.countries, propertys.property, -1);
         _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.innerHTML = '';
         _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.className = "table__countries ".concat(propertys.className);
+        _createList__WEBPACK_IMPORTED_MODULE_4__.listCountries.innerHTML = '';
+        _createList__WEBPACK_IMPORTED_MODULE_4__.listCountries.className = "list__countries";
+        _this3.list.listCountriesArray.length = 0;
 
         _this3.countries.forEach(function (country) {
           _this3.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country, propertys));
+
+          _this3.list.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_4__.createListCountryContainer)(country, propertys.property));
         });
 
+        _this3.list.select.value = propertys.property;
         (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(_this3.global);
         _this3.targetCountry = null;
         _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.scrollTop = 0;
@@ -1215,6 +1270,9 @@ var Table = /*#__PURE__*/function () {
         target.classList.add('country__container-active');
         _this4.targetCountry = country;
         (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(country, false);
+
+        _this4.list.activateListCoutnry(country);
+
         var detailBtns = _this4.tabs.detailBtns;
 
         _this4.deactivateButtons(detailBtns, 'detail__button-active');

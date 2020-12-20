@@ -95,8 +95,8 @@ body {
 }
 
 .marker_recovered {
-  color: yellow;
-  border: 1px solid yellow;
+  color: #619101;
+  border: 1px solid #619101;
   background-color: #70a800;
 }
 
@@ -182,7 +182,7 @@ body {
   background-color: #e60000;
 }
 .legend[data-legend-type="2"] .legend-circle {
-  color: yellow;
+  color: #619101;
   background-color: #70a800;
 }
 .legend .legend-list {
