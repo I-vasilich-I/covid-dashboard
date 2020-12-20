@@ -138,6 +138,24 @@ export default class List extends Table {
     return this;
   }
 
+  handleTableFromMap(country) {
+    if (country === null) {
+      this.table.tableCountriesArray.forEach((element) =>
+        element.classList.remove('country__container-active')
+      );
+      this.table.tabs.detailBtns.map((element) => element.classList.add('tabs__button-hidden'));
+      createDetailContainer(this.global);
+      return this;
+    }
+    createDetailContainer(country, false);
+    const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
+    this.table.tableCountriesArray.forEach((element) =>
+      element.classList.remove('country__container-active')
+    );
+    tableTarget.classList.add('country__container-active');
+    return this;
+  }
+
   handleTable(country) {
     if (country === null) {
       this.table.tableCountriesArray.forEach((element) =>
@@ -148,13 +166,13 @@ export default class List extends Table {
       return this;
     }
     let selectedBtnId = this.getButtonIdBySelectedOption();
-    let selectedCountyBtnId;
+    let selectedCountryBtnId;
     if (
       selectedBtnId === BUTTON_CONFIRMED_ID ||
       selectedBtnId === BUTTON_DEATHS_ID ||
       selectedBtnId === BUTTON_RECOVERED_ID
     ) {
-      selectedCountyBtnId = selectedBtnId;
+      selectedCountryBtnId = selectedBtnId;
       selectedBtnId = BUTTON_TOTAL_ID;
     }
     const propertys = getPropertiesByType.call(this, selectedBtnId);
@@ -176,9 +194,10 @@ export default class List extends Table {
       if (isTheButton) button.classList.add('tabs__button-active');
       return button;
     });
-    if (selectedCountyBtnId) {
+    // Confirmed, Deaths, Recovered cases
+    if (selectedCountryBtnId) {
       const { countryBtns } = this.table.tabs;
-      const button = countryBtns.find((elem) => elem.id === selectedCountyBtnId);
+      const button = countryBtns.find((elem) => elem.id === selectedCountryBtnId);
       const propertys1 = getPropertiesByType(button.id);
       tableCountries.innerHTML = '';
       tableCountries.className = `table__countries ${propertys1.className}`;

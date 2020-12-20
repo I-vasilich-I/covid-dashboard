@@ -313,7 +313,7 @@ export default class Map {
   }
 
   handleTable(country) {
-    this.list.handleTable(country);
+    this.list.handleTableFromMap(country);
   }
 
   eventHandler(blocks) {

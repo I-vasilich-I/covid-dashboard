@@ -6,6 +6,7 @@ import {
 } from './createTable';
 import { createDomElement, sortByProperty } from './utils/helpers';
 import createTableTabs from './createTableTabs';
+import * as Constants from './Constants';
 
 function deactivateButtons(buttons) {
   buttons.map((element) => element.classList.remove('tabs__button-active'));
@@ -92,7 +93,6 @@ export class Table {
   }
 
   init() {
-    // const { body } = document;
     const containerDiv = document.querySelector('.table1-container');
     const parent = createDomElement({
       elementName: 'div',
@@ -174,9 +174,14 @@ export class Table {
     return this;
   }
 
-  handleMap(country) {
+  handleMap(country, type = Constants.TYPE_CASE) {
     this.map.setPointByCountry(country.Country);
+    this.map.changeMarkersColor(type);
     return this;
+  }
+
+  static handleListFromMap() {
+    this.select.value = '';
   }
 
   eventHandler(blocks) {
