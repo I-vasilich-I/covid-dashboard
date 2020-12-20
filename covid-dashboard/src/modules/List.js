@@ -7,7 +7,7 @@ import {
   //  table,
   tableCountries,
 } from './createTable';
-import { BUTTONS_ID } from './Constants';
+import { BUTTONS_ID, LIST_STATES } from './Constants';
 
 const {
   BUTTON_CONFIRMED_ID,
@@ -138,23 +138,23 @@ export default class List {
     return this;
   }
 
-  handleTableFromMap(country) {
-    if (country === null) {
-      this.table.tableCountriesArray.forEach((element) =>
-        element.classList.remove('country__container-active')
-      );
-      this.table.tabs.detailBtns.map((element) => element.classList.add('tabs__button-hidden'));
-      createDetailContainer(this.global);
-      return this;
-    }
-    createDetailContainer(country, false);
-    const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
-    this.table.tableCountriesArray.forEach((element) =>
-      element.classList.remove('country__container-active')
-    );
-    tableTarget.classList.add('country__container-active');
-    return this;
-  }
+  // handleTableFromMap(country) {
+  //   if (country === null) {
+  //     this.table.tableCountriesArray.forEach((element) =>
+  //       element.classList.remove('country__container-active')
+  //     );
+  //     this.table.tabs.detailBtns.map((element) => element.classList.add('tabs__button-hidden'));
+  //     createDetailContainer(this.global);
+  //     return this;
+  //   }
+  //   createDetailContainer(country, false);
+  //   const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
+  //   this.table.tableCountriesArray.forEach((element) =>
+  //     element.classList.remove('country__container-active')
+  //   );
+  //   tableTarget.classList.add('country__container-active');
+  //   return this;
+  // }
 
   handleTable(country) {
     if (country === null) {
@@ -214,17 +214,26 @@ export default class List {
     return this;
   }
 
+  activateListCoutnry(country, target = null) {
+    let listTarget = target;
+    this.listCountriesArray.forEach((element) =>
+      element.classList.remove('country__container-active')
+    );
+    if (target === null) {
+      listTarget = this.listCountriesArray.find((elem) => elem.country === country);
+    }
+    listTarget.classList.add('country__container-active');
+    this.targetCountry = country;
+  }
+
   listCountriesEventHandler() {
     listCountries.addEventListener('click', (event) => {
       const target = event.target.closest('.country__container');
       if (!target) return;
       const { country } = target;
-      this.listCountriesArray.forEach((element) =>
-        element.classList.remove('country__container-active')
-      );
-      target.classList.add('country__container-active');
-      this.targetCountry = country;
+      this.activateListCoutnry(country, target);
       this.handleTable(country);
+      this.map.setPointByCountry(country.Country);
     });
     return this;
   }
@@ -242,6 +251,10 @@ export default class List {
 
       listCountries.innerHTML = '';
       this.selectValue = this.select.value;
+      const { mapType } = Object.values(LIST_STATES).find(
+        (elem) => elem.inList === this.selectValue
+      );
+      this.map.changeMarkersColor(mapType);
       sortByProperty(this.countries, this.selectValue, -1);
       this.countries.forEach((country) => {
         this.listCountriesArray.push(createListCountryContainer(country, this.selectValue));
