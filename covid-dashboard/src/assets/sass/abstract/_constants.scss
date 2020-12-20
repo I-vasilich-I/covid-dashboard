@@ -5,8 +5,9 @@ $color-scrollbar-light: rgb(95, 95, 95);
 $color-black: black;
 $color-button-border: rgb(2, 255, 255);
 $color-deaths: rgb(230, 0, 0);
-$color-recovered: #70a800; // rgb(29, 252, 0);
+$color-recovered: #70a800;
 $color-body: rgb(75, 75, 75);
+$color-confirmed: rgba(94, 217, 255, 0.4);
 
 $content-width: 1280px;
 $wrapper-width: 1000px;
@@ -21,10 +22,14 @@ $color-dark-m: #b2b2b2;
 $color-popup-border: #404040;
 $color-popup-bg: #2b2b2b;
 
-$color-marker-cases: red;
-$color-marker-deaths: yellow;
-$color-marker-recovered: rgb(94, 217, 255);
-
+$color-marker-cases: rgb(94, 217, 255);
+$color-marker-deaths: red;
+$color-marker-recovered: yellow;
+/*
 $color-marker-cases-bg: rgba(255, 0, 0, 0.4);
 $color-marker-deaths-bg: rgba(255, 255, 0, 0.4);
 $color-marker-recovered-bg: rgba(94, 217, 255, 0.4);
+*/
+$color-marker-cases-bg: $color-confirmed;
+$color-marker-deaths-bg: $color-deaths;
+$color-marker-recovered-bg: $color-recovered

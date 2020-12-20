@@ -253,14 +253,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => /* binding */ Container
 /* harmony export */ });
 /* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
-/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Map */ "./src/modules/Map.js");
+/* harmony import */ var _List__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List */ "./src/modules/List.js");
+/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Map */ "./src/modules/Map.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
- // import List from './List';
+
 
 
 
@@ -269,19 +270,348 @@ var Container = /*#__PURE__*/function () {
     _classCallCheck(this, Container);
 
     this.covidData = covidData;
-    this.map = new _Map__WEBPACK_IMPORTED_MODULE_1__.default(covidData);
-    this.table = new _Table__WEBPACK_IMPORTED_MODULE_0__.Table(covidData); // this.list = new List(covidData);
+    this.map = new _Map__WEBPACK_IMPORTED_MODULE_2__.default(covidData);
+    this.table = new _Table__WEBPACK_IMPORTED_MODULE_0__.Table(covidData);
+    this.list = new _List__WEBPACK_IMPORTED_MODULE_1__.default(covidData);
   }
 
   _createClass(Container, [{
     key: "init",
     value: function init() {
       this.map.init().eventHandler(this);
-      this.table.init().eventHandler(this); // this.list.init().eventHandler(this);
+      this.table.init().eventHandler(this);
+      this.list.init().eventHandler(this);
     }
   }]);
 
   return Container;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/List.js":
+/*!*****************************!*\
+  !*** ./src/modules/List.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ List
+/* harmony export */ });
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
+/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+var BUTTON_CONFIRMED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_CONFIRMED_ID,
+    BUTTON_DEATHS_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_DEATHS_ID,
+    BUTTON_RECOVERED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_RECOVERED_ID,
+    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL_ID,
+    BUTTON_TOTAL100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL100K_ID,
+    BUTTON_NEW_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW_ID,
+    BUTTON_NEW100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW100K_ID;
+
+var List = /*#__PURE__*/function () {
+  function List(covidData) {
+    _classCallCheck(this, List);
+
+    this.countries = covidData.Countries;
+    this.targetCountry = null;
+    this.global = covidData.Global;
+    this.date = covidData.Date;
+    this.listCountriesArray = [];
+  }
+
+  _createClass(List, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      var containerDiv = document.querySelector('.table2-container');
+      this.parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'div',
+        className: 'list__container',
+        parent: containerDiv
+      });
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
+      this.countries.forEach(function (country) {
+        _this.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country));
+      });
+      this.generateSelectPanel();
+      this.parent.appendChild(_createList__WEBPACK_IMPORTED_MODULE_2__.list);
+      this.parent.appendChild(this.select);
+      return this;
+    }
+  }, {
+    key: "generateSelectPanel",
+    value: function generateSelectPanel() {
+      this.select = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'select',
+        className: 'select'
+      });
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalConfirmed']]
+      }).innerText = 'Total confirmed';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalDeaths']]
+      }).innerText = 'Total deaths';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalRecovered']]
+      }).innerText = 'Total recovered';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalConfirmedPer100K']]
+      }).innerText = 'Total confirmed per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalDeathsPer100K']]
+      }).innerText = 'Total deaths per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'TotalRecoveredPer100K']]
+      }).innerText = 'Total recovered per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewConfirmed']]
+      }).innerText = 'New confirmed';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewDeaths']]
+      }).innerText = 'New deaths';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewRecovered']]
+      }).innerText = 'New recovered';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewConfirmedPer100K']]
+      }).innerText = 'New confirmed per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewDeathsPer100K']]
+      }).innerText = 'New deaths per 100K';
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'option',
+        className: 'option',
+        parent: this.select,
+        attributes: [['value', 'NewRecoveredPer100K']]
+      }).innerText = 'New recovered per 100K';
+    }
+  }, {
+    key: "getButtonIdBySelectedOption",
+    value: function getButtonIdBySelectedOption() {
+      var option = this.select.value;
+      if (option === 'TotalConfirmed') return BUTTON_CONFIRMED_ID;
+      if (option === 'TotalDeaths') return BUTTON_DEATHS_ID;
+      if (option === 'TotalRecovered') return BUTTON_RECOVERED_ID;
+      if (option === 'TotalConfirmedPer100K') return BUTTON_TOTAL100K_ID;
+      if (option === 'TotalDeathsPer100K') return BUTTON_TOTAL100K_ID;
+      if (option === 'TotalRecoveredPer100K') return BUTTON_TOTAL100K_ID;
+      if (option === 'NewConfirmed') return BUTTON_NEW_ID;
+      if (option === 'NewDeaths') return BUTTON_NEW_ID;
+      if (option === 'NewRecovered') return BUTTON_NEW_ID;
+      if (option === 'NewConfirmedPer100K') return BUTTON_NEW100K_ID;
+      if (option === 'NewDeathsPer100K') return BUTTON_NEW100K_ID;
+      if (option === 'NewRecoveredPer100K') return BUTTON_NEW100K_ID;
+      return this;
+    }
+  }, {
+    key: "handleTableFromMap",
+    value: function handleTableFromMap(country) {
+      if (country === null) {
+        this.table.tableCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+        this.table.tabs.detailBtns.map(function (element) {
+          return element.classList.add('tabs__button-hidden');
+        });
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(this.global);
+        return this;
+      }
+
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(country, false);
+      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
+        return elem.country === country;
+      });
+      this.table.tableCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+      tableTarget.classList.add('country__container-active');
+      return this;
+    }
+  }, {
+    key: "handleTable",
+    value: function handleTable(country) {
+      var _this2 = this;
+
+      if (country === null) {
+        this.table.tableCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+        this.table.tabs.detailBtns.map(function (element) {
+          return element.classList.add('tabs__button-hidden');
+        });
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(this.global);
+        return this;
+      }
+
+      var selectedBtnId = this.getButtonIdBySelectedOption();
+      var selectedCountryBtnId;
+
+      if (selectedBtnId === BUTTON_CONFIRMED_ID || selectedBtnId === BUTTON_DEATHS_ID || selectedBtnId === BUTTON_RECOVERED_ID) {
+        selectedCountryBtnId = selectedBtnId;
+        selectedBtnId = BUTTON_TOTAL_ID;
+      }
+
+      var propertys = _Table__WEBPACK_IMPORTED_MODULE_0__.getPropertiesByType.call(this, selectedBtnId);
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(propertys.obj, false, propertys.countryTitle); // createDetailContainer(country, false);
+
+      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
+        return elem.country === country;
+      });
+      this.table.tableCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+      tableTarget.classList.add('country__container-active');
+      tableTarget.scroll(100, 100); // DOESN'T WORK!
+
+      this.table.targetCountry = country;
+      this.table.tabs.tabsArray.map(function (button) {
+        if (button.isDetailBtn) {
+          button.classList.remove('tabs__button-hidden');
+          button.classList.remove('tabs__button-active');
+        }
+
+        var isTheButton = button.id === selectedBtnId;
+        if (isTheButton) button.classList.add('tabs__button-active');
+        return button;
+      }); // Confirmed, Deaths, Recovered cases
+
+      if (selectedCountryBtnId) {
+        var countryBtns = this.table.tabs.countryBtns;
+        var button = countryBtns.find(function (elem) {
+          return elem.id === selectedCountryBtnId;
+        });
+        var propertys1 = (0,_Table__WEBPACK_IMPORTED_MODULE_0__.getPropertiesByType)(button.id);
+        _createTable__WEBPACK_IMPORTED_MODULE_3__.tableCountries.innerHTML = '';
+        _createTable__WEBPACK_IMPORTED_MODULE_3__.tableCountries.className = "table__countries ".concat(propertys1.className);
+        this.table.tableCountriesArray.length = 0;
+        this.countries.forEach(function (countryEl) {
+          _this2.table.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createCountryContainer)(countryEl, propertys1));
+        });
+        this.table.deactivateButtons(countryBtns, 'tabs__button-active');
+        var tableTarget1 = this.table.tableCountriesArray.find(function (elem) {
+          return elem.country === country;
+        });
+        tableTarget1.classList.add('country__container-active');
+        button.classList.add('tabs__button-active');
+      }
+
+      return this;
+    }
+  }, {
+    key: "listCountriesEventHandler",
+    value: function listCountriesEventHandler() {
+      var _this3 = this;
+
+      _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.addEventListener('click', function (event) {
+        var target = event.target.closest('.country__container');
+        if (!target) return;
+        var country = target.country;
+
+        _this3.listCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+
+        target.classList.add('country__container-active');
+        _this3.targetCountry = country;
+
+        _this3.handleTable(country);
+      });
+      return this;
+    }
+  }, {
+    key: "listSelectEventHandler",
+    value: function listSelectEventHandler() {
+      var _this4 = this;
+
+      this.selectValue = this.select.value;
+
+      this.select.onclick = function () {
+        var isSameAsSelected = _this4.selectValue === _this4.select.value;
+        if (isSameAsSelected) return; // const propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
+        // tableCountries.innerHTML = '';
+        // tableCountries.className = `table__countries ${propertys.className}`;
+        // this.table.tableCountriesArray.length = 0;
+
+        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.innerHTML = '';
+        _this4.selectValue = _this4.select.value;
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this4.countries, _this4.selectValue, -1);
+
+        _this4.countries.forEach(function (country) {
+          _this4.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this4.selectValue)); // this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
+
+        });
+
+        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.scrollTop = 0;
+
+        _this4.handleTable(null);
+      };
+
+      return this;
+    }
+  }, {
+    key: "eventHandler",
+    value: function eventHandler(blocks) {
+      this.table = blocks.table;
+      this.map = blocks.map;
+      this.listCountriesEventHandler();
+      this.listSelectEventHandler();
+      return this;
+    }
+  }]);
+
+  return List;
 }();
 
 
@@ -913,6 +1243,68 @@ var Table = /*#__PURE__*/function () {
 
   return Table;
 }();
+
+/***/ }),
+
+/***/ "./src/modules/createList.js":
+/*!***********************************!*\
+  !*** ./src/modules/createList.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createListCountryContainer": () => /* binding */ createListCountryContainer,
+/* harmony export */   "list": () => /* binding */ list,
+/* harmony export */   "listCountries": () => /* binding */ listCountries
+/* harmony export */ });
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+
+var list = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'list'
+});
+var listCountries = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+  elementName: 'div',
+  className: 'list__countries',
+  parent: list
+});
+
+function createListCountryContainer(country) {
+  var property = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'TotalConfirmed';
+  var countryContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__container',
+    parent: listCountries
+  });
+  countryContainer.flag = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'img',
+    className: 'country__flag',
+    parent: countryContainer,
+    attributes: [['src', country.flag], ['alt', country.Country]]
+  });
+  countryContainer.cases = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__cases',
+    parent: countryContainer
+  });
+  countryContainer.countryName = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    className: 'country__name',
+    parent: countryContainer
+  });
+  var amount = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
+    elementName: 'div',
+    parent: countryContainer.cases
+  });
+  amount.innerText = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.numberWithSpaces)(country[property]);
+  countryContainer.countryName.innerText = country.Country;
+  countryContainer.country = country;
+  return countryContainer;
+}
+
+
 
 /***/ }),
 

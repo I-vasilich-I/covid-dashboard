@@ -26,9 +26,11 @@
   font-size: 1.6rem;
   background-color: $color-primary;
   color: $color-primary-light;
+  //color: $color-confirmed;
 }
 
 .table__countries {
+  color: $color-confirmed;
   padding: 5px;
   // height: 80%;
   width: 95%;
@@ -39,7 +41,8 @@
 }
 
 .confirmed {
-  color: $color-primary-light;
+  // color: $color-primary-light;
+  color: $color-confirmed;
 }
 
 .deaths {
@@ -107,7 +110,8 @@
 
 .detail__confirmed {
   padding: 5px;
-  color: $color-primary-light;
+  // color: $color-primary-light;
+  color: $color-confirmed;
 }
 
 .detail__deaths {
@@ -186,8 +190,4 @@
     opacity: 0;
     cursor: unset;
   }
-}
-
-#tab-recovered {
-  // margin-right: 27px;
 }

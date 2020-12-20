@@ -1,3 +1,8 @@
+/*
+$color-marker-cases-bg: rgba(255, 0, 0, 0.4);
+$color-marker-deaths-bg: rgba(255, 255, 0, 0.4);
+$color-marker-recovered-bg: rgba(94, 217, 255, 0.4);
+*/
 * {
   margin: 0;
   padding: 0;
@@ -78,21 +83,21 @@ body {
 }
 
 .marker_cases {
-  color: red;
-  border: 1px solid red;
-  background-color: rgba(255, 0, 0, 0.4);
-}
-
-.marker_deaths {
-  color: yellow;
-  border: 1px solid yellow;
-  background-color: rgba(255, 255, 0, 0.4);
-}
-
-.marker_recovered {
   color: #5ed9ff;
   border: 1px solid #5ed9ff;
   background-color: rgba(94, 217, 255, 0.4);
+}
+
+.marker_deaths {
+  color: red;
+  border: 1px solid red;
+  background-color: #e60000;
+}
+
+.marker_recovered {
+  color: yellow;
+  border: 1px solid yellow;
+  background-color: #70a800;
 }
 
 .mapboxgl-popup {
@@ -169,16 +174,16 @@ body {
   border: 1px solid #404040;
 }
 .legend[data-legend-type="0"] .legend-circle {
-  color: red;
-  background-color: rgba(255, 0, 0, 0.4);
-}
-.legend[data-legend-type="1"] .legend-circle {
-  color: yellow;
-  background-color: rgba(255, 255, 0, 0.4);
-}
-.legend[data-legend-type="2"] .legend-circle {
   color: #5ed9ff;
   background-color: rgba(94, 217, 255, 0.4);
+}
+.legend[data-legend-type="1"] .legend-circle {
+  color: red;
+  background-color: #e60000;
+}
+.legend[data-legend-type="2"] .legend-circle {
+  color: yellow;
+  background-color: #70a800;
 }
 .legend .legend-list {
   list-style-type: none;
@@ -240,6 +245,7 @@ body {
 }
 
 .table__countries {
+  color: rgba(94, 217, 255, 0.4);
   padding: 5px;
   width: 95%;
   display: flex;
@@ -249,7 +255,7 @@ body {
 }
 
 .confirmed {
-  color: #b1b1b1;
+  color: rgba(94, 217, 255, 0.4);
 }
 
 .deaths {
@@ -315,7 +321,7 @@ body {
 
 .detail__confirmed {
   padding: 5px;
-  color: #b1b1b1;
+  color: rgba(94, 217, 255, 0.4);
 }
 
 .detail__deaths {

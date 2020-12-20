@@ -1,4 +1,4 @@
-import { Table, getPropertiesByType } from './Table';
+import { getPropertiesByType } from './Table';
 import { createDomElement, sortByProperty } from './utils/helpers';
 import { createListCountryContainer, list, listCountries } from './createList';
 import {
@@ -19,12 +19,12 @@ const {
   BUTTON_NEW100K_ID,
 } = BUTTONS_ID;
 
-function deactivateButtons(buttons) {
-  buttons.map((element) => element.classList.remove('tabs__button-active'));
-}
-export default class List extends Table {
+export default class List {
   constructor(covidData) {
-    super(covidData);
+    this.countries = covidData.Countries;
+    this.targetCountry = null;
+    this.global = covidData.Global;
+    this.date = covidData.Date;
     this.listCountriesArray = [];
   }
 
@@ -165,6 +165,7 @@ export default class List extends Table {
       createDetailContainer(this.global);
       return this;
     }
+
     let selectedBtnId = this.getButtonIdBySelectedOption();
     let selectedCountryBtnId;
     if (
@@ -205,7 +206,7 @@ export default class List extends Table {
       this.countries.forEach((countryEl) => {
         this.table.tableCountriesArray.push(createCountryContainer(countryEl, propertys1));
       });
-      deactivateButtons(countryBtns);
+      this.table.deactivateButtons(countryBtns, 'tabs__button-active');
       const tableTarget1 = this.table.tableCountriesArray.find((elem) => elem.country === country);
       tableTarget1.classList.add('country__container-active');
       button.classList.add('tabs__button-active');
@@ -224,7 +225,6 @@ export default class List extends Table {
       target.classList.add('country__container-active');
       this.targetCountry = country;
       this.handleTable(country);
-      this.handleMap(country);
     });
     return this;
   }
@@ -238,14 +238,14 @@ export default class List extends Table {
       // const propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
       // tableCountries.innerHTML = '';
       // tableCountries.className = `table__countries ${propertys.className}`;
-      // this.tableCountriesArray.length = 0;
+      // this.table.tableCountriesArray.length = 0;
 
       listCountries.innerHTML = '';
       this.selectValue = this.select.value;
       sortByProperty(this.countries, this.selectValue, -1);
       this.countries.forEach((country) => {
         this.listCountriesArray.push(createListCountryContainer(country, this.selectValue));
-        // this.tableCountriesArray.push(createCountryContainer(country, propertys));
+        // this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
       });
       listCountries.scrollTop = 0;
       this.handleTable(null);
