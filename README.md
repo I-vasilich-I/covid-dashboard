@@ -1,2 +1,2 @@
 # covid-dashboard
-./covid-dashboard/dist/
+https://i-vasilich-i.github.io/covid-dashboard/covid-dashboard/dist/
