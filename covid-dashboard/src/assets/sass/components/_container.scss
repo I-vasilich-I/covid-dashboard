@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 100%;
+  background-color: $color-black;
+
+  .table2-container {
+    padding: 10px;
+    width: 15vw;
+    height: 70vh;
+  }
+  .map-container {
+    width: 60vw;
+  }
+  .second-container {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: 100vh;
+
+    .table1-container {
+      height: 60%;
+    }
+    .graph-container {
+      height: 40%;
+    }
+  }
+}
