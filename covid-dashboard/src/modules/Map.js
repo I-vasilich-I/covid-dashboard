@@ -22,22 +22,29 @@ export default class Map {
     this.mapboxgl = mapboxgl;
     this.markers = [];
     this.popups = [];
+  }
 
+  init() {
     this.mapboxgl.accessToken = Constants.MAPBOX_TOKEN;
 
     this.map = new this.mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/dark-v10',
       zoom: 1,
+      minZoom: 1,
       center: [0, 0],
     });
 
+    const nav = new mapboxgl.NavigationControl({ visualizePitch: true });
+
+    const scale = new mapboxgl.ScaleControl({
+      maxWidth: 80,
+      unit: 'metric',
+    });
+
     this.map.addControl(new mapboxgl.FullscreenControl());
-
-    this.init();
-  }
-
-  init() {
+    this.map.addControl(nav, 'top-left');
+    this.map.addControl(scale);
     this.showMarkers(Constants.TYPE_CASE);
     document
       .querySelector('.map-container')
@@ -313,7 +320,8 @@ export default class Map {
   }
 
   handleTable(country) {
-    this.list.handleTableFromMap(country);
+    this.list.activateListCoutnry(country);
+    this.list.activateTableCoutnry(country);
   }
 
   eventHandler(blocks) {

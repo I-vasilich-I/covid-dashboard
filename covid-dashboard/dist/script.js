@@ -345,10 +345,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var BUTTON_CONFIRMED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_CONFIRMED_ID,
     BUTTON_DEATHS_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_DEATHS_ID,
     BUTTON_RECOVERED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_RECOVERED_ID,
-    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL_ID,
-    BUTTON_TOTAL100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL100K_ID,
-    BUTTON_NEW_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW_ID,
-    BUTTON_NEW100K_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_NEW100K_ID;
+    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL_ID;
 
 var List = /*#__PURE__*/function () {
   function List(covidData) {
@@ -465,37 +462,34 @@ var List = /*#__PURE__*/function () {
     key: "getButtonIdBySelectedOption",
     value: function getButtonIdBySelectedOption() {
       var option = this.select.value;
-      if (option === 'TotalConfirmed') return BUTTON_CONFIRMED_ID;
-      if (option === 'TotalDeaths') return BUTTON_DEATHS_ID;
-      if (option === 'TotalRecovered') return BUTTON_RECOVERED_ID;
-      if (option === 'TotalConfirmedPer100K') return BUTTON_TOTAL100K_ID;
-      if (option === 'TotalDeathsPer100K') return BUTTON_TOTAL100K_ID;
-      if (option === 'TotalRecoveredPer100K') return BUTTON_TOTAL100K_ID;
-      if (option === 'NewConfirmed') return BUTTON_NEW_ID;
-      if (option === 'NewDeaths') return BUTTON_NEW_ID;
-      if (option === 'NewRecovered') return BUTTON_NEW_ID;
-      if (option === 'NewConfirmedPer100K') return BUTTON_NEW100K_ID;
-      if (option === 'NewDeathsPer100K') return BUTTON_NEW100K_ID;
-      if (option === 'NewRecoveredPer100K') return BUTTON_NEW100K_ID;
-      return this;
-    } // handleTableFromMap(country) {
-    //   if (country === null) {
-    //     this.table.tableCountriesArray.forEach((element) =>
-    //       element.classList.remove('country__container-active')
-    //     );
-    //     this.table.tabs.detailBtns.map((element) => element.classList.add('tabs__button-hidden'));
-    //     createDetailContainer(this.global);
-    //     return this;
-    //   }
-    //   createDetailContainer(country, false);
-    //   const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
-    //   this.table.tableCountriesArray.forEach((element) =>
-    //     element.classList.remove('country__container-active')
-    //   );
-    //   tableTarget.classList.add('country__container-active');
-    //   return this;
-    // }
+      return Object.values(_Constants__WEBPACK_IMPORTED_MODULE_4__.LIST_STATES).find(function (elem) {
+        return elem.inList === option;
+      }).buttonId;
+    }
+  }, {
+    key: "handleTableFromMap",
+    value: function handleTableFromMap(country) {
+      if (country === null) {
+        this.table.tableCountriesArray.forEach(function (element) {
+          return element.classList.remove('country__container-active');
+        });
+        this.table.tabs.detailBtns.map(function (element) {
+          return element.classList.add('tabs__button-hidden');
+        });
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(this.global);
+        return this;
+      }
 
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(country, false);
+      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
+        return elem.country === country;
+      });
+      this.table.tableCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+      tableTarget.classList.add('country__container-active');
+      return this;
+    }
   }, {
     key: "handleTable",
     value: function handleTable(country) {
@@ -521,17 +515,8 @@ var List = /*#__PURE__*/function () {
       }
 
       var propertys = _Table__WEBPACK_IMPORTED_MODULE_0__.getPropertiesByType.call(this, selectedBtnId);
-      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(propertys.obj, false, propertys.countryTitle); // createDetailContainer(country, false);
-
-      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
-        return elem.country === country;
-      });
-      this.table.tableCountriesArray.forEach(function (element) {
-        return element.classList.remove('country__container-active');
-      });
-      tableTarget.classList.add('country__container-active');
-      tableTarget.scroll(100, 100); // DOESN'T WORK!
-
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(propertys.obj, false, propertys.countryTitle);
+      this.activateTableCoutnry(country);
       this.table.targetCountry = country;
       this.table.tabs.tabsArray.map(function (button) {
         if (button.isDetailBtn) {
@@ -583,6 +568,18 @@ var List = /*#__PURE__*/function () {
 
       listTarget.classList.add('country__container-active');
       this.targetCountry = country;
+    }
+  }, {
+    key: "activateTableCoutnry",
+    value: function activateTableCoutnry(country) {
+      var tableTarget = this.table.tableCountriesArray.find(function (elem) {
+        return elem.country === country;
+      });
+      this.table.tableCountriesArray.forEach(function (element) {
+        return element.classList.remove('country__container-active');
+      });
+      tableTarget.classList.add('country__container-active');
+      tableTarget.scroll(100, 100); // DOESN'T WORK!
     }
   }, {
     key: "listCountriesEventHandler",
@@ -702,20 +699,29 @@ var Map = /*#__PURE__*/function () {
     this.mapboxgl = mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__;
     this.markers = [];
     this.popups = [];
-    this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
-    this.map = new this.mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v10',
-      zoom: 1,
-      center: [0, 0]
-    });
-    this.map.addControl(new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.FullscreenControl());
-    this.init();
   }
 
   _createClass(Map, [{
     key: "init",
     value: function init() {
+      this.mapboxgl.accessToken = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAPBOX_TOKEN;
+      this.map = new this.mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        zoom: 1,
+        minZoom: 1,
+        center: [0, 0]
+      });
+      var nav = new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.NavigationControl({
+        visualizePitch: true
+      });
+      var scale = new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.ScaleControl({
+        maxWidth: 80,
+        unit: 'metric'
+      });
+      this.map.addControl(new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__.FullscreenControl());
+      this.map.addControl(nav, 'top-left');
+      this.map.addControl(scale);
       this.showMarkers(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
       document.querySelector('.map-container').addEventListener('click', this.mapEventHandler.bind(this));
       Map.createLegend(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
@@ -865,7 +871,8 @@ var Map = /*#__PURE__*/function () {
   }, {
     key: "handleTable",
     value: function handleTable(country) {
-      this.list.handleTableFromMap(country);
+      this.list.activateListCoutnry(country);
+      this.list.activateTableCoutnry(country);
     }
   }, {
     key: "eventHandler",
@@ -1232,7 +1239,6 @@ var Table = /*#__PURE__*/function () {
           _this3.list.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_4__.createListCountryContainer)(country, propertys.property));
         });
 
-        console.log(propertys);
         _this3.list.select.value = propertys.property;
         (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(_this3.global);
         _this3.targetCountry = null;
@@ -1282,7 +1288,6 @@ var Table = /*#__PURE__*/function () {
     value: function eventHandler(blocks) {
       this.map = blocks.map;
       this.list = blocks.list;
-      console.log(this.list.listCountriesArray);
       this.tabsEventHandler();
       this.tableCountriesEventHandler();
       return this;

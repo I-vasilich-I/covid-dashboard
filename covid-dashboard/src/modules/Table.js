@@ -155,7 +155,6 @@ export class Table {
         this.tableCountriesArray.push(createCountryContainer(country, propertys));
         this.list.listCountriesArray.push(createListCountryContainer(country, propertys.property));
       });
-      console.log(propertys);
       this.list.select.value = propertys.property;
       createDetailContainer(this.global);
       this.targetCountry = null;
@@ -196,7 +195,6 @@ export class Table {
   eventHandler(blocks) {
     this.map = blocks.map;
     this.list = blocks.list;
-    console.log(this.list.listCountriesArray);
     this.tabsEventHandler();
     this.tableCountriesEventHandler();
     return this;

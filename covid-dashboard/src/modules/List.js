@@ -9,15 +9,7 @@ import {
 } from './createTable';
 import { BUTTONS_ID, LIST_STATES } from './Constants';
 
-const {
-  BUTTON_CONFIRMED_ID,
-  BUTTON_DEATHS_ID,
-  BUTTON_RECOVERED_ID,
-  BUTTON_TOTAL_ID,
-  BUTTON_TOTAL100K_ID,
-  BUTTON_NEW_ID,
-  BUTTON_NEW100K_ID,
-} = BUTTONS_ID;
+const { BUTTON_CONFIRMED_ID, BUTTON_DEATHS_ID, BUTTON_RECOVERED_ID, BUTTON_TOTAL_ID } = BUTTONS_ID;
 
 export default class List {
   constructor(covidData) {
@@ -123,38 +115,26 @@ export default class List {
 
   getButtonIdBySelectedOption() {
     const option = this.select.value;
-    if (option === 'TotalConfirmed') return BUTTON_CONFIRMED_ID;
-    if (option === 'TotalDeaths') return BUTTON_DEATHS_ID;
-    if (option === 'TotalRecovered') return BUTTON_RECOVERED_ID;
-    if (option === 'TotalConfirmedPer100K') return BUTTON_TOTAL100K_ID;
-    if (option === 'TotalDeathsPer100K') return BUTTON_TOTAL100K_ID;
-    if (option === 'TotalRecoveredPer100K') return BUTTON_TOTAL100K_ID;
-    if (option === 'NewConfirmed') return BUTTON_NEW_ID;
-    if (option === 'NewDeaths') return BUTTON_NEW_ID;
-    if (option === 'NewRecovered') return BUTTON_NEW_ID;
-    if (option === 'NewConfirmedPer100K') return BUTTON_NEW100K_ID;
-    if (option === 'NewDeathsPer100K') return BUTTON_NEW100K_ID;
-    if (option === 'NewRecoveredPer100K') return BUTTON_NEW100K_ID;
-    return this;
+    return Object.values(LIST_STATES).find((elem) => elem.inList === option).buttonId;
   }
 
-  // handleTableFromMap(country) {
-  //   if (country === null) {
-  //     this.table.tableCountriesArray.forEach((element) =>
-  //       element.classList.remove('country__container-active')
-  //     );
-  //     this.table.tabs.detailBtns.map((element) => element.classList.add('tabs__button-hidden'));
-  //     createDetailContainer(this.global);
-  //     return this;
-  //   }
-  //   createDetailContainer(country, false);
-  //   const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
-  //   this.table.tableCountriesArray.forEach((element) =>
-  //     element.classList.remove('country__container-active')
-  //   );
-  //   tableTarget.classList.add('country__container-active');
-  //   return this;
-  // }
+  handleTableFromMap(country) {
+    if (country === null) {
+      this.table.tableCountriesArray.forEach((element) =>
+        element.classList.remove('country__container-active')
+      );
+      this.table.tabs.detailBtns.map((element) => element.classList.add('tabs__button-hidden'));
+      createDetailContainer(this.global);
+      return this;
+    }
+    createDetailContainer(country, false);
+    const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
+    this.table.tableCountriesArray.forEach((element) =>
+      element.classList.remove('country__container-active')
+    );
+    tableTarget.classList.add('country__container-active');
+    return this;
+  }
 
   handleTable(country) {
     if (country === null) {
@@ -178,13 +158,7 @@ export default class List {
     }
     const propertys = getPropertiesByType.call(this, selectedBtnId);
     createDetailContainer(propertys.obj, false, propertys.countryTitle);
-    // createDetailContainer(country, false);
-    const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
-    this.table.tableCountriesArray.forEach((element) =>
-      element.classList.remove('country__container-active')
-    );
-    tableTarget.classList.add('country__container-active');
-    tableTarget.scroll(100, 100); // DOESN'T WORK!
+    this.activateTableCoutnry(country);
     this.table.targetCountry = country;
     this.table.tabs.tabsArray.map((button) => {
       if (button.isDetailBtn) {
@@ -224,6 +198,15 @@ export default class List {
     }
     listTarget.classList.add('country__container-active');
     this.targetCountry = country;
+  }
+
+  activateTableCoutnry(country) {
+    const tableTarget = this.table.tableCountriesArray.find((elem) => elem.country === country);
+    this.table.tableCountriesArray.forEach((element) =>
+      element.classList.remove('country__container-active')
+    );
+    tableTarget.classList.add('country__container-active');
+    tableTarget.scroll(100, 100); // DOESN'T WORK!
   }
 
   listCountriesEventHandler() {
