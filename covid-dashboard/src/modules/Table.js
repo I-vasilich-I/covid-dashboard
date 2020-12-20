@@ -8,30 +8,30 @@ import { createDomElement, sortByProperty } from './utils/helpers';
 import createTableTabs from './createTableTabs';
 import * as Constants from './Constants';
 
-function hideDetailButtons(buttons) {
-  buttons.map((element) => element.classList.add('detail__button-hidden'));
-}
-
 export function getPropertiesByType(type) {
   const obj = {};
   if (this) obj.Country = this.targetCountry.Country;
   let title = '';
   let property = '';
   let className = '';
+  let typeForMap = Constants.TYPE_CASE;
   if (type === 'tab-confirmed') {
     property = 'TotalConfirmed';
     title = 'Total confirmed:';
     className = 'confirmed';
+    typeForMap = Constants.TYPE_CASE;
   }
   if (type === 'tab-deaths') {
     property = 'TotalDeaths';
     title = 'Total deaths:';
     className = 'deaths';
+    typeForMap = Constants.TYPE_DEATH;
   }
   if (type === 'tab-recovered') {
     property = 'TotalRecovered';
     title = 'Total recovered:';
     className = 'recovered';
+    typeForMap = Constants.TYPE_RECOVERED;
   }
   if (type === 'tab-total') {
     obj.TotalConfirmed = this.targetCountry.TotalConfirmed;
@@ -53,7 +53,7 @@ export function getPropertiesByType(type) {
     obj.TotalConfirmed = this.targetCountry.NewConfirmed;
     obj.TotalDeaths = this.targetCountry.NewDeaths;
     obj.TotalRecovered = this.targetCountry.NewRecovered;
-    property = 'LastDay';
+    property = 'New';
     title = 'New cases:';
     className = 'confirmed';
   }
@@ -61,11 +61,11 @@ export function getPropertiesByType(type) {
     obj.TotalConfirmed = this.targetCountry.NewConfirmedPer100K;
     obj.TotalDeaths = this.targetCountry.NewDeathsPer100K;
     obj.TotalRecovered = this.targetCountry.NewRecoveredPer100K;
-    property = 'LastDayPer100K';
+    property = 'NewPer100K';
     title = 'New cases per 100K:';
     className = 'confirmed';
   }
-  return { property, countryTitle: title, className, obj };
+  return { property, countryTitle: title, className, obj, typeForMap };
 }
 export class Table {
   constructor(covidData) {
@@ -102,31 +102,20 @@ export class Table {
     return this;
   }
 
-  // countriesButtonsHandler(button) {
-  //   const { countryBtns, detailBtns } = this.tabs;
-  //   this.deactivateButtons(countryBtns);
-  //   hideDetailButtons(detailBtns);
-  //   button.classList.add('tabs__button-active');
-  //   const propertys = getPropertiesByType(button.id);
-  //   sortByProperty(this.countries, propertys.property, -1);
-  //   tableCountries.innerHTML = '';
-  //   tableCountries.className = `table__countries ${propertys.className}`;
-  //   this.countries.forEach((country) => {
-  //     this.tableCountriesArray.push(createCountryContainer(country, propertys));
-  //   });
-  //   createDetailContainer(this.global);
-  //   this.targetCountry = null;
-  //   tableCountries.scrollTop = 0;
-  // }
+  hideDetailButtons() {
+    const { detailBtns } = this.tabs;
+    this.deactivateButtons(detailBtns, 'detail__button-active');
+    detailBtns.map((element) => element.classList.add('detail__button-hidden'));
+  }
 
-  // detailButtonsHandler(button) {
-  //   const { detailBtns } = this.tabs;
-  //   this.deactivateButtons(detailBtns);
-  //   button.classList.add('tabs__button-active');
-  //   const propertys = getPropertiesByType.call(this, button.id);
-  //   createDetailContainer(propertys.obj, false, propertys.countryTitle);
-  //   return this;
-  // }
+  showDetailButtons() {
+    const { detailBtns } = this.tabs;
+    detailBtns.map((element, i) => {
+      element.classList.remove('detail__button-hidden');
+      if (!i) element.classList.add('detail__button-active');
+      return element;
+    });
+  }
 
   tabsDetailEventHandler() {
     this.tabs.tabsDetail.addEventListener('click', (event) => {
@@ -136,7 +125,6 @@ export class Table {
       if (isActive) return;
       const isHidden = button.classList.contains('detail__button-hidden');
       if (isHidden) return;
-      // this.detailButtonsHandler(button);
       const { detailBtns } = this.tabs;
       this.deactivateButtons(detailBtns, 'detail__button-active');
       button.classList.add('detail__button-active');
@@ -151,10 +139,9 @@ export class Table {
       if (!button) return;
       const isActive = button.classList.contains('tabs__button-active');
       if (isActive) return;
-      // this.countriesButtonsHandler(button);
-      const { countryBtns, detailBtns } = this.tabs;
+      const { countryBtns } = this.tabs;
       this.deactivateButtons(countryBtns, 'tabs__button-active');
-      hideDetailButtons(detailBtns);
+      this.hideDetailButtons();
       button.classList.add('tabs__button-active');
       const propertys = getPropertiesByType(button.id);
       sortByProperty(this.countries, propertys.property, -1);
@@ -166,6 +153,7 @@ export class Table {
       createDetailContainer(this.global);
       this.targetCountry = null;
       tableCountries.scrollTop = 0;
+      this.map.changeMarkersColor(propertys.typeForMap);
     });
   }
 
@@ -185,22 +173,11 @@ export class Table {
       target.classList.add('country__container-active');
       this.targetCountry = country;
       createDetailContainer(country, false);
-      this.tabs.tabsArray.map((button, idx) => {
-        if (button.isDetailBtn) {
-          button.classList.remove('detail__button-hidden');
-          button.classList.remove('detail__button-active');
-        }
-        if (idx === 3) button.classList.add('detail__button-active');
-        return button;
-      });
-      this.handleMap(country);
+      const { detailBtns } = this.tabs;
+      this.deactivateButtons(detailBtns, 'detail__button-active');
+      this.showDetailButtons();
+      this.map.setPointByCountry(country.Country);
     });
-    return this;
-  }
-
-  handleMap(country, type = Constants.TYPE_CASE) {
-    this.map.setPointByCountry(country.Country);
-    this.map.changeMarkersColor(type);
     return this;
   }
 
@@ -209,7 +186,6 @@ export class Table {
   }
 
   eventHandler(blocks) {
-    // this.table = blocks.table;
     this.map = blocks.map;
     this.list = blocks.list;
     this.tabsEventHandler();

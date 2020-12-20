@@ -675,36 +675,33 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-
-function hideDetailButtons(buttons) {
-  buttons.map(function (element) {
-    return element.classList.add('detail__button-hidden');
-  });
-}
-
 function getPropertiesByType(type) {
   var obj = {};
   if (this) obj.Country = this.targetCountry.Country;
   var title = '';
   var property = '';
   var className = '';
+  var typeForMap = _Constants__WEBPACK_IMPORTED_MODULE_3__.TYPE_CASE;
 
   if (type === 'tab-confirmed') {
     property = 'TotalConfirmed';
     title = 'Total confirmed:';
     className = 'confirmed';
+    typeForMap = _Constants__WEBPACK_IMPORTED_MODULE_3__.TYPE_CASE;
   }
 
   if (type === 'tab-deaths') {
     property = 'TotalDeaths';
     title = 'Total deaths:';
     className = 'deaths';
+    typeForMap = _Constants__WEBPACK_IMPORTED_MODULE_3__.TYPE_DEATH;
   }
 
   if (type === 'tab-recovered') {
     property = 'TotalRecovered';
     title = 'Total recovered:';
     className = 'recovered';
+    typeForMap = _Constants__WEBPACK_IMPORTED_MODULE_3__.TYPE_RECOVERED;
   }
 
   if (type === 'tab-total') {
@@ -729,7 +726,7 @@ function getPropertiesByType(type) {
     obj.TotalConfirmed = this.targetCountry.NewConfirmed;
     obj.TotalDeaths = this.targetCountry.NewDeaths;
     obj.TotalRecovered = this.targetCountry.NewRecovered;
-    property = 'LastDay';
+    property = 'New';
     title = 'New cases:';
     className = 'confirmed';
   }
@@ -738,7 +735,7 @@ function getPropertiesByType(type) {
     obj.TotalConfirmed = this.targetCountry.NewConfirmedPer100K;
     obj.TotalDeaths = this.targetCountry.NewDeathsPer100K;
     obj.TotalRecovered = this.targetCountry.NewRecoveredPer100K;
-    property = 'LastDayPer100K';
+    property = 'NewPer100K';
     title = 'New cases per 100K:';
     className = 'confirmed';
   }
@@ -747,7 +744,8 @@ function getPropertiesByType(type) {
     property: property,
     countryTitle: title,
     className: className,
-    obj: obj
+    obj: obj,
+    typeForMap: typeForMap
   };
 }
 var Table = /*#__PURE__*/function () {
@@ -790,31 +788,26 @@ var Table = /*#__PURE__*/function () {
         return element.classList.remove(className);
       });
       return this;
-    } // countriesButtonsHandler(button) {
-    //   const { countryBtns, detailBtns } = this.tabs;
-    //   this.deactivateButtons(countryBtns);
-    //   hideDetailButtons(detailBtns);
-    //   button.classList.add('tabs__button-active');
-    //   const propertys = getPropertiesByType(button.id);
-    //   sortByProperty(this.countries, propertys.property, -1);
-    //   tableCountries.innerHTML = '';
-    //   tableCountries.className = `table__countries ${propertys.className}`;
-    //   this.countries.forEach((country) => {
-    //     this.tableCountriesArray.push(createCountryContainer(country, propertys));
-    //   });
-    //   createDetailContainer(this.global);
-    //   this.targetCountry = null;
-    //   tableCountries.scrollTop = 0;
-    // }
-    // detailButtonsHandler(button) {
-    //   const { detailBtns } = this.tabs;
-    //   this.deactivateButtons(detailBtns);
-    //   button.classList.add('tabs__button-active');
-    //   const propertys = getPropertiesByType.call(this, button.id);
-    //   createDetailContainer(propertys.obj, false, propertys.countryTitle);
-    //   return this;
-    // }
-
+    }
+  }, {
+    key: "hideDetailButtons",
+    value: function hideDetailButtons() {
+      var detailBtns = this.tabs.detailBtns;
+      this.deactivateButtons(detailBtns, 'detail__button-active');
+      detailBtns.map(function (element) {
+        return element.classList.add('detail__button-hidden');
+      });
+    }
+  }, {
+    key: "showDetailButtons",
+    value: function showDetailButtons() {
+      var detailBtns = this.tabs.detailBtns;
+      detailBtns.map(function (element, i) {
+        element.classList.remove('detail__button-hidden');
+        if (!i) element.classList.add('detail__button-active');
+        return element;
+      });
+    }
   }, {
     key: "tabsDetailEventHandler",
     value: function tabsDetailEventHandler() {
@@ -826,8 +819,7 @@ var Table = /*#__PURE__*/function () {
         var isActive = button.classList.contains('detail__button-active');
         if (isActive) return;
         var isHidden = button.classList.contains('detail__button-hidden');
-        if (isHidden) return; // this.detailButtonsHandler(button);
-
+        if (isHidden) return;
         var detailBtns = _this2.tabs.detailBtns;
 
         _this2.deactivateButtons(detailBtns, 'detail__button-active');
@@ -846,15 +838,13 @@ var Table = /*#__PURE__*/function () {
         var button = event.target.closest('.tabs__button');
         if (!button) return;
         var isActive = button.classList.contains('tabs__button-active');
-        if (isActive) return; // this.countriesButtonsHandler(button);
-
-        var _this3$tabs = _this3.tabs,
-            countryBtns = _this3$tabs.countryBtns,
-            detailBtns = _this3$tabs.detailBtns;
+        if (isActive) return;
+        var countryBtns = _this3.tabs.countryBtns;
 
         _this3.deactivateButtons(countryBtns, 'tabs__button-active');
 
-        hideDetailButtons(detailBtns);
+        _this3.hideDetailButtons();
+
         button.classList.add('tabs__button-active');
         var propertys = getPropertiesByType(button.id);
         (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this3.countries, propertys.property, -1);
@@ -868,6 +858,8 @@ var Table = /*#__PURE__*/function () {
         (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(_this3.global);
         _this3.targetCountry = null;
         _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.scrollTop = 0;
+
+        _this3.map.changeMarkersColor(propertys.typeForMap);
       });
     }
   }, {
@@ -893,33 +885,19 @@ var Table = /*#__PURE__*/function () {
         target.classList.add('country__container-active');
         _this4.targetCountry = country;
         (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(country, false);
+        var detailBtns = _this4.tabs.detailBtns;
 
-        _this4.tabs.tabsArray.map(function (button, idx) {
-          if (button.isDetailBtn) {
-            button.classList.remove('detail__button-hidden');
-            button.classList.remove('detail__button-active');
-          }
+        _this4.deactivateButtons(detailBtns, 'detail__button-active');
 
-          if (idx === 3) button.classList.add('detail__button-active');
-          return button;
-        });
+        _this4.showDetailButtons();
 
-        _this4.handleMap(country);
+        _this4.map.setPointByCountry(country.Country);
       });
-      return this;
-    }
-  }, {
-    key: "handleMap",
-    value: function handleMap(country) {
-      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _Constants__WEBPACK_IMPORTED_MODULE_3__.TYPE_CASE;
-      this.map.setPointByCountry(country.Country);
-      this.map.changeMarkersColor(type);
       return this;
     }
   }, {
     key: "eventHandler",
     value: function eventHandler(blocks) {
-      // this.table = blocks.table;
       this.map = blocks.map;
       this.list = blocks.list;
       this.tabsEventHandler();
@@ -1098,7 +1076,7 @@ function createTableTabs() {
   });
   var buttonTotal = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.createDomElement)({
     elementName: 'button',
-    className: 'detail__button detail__button-hidden',
+    className: 'detail__button detail__button-hidden detail__button-active',
     parent: tabsDetail,
     attributes: [['id', BUTTON_TOTAL_ID]]
   });

@@ -45,7 +45,7 @@ export default function createTableTabs() {
   });
   const buttonTotal = createDomElement({
     elementName: 'button',
-    className: 'detail__button detail__button-hidden',
+    className: 'detail__button detail__button-hidden detail__button-active',
     parent: tabsDetail,
     attributes: [['id', BUTTON_TOTAL_ID]],
   });
