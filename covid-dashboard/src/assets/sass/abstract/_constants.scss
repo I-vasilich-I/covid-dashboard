@@ -11,7 +11,7 @@ $color-confirmed: rgba(94, 217, 255, 0.4);
 
 $content-width: 1280px;
 $wrapper-width: 1000px;
-$tablet-max-width: 1279px;
+$tablet-max-width: 900px;
 $mobile-max-width: 500px;
 $footer-height: 5rem;
 
@@ -24,7 +24,7 @@ $color-popup-bg: #2b2b2b;
 
 $color-marker-cases: rgb(94, 217, 255);
 $color-marker-deaths: red;
-$color-marker-recovered:  #619101;
+$color-marker-recovered: #619101;
 /*
 $color-marker-cases-bg: rgba(255, 0, 0, 0.4);
 $color-marker-deaths-bg: rgba(255, 255, 0, 0.4);
@@ -32,4 +32,4 @@ $color-marker-recovered-bg: rgba(94, 217, 255, 0.4);
 */
 $color-marker-cases-bg: $color-confirmed;
 $color-marker-deaths-bg: $color-deaths;
-$color-marker-recovered-bg: $color-recovered
+$color-marker-recovered-bg: $color-recovered;
