@@ -315,55 +315,6 @@ var Container = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/modules/Keyboard.js":
-/*!*********************************!*\
-  !*** ./src/modules/Keyboard.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "onKeyPress": () => /* binding */ _onKeyPress,
-/* harmony export */   "onChange": () => /* binding */ _onChange,
-/* harmony export */   "keyboard": () => /* binding */ keyboard
-/* harmony export */ });
-/* harmony import */ var simple_keyboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! simple-keyboard */ "./node_modules/simple-keyboard/build/index.js");
-/* harmony import */ var simple_keyboard__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(simple_keyboard__WEBPACK_IMPORTED_MODULE_0__);
-/* eslint-disable no-use-before-define */
-
-var keyboard = new (simple_keyboard__WEBPACK_IMPORTED_MODULE_0___default())({
-  onChange: function onChange(input) {
-    return _onChange(input);
-  },
-  onKeyPress: function onKeyPress(button) {
-    return _onKeyPress(button);
-  },
-  theme: 'hg-theme-default myTheme1'
-});
-
-function _onChange(input) {
-  document.querySelector('.input').value = input;
-  console.log('Input changed', input);
-}
-
-function _onKeyPress(button) {
-  console.log('Button pressed', button);
-  if (button === '{shift}' || button === '{lock}') handleShift();
-}
-
-function handleShift() {
-  var currentLayout = keyboard.options.layoutName;
-  var shiftToggle = currentLayout === 'default' ? 'shift' : 'default';
-  keyboard.setOptions({
-    layoutName: shiftToggle
-  });
-}
-
-
-
-/***/ }),
-
 /***/ "./src/modules/List.js":
 /*!*****************************!*\
   !*** ./src/modules/List.js ***!
@@ -375,12 +326,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => /* binding */ List
 /* harmony export */ });
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
-/* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
-/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
-/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
-/* harmony import */ var _Keyboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Keyboard */ "./src/modules/Keyboard.js");
+/* harmony import */ var simple_keyboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! simple-keyboard */ "./node_modules/simple-keyboard/build/index.js");
+/* harmony import */ var simple_keyboard__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(simple_keyboard__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
+/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -393,10 +345,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var BUTTON_CONFIRMED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_CONFIRMED_ID,
-    BUTTON_DEATHS_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_DEATHS_ID,
-    BUTTON_RECOVERED_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_RECOVERED_ID,
-    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_4__.BUTTONS_ID.BUTTON_TOTAL_ID;
+var BUTTON_CONFIRMED_ID = _Constants__WEBPACK_IMPORTED_MODULE_5__.BUTTONS_ID.BUTTON_CONFIRMED_ID,
+    BUTTON_DEATHS_ID = _Constants__WEBPACK_IMPORTED_MODULE_5__.BUTTONS_ID.BUTTON_DEATHS_ID,
+    BUTTON_RECOVERED_ID = _Constants__WEBPACK_IMPORTED_MODULE_5__.BUTTONS_ID.BUTTON_RECOVERED_ID,
+    BUTTON_TOTAL_ID = _Constants__WEBPACK_IMPORTED_MODULE_5__.BUTTONS_ID.BUTTON_TOTAL_ID;
+var that;
 
 var List = /*#__PURE__*/function () {
   function List(covidData) {
@@ -415,47 +368,79 @@ var List = /*#__PURE__*/function () {
       var _this = this;
 
       var containerDiv = document.querySelector('.table2-container');
-      this.parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      this.parent = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'div',
         className: 'list__container',
         parent: containerDiv
       });
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
       this.countries.forEach(function (country) {
-        _this.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country));
+        _this.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_3__.createListCountryContainer)(country));
       });
       this.generateSelectPanel();
-      this.generateSearchInput();
+      this.generateSearchInputAndKeyBoard();
       this.parent.appendChild(this.searchContainer);
-      this.parent.appendChild(_createList__WEBPACK_IMPORTED_MODULE_2__.list);
+      this.parent.appendChild(_createList__WEBPACK_IMPORTED_MODULE_3__.list);
       this.parent.appendChild(this.select);
+      that = this;
       return this;
     }
   }, {
-    key: "generateSearchInput",
-    value: function generateSearchInput() {
-      this.searchContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+    key: "generateSearchInputAndKeyBoard",
+    value: function generateSearchInputAndKeyBoard() {
+      this.searchContainer = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'div',
         className: 'search-container'
       });
-      this.input = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      this.inputL = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'input',
         className: 'input',
         parent: this.searchContainer,
         attributes: [['placeholder', 'Search country by name...']]
       });
-      this.keyboardBtn = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      this.keyboardBtn = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'img',
         parent: this.searchContainer,
         attributes: [['src', 'assets/images/keyboard-key.svg']]
       });
       this.keyboardDiv = document.querySelector('.simple-keyboard');
       this.keyboardDiv.classList.add('hidden');
+      this.keyboard = new (simple_keyboard__WEBPACK_IMPORTED_MODULE_0___default())({
+        // eslint-disable-next-line no-use-before-define
+        onChange: function onChange(input) {
+          return _onChange(input);
+        },
+        // eslint-disable-next-line no-use-before-define
+        onKeyPress: function onKeyPress(button) {
+          return _onKeyPress(button);
+        },
+        theme: 'hg-theme-default myTheme1'
+      });
+
+      function _onChange(input) {
+        document.querySelector('.input').value = input;
+        that.filterCountries(that.table.tableCountriesArray, input);
+        that.filterCountries(that.listCountriesArray, input);
+      }
+
+      function _onKeyPress(button) {
+        // eslint-disable-next-line no-use-before-define
+        if (button === '{shift}' || button === '{lock}') handleShift();
+      }
+
+      function handleShift() {
+        var currentLayout = this.keyboard.options.layoutName;
+        var shiftToggle = currentLayout === 'default' ? 'shift' : 'default';
+        this.keyboard.setOptions({
+          layoutName: shiftToggle
+        });
+      }
+
       this.searchHandler();
     }
   }, {
-    key: "filterCounries",
-    value: function filterCounries(array, value) {
+    key: "filterCountries",
+    value: function filterCountries(array, value) {
       array.map(function (elem) {
         elem.classList.add('country__container-hidden');
         return elem;
@@ -471,91 +456,92 @@ var List = /*#__PURE__*/function () {
     value: function searchHandler() {
       var _this2 = this;
 
+      this.keyboardDiv.classList.add('hidden');
       this.keyboardBtn.addEventListener('click', function () {
         _this2.keyboardDiv.classList.toggle('hidden');
       });
-      this.input.addEventListener('input', function (event) {
-        _Keyboard__WEBPACK_IMPORTED_MODULE_5__.keyboard.setInput(event.target.value);
+      this.inputL.addEventListener('input', function (event) {
+        _this2.keyboard.setInput(event.target.value);
 
-        _this2.filterCounries(_this2.listCountriesArray, event.target.value);
+        _this2.filterCountries(_this2.listCountriesArray, event.target.value);
 
-        _this2.filterCounries(_this2.table.tableCountriesArray, event.target.value);
+        _this2.filterCountries(_this2.table.tableCountriesArray, event.target.value);
       });
     }
   }, {
     key: "generateSelectPanel",
     value: function generateSelectPanel() {
-      this.select = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      this.select = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'select',
         className: 'select'
       });
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'TotalConfirmed']]
       }).innerText = 'Total confirmed';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'TotalDeaths']]
       }).innerText = 'Total deaths';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'TotalRecovered']]
       }).innerText = 'Total recovered';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'TotalConfirmedPer100K']]
       }).innerText = 'Total confirmed per 100K';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'TotalDeathsPer100K']]
       }).innerText = 'Total deaths per 100K';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'TotalRecoveredPer100K']]
       }).innerText = 'Total recovered per 100K';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'NewConfirmed']]
       }).innerText = 'New confirmed';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'NewDeaths']]
       }).innerText = 'New deaths';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'NewRecovered']]
       }).innerText = 'New recovered';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'NewConfirmedPer100K']]
       }).innerText = 'New confirmed per 100K';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
         attributes: [['value', 'NewDeathsPer100K']]
       }).innerText = 'New deaths per 100K';
-      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.createDomElement)({
         elementName: 'option',
         className: 'option',
         parent: this.select,
@@ -566,7 +552,7 @@ var List = /*#__PURE__*/function () {
     key: "getButtonIdBySelectedOption",
     value: function getButtonIdBySelectedOption() {
       var option = this.select.value;
-      return Object.values(_Constants__WEBPACK_IMPORTED_MODULE_4__.LIST_STATES).find(function (elem) {
+      return Object.values(_Constants__WEBPACK_IMPORTED_MODULE_5__.LIST_STATES).find(function (elem) {
         return elem.inList === option;
       }).buttonId;
     }
@@ -580,11 +566,11 @@ var List = /*#__PURE__*/function () {
         this.table.tabs.detailBtns.map(function (element) {
           return element.classList.add('tabs__button-hidden');
         });
-        (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(this.global);
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createDetailContainer)(this.global);
         return this;
       }
 
-      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(country, false);
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createDetailContainer)(country, false);
       var tableTarget = this.table.tableCountriesArray.find(function (elem) {
         return elem.country === country;
       });
@@ -606,7 +592,7 @@ var List = /*#__PURE__*/function () {
         this.table.tabs.detailBtns.map(function (element) {
           return element.classList.add('tabs__button-hidden');
         });
-        (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(this.global);
+        (0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createDetailContainer)(this.global);
         return this;
       }
 
@@ -618,8 +604,8 @@ var List = /*#__PURE__*/function () {
         selectedBtnId = BUTTON_TOTAL_ID;
       }
 
-      var propertys = _Table__WEBPACK_IMPORTED_MODULE_0__.getPropertiesByType.call(this, selectedBtnId);
-      (0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createDetailContainer)(propertys.obj, false, propertys.countryTitle);
+      var propertys = _Table__WEBPACK_IMPORTED_MODULE_1__.getPropertiesByType.call(this, selectedBtnId);
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createDetailContainer)(propertys.obj, false, propertys.countryTitle);
       this.activateTableCoutnry(country);
       this.table.targetCountry = country;
       this.table.tabs.tabsArray.map(function (button) {
@@ -638,12 +624,12 @@ var List = /*#__PURE__*/function () {
         var button = countryBtns.find(function (elem) {
           return elem.id === selectedCountryBtnId;
         });
-        var propertys1 = (0,_Table__WEBPACK_IMPORTED_MODULE_0__.getPropertiesByType)(button.id);
-        _createTable__WEBPACK_IMPORTED_MODULE_3__.tableCountries.innerHTML = '';
-        _createTable__WEBPACK_IMPORTED_MODULE_3__.tableCountries.className = "table__countries ".concat(propertys1.className);
+        var propertys1 = (0,_Table__WEBPACK_IMPORTED_MODULE_1__.getPropertiesByType)(button.id);
+        _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.innerHTML = '';
+        _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.className = "table__countries ".concat(propertys1.className);
         this.table.tableCountriesArray.length = 0;
         this.countries.forEach(function (countryEl) {
-          _this3.table.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_3__.createCountryContainer)(countryEl, propertys1));
+          _this3.table.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createCountryContainer)(countryEl, propertys1));
         });
         this.table.deactivateButtons(countryBtns, 'tabs__button-active');
         var tableTarget1 = this.table.tableCountriesArray.find(function (elem) {
@@ -690,7 +676,7 @@ var List = /*#__PURE__*/function () {
     value: function listCountriesEventHandler() {
       var _this4 = this;
 
-      _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.addEventListener('click', function (event) {
+      _createList__WEBPACK_IMPORTED_MODULE_3__.listCountries.addEventListener('click', function (event) {
         var target = event.target.closest('.country__container');
         if (!target) return;
         var country = target.country;
@@ -717,24 +703,24 @@ var List = /*#__PURE__*/function () {
         // tableCountries.className = `table__countries ${propertys.className}`;
         // this.table.tableCountriesArray.length = 0;
 
-        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.innerHTML = '';
+        _createList__WEBPACK_IMPORTED_MODULE_3__.listCountries.innerHTML = '';
         _this5.selectValue = _this5.select.value;
 
-        var _Object$values$find = Object.values(_Constants__WEBPACK_IMPORTED_MODULE_4__.LIST_STATES).find(function (elem) {
+        var _Object$values$find = Object.values(_Constants__WEBPACK_IMPORTED_MODULE_5__.LIST_STATES).find(function (elem) {
           return elem.inList === _this5.selectValue;
         }),
             mapType = _Object$values$find.mapType;
 
         _this5.map.changeMarkersColor(mapType);
 
-        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(_this5.countries, _this5.selectValue, -1);
+        (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.sortByProperty)(_this5.countries, _this5.selectValue, -1);
 
         _this5.countries.forEach(function (country) {
-          _this5.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_2__.createListCountryContainer)(country, _this5.selectValue)); // this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
+          _this5.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_3__.createListCountryContainer)(country, _this5.selectValue)); // this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
 
         });
 
-        _createList__WEBPACK_IMPORTED_MODULE_2__.listCountries.scrollTop = 0;
+        _createList__WEBPACK_IMPORTED_MODULE_3__.listCountries.scrollTop = 0;
 
         _this5.handleTable(null);
       };
