@@ -104,6 +104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TYPE_DEATH": () => /* binding */ TYPE_DEATH,
 /* harmony export */   "TYPE_RECOVERED": () => /* binding */ TYPE_RECOVERED,
 /* harmony export */   "TYPE_NAMES": () => /* binding */ TYPE_NAMES,
+/* harmony export */   "MAP_TAB_BUTTONS_ID": () => /* binding */ MAP_TAB_BUTTONS_ID,
 /* harmony export */   "BUTTONS_ID": () => /* binding */ BUTTONS_ID,
 /* harmony export */   "TABLE_COUNTRY_STATES": () => /* binding */ TABLE_COUNTRY_STATES,
 /* harmony export */   "TABLE_DETAIL_STATES": () => /* binding */ TABLE_DETAIL_STATES,
@@ -124,6 +125,7 @@ var TYPE_CASE = 0;
 var TYPE_DEATH = 1;
 var TYPE_RECOVERED = 2;
 var TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
+var MAP_TAB_BUTTONS_ID = ['#map-button-cases', '#map-button-deaths', '#map-button-recovered'];
 var BUTTON_CONFIRMED_ID = 'tab-confirmed';
 var BUTTON_DEATHS_ID = 'tab-deaths';
 var BUTTON_RECOVERED_ID = 'tab-recovered';
@@ -937,6 +939,8 @@ var Map = /*#__PURE__*/function () {
     value: function changeMarkersColor(markerType) {
       this.showMarkers(markerType);
       Map.createLegend(markerType);
+      Map.deactivateTabButtons();
+      Map.activateTabButton(markerType);
     }
   }, {
     key: "createPopup",
@@ -975,6 +979,22 @@ var Map = /*#__PURE__*/function () {
     key: "getCountryNameByMarkerElement",
     value: function getCountryNameByMarkerElement(markerElement) {
       return markerElement.dataset.country;
+    }
+  }, {
+    key: "activateTabButton",
+    value: function activateTabButton(markerType) {
+      var id = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAP_TAB_BUTTONS_ID[markerType];
+      var button = document.querySelector(id);
+      button.classList.add('button-checked');
+    }
+  }, {
+    key: "deactivateTabButtons",
+    value: function deactivateTabButtons() {
+      var buttons = document.querySelectorAll('button.map-button');
+      console.log(buttons);
+      [].map.call(buttons, function (element) {
+        return element.classList.remove('button-checked');
+      });
     }
   }, {
     key: "clickLegendButton",

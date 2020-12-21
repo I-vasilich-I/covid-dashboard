@@ -1,5 +1,5 @@
 @mixin media-tablet {
-  @media (max-width: $tablet-max-width) and (min-width: 768px) {
+  @media (max-width: $tablet-max-width) {
     @content;
   }
 }

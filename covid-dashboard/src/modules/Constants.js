@@ -16,6 +16,11 @@ export const TYPE_CASE = 0;
 export const TYPE_DEATH = 1;
 export const TYPE_RECOVERED = 2;
 export const TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
+export const MAP_TAB_BUTTONS_ID = [
+  '#map-button-cases',
+  '#map-button-deaths',
+  '#map-button-recovered',
+];
 
 const BUTTON_CONFIRMED_ID = 'tab-confirmed';
 const BUTTON_DEATHS_ID = 'tab-deaths';

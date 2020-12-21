@@ -53,17 +53,18 @@ body {
 }
 .map-container .map-relative-container #map {
   width: 100%;
-  height: 80vh;
+  height: calc(100vh - 3.5rem);
   margin: 0 auto;
 }
 .map-container .map-button-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .map-container .map-button-container .map-button {
+  width: 10.5rem;
   padding: 1rem 2rem;
-  margin: 1rem 1rem;
+  margin: 0;
   outline: none;
   border: none;
   transition: all 0.3s ease-in-out;
@@ -73,6 +74,10 @@ body {
   background-color: #2b2b2b;
   color: #cdcdcd;
   transition: all 0.3s ease-in-out;
+}
+.map-container .map-button-container .map-button.button-checked {
+  background-color: #2b2b2b;
+  color: #cdcdcd;
 }
 
 #marker {
@@ -128,20 +133,59 @@ body {
   width: 15vw;
   height: 70vh;
 }
+@media (max-width: 900px) {
+  .container .table2-container {
+    order: 2;
+    width: 30rem;
+    margin: 0 auto;
+  }
+}
 .container .map-container {
-  width: 60vw;
+  width: 50vw;
+  height: 100%;
+}
+@media (max-width: 900px) {
+  .container .map-container {
+    order: 1;
+    width: 100vw;
+  }
 }
 .container .second-container {
   display: flex;
   flex-direction: column;
-  width: 25vw;
-  height: 100vh;
+  align-items: start;
+  width: 35vw;
+  height: 90vh;
 }
 .container .second-container .table1-container {
   height: 60%;
 }
+@media (max-width: 900px) {
+  .container .second-container .table1-container {
+    width: 100%;
+  }
+}
 .container .second-container .graph-container {
   height: 40%;
+  width: 35vw;
+}
+@media (max-width: 900px) {
+  .container .second-container .graph-container {
+    margin-top: 7rem;
+    width: 90vw;
+  }
+}
+@media (max-width: 900px) {
+  .container .second-container {
+    margin: 10rem auto 0 auto;
+    order: 3;
+    width: 30rem;
+  }
+}
+@media (max-width: 900px) {
+  .container {
+    flex-wrap: wrap;
+  }
 }
 
 .legend-button {
@@ -663,7 +707,7 @@ body {
   font-size: 1.8rem;
   height: 5rem;
   clear: both;
-  margin-top: auto;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   padding-bottom: 2rem;
 }
