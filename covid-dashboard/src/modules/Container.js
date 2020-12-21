@@ -3,7 +3,11 @@ import List from './List';
 import Map from './Map';
 
 export default class Container {
-  constructor(covidData) {
+  constructor(result) {
+    const {
+      covidData,
+      // covidDataPerYear
+    } = result;
     this.covidData = covidData;
     this.map = new Map(covidData);
     this.table = new Table(covidData);
