@@ -8,6 +8,7 @@ import {
   tableCountries,
 } from './createTable';
 import { BUTTONS_ID, LIST_STATES } from './Constants';
+import { keyboard } from './Keyboard';
 
 const { BUTTON_CONFIRMED_ID, BUTTON_DEATHS_ID, BUTTON_RECOVERED_ID, BUTTON_TOTAL_ID } = BUTTONS_ID;
 
@@ -32,9 +33,52 @@ export default class List {
       this.listCountriesArray.push(createListCountryContainer(country));
     });
     this.generateSelectPanel();
+    this.generateSearchInput();
+    this.parent.appendChild(this.searchContainer);
     this.parent.appendChild(list);
     this.parent.appendChild(this.select);
     return this;
+  }
+
+  generateSearchInput() {
+    this.searchContainer = createDomElement({ elementName: 'div', className: 'search-container' });
+    this.input = createDomElement({
+      elementName: 'input',
+      className: 'input',
+      parent: this.searchContainer,
+      attributes: [['placeholder', 'Search country by name...']],
+    });
+    this.keyboardBtn = createDomElement({
+      elementName: 'img',
+      parent: this.searchContainer,
+      attributes: [['src', 'assets/images/keyboard-key.svg']],
+    });
+    this.keyboardDiv = document.querySelector('.simple-keyboard');
+    this.keyboardDiv.classList.add('hidden');
+    this.searchHandler();
+  }
+
+  filterCounries(array, value) {
+    array
+      .map((elem) => {
+        elem.classList.add('country__container-hidden');
+        return elem;
+      })
+      .filter((div) => div.country.Country.toUpperCase().includes(value.toUpperCase()))
+      .map((country) => country.classList.remove('country__container-hidden'));
+    return this;
+  }
+
+  searchHandler() {
+    this.keyboardBtn.addEventListener('click', () => {
+      this.keyboardDiv.classList.toggle('hidden');
+    });
+
+    this.input.addEventListener('input', (event) => {
+      keyboard.setInput(event.target.value);
+      this.filterCounries(this.listCountriesArray, event.target.value);
+      this.filterCounries(this.table.tableCountriesArray, event.target.value);
+    });
   }
 
   generateSelectPanel() {

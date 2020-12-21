@@ -122,7 +122,7 @@ module.exports = (env, options) => {
           // { from: 'src/assets/audio/', to: 'assets/audio/' },
           // { from: 'src/assets/images/svg/favicon.svg' },
           // { from: 'rs_school_js.svg' },
-          // { from: 'src/assets/images/', to: 'assets/images/' },
+          { from: 'src/assets/images/', to: 'assets/images/' },
           { from: 'src/assets/icons/', to: 'assets/icons/' },
           // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
         ],
