@@ -21,7 +21,7 @@
   padding: 5px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
   font-size: 1.6rem;
   background-color: $color-primary;
@@ -80,6 +80,9 @@
   &-active {
     background-color: $color-primary-light;
     color: $color-black;
+  }
+  &-hidden {
+    display: none;
   }
 }
 

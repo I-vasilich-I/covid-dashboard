@@ -1,3 +1,4 @@
+import Keyboard from 'simple-keyboard';
 import { getPropertiesByType } from './Table';
 import { createDomElement, sortByProperty } from './utils/helpers';
 import { createListCountryContainer, list, listCountries } from './createList';
@@ -10,7 +11,7 @@ import {
 import { BUTTONS_ID, LIST_STATES } from './Constants';
 
 const { BUTTON_CONFIRMED_ID, BUTTON_DEATHS_ID, BUTTON_RECOVERED_ID, BUTTON_TOTAL_ID } = BUTTONS_ID;
-
+let that;
 export default class List {
   constructor(covidData) {
     this.countries = covidData.Countries;
@@ -32,9 +33,83 @@ export default class List {
       this.listCountriesArray.push(createListCountryContainer(country));
     });
     this.generateSelectPanel();
+    this.generateSearchInputAndKeyBoard();
+    this.parent.appendChild(this.searchContainer);
     this.parent.appendChild(list);
     this.parent.appendChild(this.select);
+    that = this;
     return this;
+  }
+
+  generateSearchInputAndKeyBoard() {
+    this.searchContainer = createDomElement({ elementName: 'div', className: 'search-container' });
+    this.inputL = createDomElement({
+      elementName: 'input',
+      className: 'input',
+      parent: this.searchContainer,
+      attributes: [['placeholder', 'Search country by name...']],
+    });
+    this.keyboardBtn = createDomElement({
+      elementName: 'img',
+      parent: this.searchContainer,
+      attributes: [['src', 'assets/images/keyboard-key.svg']],
+    });
+    this.keyboardDiv = document.querySelector('.simple-keyboard');
+    this.keyboardDiv.classList.add('hidden');
+
+    this.keyboard = new Keyboard({
+      // eslint-disable-next-line no-use-before-define
+      onChange: (input) => onChange(input),
+      // eslint-disable-next-line no-use-before-define
+      onKeyPress: (button) => onKeyPress(button),
+      theme: 'hg-theme-default myTheme1',
+    });
+
+    function onChange(input) {
+      document.querySelector('.input').value = input;
+      that.filterCountries(that.table.tableCountriesArray, input);
+      that.filterCountries(that.listCountriesArray, input);
+    }
+
+    function onKeyPress(button) {
+      // eslint-disable-next-line no-use-before-define
+      if (button === '{shift}' || button === '{lock}') handleShift();
+    }
+
+    function handleShift() {
+      const currentLayout = this.keyboard.options.layoutName;
+      const shiftToggle = currentLayout === 'default' ? 'shift' : 'default';
+
+      this.keyboard.setOptions({
+        layoutName: shiftToggle,
+      });
+    }
+
+    this.searchHandler();
+  }
+
+  filterCountries(array, value) {
+    array
+      .map((elem) => {
+        elem.classList.add('country__container-hidden');
+        return elem;
+      })
+      .filter((div) => div.country.Country.toUpperCase().includes(value.toUpperCase()))
+      .map((country) => country.classList.remove('country__container-hidden'));
+    return this;
+  }
+
+  searchHandler() {
+    this.keyboardDiv.classList.add('hidden');
+    this.keyboardBtn.addEventListener('click', () => {
+      this.keyboardDiv.classList.toggle('hidden');
+    });
+
+    this.inputL.addEventListener('input', (event) => {
+      this.keyboard.setInput(event.target.value);
+      this.filterCountries(this.listCountriesArray, event.target.value);
+      this.filterCountries(this.table.tableCountriesArray, event.target.value);
+    });
   }
 
   generateSelectPanel() {
