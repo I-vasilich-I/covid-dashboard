@@ -95,6 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN,
 /* harmony export */   "COUNTRIES_COORDINATS_URL": () => /* binding */ COUNTRIES_COORDINATS_URL,
+/* harmony export */   "COVID_DATA_PER_YEAR_URL": () => /* binding */ COVID_DATA_PER_YEAR_URL,
 /* harmony export */   "COVID_DATA_URL": () => /* binding */ COVID_DATA_URL,
 /* harmony export */   "CASES_RANGE": () => /* binding */ CASES_RANGE,
 /* harmony export */   "DEATHS_RANGE": () => /* binding */ DEATHS_RANGE,
@@ -116,6 +117,7 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable no-unused-vars */
 var MAPBOX_TOKEN = 'pk.eyJ1IjoibWljaGFlbHNoIiwiYSI6ImNraXFkdnZ0ajF0bm4ycmxiM3k0MXRvcjMifQ.Yf1Olmco7KyZFm-rRvcPaw';
 var COUNTRIES_COORDINATS_URL = 'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag';
+var COVID_DATA_PER_YEAR_URL = 'https://disease.sh/v3/covid-19/historical?lastdays=365';
 var COVID_DATA_URL = 'https://api.covid19api.com/summary';
 var CASES_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
 var DEATHS_RANGE = [100000, 50000, 25000, 10000, 5000, 2500, 1000];
@@ -292,9 +294,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var Container = /*#__PURE__*/function () {
-  function Container(covidData) {
+  function Container(result) {
     _classCallCheck(this, Container);
 
+    var covidData = result.covidData;
     this.covidData = covidData;
     this.map = new _Map__WEBPACK_IMPORTED_MODULE_2__.default(covidData);
     this.table = new _Table__WEBPACK_IMPORTED_MODULE_0__.Table(covidData);
@@ -1922,7 +1925,7 @@ function addAdditionalData(_x) {
 
 function _addAdditionalData() {
   _addAdditionalData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(objData) {
-    var asyncData, covidCountries, countries, noSuchCovidCountry, dataToSave, date;
+    var asyncData, covidCountries, countries, covidDataPerYear, noSuchCovidCountry, dataToSave, date;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -1934,6 +1937,7 @@ function _addAdditionalData() {
             asyncData = _context.sent;
             covidCountries = asyncData.covidData.Countries;
             countries = asyncData.countriesData;
+            covidDataPerYear = objData.covidDataPerYear;
             noSuchCovidCountry = [];
             countries.forEach(function (country) {
               var thisCountry = covidCountries.find(function (covidCountry) {
@@ -1961,13 +1965,29 @@ function _addAdditionalData() {
               }
             });
             dataToSave = asyncData.covidData;
+            covidDataPerYear.map(function (elem) {
+              var thisCountry = dataToSave.Countries.find(function (count) {
+                return count.Country.toUpperCase() === elem.country.toUpperCase();
+              });
+
+              if (thisCountry) {
+                var temp = elem;
+                temp.population = thisCountry.population;
+              }
+
+              return elem;
+            });
             date = new Date();
             _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', {
               date: date,
               covidData: dataToSave
             });
+            _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidDataPerYear', {
+              date: date,
+              covidDataPerYear: covidDataPerYear
+            });
 
-          case 10:
+          case 13:
           case "end":
             return _context.stop();
         }
@@ -1984,8 +2004,13 @@ function isSameDay(date) {
 
 function checkLocalStorage() {
   var dataToCheck = _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidData');
-  if (dataToCheck === null) return null;
-  if (isSameDay(new Date(dataToCheck.date))) return dataToCheck.covidData;
+  var dataPerYearToCheck = _storage__WEBPACK_IMPORTED_MODULE_1__.get('covidDataPerYear');
+  if (dataToCheck === null || dataPerYearToCheck === null) return null;
+  var obj = {
+    covidData: dataToCheck.covidData,
+    dataPerYearToCheck: dataPerYearToCheck
+  };
+  if (isSameDay(new Date(dataToCheck.date))) return obj;
   return null;
 } // return null if failed to get data from any API;
 
@@ -1996,7 +2021,7 @@ function prepareData() {
 
 function _prepareData() {
   _prepareData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    var localData, countries, countriesData, covidCountries, covidData, objData;
+    var localData, countries, countriesData, covidCountries, covidData, covidDataPerYearFetch, covidDataPerYear, objData;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -2048,17 +2073,40 @@ function _prepareData() {
 
           case 18:
             covidData = _context2.sent;
+            _context2.next = 21;
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)(_Constants__WEBPACK_IMPORTED_MODULE_2__.COVID_DATA_PER_YEAR_URL);
+
+          case 21:
+            covidDataPerYearFetch = _context2.sent;
+
+            if (covidDataPerYearFetch) {
+              _context2.next = 24;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 24:
+            _context2.next = 26;
+            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covidDataPerYearFetch);
+
+          case 26:
+            covidDataPerYear = _context2.sent;
             objData = {
               covidData: covidData,
-              countriesData: countriesData
+              countriesData: countriesData,
+              covidDataPerYear: covidDataPerYear
             };
-            _context2.next = 22;
+            _context2.next = 30;
             return addAdditionalData(objData);
 
-          case 22:
-            return _context2.abrupt("return", objData.covidData);
+          case 30:
+            return _context2.abrupt("return", {
+              covidData: covidData,
+              covidDataPerYear: covidDataPerYear
+            });
 
-          case 23:
+          case 31:
           case "end":
             return _context2.stop();
         }

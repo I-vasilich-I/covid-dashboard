@@ -1,6 +1,6 @@
 import { fecthData, getAsyncData } from './fetchData';
 import * as storage from './storage';
-import { COUNTRIES_COORDINATS_URL, COVID_DATA_URL } from '../Constants';
+import { COUNTRIES_COORDINATS_URL, COVID_DATA_URL, COVID_DATA_PER_YEAR_URL } from '../Constants';
 
 function casesPer100K(cases, population) {
   return ((cases * 100000) / population).toFixed(2);
@@ -10,6 +10,7 @@ async function addAdditionalData(objData) {
   const asyncData = await getAsyncData(objData);
   const covidCountries = asyncData.covidData.Countries;
   const countries = asyncData.countriesData;
+  const { covidDataPerYear } = objData;
   const noSuchCovidCountry = [];
   countries.forEach((country) => {
     const thisCountry =
@@ -50,8 +51,19 @@ async function addAdditionalData(objData) {
     }
   });
   const dataToSave = asyncData.covidData;
+  covidDataPerYear.map((elem) => {
+    const thisCountry = dataToSave.Countries.find(
+      (count) => count.Country.toUpperCase() === elem.country.toUpperCase()
+    );
+    if (thisCountry) {
+      const temp = elem;
+      temp.population = thisCountry.population;
+    }
+    return elem;
+  });
   const date = new Date();
   storage.set('covidData', { date, covidData: dataToSave });
+  storage.set('covidDataPerYear', { date, covidDataPerYear });
 }
 
 function isSameDay(date) {
@@ -65,8 +77,10 @@ function isSameDay(date) {
 
 function checkLocalStorage() {
   const dataToCheck = storage.get('covidData');
-  if (dataToCheck === null) return null;
-  if (isSameDay(new Date(dataToCheck.date))) return dataToCheck.covidData;
+  const dataPerYearToCheck = storage.get('covidDataPerYear');
+  if (dataToCheck === null || dataPerYearToCheck === null) return null;
+  const obj = { covidData: dataToCheck.covidData, dataPerYearToCheck };
+  if (isSameDay(new Date(dataToCheck.date))) return obj;
   return null;
 }
 // return null if failed to get data from any API;
@@ -81,10 +95,16 @@ export default async function prepareData() {
   const covidCountries = await fecthData(COVID_DATA_URL);
   if (!covidCountries) return null;
   const covidData = await getAsyncData(covidCountries);
+  const covidDataPerYearFetch = await fecthData(COVID_DATA_PER_YEAR_URL);
+  if (!covidDataPerYearFetch) return null;
+  const covidDataPerYear = await getAsyncData(covidDataPerYearFetch);
+
   const objData = {
     covidData,
     countriesData,
+    covidDataPerYear,
   };
   await addAdditionalData(objData);
-  return objData.covidData;
+  // return objData.covidData;
+  return { covidData, covidDataPerYear };
 }
