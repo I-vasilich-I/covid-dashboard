@@ -167,6 +167,21 @@ export default class Map {
   changeMarkersColor(markerType) {
     this.showMarkers(markerType);
     Map.createLegend(markerType);
+    Map.deactivateTabButtons();
+    Map.activateTabButton(markerType);
+  }
+
+  static activateTabButton(markerType) {
+    const id = Constants.MAP_TAB_BUTTONS_ID[markerType];
+    const button = document.querySelector(id);
+
+    button.classList.add('button-checked');
+  }
+
+  static deactivateTabButtons() {
+    const buttons = document.querySelectorAll('button.map-button');
+    console.log(buttons);
+    [].map.call(buttons, (element) => element.classList.remove('button-checked'));
   }
 
   static clickLegendButton() {
