@@ -764,6 +764,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mapbox-gl/dist/mapbox-gl */ "./node_modules/mapbox-gl/dist/mapbox-gl.js");
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Table */ "./src/modules/Table.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/helpers */ "./src/modules/utils/helpers.js");
+/* harmony import */ var _createTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createTable */ "./src/modules/createTable.js");
+/* harmony import */ var _createList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createList */ "./src/modules/createList.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -771,6 +775,10 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 /* eslint-disable no-console */
+
+
+
+
 
 
 /*
@@ -901,23 +909,26 @@ var Map = /*#__PURE__*/function () {
 
       switch (element.id) {
         case 'map-button-cases':
-          console.log('cases'); // eslint-disable-next-line no-return-assign
-
+          // console.log('cases');
+          // eslint-disable-next-line no-return-assign
           this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
+          this.handleTabs("#".concat(element.id));
           break;
 
         case 'map-button-deaths':
-          console.log('deaths');
+          // console.log('deaths');
           this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH);
+          this.handleTabs("#".concat(element.id));
           break;
 
         case 'map-button-recovered':
-          console.log('recovered');
+          // console.log('recovered');
           this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED);
+          this.handleTabs("#".concat(element.id));
           break;
 
         case 'legend-button':
-          console.log('legend');
+          // console.log('legend');
           Map.clickLegendButton();
           e.stopImmediatePropagation();
           break;
@@ -926,8 +937,8 @@ var Map = /*#__PURE__*/function () {
           {
             var countryName = Map.getCountryNameByMarkerElement(element);
             var country = this.findCountryByName(countryName); // this.hideAllPopups();
+            // console.log(Map.getCountryNameByMarkerElement(element));
 
-            console.log(Map.getCountryNameByMarkerElement(element));
             this.handleTable(country);
             e.stopImmediatePropagation();
           }
@@ -972,6 +983,40 @@ var Map = /*#__PURE__*/function () {
       this.list.activateTableCoutnry(country);
     }
   }, {
+    key: "handleTabs",
+    value: function handleTabs(mapButtonId) {
+      var _this2 = this;
+
+      var buttonId;
+      var id = _Constants__WEBPACK_IMPORTED_MODULE_1__.MAP_TAB_BUTTONS_ID.indexOf(mapButtonId);
+      if (id === 0) buttonId = 'tab-confirmed';
+      if (id === 1) buttonId = 'tab-deaths';
+      if (id === 2) buttonId = 'tab-recovered';
+      var countryBtns = this.table.tabs.countryBtns;
+      var button = countryBtns.find(function (btn) {
+        return btn.id === buttonId;
+      });
+      this.table.deactivateButtons(countryBtns, 'tabs__button-active');
+      this.table.hideDetailButtons();
+      button.classList.add('tabs__button-active');
+      var propertys = (0,_Table__WEBPACK_IMPORTED_MODULE_2__.getPropertiesByType)(button.id);
+      (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_3__.sortByProperty)(this.table.countries, propertys.property, -1);
+      _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.innerHTML = '';
+      _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.className = "table__countries ".concat(propertys.className);
+      _createList__WEBPACK_IMPORTED_MODULE_5__.listCountries.innerHTML = '';
+      _createList__WEBPACK_IMPORTED_MODULE_5__.listCountries.className = "list__countries";
+      this.list.listCountriesArray.length = 0;
+      this.table.countries.forEach(function (country) {
+        _this2.table.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createCountryContainer)(country, propertys));
+
+        _this2.list.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_5__.createListCountryContainer)(country, propertys.property));
+      });
+      this.list.select.value = propertys.property;
+      (0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createDetailContainer)(this.table.global);
+      this.targetCountry = null;
+      _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.scrollTop = 0;
+    }
+  }, {
     key: "eventHandler",
     value: function eventHandler(blocks) {
       this.table = blocks.table;
@@ -993,8 +1038,8 @@ var Map = /*#__PURE__*/function () {
   }, {
     key: "deactivateTabButtons",
     value: function deactivateTabButtons() {
-      var buttons = document.querySelectorAll('button.map-button');
-      console.log(buttons);
+      var buttons = document.querySelectorAll('button.map-button'); // console.log(buttons);
+
       [].map.call(buttons, function (element) {
         return element.classList.remove('button-checked');
       });

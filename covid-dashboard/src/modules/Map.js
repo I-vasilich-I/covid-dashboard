@@ -2,7 +2,16 @@
 
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import * as Constants from './Constants';
+import { getPropertiesByType } from './Table';
+import { sortByProperty } from './utils/helpers';
+import {
+  createCountryContainer,
+  createDetailContainer,
+  // table,
+  tableCountries,
+} from './createTable';
 
+import { createListCountryContainer, listCountries } from './createList';
 /*
  * Map.clickLegendButton() - show/hide legend
  *
@@ -124,22 +133,23 @@ export default class Map {
     // console.log(element);
     switch (element.id) {
       case 'map-button-cases':
-        console.log('cases');
+        // console.log('cases');
         // eslint-disable-next-line no-return-assign
         this.changeMarkersColor(Constants.TYPE_CASE);
+        this.handleTabs(`#${element.id}`);
         break;
       case 'map-button-deaths':
-        console.log('deaths');
+        // console.log('deaths');
         this.changeMarkersColor(Constants.TYPE_DEATH);
-
+        this.handleTabs(`#${element.id}`);
         break;
       case 'map-button-recovered':
-        console.log('recovered');
+        // console.log('recovered');
         this.changeMarkersColor(Constants.TYPE_RECOVERED);
-
+        this.handleTabs(`#${element.id}`);
         break;
       case 'legend-button':
-        console.log('legend');
+        // console.log('legend');
         Map.clickLegendButton();
         e.stopImmediatePropagation();
 
@@ -150,7 +160,7 @@ export default class Map {
           const country = this.findCountryByName(countryName);
           // this.hideAllPopups();
 
-          console.log(Map.getCountryNameByMarkerElement(element));
+          // console.log(Map.getCountryNameByMarkerElement(element));
           this.handleTable(country);
           e.stopImmediatePropagation();
         }
@@ -180,7 +190,7 @@ export default class Map {
 
   static deactivateTabButtons() {
     const buttons = document.querySelectorAll('button.map-button');
-    console.log(buttons);
+    // console.log(buttons);
     [].map.call(buttons, (element) => element.classList.remove('button-checked'));
   }
 
@@ -337,6 +347,34 @@ export default class Map {
   handleTable(country) {
     this.list.activateListCoutnry(country);
     this.list.activateTableCoutnry(country);
+  }
+
+  handleTabs(mapButtonId) {
+    let buttonId;
+    const id = Constants.MAP_TAB_BUTTONS_ID.indexOf(mapButtonId);
+    if (id === 0) buttonId = 'tab-confirmed';
+    if (id === 1) buttonId = 'tab-deaths';
+    if (id === 2) buttonId = 'tab-recovered';
+    const { countryBtns } = this.table.tabs;
+    const button = countryBtns.find((btn) => btn.id === buttonId);
+    this.table.deactivateButtons(countryBtns, 'tabs__button-active');
+    this.table.hideDetailButtons();
+    button.classList.add('tabs__button-active');
+    const propertys = getPropertiesByType(button.id);
+    sortByProperty(this.table.countries, propertys.property, -1);
+    tableCountries.innerHTML = '';
+    tableCountries.className = `table__countries ${propertys.className}`;
+    listCountries.innerHTML = '';
+    listCountries.className = `list__countries`;
+    this.list.listCountriesArray.length = 0;
+    this.table.countries.forEach((country) => {
+      this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
+      this.list.listCountriesArray.push(createListCountryContainer(country, propertys.property));
+    });
+    this.list.select.value = propertys.property;
+    createDetailContainer(this.table.global);
+    this.targetCountry = null;
+    tableCountries.scrollTop = 0;
   }
 
   eventHandler(blocks) {
