@@ -2,7 +2,7 @@
  * simple-keyboard
  * Theme: hg-theme-default
  */
- .hg-theme-default {
+.hg-theme-default {
   width: 100%;
   user-select: none;
   box-sizing: border-box;
@@ -23,8 +23,8 @@
 }
 
 .hg-theme-default {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
+    'Lucida Grande', sans-serif;
   background-color: #000000;
   padding: 5px;
   border-radius: 5px;
@@ -112,11 +112,11 @@
   color: white;
 }
 
-.hg-theme-default .hg-button.hg-standardBtn[data-skbtn=".com"] {
+.hg-theme-default .hg-button.hg-standardBtn[data-skbtn='.com'] {
   max-width: 82px;
 }
 
-.hg-theme-default .hg-button.hg-standardBtn[data-skbtn="@"] {
+.hg-theme-default .hg-button.hg-standardBtn[data-skbtn='@'] {
   max-width: 60px;
 }
 
@@ -155,9 +155,9 @@
 .simple-keyboard {
   max-width: 850px;
   width: 75%;
-  position: absolute;
+  position: fixed;
   z-index: 5;
-  top: 0;
+  bottom: 0;
   left: 16%;
   transition: 1s ease-out;
 }
@@ -166,7 +166,6 @@
   display: none;
   transition: 1s ease-out;
 }
-
 
 /*
   Theme: myTheme1

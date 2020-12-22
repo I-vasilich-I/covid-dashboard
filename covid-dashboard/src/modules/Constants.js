@@ -23,6 +23,12 @@ export const MAP_TAB_BUTTONS_ID = [
   '#map-button-deaths',
   '#map-button-recovered',
 ];
+export const CONTAINER_CLASSES = [
+  'table1-container',
+  'table2-container',
+  'map-container',
+  'graph-container',
+];
 
 const BUTTON_CONFIRMED_ID = 'tab-confirmed';
 const BUTTON_DEATHS_ID = 'tab-deaths';

@@ -22,10 +22,19 @@
   line-height: 150%;
 }
 
-%text-shadow {
-  text-shadow: 0px 0px 4px #fff;
-}
-
-%card-shadow {
-  box-shadow: 0px 2px 35px 4px rgba(142, 215, 144, 0.8);
+%button-fullscreen {
+  position: absolute;
+  color: $color-dark-s;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  top: 3rem;
+  right: 3rem;
+  z-index: 10;
+  &:hover {
+    cursor: pointer;
+    color: white;
+    transform: scale(1.05);
+  }
 }

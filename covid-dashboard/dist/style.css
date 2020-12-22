@@ -3,6 +3,23 @@ $color-marker-cases-bg: rgba(255, 0, 0, 0.4);
 $color-marker-deaths-bg: rgba(255, 255, 0, 0.4);
 $color-marker-recovered-bg: rgba(94, 217, 255, 0.4);
 */
+.container .second-container .table1-container .button-fullscreen, .container .table2-container .button-fullscreen {
+  position: absolute;
+  color: #cdcdcd;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  top: 3rem;
+  right: 3rem;
+  z-index: 10;
+}
+.container .second-container .table1-container .button-fullscreen:hover, .container .table2-container .button-fullscreen:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.05);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +36,7 @@ body {
   margin: auto;
   user-select: none;
   font-family: "Space Grotesk", Arial, sans-serif;
-  background-color: #4b4b4b;
+  background-color: black;
 }
 
 /* width */
@@ -124,20 +141,27 @@ body {
 .container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   margin: 0 auto;
-  width: 100%;
+  width: 99vw;
   background-color: black;
 }
 .container .table2-container {
+  position: relative;
   padding: 10px;
-  width: 15vw;
-  height: 70vh;
+  width: 20vw;
+  height: 80vh;
+  margin-bottom: 7rem;
+}
+.container .table2-container .button-fullscreen {
+  top: 5rem;
 }
 @media (max-width: 900px) {
   .container .table2-container {
     order: 2;
-    width: 30rem;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 auto 10rem;
   }
 }
 .container .map-container {
@@ -153,12 +177,13 @@ body {
 .container .second-container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: start;
-  width: 35vw;
-  height: 90vh;
 }
 .container .second-container .table1-container {
-  height: 60%;
+  height: 60vh;
+  position: relative;
+  margin-bottom: 7rem;
 }
 @media (max-width: 900px) {
   .container .second-container .table1-container {
@@ -167,7 +192,7 @@ body {
 }
 .container .second-container .graph-container {
   height: 40%;
-  width: 35vw;
+  width: 100%;
 }
 @media (max-width: 900px) {
   .container .second-container .graph-container {
@@ -177,15 +202,24 @@ body {
 }
 @media (max-width: 900px) {
   .container .second-container {
-    margin: 10rem auto 0 auto;
+    margin: 0 auto 0 auto;
     order: 3;
-    width: 30rem;
+    width: 100%;
   }
 }
 @media (max-width: 900px) {
   .container {
     flex-wrap: wrap;
+    width: 90vw;
   }
+}
+.container .hide-container {
+  display: none;
+}
+.container .fullscreen-container,
+.container .second-container .fullscreen-container {
+  height: 80vh;
+  width: 90vw;
 }
 
 .legend-button {
@@ -416,9 +450,9 @@ body {
 .simple-keyboard {
   max-width: 850px;
   width: 75%;
-  position: absolute;
+  position: fixed;
   z-index: 5;
-  top: 0;
+  bottom: 0;
   left: 16%;
   transition: 1s ease-out;
 }
@@ -707,9 +741,9 @@ body {
   font-size: 1.8rem;
   height: 5rem;
   clear: both;
-  margin-top: 1rem;
+  margin-top: 3rem;
   margin-bottom: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 .footer .footer__link {
   text-decoration: none;
@@ -717,6 +751,7 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  color: #cdcdcd;
   width: 5rem;
   height: 5rem;
   margin: 0 2rem;
@@ -726,6 +761,9 @@ body {
   opacity: 0.5;
   transition: all 0.2s ease-in-out;
   transform: scale(1.1);
+}
+.footer .footer__text {
+  color: #cdcdcd;
 }
 .footer .github-logo {
   background-image: url(assets/icons/github-logo.svg);
