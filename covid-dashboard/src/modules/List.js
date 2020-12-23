@@ -8,7 +8,7 @@ import {
   //  table,
   tableCountries,
 } from './createTable';
-import { BUTTONS_ID, LIST_STATES } from './Constants';
+import { BUTTONS_ID, LIST_STATES, TABLE_COUNTRY_STATES } from './Constants';
 
 const { BUTTON_CONFIRMED_ID, BUTTON_DEATHS_ID, BUTTON_RECOVERED_ID, BUTTON_TOTAL_ID } = BUTTONS_ID;
 let that;
@@ -270,6 +270,12 @@ export default class List {
     );
     if (target === null) {
       listTarget = this.listCountriesArray.find((elem) => elem.country === country);
+      // 200px from top of scroll div;
+      listCountries.scroll({
+        top: listTarget.offsetTop - 200,
+        left: 100,
+        behavior: 'smooth',
+      });
     }
     listTarget.classList.add('country__container-active');
     this.targetCountry = country;
@@ -281,7 +287,12 @@ export default class List {
       element.classList.remove('country__container-active')
     );
     tableTarget.classList.add('country__container-active');
-    tableTarget.scroll(100, 100); // DOESN'T WORK!
+    // 200px from top of scroll div;
+    tableCountries.scroll({
+      top: tableTarget.offsetTop - 200,
+      left: 100,
+      behavior: 'smooth',
+    });
   }
 
   listCountriesEventHandler() {
@@ -301,14 +312,25 @@ export default class List {
     this.select.onclick = () => {
       const isSameAsSelected = this.selectValue === this.select.value;
       if (isSameAsSelected) return;
-
-      // const propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
-      // tableCountries.innerHTML = '';
-      // tableCountries.className = `table__countries ${propertys.className}`;
-      // this.table.tableCountriesArray.length = 0;
-
-      listCountries.innerHTML = '';
       this.selectValue = this.select.value;
+      const countryStateKey = Object.keys(TABLE_COUNTRY_STATES).find(
+        (key) => TABLE_COUNTRY_STATES[key].title === this.selectValue
+      );
+      const countryState = TABLE_COUNTRY_STATES[countryStateKey];
+      let propertys;
+      if (countryState) {
+        const { countryBtns } = this.table.tabs;
+        const button = countryBtns.find((btn) => btn.id === countryState.buttonId);
+        this.table.deactivateButtons(countryBtns, 'tabs__button-active');
+        this.table.hideDetailButtons();
+        button.classList.add('tabs__button-active');
+        propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
+        tableCountries.innerHTML = '';
+        tableCountries.className = `table__countries ${propertys.className}`;
+        this.table.tableCountriesArray.length = 0;
+      }
+      listCountries.innerHTML = '';
+
       const { mapType } = Object.values(LIST_STATES).find(
         (elem) => elem.inList === this.selectValue
       );
@@ -316,7 +338,8 @@ export default class List {
       sortByProperty(this.countries, this.selectValue, -1);
       this.countries.forEach((country) => {
         this.listCountriesArray.push(createListCountryContainer(country, this.selectValue));
-        // this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
+        if (countryState)
+          this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
       });
       listCountries.scrollTop = 0;
       this.handleTable(null);

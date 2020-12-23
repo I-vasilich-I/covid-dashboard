@@ -1,6 +1,10 @@
 import { fecthData, getAsyncData } from './fetchData';
 import * as storage from './storage';
-import { COUNTRIES_COORDINATS_URL, COVID_DATA_URL, COVID_DATA_PER_YEAR_URL } from '../Constants';
+import {
+  COUNTRIES_COORDINATS_URL,
+  COVID_DATA_URL,
+  // COVID_DATA_PER_YEAR_URL
+} from '../Constants';
 
 function casesPer100K(cases, population) {
   return ((cases * 100000) / population).toFixed(2);
@@ -51,16 +55,16 @@ async function addAdditionalData(objData) {
     }
   });
   const dataToSave = asyncData.covidData;
-  covidDataPerYear.map((elem) => {
-    const thisCountry = dataToSave.Countries.find(
-      (count) => count.Country.toUpperCase() === elem.country.toUpperCase()
-    );
-    if (thisCountry) {
-      const temp = elem;
-      temp.population = thisCountry.population;
-    }
-    return elem;
-  });
+  // covidDataPerYear.map((elem) => {
+  //   const thisCountry = dataToSave.Countries.find(
+  //     (count) => count.Country.toUpperCase() === elem.country.toUpperCase()
+  //   );
+  //   if (thisCountry) {
+  //     const temp = elem;
+  //     temp.population = thisCountry.population;
+  //   }
+  //   return elem;
+  // });
   const date = new Date();
   storage.set('covidData', { date, covidData: dataToSave });
   storage.set('covidDataPerYear', { date, covidDataPerYear });
@@ -95,16 +99,19 @@ export default async function prepareData() {
   const covidCountries = await fecthData(COVID_DATA_URL);
   if (!covidCountries) return null;
   const covidData = await getAsyncData(covidCountries);
-  const covidDataPerYearFetch = await fecthData(COVID_DATA_PER_YEAR_URL);
-  if (!covidDataPerYearFetch) return null;
-  const covidDataPerYear = await getAsyncData(covidDataPerYearFetch);
+  // const covidDataPerYearFetch = await fecthData(COVID_DATA_PER_YEAR_URL);
+  // if (!covidDataPerYearFetch) return null;
+  // const covidDataPerYear = await getAsyncData(covidDataPerYearFetch);
 
   const objData = {
     covidData,
     countriesData,
-    covidDataPerYear,
+    // covidDataPerYear,
   };
   await addAdditionalData(objData);
   // return objData.covidData;
-  return { covidData, covidDataPerYear };
+  return {
+    covidData,
+    // covidDataPerYear
+  };
 }

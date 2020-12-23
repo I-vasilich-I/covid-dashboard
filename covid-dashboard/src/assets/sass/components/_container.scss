@@ -11,7 +11,7 @@
     position: relative;
     padding: 10px;
     width: 20vw;
-    height: 80vh;
+    height: 71vh;
     margin-bottom: 7rem;
     & .button-fullscreen {
       @extend %button-fullscreen;
@@ -38,11 +38,11 @@
     align-items: start;
     // width: 30vw;
     // height: 90vh;
-
+    margin-bottom: 8rem;
     .table1-container {
-      height: 60vh;
+      height: 74vh;
       position: relative;
-      margin-bottom: 7rem;
+
       & .button-fullscreen {
         @extend %button-fullscreen;
       }
@@ -70,6 +70,7 @@
   @include media-tablet {
     flex-wrap: wrap;
     width: 90vw;
+    margin-bottom: 10rem;
   }
 
   .hide-container {

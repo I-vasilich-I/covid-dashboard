@@ -6,7 +6,8 @@ export const MAPBOX_TOKEN =
 export const COUNTRIES_COORDINATS_URL =
   'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag';
 
-export const COVID_DATA_PER_YEAR_URL = 'https://disease.sh/v3/covid-19/historical?lastdays=365';
+// export const COVID_DATA_PER_YEAR_URL = 'https://disease.sh/v3/covid-19/historical?lastdays=365';
+// export const COVID_DATA_PER_YEAR_URL = 'https://disease.sh/v3/covid-19/historical/all?lastdays=365';
 
 export const COVID_DATA_URL = 'https://api.covid19api.com/summary';
 export const CASES_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
@@ -27,7 +28,7 @@ export const CONTAINER_CLASSES = [
   'table1-container',
   'table2-container',
   'map-container',
-  'graph-container',
+  // 'graph-container',
 ];
 
 const BUTTON_CONFIRMED_ID = 'tab-confirmed';

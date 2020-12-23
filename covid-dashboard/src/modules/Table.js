@@ -85,7 +85,8 @@ export class Table {
       parent: containerDiv,
     });
     sortByProperty(this.countries, 'TotalConfirmed', -1);
-
+    const dateDiv = createDomElement({ elementName: 'div', className: 'table__date' });
+    dateDiv.innerText = this.date;
     createDetailContainer(this.global);
     this.countries.forEach((country) => {
       this.tableCountriesArray.push(createCountryContainer(country));
@@ -95,6 +96,7 @@ export class Table {
     parent.appendChild(this.tabs.tabsDetail);
     parent.appendChild(table);
     parent.appendChild(this.tabs.tabsCountry);
+    parent.appendChild(dateDiv);
     return this;
   }
 
@@ -172,6 +174,8 @@ export class Table {
     tableCountries.addEventListener('click', (event) => {
       const target = event.target.closest('.country__container');
       if (!target) return;
+      // console.log(target.offsetTop);
+      // tableCountries.scroll(0, target.offsetTop - 300);
       const { country } = target;
       this.tableCountriesArray.forEach((element) =>
         element.classList.remove('country__container-active')

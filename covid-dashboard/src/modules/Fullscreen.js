@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import * as Constants from './Constants';
 
 export default class Fullscreen {
@@ -17,7 +15,6 @@ export default class Fullscreen {
 
   static fullscreenButtonsEventHandler(e) {
     const element = e.target.closest('.button-fullscreen');
-    console.log(e.target);
     if (!element) {
       return;
     }
@@ -29,7 +26,6 @@ export default class Fullscreen {
         } else {
           Fullscreen.hideContainers(Constants.CONTAINER_CLASSES[0]);
         }
-        console.log('table1');
         this.isFullscreen = !this.isFullscreen;
         break;
 
@@ -40,9 +36,6 @@ export default class Fullscreen {
           Fullscreen.hideContainers(Constants.CONTAINER_CLASSES[1]);
         }
         this.isFullscreen = !this.isFullscreen;
-
-        console.log('table2');
-
         break;
 
       default:
@@ -53,7 +46,6 @@ export default class Fullscreen {
   static showAllContainers() {
     Constants.CONTAINER_CLASSES.forEach((className) => {
       const el = document.querySelector(`.${className}`);
-
       el.classList.remove('hide-container');
       el.classList.remove('fullscreen-container');
     });
