@@ -174,6 +174,8 @@ export class Table {
     tableCountries.addEventListener('click', (event) => {
       const target = event.target.closest('.country__container');
       if (!target) return;
+      // console.log(target.offsetTop);
+      // tableCountries.scroll(0, target.offsetTop - 300);
       const { country } = target;
       this.tableCountriesArray.forEach((element) =>
         element.classList.remove('country__container-active')

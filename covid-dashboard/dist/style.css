@@ -552,11 +552,13 @@ body {
 }
 
 .country__container {
+  transition: all 0.5s ease-out;
   padding: 5px;
   border-bottom: 0.5px solid #b1b1b1;
 }
 .country__container:hover {
   cursor: pointer;
+  background-color: #5f5f5f;
 }
 .country__container-deaths {
   color: #e60000;
@@ -567,6 +569,9 @@ body {
 .country__container-active {
   background-color: #b1b1b1;
   color: black;
+}
+.country__container-active:hover {
+  background-color: #b1b1b1;
 }
 .country__container-hidden {
   display: none;
@@ -654,6 +659,9 @@ body {
   background-color: #303030;
   border-bottom: 3px solid #02ffff;
 }
+.tabs__button:hover {
+  background-color: #303030;
+}
 
 .detail__button {
   width: auto;
@@ -676,6 +684,9 @@ body {
 .detail__button-hidden {
   opacity: 0;
   cursor: unset;
+}
+.detail__button:hover {
+  background-color: #303030;
 }
 
 .table__date {

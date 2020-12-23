@@ -66,10 +66,12 @@
 }
 
 .country__container {
+  transition: all 0.5s ease-out;
   padding: 5px;
   border-bottom: 0.5px solid $color-primary-light;
   &:hover {
     cursor: pointer;
+    background-color: $color-scrollbar-light;
   }
   &-deaths {
     color: $color-deaths;
@@ -80,6 +82,9 @@
   &-active {
     background-color: $color-primary-light;
     color: $color-black;
+    &:hover {
+      background-color: $color-primary-light;
+    }
   }
   &-hidden {
     display: none;
@@ -169,6 +174,9 @@
     background-color: $color-primary;
     border-bottom: 3px solid $color-button-border;
   }
+  &:hover {
+    background-color: $color-primary;
+  }
 }
 
 .detail__button {
@@ -192,6 +200,9 @@
     // display: none;
     opacity: 0;
     cursor: unset;
+  }
+  &:hover {
+    background-color: $color-primary;
   }
 }
 

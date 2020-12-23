@@ -270,6 +270,12 @@ export default class List {
     );
     if (target === null) {
       listTarget = this.listCountriesArray.find((elem) => elem.country === country);
+      // 200px from top of scroll div;
+      listCountries.scroll({
+        top: listTarget.offsetTop - 200,
+        left: 100,
+        behavior: 'smooth',
+      });
     }
     listTarget.classList.add('country__container-active');
     this.targetCountry = country;
@@ -281,7 +287,12 @@ export default class List {
       element.classList.remove('country__container-active')
     );
     tableTarget.classList.add('country__container-active');
-    tableTarget.scroll(100, 100); // DOESN'T WORK!
+    // 200px from top of scroll div;
+    tableCountries.scroll({
+      top: tableTarget.offsetTop - 200,
+      left: 100,
+      behavior: 'smooth',
+    });
   }
 
   listCountriesEventHandler() {
@@ -302,11 +313,17 @@ export default class List {
       const isSameAsSelected = this.selectValue === this.select.value;
       if (isSameAsSelected) return;
       this.selectValue = this.select.value;
-      const countryState = Object.keys(TABLE_COUNTRY_STATES).find(
+      const countryStateKey = Object.keys(TABLE_COUNTRY_STATES).find(
         (key) => TABLE_COUNTRY_STATES[key].title === this.selectValue
       );
+      const countryState = TABLE_COUNTRY_STATES[countryStateKey];
       let propertys;
       if (countryState) {
+        const { countryBtns } = this.table.tabs;
+        const button = countryBtns.find((btn) => btn.id === countryState.buttonId);
+        this.table.deactivateButtons(countryBtns, 'tabs__button-active');
+        this.table.hideDetailButtons();
+        button.classList.add('tabs__button-active');
         propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
         tableCountries.innerHTML = '';
         tableCountries.className = `table__countries ${propertys.className}`;

@@ -28,7 +28,7 @@ export const CONTAINER_CLASSES = [
   'table1-container',
   'table2-container',
   'map-container',
-  'graph-container',
+  // 'graph-container',
 ];
 
 const BUTTON_CONFIRMED_ID = 'tab-confirmed';

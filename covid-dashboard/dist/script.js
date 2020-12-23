@@ -132,7 +132,8 @@ var TYPE_DEATH = 1;
 var TYPE_RECOVERED = 2;
 var TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
 var MAP_TAB_BUTTONS_ID = ['#map-button-cases', '#map-button-deaths', '#map-button-recovered'];
-var CONTAINER_CLASSES = ['table1-container', 'table2-container', 'map-container', 'graph-container'];
+var CONTAINER_CLASSES = ['table1-container', 'table2-container', 'map-container' // 'graph-container',
+];
 var BUTTON_CONFIRMED_ID = 'tab-confirmed';
 var BUTTON_DEATHS_ID = 'tab-deaths';
 var BUTTON_RECOVERED_ID = 'tab-recovered';
@@ -764,6 +765,12 @@ var List = /*#__PURE__*/function () {
       if (target === null) {
         listTarget = this.listCountriesArray.find(function (elem) {
           return elem.country === country;
+        }); // 200px from top of scroll div;
+
+        _createList__WEBPACK_IMPORTED_MODULE_3__.listCountries.scroll({
+          top: listTarget.offsetTop - 200,
+          left: 100,
+          behavior: 'smooth'
         });
       }
 
@@ -779,8 +786,13 @@ var List = /*#__PURE__*/function () {
       this.table.tableCountriesArray.forEach(function (element) {
         return element.classList.remove('country__container-active');
       });
-      tableTarget.classList.add('country__container-active');
-      tableTarget.scroll(100, 100); // DOESN'T WORK!
+      tableTarget.classList.add('country__container-active'); // 200px from top of scroll div;
+
+      _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.scroll({
+        top: tableTarget.offsetTop - 200,
+        left: 100,
+        behavior: 'smooth'
+      });
     }
   }, {
     key: "listCountriesEventHandler",
@@ -811,12 +823,23 @@ var List = /*#__PURE__*/function () {
         var isSameAsSelected = _this5.selectValue === _this5.select.value;
         if (isSameAsSelected) return;
         _this5.selectValue = _this5.select.value;
-        var countryState = Object.keys(_Constants__WEBPACK_IMPORTED_MODULE_5__.TABLE_COUNTRY_STATES).find(function (key) {
+        var countryStateKey = Object.keys(_Constants__WEBPACK_IMPORTED_MODULE_5__.TABLE_COUNTRY_STATES).find(function (key) {
           return _Constants__WEBPACK_IMPORTED_MODULE_5__.TABLE_COUNTRY_STATES[key].title === _this5.selectValue;
         });
+        var countryState = _Constants__WEBPACK_IMPORTED_MODULE_5__.TABLE_COUNTRY_STATES[countryStateKey];
         var propertys;
 
         if (countryState) {
+          var countryBtns = _this5.table.tabs.countryBtns;
+          var button = countryBtns.find(function (btn) {
+            return btn.id === countryState.buttonId;
+          });
+
+          _this5.table.deactivateButtons(countryBtns, 'tabs__button-active');
+
+          _this5.table.hideDetailButtons();
+
+          button.classList.add('tabs__button-active');
           propertys = (0,_Table__WEBPACK_IMPORTED_MODULE_1__.getPropertiesByType)(_this5.getButtonIdBySelectedOption());
           _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.innerHTML = '';
           _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.className = "table__countries ".concat(propertys.className);
@@ -1531,7 +1554,9 @@ var Table = /*#__PURE__*/function () {
 
       _createTable__WEBPACK_IMPORTED_MODULE_0__.tableCountries.addEventListener('click', function (event) {
         var target = event.target.closest('.country__container');
-        if (!target) return;
+        if (!target) return; // console.log(target.offsetTop);
+        // tableCountries.scroll(0, target.offsetTop - 300);
+
         var country = target.country;
 
         _this4.tableCountriesArray.forEach(function (element) {
