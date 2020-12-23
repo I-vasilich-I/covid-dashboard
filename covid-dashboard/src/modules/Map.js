@@ -22,6 +22,7 @@ export default class Map {
     this.mapboxgl = mapboxgl;
     this.markers = [];
     this.popups = [];
+    this.isFullscreen = false;
   }
 
   init() {
