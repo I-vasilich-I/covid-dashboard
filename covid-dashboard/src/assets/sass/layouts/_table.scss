@@ -1,0 +1,216 @@
+.table__container {
+  position: relative;
+  margin: auto;
+  // width: 400px;
+  // height: 250px;
+  width: 100%;
+  height: 100%;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.table {
+  position: relative;
+  margin: 0 auto;
+  width: 95%;
+  height: 100%;
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  background-color: $color-primary;
+  color: $color-primary-light;
+  //color: $color-confirmed;
+}
+
+.table__countries {
+  color: $color-confirmed;
+  padding: 5px;
+  // height: 80%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+
+.confirmed {
+  // color: $color-primary-light;
+  color: $color-confirmed;
+}
+
+.deaths {
+  color: $color-deaths;
+}
+
+.recovered {
+  color: $color-recovered;
+}
+
+.table__details {
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding-left: 15px;
+  // height: 15%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.country__container {
+  transition: all 0.5s ease-out;
+  padding: 5px;
+  border-bottom: 0.5px solid $color-primary-light;
+  &:hover {
+    cursor: pointer;
+    background-color: $color-scrollbar-light;
+  }
+  &-deaths {
+    color: $color-deaths;
+  }
+  &-recovered {
+    color: $color-recovered;
+  }
+  &-active {
+    background-color: $color-primary-light;
+    color: $color-black;
+    &:hover {
+      background-color: $color-primary-light;
+    }
+  }
+  &-hidden {
+    display: none;
+  }
+}
+
+.country__cases {
+  font-size: 2rem;
+  font-weight: bold;
+  p {
+    font-size: 1.6rem;
+    margin: 0;
+  }
+}
+
+.detail__container {
+  font-size: 1.6rem;
+  font-weight: bold;
+  width: 95%;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  // flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  div {
+    font-size: 1.6rem;
+    font-weight: normal;
+  }
+}
+
+.detail__confirmed {
+  padding: 5px;
+  // color: $color-primary-light;
+  color: $color-confirmed;
+}
+
+.detail__deaths {
+  padding: 5px;
+  color: $color-deaths;
+}
+
+.detail__recovered {
+  padding: 5px;
+  color: $color-recovered;
+}
+
+.day__container {
+  width: 100%;
+  padding: 5px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 1.6rem;
+  font-weight: bold;
+  div {
+    font-size: 1.6rem;
+    font-weight: normal;
+  }
+}
+
+.tabs__container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 95%;
+  height: 25px;
+  font-size: 1.4rem;
+}
+
+.tabs__button {
+  width: auto;
+  border: none;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  padding: 5px;
+  white-space: normal;
+  background-color: $color-black;
+  color: $color-primary-light;
+  &-active {
+    background-color: $color-primary;
+    border-bottom: 3px solid $color-button-border;
+  }
+  &:hover {
+    background-color: $color-primary;
+  }
+}
+
+.detail__button {
+  width: auto;
+  border: none;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  padding: 5px;
+  white-space: normal;
+  background-color: $color-black;
+  color: $color-primary-light;
+  &-active {
+    background-color: $color-primary;
+    border-top: 3px solid $color-button-border;
+  }
+  &-hidden {
+    // display: none;
+    opacity: 0;
+    cursor: unset;
+  }
+  &:hover {
+    background-color: $color-primary;
+  }
+}
+
+.table__date {
+  padding-top: 15px;
+  background-color: $color-black;
+  color: $color-primary-light;
+  text-align: center;
+  width: 100%;
+  font-size: 1.6rem;
+}

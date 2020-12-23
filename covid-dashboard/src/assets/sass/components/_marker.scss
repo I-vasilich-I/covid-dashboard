@@ -1,0 +1,24 @@
+#marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.marker_cases {
+  color: $color-marker-cases;
+  border: 1px solid $color-marker-cases;
+  background-color: $color-marker-cases-bg;
+}
+
+.marker_deaths {
+  color: $color-marker-deaths;
+  border: 1px solid $color-marker-deaths;
+  background-color: $color-marker-deaths-bg;
+}
+
+.marker_recovered {
+  color: $color-marker-recovered;
+  border: 1px solid $color-marker-recovered;
+  background-color: $color-marker-recovered-bg;
+}
