@@ -8,7 +8,7 @@ import {
   //  table,
   tableCountries,
 } from './createTable';
-import { BUTTONS_ID, LIST_STATES } from './Constants';
+import { BUTTONS_ID, LIST_STATES, TABLE_COUNTRY_STATES } from './Constants';
 
 const { BUTTON_CONFIRMED_ID, BUTTON_DEATHS_ID, BUTTON_RECOVERED_ID, BUTTON_TOTAL_ID } = BUTTONS_ID;
 let that;
@@ -301,14 +301,19 @@ export default class List {
     this.select.onclick = () => {
       const isSameAsSelected = this.selectValue === this.select.value;
       if (isSameAsSelected) return;
-
-      // const propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
-      // tableCountries.innerHTML = '';
-      // tableCountries.className = `table__countries ${propertys.className}`;
-      // this.table.tableCountriesArray.length = 0;
-
-      listCountries.innerHTML = '';
       this.selectValue = this.select.value;
+      const countryState = Object.keys(TABLE_COUNTRY_STATES).find(
+        (key) => TABLE_COUNTRY_STATES[key].title === this.selectValue
+      );
+      let propertys;
+      if (countryState) {
+        propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
+        tableCountries.innerHTML = '';
+        tableCountries.className = `table__countries ${propertys.className}`;
+        this.table.tableCountriesArray.length = 0;
+      }
+      listCountries.innerHTML = '';
+
       const { mapType } = Object.values(LIST_STATES).find(
         (elem) => elem.inList === this.selectValue
       );
@@ -316,7 +321,8 @@ export default class List {
       sortByProperty(this.countries, this.selectValue, -1);
       this.countries.forEach((country) => {
         this.listCountriesArray.push(createListCountryContainer(country, this.selectValue));
-        // this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
+        if (countryState)
+          this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
       });
       listCountries.scrollTop = 0;
       this.handleTable(null);

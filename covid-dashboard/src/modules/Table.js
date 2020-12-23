@@ -85,7 +85,8 @@ export class Table {
       parent: containerDiv,
     });
     sortByProperty(this.countries, 'TotalConfirmed', -1);
-
+    const dateDiv = createDomElement({ elementName: 'div', className: 'table__date' });
+    dateDiv.innerText = this.date;
     createDetailContainer(this.global);
     this.countries.forEach((country) => {
       this.tableCountriesArray.push(createCountryContainer(country));
@@ -95,6 +96,7 @@ export class Table {
     parent.appendChild(this.tabs.tabsDetail);
     parent.appendChild(table);
     parent.appendChild(this.tabs.tabsCountry);
+    parent.appendChild(dateDiv);
     return this;
   }
 

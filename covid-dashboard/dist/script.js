@@ -98,7 +98,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MAPBOX_TOKEN": () => /* binding */ MAPBOX_TOKEN,
 /* harmony export */   "COUNTRIES_COORDINATS_URL": () => /* binding */ COUNTRIES_COORDINATS_URL,
-/* harmony export */   "COVID_DATA_PER_YEAR_URL": () => /* binding */ COVID_DATA_PER_YEAR_URL,
 /* harmony export */   "COVID_DATA_URL": () => /* binding */ COVID_DATA_URL,
 /* harmony export */   "CASES_RANGE": () => /* binding */ CASES_RANGE,
 /* harmony export */   "DEATHS_RANGE": () => /* binding */ DEATHS_RANGE,
@@ -120,8 +119,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* eslint-disable no-unused-vars */
 var MAPBOX_TOKEN = 'pk.eyJ1IjoibWljaGFlbHNoIiwiYSI6ImNraXFkdnZ0ajF0bm4ycmxiM3k0MXRvcjMifQ.Yf1Olmco7KyZFm-rRvcPaw';
-var COUNTRIES_COORDINATS_URL = 'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag';
-var COVID_DATA_PER_YEAR_URL = 'https://disease.sh/v3/covid-19/historical?lastdays=365';
+var COUNTRIES_COORDINATS_URL = 'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng;population;flag'; // export const COVID_DATA_PER_YEAR_URL = 'https://disease.sh/v3/covid-19/historical?lastdays=365';
+// export const COVID_DATA_PER_YEAR_URL = 'https://disease.sh/v3/covid-19/historical/all?lastdays=365';
+
 var COVID_DATA_URL = 'https://api.covid19api.com/summary';
 var CASES_RANGE = [5000000, 1000000, 500000, 400000, 250000, 100000, 50000];
 var DEATHS_RANGE = [100000, 50000, 25000, 10000, 5000, 2500, 1000];
@@ -343,7 +343,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-/* eslint-disable no-console */
 
 
 var Fullscreen = /*#__PURE__*/function () {
@@ -366,7 +365,6 @@ var Fullscreen = /*#__PURE__*/function () {
     key: "fullscreenButtonsEventHandler",
     value: function fullscreenButtonsEventHandler(e) {
       var element = e.target.closest('.button-fullscreen');
-      console.log(e.target);
 
       if (!element) {
         return;
@@ -380,7 +378,6 @@ var Fullscreen = /*#__PURE__*/function () {
             Fullscreen.hideContainers(_Constants__WEBPACK_IMPORTED_MODULE_0__.CONTAINER_CLASSES[0]);
           }
 
-          console.log('table1');
           this.isFullscreen = !this.isFullscreen;
           break;
 
@@ -392,7 +389,6 @@ var Fullscreen = /*#__PURE__*/function () {
           }
 
           this.isFullscreen = !this.isFullscreen;
-          console.log('table2');
           break;
 
         default:
@@ -813,13 +809,21 @@ var List = /*#__PURE__*/function () {
 
       this.select.onclick = function () {
         var isSameAsSelected = _this5.selectValue === _this5.select.value;
-        if (isSameAsSelected) return; // const propertys = getPropertiesByType(this.getButtonIdBySelectedOption());
-        // tableCountries.innerHTML = '';
-        // tableCountries.className = `table__countries ${propertys.className}`;
-        // this.table.tableCountriesArray.length = 0;
+        if (isSameAsSelected) return;
+        _this5.selectValue = _this5.select.value;
+        var countryState = Object.keys(_Constants__WEBPACK_IMPORTED_MODULE_5__.TABLE_COUNTRY_STATES).find(function (key) {
+          return _Constants__WEBPACK_IMPORTED_MODULE_5__.TABLE_COUNTRY_STATES[key].title === _this5.selectValue;
+        });
+        var propertys;
+
+        if (countryState) {
+          propertys = (0,_Table__WEBPACK_IMPORTED_MODULE_1__.getPropertiesByType)(_this5.getButtonIdBySelectedOption());
+          _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.innerHTML = '';
+          _createTable__WEBPACK_IMPORTED_MODULE_4__.tableCountries.className = "table__countries ".concat(propertys.className);
+          _this5.table.tableCountriesArray.length = 0;
+        }
 
         _createList__WEBPACK_IMPORTED_MODULE_3__.listCountries.innerHTML = '';
-        _this5.selectValue = _this5.select.value;
 
         var _Object$values$find = Object.values(_Constants__WEBPACK_IMPORTED_MODULE_5__.LIST_STATES).find(function (elem) {
           return elem.inList === _this5.selectValue;
@@ -831,8 +835,9 @@ var List = /*#__PURE__*/function () {
         (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_2__.sortByProperty)(_this5.countries, _this5.selectValue, -1);
 
         _this5.countries.forEach(function (country) {
-          _this5.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_3__.createListCountryContainer)(country, _this5.selectValue)); // this.table.tableCountriesArray.push(createCountryContainer(country, propertys));
+          _this5.listCountriesArray.push((0,_createList__WEBPACK_IMPORTED_MODULE_3__.createListCountryContainer)(country, _this5.selectValue));
 
+          if (countryState) _this5.table.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_4__.createCountryContainer)(country, propertys));
         });
 
         _createList__WEBPACK_IMPORTED_MODULE_3__.listCountries.scrollTop = 0;
@@ -884,7 +889,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-/* eslint-disable no-console */
 
 
 
@@ -1015,31 +1019,25 @@ var Map = /*#__PURE__*/function () {
 
       if (!element) {
         return;
-      } // console.log(element);
-
+      }
 
       switch (element.id) {
         case 'map-button-cases':
-          // console.log('cases');
-          // eslint-disable-next-line no-return-assign
           this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_CASE);
           this.handleTabs("#".concat(element.id));
           break;
 
         case 'map-button-deaths':
-          // console.log('deaths');
           this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_DEATH);
           this.handleTabs("#".concat(element.id));
           break;
 
         case 'map-button-recovered':
-          // console.log('recovered');
           this.changeMarkersColor(_Constants__WEBPACK_IMPORTED_MODULE_1__.TYPE_RECOVERED);
           this.handleTabs("#".concat(element.id));
           break;
 
         case 'legend-button':
-          // console.log('legend');
           Map.clickLegendButton();
           e.stopImmediatePropagation();
           break;
@@ -1048,7 +1046,6 @@ var Map = /*#__PURE__*/function () {
           {
             var countryName = Map.getCountryNameByMarkerElement(element);
             var country = this.findCountryByName(countryName); // this.hideAllPopups();
-            // console.log(Map.getCountryNameByMarkerElement(element));
 
             this.handleTable(country);
             e.stopImmediatePropagation();
@@ -1149,8 +1146,7 @@ var Map = /*#__PURE__*/function () {
   }, {
     key: "deactivateTabButtons",
     value: function deactivateTabButtons() {
-      var buttons = document.querySelectorAll('button.map-button'); // console.log(buttons);
-
+      var buttons = document.querySelectorAll('button.map-button');
       [].map.call(buttons, function (element) {
         return element.classList.remove('button-checked');
       });
@@ -1419,6 +1415,11 @@ var Table = /*#__PURE__*/function () {
         parent: containerDiv
       });
       (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.sortByProperty)(this.countries, 'TotalConfirmed', -1);
+      var dateDiv = (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.createDomElement)({
+        elementName: 'div',
+        className: 'table__date'
+      });
+      dateDiv.innerText = this.date;
       (0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createDetailContainer)(this.global);
       this.countries.forEach(function (country) {
         _this.tableCountriesArray.push((0,_createTable__WEBPACK_IMPORTED_MODULE_0__.createCountryContainer)(country));
@@ -1427,6 +1428,7 @@ var Table = /*#__PURE__*/function () {
       parent.appendChild(this.tabs.tabsDetail);
       parent.appendChild(_createTable__WEBPACK_IMPORTED_MODULE_0__.table);
       parent.appendChild(this.tabs.tabsCountry);
+      parent.appendChild(dateDiv);
       return this;
     }
   }, {
@@ -1885,7 +1887,7 @@ function _fecthData() {
           case 10:
             _context2.prev = 10;
             _context2.t0 = _context2["catch"](0);
-            console.error(_context2.t0);
+            alert("Something went terribly wrong, can't get covid data from API. Please try again a bit later. We'll really appreciate it if you contact us if the problem wouldn't solve by itself (Discord: Michael_Sh#1396 or __vasilich__#1398)");
 
           case 13:
             return _context2.abrupt("return", null);
@@ -2120,19 +2122,17 @@ function _addAdditionalData() {
                 noSuchCovidCountry.push(country);
               }
             });
-            dataToSave = asyncData.covidData;
-            covidDataPerYear.map(function (elem) {
-              var thisCountry = dataToSave.Countries.find(function (count) {
-                return count.Country.toUpperCase() === elem.country.toUpperCase();
-              });
+            dataToSave = asyncData.covidData; // covidDataPerYear.map((elem) => {
+            //   const thisCountry = dataToSave.Countries.find(
+            //     (count) => count.Country.toUpperCase() === elem.country.toUpperCase()
+            //   );
+            //   if (thisCountry) {
+            //     const temp = elem;
+            //     temp.population = thisCountry.population;
+            //   }
+            //   return elem;
+            // });
 
-              if (thisCountry) {
-                var temp = elem;
-                temp.population = thisCountry.population;
-              }
-
-              return elem;
-            });
             date = new Date();
             _storage__WEBPACK_IMPORTED_MODULE_1__.set('covidData', {
               date: date,
@@ -2143,7 +2143,7 @@ function _addAdditionalData() {
               covidDataPerYear: covidDataPerYear
             });
 
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -2177,7 +2177,7 @@ function prepareData() {
 
 function _prepareData() {
   _prepareData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    var localData, countries, countriesData, covidCountries, covidData, covidDataPerYearFetch, covidDataPerYear, objData;
+    var localData, countries, countriesData, covidCountries, covidData, objData;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -2229,40 +2229,24 @@ function _prepareData() {
 
           case 18:
             covidData = _context2.sent;
-            _context2.next = 21;
-            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.fecthData)(_Constants__WEBPACK_IMPORTED_MODULE_2__.COVID_DATA_PER_YEAR_URL);
-
-          case 21:
-            covidDataPerYearFetch = _context2.sent;
-
-            if (covidDataPerYearFetch) {
-              _context2.next = 24;
-              break;
-            }
-
-            return _context2.abrupt("return", null);
-
-          case 24:
-            _context2.next = 26;
-            return (0,_fetchData__WEBPACK_IMPORTED_MODULE_0__.getAsyncData)(covidDataPerYearFetch);
-
-          case 26:
-            covidDataPerYear = _context2.sent;
+            // const covidDataPerYearFetch = await fecthData(COVID_DATA_PER_YEAR_URL);
+            // if (!covidDataPerYearFetch) return null;
+            // const covidDataPerYear = await getAsyncData(covidDataPerYearFetch);
             objData = {
               covidData: covidData,
-              countriesData: countriesData,
-              covidDataPerYear: covidDataPerYear
+              countriesData: countriesData // covidDataPerYear,
+
             };
-            _context2.next = 30;
+            _context2.next = 22;
             return addAdditionalData(objData);
 
-          case 30:
+          case 22:
             return _context2.abrupt("return", {
-              covidData: covidData,
-              covidDataPerYear: covidDataPerYear
+              covidData: covidData // covidDataPerYear
+
             });
 
-          case 31:
+          case 23:
           case "end":
             return _context2.stop();
         }

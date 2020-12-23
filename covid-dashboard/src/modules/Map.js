@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import * as Constants from './Constants';
 import { getPropertiesByType } from './Table';
@@ -130,38 +128,28 @@ export default class Map {
     if (!element) {
       return;
     }
-
-    // console.log(element);
     switch (element.id) {
       case 'map-button-cases':
-        // console.log('cases');
-        // eslint-disable-next-line no-return-assign
         this.changeMarkersColor(Constants.TYPE_CASE);
         this.handleTabs(`#${element.id}`);
         break;
       case 'map-button-deaths':
-        // console.log('deaths');
         this.changeMarkersColor(Constants.TYPE_DEATH);
         this.handleTabs(`#${element.id}`);
         break;
       case 'map-button-recovered':
-        // console.log('recovered');
         this.changeMarkersColor(Constants.TYPE_RECOVERED);
         this.handleTabs(`#${element.id}`);
         break;
       case 'legend-button':
-        // console.log('legend');
         Map.clickLegendButton();
         e.stopImmediatePropagation();
-
         break;
       case 'marker':
         {
           const countryName = Map.getCountryNameByMarkerElement(element);
           const country = this.findCountryByName(countryName);
           // this.hideAllPopups();
-
-          // console.log(Map.getCountryNameByMarkerElement(element));
           this.handleTable(country);
           e.stopImmediatePropagation();
         }
@@ -191,7 +179,6 @@ export default class Map {
 
   static deactivateTabButtons() {
     const buttons = document.querySelectorAll('button.map-button');
-    // console.log(buttons);
     [].map.call(buttons, (element) => element.classList.remove('button-checked'));
   }
 
@@ -277,15 +264,12 @@ export default class Map {
         break;
       case Constants.TYPE_DEATH:
         range = Constants.DEATHS_RANGE;
-
         break;
       case Constants.TYPE_RECOVERED:
         range = Constants.RECOVERED_RANGE;
-
         break;
       default:
         range = Constants.CASES_RANGE;
-
         break;
     }
 
@@ -304,17 +288,14 @@ export default class Map {
       case Constants.TYPE_DEATH:
         range = Constants.DEATHS_RANGE;
         count = country.TotalDeaths;
-
         break;
       case Constants.TYPE_RECOVERED:
         range = Constants.RECOVERED_RANGE;
         count = country.TotalRecovered;
-
         break;
       default:
         range = Constants.CASES_RANGE;
         count = country.TotalConfirmed;
-
         break;
     }
 
@@ -332,10 +313,8 @@ export default class Map {
         return 'marker_cases';
       case Constants.TYPE_DEATH:
         return 'marker_deaths';
-
       case Constants.TYPE_RECOVERED:
         return 'marker_recovered';
-
       default:
         return 'marker_cases';
     }
