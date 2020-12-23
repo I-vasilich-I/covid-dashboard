@@ -124,6 +124,7 @@ module.exports = (env, options) => {
           // { from: 'rs_school_js.svg' },
           { from: 'src/assets/images/', to: 'assets/images/' },
           { from: 'src/assets/icons/', to: 'assets/icons/' },
+          { from: 'src/assets/favicon/', to: 'assets/favicon/' },
           // { from: 'src/assets/fonts/', to: 'assets/fonts/'},
         ],
       }),

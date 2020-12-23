@@ -73,12 +73,15 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/utils/prepareData */ "./src/modules/utils/prepareData.js");
 /* harmony import */ var _modules_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Container */ "./src/modules/Container.js");
+/* harmony import */ var _modules_Fullscreen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Fullscreen */ "./src/modules/Fullscreen.js");
+
 
 
 
 window.onload = function () {
   (0,_modules_utils_prepareData__WEBPACK_IMPORTED_MODULE_0__.default)().then(function (result) {
     new _modules_Container__WEBPACK_IMPORTED_MODULE_1__.default(result).init();
+    new _modules_Fullscreen__WEBPACK_IMPORTED_MODULE_2__.default().init();
   });
 };
 
@@ -106,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TYPE_RECOVERED": () => /* binding */ TYPE_RECOVERED,
 /* harmony export */   "TYPE_NAMES": () => /* binding */ TYPE_NAMES,
 /* harmony export */   "MAP_TAB_BUTTONS_ID": () => /* binding */ MAP_TAB_BUTTONS_ID,
+/* harmony export */   "CONTAINER_CLASSES": () => /* binding */ CONTAINER_CLASSES,
 /* harmony export */   "BUTTONS_ID": () => /* binding */ BUTTONS_ID,
 /* harmony export */   "TABLE_COUNTRY_STATES": () => /* binding */ TABLE_COUNTRY_STATES,
 /* harmony export */   "TABLE_DETAIL_STATES": () => /* binding */ TABLE_DETAIL_STATES,
@@ -128,6 +132,7 @@ var TYPE_DEATH = 1;
 var TYPE_RECOVERED = 2;
 var TYPE_NAMES = ['Confirmed cases', 'Deaths', 'Recovered'];
 var MAP_TAB_BUTTONS_ID = ['#map-button-cases', '#map-button-deaths', '#map-button-recovered'];
+var CONTAINER_CLASSES = ['table1-container', 'table2-container', 'map-container', 'graph-container'];
 var BUTTON_CONFIRMED_ID = 'tab-confirmed';
 var BUTTON_DEATHS_ID = 'tab-deaths';
 var BUTTON_RECOVERED_ID = 'tab-recovered';
@@ -314,6 +319,111 @@ var Container = /*#__PURE__*/function () {
   }]);
 
   return Container;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/Fullscreen.js":
+/*!***********************************!*\
+  !*** ./src/modules/Fullscreen.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ Fullscreen
+/* harmony export */ });
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Constants */ "./src/modules/Constants.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/* eslint-disable no-console */
+
+
+var Fullscreen = /*#__PURE__*/function () {
+  function Fullscreen() {
+    _classCallCheck(this, Fullscreen);
+
+    this.isFullscreen = false;
+  }
+
+  _createClass(Fullscreen, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      document.querySelectorAll('.button-fullscreen').forEach(function (el) {
+        return el.addEventListener('click', Fullscreen.fullscreenButtonsEventHandler.bind(_this));
+      });
+    }
+  }], [{
+    key: "fullscreenButtonsEventHandler",
+    value: function fullscreenButtonsEventHandler(e) {
+      var element = e.target.closest('.button-fullscreen');
+      console.log(e.target);
+
+      if (!element) {
+        return;
+      }
+
+      switch (element.id) {
+        case 'button-fullscreen-table1':
+          if (this.isFullscreen) {
+            Fullscreen.showAllContainers();
+          } else {
+            Fullscreen.hideContainers(_Constants__WEBPACK_IMPORTED_MODULE_0__.CONTAINER_CLASSES[0]);
+          }
+
+          console.log('table1');
+          this.isFullscreen = !this.isFullscreen;
+          break;
+
+        case 'button-fullscreen-table2':
+          if (this.isFullscreen) {
+            Fullscreen.showAllContainers();
+          } else {
+            Fullscreen.hideContainers(_Constants__WEBPACK_IMPORTED_MODULE_0__.CONTAINER_CLASSES[1]);
+          }
+
+          this.isFullscreen = !this.isFullscreen;
+          console.log('table2');
+          break;
+
+        default:
+          break;
+      }
+    }
+  }, {
+    key: "showAllContainers",
+    value: function showAllContainers() {
+      _Constants__WEBPACK_IMPORTED_MODULE_0__.CONTAINER_CLASSES.forEach(function (className) {
+        var el = document.querySelector(".".concat(className));
+        el.classList.remove('hide-container');
+        el.classList.remove('fullscreen-container');
+      });
+    }
+  }, {
+    key: "hideContainers",
+    value: function hideContainers(excludeClass) {
+      _Constants__WEBPACK_IMPORTED_MODULE_0__.CONTAINER_CLASSES.forEach(function (className) {
+        var el = document.querySelector(".".concat(className));
+
+        if (className === excludeClass) {
+          el.classList.add('fullscreen-container');
+        } else {
+          el.classList.add('hide-container');
+        }
+      });
+    }
+  }]);
+
+  return Fullscreen;
 }();
 
 
@@ -802,6 +912,7 @@ var Map = /*#__PURE__*/function () {
     this.mapboxgl = mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__;
     this.markers = [];
     this.popups = [];
+    this.isFullscreen = false;
   }
 
   _createClass(Map, [{
